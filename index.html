@@ -23,6 +23,7 @@
       --ink-secondary: #374151;
       --ink-muted: #6B7280;
       --accent-terracotta: #111111;
+      --accent: #C2410C;
       --accent-amber: #6B7280;
       --accent-teal: #374151;
       --accent-indigo: #4B5563;
@@ -133,7 +134,7 @@
       font-size: 0.85rem;
       font-weight: 600;
       padding: 0.4rem 0.7rem;
-      border-radius: 8px;
+      border-radius: 2px;
       transition: all 0.15s ease;
     }
 
@@ -151,7 +152,7 @@
       font-size: 0.82rem;
       font-weight: 600;
       padding: 0.48rem 0.9rem;
-      border-radius: 9px;
+      border-radius: 2px;
       border: 1px solid transparent;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -296,21 +297,6 @@
       position: relative;
       padding-bottom: 0.55rem;
     }
-    /* v16: a thick bar grows under the title as the section enters (currentColor:
-       black on light sections, white on the dark timeline band) */
-    .section-title::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 72px;
-      height: 4px;
-      background: currentColor;
-      transform: scaleX(0);
-      transform-origin: left center;
-      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
-    }
-    main > section.is-visible .section-title::after { transform: scaleX(1); }
 
     .section-subtitle {
       font-size: 0.92rem;
@@ -331,7 +317,7 @@
       display: inline-flex;
       background: var(--bg-subtle);
       padding: 0.25rem;
-      border-radius: 11px;
+      border-radius: 2px;
       border: 1px solid var(--border-paper);
       gap: 0.2rem;
     }
@@ -344,7 +330,7 @@
       font-weight: 600;
       color: var(--ink-secondary);
       padding: 0.42rem 0.85rem;
-      border-radius: 8px;
+      border-radius: 2px;
       cursor: pointer;
       transition: all 0.15s ease;
     }
@@ -392,7 +378,12 @@
     }
 
     .cat-pill.muted {
-      opacity: 0.35;
+      opacity: 1;
+      border-color: var(--border-paper);
+    }
+    .cat-pill.muted .dot {
+      background: transparent !important;
+      box-shadow: inset 0 0 0 2px currentColor;
     }
 
     .dot {
@@ -415,7 +406,7 @@
       background: rgba(15, 23, 42, 0.96);
       color: #F8FAFC;
       border: 1px solid rgba(251, 146, 60, 0.45);
-      border-radius: 10px;
+      border-radius: 2px;
       padding: 0.65rem 0.85rem;
       font-size: 0.78rem;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
@@ -433,7 +424,7 @@
     .mini-card {
       background: #FAF9F6;
       border: 1px solid var(--border-paper);
-      border-radius: 12px;
+      border-radius: 2px;
       padding: 0.85rem;
     }
 
@@ -467,7 +458,7 @@
     .insight-box {
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
+      border-radius: 2px;
       padding: 0.85rem;
       font-size: 0.8rem;
       color: var(--ink-secondary);
@@ -489,7 +480,7 @@
       border-top: 1px solid #E5E7EB;
       border-right: 1px solid #E5E7EB;
       border-bottom: 1px solid #E5E7EB;
-      border-radius: 0 12px 12px 0;
+      border-radius: 0 2px 2px 0;
       padding: 0.9rem 1.15rem;
       font-size: 0.88rem;
       color: #111111;
@@ -529,7 +520,7 @@
     .embed-frame-wrap {
       position: relative;
       width: 100%;
-      height: 540px;
+      height: 480px;
       background: #FFFFFF;
     }
 
@@ -547,7 +538,7 @@
     }
 
     .social-stat-box {
-      border-radius: 10px;
+      border-radius: 2px;
       padding: 0.75rem;
       text-align: center;
       border: 1px solid var(--border-paper);
@@ -566,7 +557,7 @@
     .network-canvas-box {
       background: #FAF9F6;
       border: 1px solid var(--border-paper);
-      border-radius: 12px;
+      border-radius: 2px;
       padding: 0.5rem;
       position: relative;
     }
@@ -574,7 +565,7 @@
     .inspector-dark {
       background: #131B2E;
       color: #F8FAFC;
-      border-radius: 12px;
+      border-radius: 2px;
       padding: 1.1rem;
       margin-bottom: 1rem;
     }
@@ -604,7 +595,7 @@
       font-family: inherit;
       font-size: 0.9rem;
       font-weight: 700;
-      border-radius: 14px 14px 0 0;
+      border-radius: 2px 2px 0 0;
       border: 1px solid var(--border-strong);
       border-bottom: none;
       background: var(--bg-folder-tab);
@@ -645,7 +636,7 @@
     .folder-body {
       background: #FFFFFF;
       border: 1px solid var(--border-strong);
-      border-radius: 16px;
+      border-radius: 2px;
       box-shadow: var(--shadow-md);
       overflow: hidden;
       position: relative;
@@ -675,6 +666,8 @@
       padding: 0.15rem 0.5rem;
       border-radius: 4px;
       text-transform: uppercase;
+      display: inline-block;
+      transform: rotate(-2deg);
     }
 
     /* Layer 1: Dark Kepler-Style Map + Timeline Player */
@@ -705,7 +698,7 @@
       z-index: 10;
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(251, 146, 60, 0.4);
-      border-radius: 10px;
+      border-radius: 2px;
       padding: 0.65rem 0.85rem;
       max-width: 265px;
       backdrop-filter: blur(6px);
@@ -718,7 +711,7 @@
       z-index: 10;
       background: rgba(15, 23, 42, 0.88);
       border: 1px solid #334155;
-      border-radius: 10px;
+      border-radius: 2px;
       padding: 0.6rem 0.8rem;
       font-size: 0.74rem;
       color: #CBD5E1;
@@ -736,7 +729,7 @@
     .district-card-active {
       background: rgba(30, 41, 59, 0.85);
       border: 1px solid rgba(249, 115, 22, 0.5);
-      border-radius: 12px;
+      border-radius: 2px;
       padding: 1rem;
     }
 
@@ -746,7 +739,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0.52rem 0.75rem;
-      border-radius: 8px;
+      border-radius: 2px;
       background: rgba(30, 41, 59, 0.45);
       border: 1px solid #1F2937;
       color: #E2E8F0;
@@ -807,7 +800,7 @@
       width: 100%;
       padding: 0.5rem 0.75rem;
       border: 1px solid var(--border-strong);
-      border-radius: 8px;
+      border-radius: 2px;
       font-family: inherit;
       font-size: 0.82rem;
       background: #FAF9F6;
@@ -822,7 +815,7 @@
 
     .archive-table-wrap {
       border: 1px solid var(--border-paper);
-      border-radius: 12px;
+      border-radius: 2px;
       overflow-x: auto;
       max-height: 520px;
       overflow-y: auto;
@@ -889,7 +882,8 @@
     }
 
     @media (max-width: 640px) {
-      .kpi-grid, .insight-grid, .small-multiples-grid, .csv-controls-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .insight-grid, .small-multiples-grid, .csv-controls-grid { grid-template-columns: 1fr; }
       .social-pills-grid { grid-template-columns: repeat(2, 1fr); }
       .folder-tab { padding: 0.6rem 0.9rem; font-size: 0.8rem; }
     }
@@ -931,10 +925,10 @@
 
     /* --- cards / tabs / buttons --- */
     .card { background: var(--bg-card); border: 1px solid var(--border-paper); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
-    .tab-group { background: var(--bg-subtle); border: 1px solid var(--border-paper); border-radius: 8px; }
+    .tab-group { background: var(--bg-subtle); border: 1px solid var(--border-paper); border-radius: 2px; }
     .tab-btn { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.04em; border-radius: 6px; }
     .tab-btn.active { background: var(--ink-primary); }
-    .btn { border-radius: 8px; }
+    .btn { border-radius: 2px; }
     .btn-primary { background: var(--ink-primary); color: #F5F2EC; }
     .btn-primary:hover { background: #3A352C; }
     .btn-dark { background: var(--ink-primary); }
@@ -943,36 +937,36 @@
     /* --- Section A --- */
     .filter-bar { border-bottom: 1px solid var(--border-paper); }
     .cat-pill { font-family: var(--font-mono); font-size: 0.72rem; border: 1px solid var(--border-strong); background: var(--bg-card); border-radius: 999px; }
-    .svg-tooltip { background: rgba(35, 32, 27, 0.96); border: 1px solid rgba(245, 242, 236, 0.25); color: #F5F2EC; border-radius: 8px; }
-    .mini-card { background: #F3EDE0; border: 1px solid var(--border-paper); border-radius: 8px; }
+    .svg-tooltip { background: rgba(35, 32, 27, 0.96); border: 1px solid rgba(245, 242, 236, 0.25); color: #F5F2EC; border-radius: 2px; }
+    .mini-card { background: #F3EDE0; border: 1px solid var(--border-paper); border-radius: 2px; }
     .peak-tag { background: #F3EDE0; color: var(--accent-terracotta); border: 1px solid var(--border-paper); font-family: var(--font-mono); }
     .insight-grid { border-top: 1px solid var(--border-paper); }
-    .insight-box { background: #F3EDE0; border: 1px solid var(--border-paper); border-radius: 8px; font-family: var(--font-serif); color: var(--ink-secondary); }
+    .insight-box { background: #F3EDE0; border: 1px solid var(--border-paper); border-radius: 2px; font-family: var(--font-serif); color: var(--ink-secondary); }
     .insight-box strong { font-family: var(--font-sans); }
 
     /* --- Section B --- */
-    .presenter-alert { background: #F3EDE0; border: 1px solid var(--border-paper); border-left: 3px solid var(--ink-primary); border-radius: 0 8px 8px 0; color: var(--ink-secondary); }
+    .presenter-alert { background: #F3EDE0; border: 1px solid var(--border-paper); border-left: 3px solid var(--ink-primary); border-radius: 0 2px 2px 0; color: var(--ink-secondary); }
     .embed-card { border-radius: var(--radius-lg); }
     .embed-header { background: #F3EDE0; }
-    .social-stat-box { background: var(--bg-card); border-radius: 8px; }
+    .social-stat-box { background: var(--bg-card); border-radius: 2px; }
 
     /* --- Section C --- */
-    .network-canvas-box { background: #F3EDE0; border-radius: 8px; }
-    .inspector-dark { background: #23201B; color: #F5F2EC; border-radius: 8px; }
+    .network-canvas-box { background: #F3EDE0; border-radius: 2px; }
+    .inspector-dark { background: #23201B; color: #F5F2EC; border-radius: 2px; }
 
     /* --- Section D: archive catalogue --- */
-    .folder-tab { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.04em; background: var(--bg-folder-tab); border-radius: 10px 10px 0 0; }
+    .folder-tab { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.04em; background: var(--bg-folder-tab); border-radius: 2px 2px 0 0; }
     .folder-tab.active { background: var(--bg-card); }
     .folder-tab-num { font-family: var(--font-mono); }
     .folder-tab.active .folder-tab-num { background: var(--accent-terracotta); }
-    .folder-body { background: var(--bg-card); border-radius: 12px; box-shadow: var(--shadow-md); }
+    .folder-body { background: #F3EDE0; border-radius: 2px; box-shadow: var(--shadow-md); }
     .folder-stamp-bar { background: #F3EDE0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; }
     .stamp-badge { font-family: var(--font-mono); letter-spacing: 0.1em; }
     .form-control { background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: 6px; color: var(--ink-primary); }
     .archive-table thead th { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); border-bottom: 1px solid var(--ink-primary); }
     .archive-table tbody td { border-bottom: 1px solid var(--border-paper); }
     .archive-table tbody tr:hover { background: #F3EDE0; }
-    .hist1957-figure { margin: 1.5rem 1.5rem 0; background: var(--bg-card); border: 1px solid var(--border-paper); border-radius: 8px; overflow: hidden; }
+    .hist1957-figure { margin: 1.5rem 1.5rem 0; background: var(--bg-card); border: 1px solid var(--border-paper); border-radius: 2px; overflow: hidden; }
     .hist1957-figure img { display: block; width: 100%; height: auto; }
     .hist1957-figure figcaption { padding: 0.8rem 1rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--ink-muted); border-top: 1px solid var(--border-paper); line-height: 1.7; }
 
@@ -1009,8 +1003,7 @@
     .kpi-card:nth-child(1) .kpi-value { color: #4B5563; }
     .kpi-card:nth-child(4) .kpi-value { color: #6B7280; }
     .cover-scroll { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: var(--ink-muted); font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.3em; }
-    .cover-scroll em { display: block; width: 10px; height: 10px; border-right: 2px solid var(--ink-muted); border-bottom: 2px solid var(--ink-muted); transform: rotate(45deg); animation: cover-bob 1.8s ease-in-out infinite; }
-    @keyframes cover-bob { 0%, 100% { margin-top: 0; opacity: 0.9; } 50% { margin-top: 6px; opacity: 0.5; } }
+    .cover-scroll em { display: block; width: 10px; height: 10px; border-right: 2px solid var(--ink-muted); border-bottom: 2px solid var(--ink-muted); transform: rotate(45deg); }
 
     /* --- meta items as soft-tinted chips --- */
     .meta-pill { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
@@ -1065,7 +1058,7 @@
     /* v6: archive record modal */
     .archive-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(35, 32, 27, 0.62); }
     .archive-modal.hidden { display: none; }
-    .archive-modal-card { position: relative; width: 100%; max-width: 640px; max-height: 85vh; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border-paper); border-radius: 14px; padding: 1.6rem 1.6rem 1.4rem; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35); }
+    .archive-modal-card { position: relative; width: 100%; max-width: 640px; max-height: 85vh; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border-paper); border-radius: 2px; padding: 1.6rem 1.6rem 1.4rem; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35); }
     .archive-modal-close { position: absolute; top: 0.7rem; right: 0.9rem; border: none; background: none; font-size: 1.7rem; line-height: 1; color: var(--ink-muted); cursor: pointer; padding: 0.2rem 0.4rem; }
     .archive-modal-close:hover { color: var(--accent-terracotta); }
     .archive-modal-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin-bottom: 0.8rem; padding-right: 2rem; }
@@ -1081,7 +1074,7 @@
       #csv-table thead { display: none; }
       #csv-table, #csv-table tbody, #csv-table tr, #csv-table td { display: block; width: 100%; }
       #csv-table { min-width: 0 !important; }
-      #csv-table tr.data-row { border: 1px solid var(--border-paper); border-radius: 12px; margin-bottom: 0.8rem; padding: 0.7rem 0.9rem; background: var(--bg-card); cursor: pointer; }
+      #csv-table tr.data-row { border: 1px solid var(--border-paper); border-radius: 2px; margin-bottom: 0.8rem; padding: 0.7rem 0.9rem; background: var(--bg-card); cursor: pointer; }
       #csv-table td { border: none; padding: 0.2rem 0; max-width: none !important; white-space: normal !important; }
       #csv-table td::before { content: attr(data-label); display: block; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.05em; color: var(--ink-muted); text-transform: uppercase; }
     }
@@ -1122,8 +1115,8 @@
     /* v10: timeline */
     .tl-wrap { position: relative; margin: 1.5rem 0 0.5rem; padding-left: 0; }
     .tl-wrap::before { content: ""; position: absolute; left: 108px; top: 6px; bottom: 6px; width: 2px; background: var(--border-strong); }
-    .tl-item { position: relative; display: flex; gap: 1.1rem; padding: 0.85rem 0; }
-    .tl-date { flex: 0 0 92px; text-align: right; font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; color: var(--ink-primary); padding-top: 0.1rem; }
+    .tl-item { position: relative; display: flex; gap: 1.1rem; padding: 1.1rem 0; }
+    .tl-date { flex: 0 0 100px; text-align: right; font-family: var(--font-mono); font-weight: 700; font-size: 1rem; color: var(--ink-primary); padding-top: 0.1rem; }
     .tl-dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: #111111; border: 2px solid #FFFFFF; box-shadow: 0 0 0 2px #111111; margin-top: 0.25rem; z-index: 1; }
     .tl-body { flex: 1; min-width: 0; }
     .tl-title { font-weight: 800; font-size: 1.02rem; line-height: 1.35; }
@@ -1139,7 +1132,7 @@
     @media (max-width: 720px) {
       .tl-wrap::before { left: 6px; }
       .tl-item { gap: 0.8rem; }
-      .tl-date { flex-basis: 64px; text-align: left; font-size: 0.78rem; }
+      .tl-date { flex-basis: 64px; text-align: left; font-size: 0.85rem; }
     }
 
     /* v12 editorial: dark hero, black nav, sharp corners, big display type, dark timeline */
@@ -1147,7 +1140,7 @@
     body { overflow-x: clip; }
 
     /* --- black nav --- */
-    .navbar { background: #111111; border-bottom: 1px solid #262626; box-shadow: none; }
+    .navbar { background: #111111; border-bottom: 1px solid rgba(255,255,255,0.2); box-shadow: none; }
     .navbar .brand, .navbar .brand-title { color: #FFFFFF; }
     .navbar .brand-badge { background: #FFFFFF; color: #111111; }
     .navbar .nav-links a { color: rgba(255,255,255,0.85); }
@@ -1157,7 +1150,7 @@
 
     /* --- dark hero over the 1957 map --- */
     .hero-header {
-      background-image: linear-gradient(rgba(8,8,8,0.82), rgba(8,8,8,0.88)), url('hist1957_3000.jpg');
+      background-image: linear-gradient(rgba(8,8,8,0.55), rgba(8,8,8,0.65)), url('hist1957_3000.jpg');
       background-size: cover; background-position: center;
       color: #FFFFFF; min-height: 100vh; min-height: 100svh;
       display: flex; flex-direction: column; justify-content: center;
@@ -1170,10 +1163,13 @@
     .hero-cta { margin: 1.6rem 0 2.2rem; }
     .hero-cta-btn { display: inline-block; text-decoration: none; color: #FFFFFF; border: 1px solid #FFFFFF; padding: 0.7rem 1.6rem; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; transition: background 0.2s ease, color 0.2s ease; }
     .hero-cta-btn:hover { background: #FFFFFF; color: #111111; }
-    .hero-header .kpi-card { background: #FFFFFF; color: #111111; border: none; border-radius: 2px; box-shadow: none; }
-    .hero-header .kpi-label { color: #4B5563; }
-    .hero-header .kpi-value { color: #111111; }
-    .hero-header .kpi-sub { color: #6B7280; }
+    .hero-header .kpi-grid { border-top: 1px solid rgba(255,255,255,0.35); border-bottom: 1px solid rgba(255,255,255,0.35); padding: 1.1rem 0; gap: 0; }
+    .hero-header .kpi-card { background: transparent; color: #FFFFFF; border: none; border-radius: 0; box-shadow: none; padding: 0.4rem 1rem; text-align: left; border-right: 1px solid rgba(255,255,255,0.35); }
+    .hero-header .kpi-card:last-child { border-right: none; }
+    .hero-header .kpi-label { color: rgba(255,255,255,0.7); }
+    .hero-header .kpi-value, .hero-header .kpi-card:nth-child(1) .kpi-value, .hero-header .kpi-card:nth-child(4) .kpi-value { color: #FFFFFF; }
+    .hero-header .kpi-sub { color: rgba(255,255,255,0.7); }
+    .hero-header .kpi-card.kpi-click:hover { transform: none; box-shadow: none; background: rgba(255,255,255,0.06); }
     .hero-header .cover-scroll { color: #FFFFFF; }
     .hero-header .cover-scroll em { background: #FFFFFF; }
 
@@ -1194,7 +1190,7 @@
     #section-timeline .section-subtitle strong { color: #FFFFFF; }
     #section-timeline .tl-wrap::before { background: #333333; }
     #section-timeline .tl-date { color: #FFFFFF; }
-    #section-timeline .tl-dot { background: #FFFFFF; border-color: #111111; box-shadow: 0 0 0 2px #FFFFFF; }
+    #section-timeline .tl-dot { background: var(--accent); border-color: #111111; box-shadow: 0 0 0 2px var(--accent); }
     #section-timeline .tl-title { color: #FFFFFF; }
     #section-timeline .tl-tag-bg { background: #262626; color: #E5E7EB; border-color: #4B5563; }
     #section-timeline .tl-tag-mood { background: #FFFFFF; color: #111111; border-color: #FFFFFF; }
@@ -1208,7 +1204,7 @@
     .hero-title { font-family: var(--font-serif); font-weight: 700; font-size: clamp(2.2rem, 4.8vw, 3.5rem); line-height: 1.22; letter-spacing: 0.02em; max-width: 22ch; }
     .section-title { font-family: var(--font-serif); font-weight: 700; letter-spacing: 0.01em; }
     /* v14: back-to-top */
-    #back-to-top { position: fixed; right: 18px; bottom: 18px; z-index: 950; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #111111; background: #111111; color: #FFFFFF; font-size: 1.1rem; font-weight: 800; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+    #back-to-top { position: fixed; right: 18px; bottom: 18px; z-index: 950; width: 44px; height: 44px; border-radius: 2px; border: 1px solid #111111; background: #111111; color: #FFFFFF; font-size: 1.1rem; font-weight: 800; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: none; }
     #back-to-top.show { opacity: 1; pointer-events: auto; }
     #back-to-top:hover { transform: translateY(-2px); }
     /* v15: word cloud */
@@ -1222,27 +1218,16 @@
        ========================================================================== */
     :root {
       --font-serif: "Source Serif 4", "Noto Serif TC", "Songti TC", "PMingLiU", serif;
-      --bg-band: #F8F8F6;
+      --bg-band: #F3EDE0;
     }
     /* 1. Typography — real web serif with true weights (no more fake bold) */
     .hero-title { font-weight: 900; }
     /* 2. Magazine details */
-    .section-title::after { width: 56px; height: 2px; }
     main > section { border-top-width: 1px; padding-top: 2.75rem; padding-bottom: 4rem; }
     #section-timeline { border-top: none; }
-    /* drop cap on the opening analytical paragraph (Section A subtitle) */
-    #section-a .section-subtitle::first-letter {
-      font-family: var(--font-serif);
-      font-weight: 700;
-      font-size: 2.2em;
-      line-height: 1;
-      float: left;
-      padding-right: 0.12em;
-      padding-top: 0.05em;
-    }
     /* archive table: tabular numerals, clean white sticky header, sharp corners */
     .archive-table { font-variant-numeric: tabular-nums; }
-    .archive-table th { background: #FFFFFF; }
+    .archive-table th { background: #F3EDE0; }
     .archive-table-wrap { border-radius: 2px; }
     /* refined hover for content links (not buttons) */
     main a:not(.btn):hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -1283,7 +1268,7 @@
       text-align: center;
       padding: 2.25rem 0.45rem 0;
       font-family: var(--font-serif);
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       line-height: 1.55;
       color: var(--ink-primary);
     }
@@ -1293,7 +1278,7 @@
       top: 0.8rem;
       left: 0;
       right: 0;
-      height: 2px;
+      height: 1px;
       background: var(--ink-primary);
     }
     .wf-step:first-child::before { left: 50%; }
@@ -1309,7 +1294,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--ink-primary);
+      background: var(--accent);
       color: #FFFFFF;
       border: 2px solid #FFFFFF;
       border-radius: 50%;
@@ -1334,7 +1319,7 @@
         bottom: 0;
         left: 0.8rem;
         right: auto;
-        width: 2px;
+        width: 1px;
         height: auto;
       }
       .wf-step:first-child::before { top: 0.8rem; left: 0.8rem; }
@@ -1367,6 +1352,37 @@
       color: var(--ink-primary);
       margin: 0.15rem 0 0.5rem;
     }
+
+    /* ==========================================================================
+       v32 — second aesthetics review + folder cards + nav toggle
+       ========================================================================== */
+    .hero-title-en { display: block; font-family: var(--font-serif); font-style: italic; font-size: 0.55em; font-weight: 400; letter-spacing: 0.04em; color: rgba(255,255,255,0.85); margin-top: 0.4rem; }
+    /* one accent (#C2410C) on small decorative elements only */
+    .section-kicker::before { content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; background: var(--accent); margin-right: 0.5rem; }
+    /* drop cap moved to the Methods "資料來源" opening paragraph */
+    #method-source p::first-letter { font-family: var(--font-serif); font-weight: 700; font-size: 2.2em; line-height: 1; float: left; padding-right: 0.12em; padding-top: 0.05em; }
+    /* 1957 caption: mono label + serif italic explanation */
+    .hist1957-figure figcaption .fig-label { display: block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--ink-muted); }
+    .hist1957-figure figcaption .fig-note { display: block; font-family: var(--font-serif); font-style: italic; font-size: 0.85rem; line-height: 1.6; color: var(--ink-secondary); margin-top: 0.35rem; }
+    /* footer hierarchy (footer stays light) */
+    footer .footer-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.01em; color: var(--ink-primary); }
+    footer .footer-members, footer .footer-credits { font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 0.02em; color: var(--ink-secondary); }
+    footer .footer-tech { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--ink-muted); }
+    /* data-cleaning folder cards: tab protrudes from the card top edge */
+    .folder-card { position: relative; margin-top: 1rem; padding-top: 1.5rem; background: #F3EDE0; }
+    .folder-card h4 { position: absolute; top: -0.8rem; left: 0.9rem; background: #111111; color: #FFFFFF; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.35rem 0.75rem; margin: 0; max-width: calc(100% - 1.8rem); line-height: 1.4; }
+    /* nav hide / show */
+    .navbar { transition: transform 0.35s ease; }
+    body.nav-hidden .navbar { transform: translateY(-100%); pointer-events: none; }
+    .nav-hide-btn { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.5); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.45rem 0.7rem; border-radius: 2px; cursor: pointer; flex-shrink: 0; }
+    .nav-hide-btn:hover { background: #FFFFFF; color: #111111; border-color: #FFFFFF; }
+    #btnNavShow { position: fixed; top: 12px; right: 12px; z-index: 960; display: none; background: #111111; color: #FFFFFF; border: 1px solid #111111; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.45rem 0.85rem; border-radius: 999px; cursor: pointer; }
+    body.nav-hidden #btnNavShow { display: inline-flex; }
+    /* mobile cover: teaser, not a wall */
+    @media (max-width: 720px) {
+      .hero-header { min-height: auto; padding: 3rem 0 2.5rem; }
+      .nav-hide-text { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1394,8 +1410,10 @@
       <button id="btnPresentation" class="btn btn-primary" onclick="togglePresentationMode()">
         <span>全螢幕簡報</span>
       </button>
+      <button id="btnNavHide" class="nav-hide-btn" onclick="toggleNavBar(false)" aria-label="收起頂部導航" aria-expanded="true" title="收起頂部導航"><span aria-hidden="true">∧</span> <span class="nav-hide-text">收起</span></button>
     </div>
   </nav>
+  <button id="btnNavShow" class="nav-show-btn" onclick="toggleNavBar(true)" aria-label="顯示頂部導航" aria-expanded="false" title="顯示頂部導航">☰ 導航</button>
 
 
   <div id="scroll-progress"></div>
@@ -1422,7 +1440,7 @@
         <span>•</span>
         <span>互動檔案庫</span>
       </div>
-      <h1 class="hero-title">1975–1980 港英政府民情報告 (MOOD Reports) 數據視覺化分析</h1>
+      <h1 class="hero-title">1975–1980 港英政府民情報告 數據視覺化分析<span class="hero-title-en">(MOOD Reports)</span></h1>
       <p class="hero-desc">
         用數位人文方法，拆開 1975–1980 年麥理浩時期港英政府嘅《民情報告》（MOOD Reports）：政府最關注咩、唔同階層嘅市民點睇、邊個階層講邊啲議題，同埋啲報告喺邊區最多。
       </p>
@@ -1435,11 +1453,11 @@
         </div>
         <div class="kpi-card kpi-click" onclick="kpiGo('section-a')" title="撳入去睇時間序列圖">
           <div class="kpi-label">政策議題分類</div>
-          <div class="kpi-value" style="color: var(--accent-terracotta);"><span class="kpi-num" data-count="9">9</span> <span class="kpi-sub">大範疇 (v2.2)</span></div>
+          <div class="kpi-value"><span class="kpi-num" data-count="9">9</span> <span class="kpi-sub">大範疇 (v2.2)</span></div>
         </div>
         <div class="kpi-card kpi-click" onclick="kpiGo('section-d', 2)" title="撳入去睇檔案庫">
           <div class="kpi-label">高顯著度議題記錄</div>
-          <div class="kpi-value" style="color: var(--accent-teal);"><span class="kpi-num" data-count="83">83</span> <span class="kpi-sub">筆 High Salience</span></div>
+          <div class="kpi-value"><span class="kpi-num" data-count="83">83</span> <span class="kpi-sub">筆 High Salience</span></div>
         </div>
         <div class="kpi-card kpi-click" onclick="kpiGo('section-d', 1)" title="撳入去睇地圖">
           <div class="kpi-label">地區標註 vs 全港泛指</div>
@@ -1484,7 +1502,7 @@
         </div>
 
         <!-- Year focus slider -->
-        <div id="a-year-slider-wrap" style="display:flex; flex-wrap:wrap; align-items:center; gap:0.75rem; margin:0.75rem 0; padding:0.6rem 0.9rem; background:var(--bg-subtle); border:1px solid var(--border-paper); border-radius:10px;">
+        <div id="a-year-slider-wrap" style="display:flex; flex-wrap:wrap; align-items:center; gap:0.75rem; margin:0.75rem 0; padding:0.6rem 0.9rem; background:var(--bg-subtle); border:1px solid var(--border-paper); border-radius:2px;">
           <span style="font-size:0.8rem; font-weight:700;">年份聚焦</span>
           <input type="range" id="year-slider" min="0" max="6" step="1" value="6" oninput="setChartYear(parseInt(this.value, 10))" style="flex:1; min-width:160px; accent-color:var(--accent-terracotta);" />
           <span id="year-slider-label" style="font-size:0.85rem; font-weight:800; min-width:4.2rem;">全部年份</span>
@@ -1720,11 +1738,11 @@
               </div>
             </div>
 
-            <div class="insight-box" style="margin-bottom:0.65rem; background:#FFFFFF; border-color:var(--border-paper);">
+            <div class="insight-box" style="margin-bottom:0.65rem; background:#F3EDE0; border-color:var(--border-paper); border-left:3px solid #111111;">
               <strong style="color:#111111;">唔同階層，政府問唔同嘅嘢</strong>
               民政署問草根嗰陣，最多問房屋（11 筆）；問中產嗰陣，最多問經濟（18 筆）同政治（12 筆）——唔同階層，政府聽到嘅嘢都唔同。
             </div>
-            <div class="insight-box" style="background:#FFFFFF; border-color:var(--border-paper);">
+            <div class="insight-box" style="background:#F3EDE0; border-color:var(--border-paper); border-left:3px solid #111111;">
               <strong style="color:#111111;">青年同精英：數目少，但只喺少數議題出聲</strong>
               青年得 11 筆，精英得 5 筆，數目雖然少，但佢哋出聲嗰啲議題好集中——政治憲制、教育同法律管治。
             </div>
@@ -1796,8 +1814,8 @@
             </div>
             <div style="background:#23201B; padding:0 1.5rem 1.5rem;">
               <div id="kepler-wrap" style="position:relative;">
-                <iframe id="kepler-iframe" data-src="mood_kepler_map_v20.html" src="about:blank" title="MOOD Reports Kepler Map" style="width:100%; height:640px; border:1px solid #3A352C; border-radius:8px; background:#23201B; display:block;"></iframe>
-                <div id="kepler-placeholder" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.9rem; background:#23201B; border:1px solid #3A352C; border-radius:8px; color:#E7E5E4; text-align:center; padding:1rem;">
+                <iframe id="kepler-iframe" data-src="mood_kepler_map_v20.html" src="about:blank" title="MOOD Reports Kepler Map" style="width:100%; height:640px; border:1px solid #3A352C; border-radius:2px; background:#23201B; display:block;"></iframe>
+                <div id="kepler-placeholder" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.9rem; background:#23201B; border:1px solid #3A352C; border-radius:2px; color:#E7E5E4; text-align:center; padding:1rem;">
                   <div style="font-weight:700; font-size:1rem;">互動地圖未載入</div>
                   <div style="font-size:0.85rem; color:#A8A08E; max-width:420px;">為咗令第一頁開得快啲，地圖會喺你碌到呢度嗰陣先至自動載入。</div>
                   <button type="button" id="kepler-load-btn" class="btn btn-primary" onclick="loadKeplerNow()">立即載入地圖</button>
@@ -1808,7 +1826,7 @@
             </div>
             <figure class="hist1957-figure">
               <img src="hist1957_3000.jpg" alt="1957 年香港歷史地圖（Historical Map of Hong Kong, 1957）" loading="lazy">
-              <figcaption>FIG. 1957 · HISTORICAL MAP OF HONG KONG, 1957 · 1:100,000 · 地政總署歷史地圖（data.gov.hk）· 僅作歷史背景：1957 年地圖，1975–1980 年間版圖已有變化，唔可以直接當做 MOOD 報告時期嘅地圖。</figcaption>
+              <figcaption><span class="fig-label">FIG. 1957 · HISTORICAL MAP OF HONG KONG, 1957 · 1:100,000</span><span class="fig-note">地政總署歷史地圖（data.gov.hk）· 僅作歷史背景：1957 年地圖，1975–1980 年間版圖已有變化，唔可以直接當做 MOOD 報告時期嘅地圖。</span></figcaption>
             </figure>
           </div>
 
@@ -2173,28 +2191,28 @@
       <div style="margin-top:1.5rem;">
         <h3 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:0.75rem;">數據清理過程</h3>
         <div class="insight-grid">
-          <div class="insight-box">
-            <h4>日期月日調轉</h4>
+          <div class="insight-box folder-card">
+            <h4>月同日寫反咗</h4>
             <p>有啲報告嘅月同日寫反咗，已經逐一核對更正。日期錯會直接影響趨勢圖嘅結果，所以呢一步好重要。</p>
           </div>
-          <div class="insight-box">
-            <h4>去重：留最詳細嗰份</h4>
+          <div class="insight-box folder-card">
+            <h4>同一份報告出現幾次，留最詳細嗰份</h4>
             <p>唔同檔案系列入面有同一份報告。如果兩份完全一樣，就刪走其中一份；如果其中一份詳細啲、除咗重覆嘅議題之外仲有其他議題，就保留詳細嗰份，刪走短嗰份。</p>
           </div>
-          <div class="insight-box">
-            <h4>來源欄其實係 OCR 文字檔</h4>
+          <div class="insight-box folder-card">
+            <h4>真正來源係 OCR 文字檔，唔係 PDF</h4>
             <p>數據實際係嚟自 OCR 文字檔，但係欄目設計嗰陣將來源寫成「PDF 原始檔名」。分類器同 AI 摘要都係跟呢個邏輯配對：搵到同名 PDF 就用 PDF 嘅名同資料夾，搵唔到就將文字檔名加 .pdf 當做 PDF 名，所以有啲來源資料對唔上，例如起始頁數唔啱。而家已經講明真正來源係 OCR 文字檔。</p>
           </div>
-          <div class="insight-box">
-            <h4>中英文分類唔一致</h4>
+          <div class="insight-box folder-card">
+            <h4>中英文分類唔一致，字典要重寫</h4>
             <p>有唔少報告嘅中文分類同英文分類唔同。原因係中文分類係按權重計：邊類關鍵詞出現最多就歸入邊類，但係用詞數量唔一定直接反映議題。解決方法係重寫個字典：加專有詞、刪通用詞。</p>
           </div>
-          <div class="insight-box">
-            <h4>編號唔係行號</h4>
+          <div class="insight-box folder-card">
+            <h4>編號係固定識別編號，唔係行號</h4>
             <p>「總編號」同「議題編號」係固定嘅識別編號，唔會由 1 開始，亦唔會連續。原始數據有 334 份報告，剔除 23 份非報告之後剩 311 份；去重之後剩 170 份。例如 1 號、32 號、153 號同 221 號係同一份報告，保留最長嘅 221 號，所以最終數據由 2 號開始。311 份報告拆出 413 個議題（T001–T413），合併之後剩 410 個；T001 屬於 1 號報告，隨住嗰份報告去重而剔除，所以最終數據由 T002 開始。去重之後，議題由 410 個減到 229 個。保留原編號係為咗令同一份報告或者議題可以喺唔同檔案之間互相對照；重新編號反而會令引用失效。</p>
           </div>
-          <div class="insight-box">
-            <h4>兩種分類方法，同時保留</h4>
+          <div class="insight-box folder-card">
+            <h4>兩種分類方法，唔係中英對照</h4>
             <p>「Category」同「主題分類 v2.2」唔係同一分類嘅中英對照，而係兩種唔同方法得出嘅分類。英文欄係原始分類器按報告主題判斷（7 類）；中文 v2.2 欄係之後用關鍵字詞典重新分類再加人手覆核（9 類，房屋／社區環境、交通／勞工各自獨立）。兩者方法同粗細唔同，約三分之一報告嘅分類並不一致——呢個正正係分類方法本身唔穩定嘅證據，應該保留嚟檢驗，唔好用其中一種覆蓋另一種。同時保留兩欄，分析嗰陣可以互相對照，寫中文同英文報告嗰陣亦可以各自引用。</p>
           </div>
         </div>
@@ -2206,10 +2224,10 @@
 
   <footer style="border-top:1px solid var(--border-paper); background:#FFFFFF; padding:1.5rem 0; font-size:0.8rem; color:var(--ink-muted);">
     <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem;">
-      <div><strong style="color:var(--ink-primary);">HIST4207 Historical Data Visualization Project</strong> — Hong Kong MOOD Reports (1975–1980)</div>
-      <div>組員 Group Members： Wu Yu Tung (23232773) · Li Yat Hei (25217984) · Lo Tsz Ching (23235756) · Lee Wing Fei (25225014)</div>
-      <div>分工 Credits： Lo Tsz Ching（網頁搭建、分類主表、SQLite 資料庫）· Wu Yu Tung（Flourish 圖表、詳細 CSV）· 數據清理：全組一齊開會討論、逐一檢查</div>
-      <div>Interactive SVG &amp; Archival Database</div>
+      <div class="footer-title"><strong style="color:var(--ink-primary);">HIST4207 Historical Data Visualization Project</strong> — Hong Kong MOOD Reports (1975–1980)</div>
+      <div class="footer-members">組員 Group Members： Wu Yu Tung (23232773) · Li Yat Hei (25217984) · Lo Tsz Ching (23235756) · Lee Wing Fei (25225014)</div>
+      <div class="footer-credits">分工 Credits： Lo Tsz Ching（網頁搭建、分類主表、SQLite 資料庫）· Wu Yu Tung（Flourish 圖表、詳細 CSV）· 數據清理：全組一齊開會討論、逐一檢查</div>
+      <div class="footer-tech">Interactive SVG &amp; Archival Database</div>
     </div>
   </footer>
 
@@ -5977,6 +5995,17 @@
           document.exitFullscreen().catch(() => {});
         }
       } catch (e) {}
+    }
+
+    // v32: collapse / restore the top nav bar (sticky nav, translate only: no layout jump)
+    function toggleNavBar(show) {
+      var nav = document.querySelector('.navbar');
+      document.body.classList.toggle('nav-hidden', !show);
+      if (nav) { nav.inert = !show; nav.setAttribute('aria-hidden', String(!show)); }
+      var showBtn = document.getElementById('btnNavShow');
+      if (showBtn) { showBtn.setAttribute('aria-expanded', String(show)); }
+      var hideBtn = document.getElementById('btnNavHide');
+      if (hideBtn) { hideBtn.setAttribute('aria-expanded', String(show)); }
     }
 
     // Initialize All Interactive Sections on Load
