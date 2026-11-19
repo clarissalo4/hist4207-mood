@@ -5952,10 +5952,52 @@
       var b = document.getElementById('a-anim-reset');
       if (b) b.disabled = !on;
     }
+    /* Line-drawing for the play animation: trims each .chart-line polyline so
+       only the part up to year i is visible. The line is revealed with a
+       stroke-dashoffset transition (1.5s, inside the 1.8s step), so the line
+       visibly draws itself from 1975 toward the current year as the animation
+       plays. instant=true (first step only) hides the lines at once, so they
+       do not erase backwards before drawing. Lengths come from the polyline's
+       own points attribute, so it works in both % and counts mode. */
+    function aAnimSetLineYear(i, instant) {
+      var svg = document.getElementById('svg-temporal-combined');
+      if (!svg) return;
+      svg.querySelectorAll('.chart-line').forEach(function (p) {
+        try {
+          var pts = (p.getAttribute('points') || '').trim().split(/\s+/).map(function (s) {
+            var xy = s.split(',');
+            return [parseFloat(xy[0]), parseFloat(xy[1])];
+          });
+          if (pts.length < 2) return;
+          var total = 0, upto = 0, segLens = [];
+          for (var j = 0; j < pts.length - 1; j++) {
+            var dx = pts[j + 1][0] - pts[j][0], dy = pts[j + 1][1] - pts[j][1];
+            var len = Math.sqrt(dx * dx + dy * dy);
+            segLens.push(len); total += len;
+          }
+          for (var k = 0; k < i && k < segLens.length; k++) upto += segLens[k];
+          p.style.transition = instant ? 'none' : 'stroke-dashoffset 1.5s ease';
+          p.style.strokeDasharray = total;
+          p.style.strokeDashoffset = total - upto;
+        } catch (e) { /* leave the line as-is */ }
+      });
+    }
+    function aAnimRestoreLines() {
+      var svg = document.getElementById('svg-temporal-combined');
+      if (!svg) return;
+      svg.querySelectorAll('.chart-line').forEach(function (p) {
+        try {
+          p.style.strokeDasharray = 'none';
+          p.style.strokeDashoffset = '0';
+          p.style.transition = '';
+        } catch (e) { /* leave the line as-is */ }
+      });
+    }
     function aAnimStep(i) {
       var slider = document.getElementById('year-slider');
       if (slider) slider.value = String(i);
       setChartYear(i);
+      aAnimSetLineYear(i, i === 0);
       aAnimHighlightCard(i);
     }
     function aAnimFinish() {
@@ -5964,6 +6006,7 @@
       var slider = document.getElementById('year-slider');
       if (slider) slider.value = '6';
       setChartYear(6);
+      aAnimRestoreLines();
       aAnimClearCard();
       aAnimSetPlayLabel(A_ANIM_LABEL_PLAY);
       aAnimSetResetEnabled(false);
