@@ -1355,20 +1355,33 @@
     }
 
     /* ==========================================================================
-       v34 — Section A timeline animation: play through 1975-1980 year observations
+       v37 — Section A line-chart animation: 1975-1980 category shares (SVG, flat, no fill)
        ========================================================================== */
     .yb-anim { margin-bottom: 1rem; }
     .yb-anim-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
     .yb-anim-btn { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.02em; background: #111111; color: #FFFFFF; border: 1px solid #111111; border-radius: 2px; padding: 0.55rem 1rem; cursor: pointer; }
     .yb-anim-btn-ghost { background: #FFFFFF; color: #111111; }
     .yb-anim-btn:disabled { opacity: 0.4; cursor: default; }
-    .yb-anim-readout { margin-top: 0.75rem; padding: 0.9rem 1rem; background: #F3EDE0; border-radius: 2px; }
+    .yb-anim-chart { margin-top: 0.75rem; background: #FFFFFF; border: 1px solid var(--border-paper); border-radius: 2px; padding: 0.9rem 1rem 0.7rem; }
+    .yb-anim-legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin-bottom: 0.5rem; font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-secondary); }
+    .yb-anim-legend span { white-space: nowrap; }
+    .yb-anim-legend i { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 999px; margin-right: 0.35rem; vertical-align: baseline; }
+    #yb-chart { display: block; width: 100%; height: auto; }
+    #yb-chart .yb-grid { stroke: #E5E5E0; stroke-width: 1; }
+    #yb-chart .yb-axis { stroke: #111111; stroke-width: 1; }
+    #yb-chart .yb-ylab, #yb-chart .yb-xlab { font-family: var(--font-sans); font-size: 12px; fill: var(--ink-muted); }
+    #yb-chart .yb-xlab-now { font-weight: 700; fill: #C2410C; }
+    #yb-chart .yb-seg { fill: none; stroke-width: 2; stroke-linecap: round; transition: stroke-dashoffset 1.6s ease; }
+    #yb-chart .yb-dot { stroke: #FFFFFF; stroke-width: 1; transition: opacity 0.4s ease; }
+    #yb-chart .yb-ring { fill: none; stroke: #C2410C; stroke-width: 2; }
+    .yb-anim-status { margin-top: 0.6rem; font-family: var(--font-sans); font-size: 0.9rem; line-height: 1.6; color: var(--ink-secondary); }
     .yb-anim-hint { font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink-secondary); }
-    .yb-anim-year { display: block; font-family: var(--font-serif); font-size: 1.9rem; font-weight: 700; line-height: 1.1; color: #111111; }
-    .yb-anim-head { display: block; font-family: var(--font-sans); font-size: 1rem; font-weight: 700; line-height: 1.35; color: var(--ink-primary); margin: 0.15rem 0 0.4rem; }
-    .yb-anim-top { display: block; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; color: var(--ink-secondary); }
-    .yb-anim-static { font-family: var(--font-sans); font-size: 0.9rem; line-height: 1.8; color: var(--ink-secondary); }
+    .yb-anim-year { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: #111111; }
+    .yb-anim-note { margin-top: 0.35rem; font-family: var(--font-sans); font-size: 0.8rem; color: var(--ink-muted); }
     .insight-box.yb-active { outline: 2px solid var(--accent); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      #yb-chart .yb-seg, #yb-chart .yb-dot { transition: none; }
+    }
 
     /* ==========================================================================
        v32 — second aesthetics review + folder cards + nav toggle
@@ -1591,7 +1604,7 @@
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem;" onclick="setAllCategories(true)">全部顯示</button>
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem; border-color:#9CA3AF; color:#111111;" onclick="setPeakCategoriesOnly()">只看核心高峰議題</button>
           <div id="a-category-pills" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
-          <div class="cat-focus-row"><span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">分類聚焦：</span><span id="a-cat-focus-btns" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></span></div>
+          <div class="cat-focus-row"><span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">睇呢類：</span><span id="a-cat-focus-btns" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></span></div>
         </div>
 
         <!-- Year focus slider -->
@@ -1668,14 +1681,18 @@
         </div>
 
         <!-- Historical Annotation Cards -->
-        <!-- v34: timeline animation (Section A year observations) -->
+        <!-- v37: line-chart animation (Section A year observations) -->
         <div class="yb-anim" id="yb-anim">
           <div class="yb-anim-controls">
             <button type="button" class="yb-anim-btn" id="yb-anim-play" onclick="ybAnimToggle()">▶ 睇時間線動畫</button>
             <button type="button" class="yb-anim-btn yb-anim-btn-ghost" id="yb-anim-reset" onclick="ybAnimReset()" disabled>重頭播過</button>
           </div>
-          <div class="yb-anim-readout" id="yb-anim-readout" aria-live="polite">
-            <span class="yb-anim-hint">撳「睇時間線動畫」，由 1975 年播到 1980 年，睇政府關注點點樣轉。</span>
+          <div class="yb-anim-chart">
+            <div class="yb-anim-legend"><span><i style="background:#1D4ED8"></i>政治與憲制</span><span><i style="background:#D97706"></i>經濟與財政</span><span><i style="background:#15803D"></i>法律與治安</span><span><i style="background:#DB2777"></i>交通</span><span><i style="background:#7E22CE"></i>房屋</span></div>
+            <svg id="yb-chart" viewBox="0 0 720 340" role="img" aria-label="1975 至 1980 年五類議題佔比折線圖" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="yb-anim-note">1980 年只有 10 筆有日期記錄。</div>
+          </div>
+          <div class="yb-anim-status" id="yb-anim-status" aria-live="polite">
           </div>
         </div>
         <div class="insight-grid">
@@ -2761,7 +2778,7 @@
           const mx = (leftX + rightX) / 2;
           const my = (sN.y + tN.y) / 2;
           html += `<circle cx="${mx}" cy="${my}" r="11" fill="#0F172A" />`;
-          html += `<text x="${mx}" y="${my + 3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="#111111">${e.w}</text>`;
+          html += `<text x="${mx}" y="${my + 3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">${e.w}</text>`;
         }
       });
 
@@ -6175,7 +6192,7 @@
       var html = '';
       html += '<div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">'
         + '<span class="dot" style="background:' + cat.color + '; width:14px; height:14px;"></span>'
-        + '<span style="font-family:var(--font-serif); font-size:1.25rem; font-weight:700;">' + escapeHtml(cat.name) + ' · 分類聚焦</span>'
+        + '<span style="font-family:var(--font-serif); font-size:1.25rem; font-weight:700;">' + escapeHtml(cat.name) + ' · 睇呢類</span>'
         + '<span class="meta-pill" style="margin:0;">' + total + ' 筆議題</span>'
         + '<span class="meta-pill" style="margin:0;">最高 ' + escapeHtml(cat.peak) + '</span></div>';
       html += '<div class="cat-focus-sec"><h4>六年趨勢（佔當年議題 %）</h4>' + catSparkline(cat.vals)
@@ -6580,55 +6597,172 @@
       applyCsvFilters();
     });
 
-    /* v34: Section A timeline animation — steps through 1975-1980 year observations.
-       Uses ONLY the percentages already in the year-observation blocks. No new numbers.
-       Respects prefers-reduced-motion: no auto-animation, shows the years statically. */
-    var YB_ANIM_STEPS = [
-      { year: '1975', card: 'yb-card-1975', head: '治安與管治主導', top: '最多係「政治與憲制」28.8%，同「法律與治安」28.8% 打和' },
-      { year: '1976', card: 'yb-card-1976', head: '房屋議題急升', top: '最多係「房屋」19.2%，「勞工」5.8%' },
-      { year: '1977', card: 'yb-card-1977', head: '政治高峰與環境', top: '最多係「政治與憲制」45.9%（全期最高），「社區環境」16.2%' },
-      { year: '1978', card: null, head: '', top: '呢年冇獨立嘅年份觀察' },
-      { year: '1979', card: 'yb-card-1979-80', head: '經濟與交通升溫', top: '最多係「政治與憲制」42.9%，「經濟與財政」23.8%' },
-      { year: '1980', card: 'yb-card-1979-80', head: '經濟與交通升溫', top: '最多係「交通」50.0%' }
-    ];
+    /* v37: Section A line-chart animation — 1975-1980 category shares (SVG, flat, no fill).
+       Data: final CSV, v2.2, 216 dated rows. Percentages of each year's dated rows.
+       Steps through 1975-1980, drawing one year per step (~2s). Respects
+       prefers-reduced-motion: shows the full static chart, no auto-animation. */
+    var YB_CHART = {
+      years: [1975, 1976, 1977, 1978, 1979, 1980],
+      cats: [
+        { name: '政治與憲制', color: '#1D4ED8', vals: [28.8, 17.3, 45.9, 13.0, 42.9, 10.0] },
+        { name: '經濟與財政', color: '#D97706', vals: [17.8, 17.3, 8.1, 26.1, 23.8, 10.0] },
+        { name: '法律與治安', color: '#15803D', vals: [28.8, 13.5, 2.7, 21.7, 0.0, 20.0] },
+        { name: '交通', color: '#DB2777', vals: [9.6, 9.6, 5.4, 21.7, 28.6, 50.0] },
+        { name: '房屋', color: '#7E22CE', vals: [4.1, 19.2, 2.7, 4.3, 0.0, 0.0] }
+      ],
+      card: ['yb-card-1975', 'yb-card-1976', 'yb-card-1977', null, 'yb-card-1979-80', 'yb-card-1979-80']
+    };
+    var YB_GEO = { left: 44, right: 704, top: 16, bottom: 304, ymax: 50 };
+    function ybX(i) { return YB_GEO.left + i * (YB_GEO.right - YB_GEO.left) / 5; }
+    function ybY(v) { return YB_GEO.bottom - (v / YB_GEO.ymax) * (YB_GEO.bottom - YB_GEO.top); }
+    var ybSegs = [];   /* ybSegs[cat][seg] -> line element (seg j links year j to j+1) */
+    var ybDots = [];   /* ybDots[cat][year] -> circle element */
+    var ybRings = [];  /* ybRings[year] -> g element (orange rings round that year's dots) */
+    var ybXlabs = [];  /* x-axis year labels */
+    function ybChartBuild() {
+      var svg = document.getElementById('yb-chart');
+      if (!svg) return;
+      var NS = 'http://www.w3.org/2000/svg';
+      function el(tag, attrs) {
+        var e = document.createElementNS(NS, tag);
+        for (var k in attrs) e.setAttribute(k, attrs[k]);
+        return e;
+      }
+      var g, t;
+      /* gridlines + y labels (0-50%) */
+      for (g = 0; g <= 50; g += 10) {
+        var gy = ybY(g);
+        svg.appendChild(el('line', { x1: YB_GEO.left, y1: gy, x2: YB_GEO.right, y2: gy, 'class': 'yb-grid' }));
+        t = el('text', { x: YB_GEO.left - 8, y: gy + 4, 'text-anchor': 'end', 'class': 'yb-ylab' });
+        t.textContent = g + '%';
+        svg.appendChild(t);
+      }
+      /* axes */
+      svg.appendChild(el('line', { x1: YB_GEO.left, y1: YB_GEO.top, x2: YB_GEO.left, y2: YB_GEO.bottom, 'class': 'yb-axis' }));
+      svg.appendChild(el('line', { x1: YB_GEO.left, y1: YB_GEO.bottom, x2: YB_GEO.right, y2: YB_GEO.bottom, 'class': 'yb-axis' }));
+      /* x labels */
+      YB_CHART.years.forEach(function (yr, i) {
+        t = el('text', { x: ybX(i), y: YB_GEO.bottom + 22, 'text-anchor': 'middle', 'class': 'yb-xlab' });
+        t.textContent = yr;
+        svg.appendChild(t);
+        ybXlabs.push(t);
+      });
+      /* segments + dots (hidden until their year is reached) */
+      YB_CHART.cats.forEach(function (c, ci) {
+        var segs = [];
+        for (var j = 0; j < 5; j++) {
+          var x1 = ybX(j), y1 = ybY(c.vals[j]), x2 = ybX(j + 1), y2 = ybY(c.vals[j + 1]);
+          var len = Math.hypot(x2 - x1, y2 - y1);
+          var ln = el('line', { x1: x1.toFixed(1), y1: y1.toFixed(1), x2: x2.toFixed(1), y2: y2.toFixed(1), 'class': 'yb-seg', stroke: c.color });
+          ln.style.strokeDasharray = len.toFixed(1);
+          ln.style.strokeDashoffset = len.toFixed(1);
+          svg.appendChild(ln);
+          segs.push(ln);
+        }
+        ybSegs.push(segs);
+        var dots = [];
+        c.vals.forEach(function (v, i) {
+          var d = el('circle', { cx: ybX(i).toFixed(1), cy: ybY(v).toFixed(1), r: 3.5, 'class': 'yb-dot', fill: c.color });
+          d.style.opacity = '0';
+          svg.appendChild(d);
+          dots.push(d);
+        });
+        ybDots.push(dots);
+      });
+      /* rings: one group per year, on top, hidden until that year is current */
+      YB_CHART.years.forEach(function (yr, i) {
+        var gEl = el('g', { 'class': 'yb-ring-g' });
+        gEl.style.display = 'none';
+        YB_CHART.cats.forEach(function (c) {
+          gEl.appendChild(el('circle', { cx: ybX(i).toFixed(1), cy: ybY(c.vals[i]).toFixed(1), r: 7, 'class': 'yb-ring' }));
+        });
+        svg.appendChild(gEl);
+        ybRings.push(gEl);
+      });
+    }
+    function ybNoTransition(elm, fn) {
+      var prev = elm.style.transition;
+      elm.style.transition = 'none';
+      fn();
+      void elm.getBoundingClientRect();
+      elm.style.transition = prev;
+    }
+    function ybChartHighlightYear(i) {
+      ybRings.forEach(function (gEl, gi) { gEl.style.display = (gi === i) ? '' : 'none'; });
+      ybXlabs.forEach(function (t, ti) { if (ti === i) t.classList.add('yb-xlab-now'); else t.classList.remove('yb-xlab-now'); });
+      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
+      var cardId = YB_CHART.card[i];
+      if (cardId) { var card = document.getElementById(cardId); if (card) card.classList.add('yb-active'); }
+    }
+    function ybChartClearHighlight() {
+      ybRings.forEach(function (gEl) { gEl.style.display = 'none'; });
+      ybXlabs.forEach(function (t) { t.classList.remove('yb-xlab-now'); });
+      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
+    }
+    function ybTopText(i) {
+      var max = -1;
+      YB_CHART.cats.forEach(function (c) { if (c.vals[i] > max) max = c.vals[i]; });
+      var tops = YB_CHART.cats.filter(function (c) { return c.vals[i] === max; });
+      var names = tops.map(function (c) { return '「' + c.name + '」' + max.toFixed(1) + '%'; });
+      if (tops.length > 1) return '最多係' + names.join('，同') + '打和';
+      return '最多係' + names[0];
+    }
+    function ybAnimSetStatus(html) {
+      var s = document.getElementById('yb-anim-status');
+      if (s) s.innerHTML = html;
+    }
+    function ybAnimSetStatusHint() {
+      ybAnimSetStatus('');
+    }
+    function ybAnimShowStep(i) {
+      YB_CHART.cats.forEach(function (c, ci) {
+        if (ybDots[ci] && ybDots[ci][i]) ybDots[ci][i].style.opacity = '1';
+        if (i > 0 && ybSegs[ci] && ybSegs[ci][i - 1]) ybSegs[ci][i - 1].style.strokeDashoffset = '0';
+      });
+      ybChartHighlightYear(i);
+      ybAnimSetStatus('<span class="yb-anim-year">' + YB_CHART.years[i] + ' 年</span>：' + ybTopText(i));
+    }
+    function ybChartShowAll() {
+      YB_CHART.cats.forEach(function (c, ci) {
+        (ybSegs[ci] || []).forEach(function (ln) { ybNoTransition(ln, function () { ln.style.strokeDashoffset = '0'; }); });
+        (ybDots[ci] || []).forEach(function (d) { ybNoTransition(d, function () { d.style.opacity = '1'; }); });
+      });
+      ybChartClearHighlight();
+    }
+    function ybChartReset() {
+      YB_CHART.cats.forEach(function (c, ci) {
+        (ybSegs[ci] || []).forEach(function (ln) {
+          var len = ln.style.strokeDasharray;
+          ybNoTransition(ln, function () { ln.style.strokeDashoffset = len; });
+        });
+        (ybDots[ci] || []).forEach(function (d) { ybNoTransition(d, function () { d.style.opacity = '0'; }); });
+      });
+      ybChartClearHighlight();
+    }
     var ybAnimTimer = null;
     var ybAnimIdx = -1;
     var ybAnimStaticShown = false;
-    function ybAnimShowStep(i) {
-      var readout = document.getElementById('yb-anim-readout');
-      var step = YB_ANIM_STEPS[i];
-      if (!readout || !step) return;
-      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
-      if (step.card) {
-        var card = document.getElementById(step.card);
-        if (card) card.classList.add('yb-active');
-      }
-      var headHtml = step.head ? '<span class="yb-anim-head">' + step.head + '</span>' : '';
-      readout.innerHTML = '<span class="yb-anim-year">' + step.year + '</span>' + headHtml + '<span class="yb-anim-top">' + step.top + '</span>';
-    }
+    var ybAnimReduced = false;
     function ybAnimStop() {
       if (ybAnimTimer) { clearInterval(ybAnimTimer); ybAnimTimer = null; }
     }
     function ybAnimToggle() {
       var playBtn = document.getElementById('yb-anim-play');
       var resetBtn = document.getElementById('yb-anim-reset');
-      var readout = document.getElementById('yb-anim-readout');
-      if (!playBtn || !readout) return;
-      /* reduce-motion: no auto-animation — show the years statically instead. */
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (!playBtn) return;
+      /* reduce-motion: no auto-animation — toggle the full static chart instead. */
+      if (ybAnimReduced) {
         if (ybAnimStaticShown) {
-          readout.innerHTML = '<span class="yb-anim-hint">撳「睇時間線動畫」，由 1975 年播到 1980 年，睇政府關注點點樣轉。</span>';
+          ybChartReset();
+          ybAnimSetStatusHint();
           playBtn.textContent = '▶ 睇時間線動畫';
           ybAnimStaticShown = false;
-          return;
+        } else {
+          ybChartShowAll();
+          ybAnimSetStatus('完整折線圖：1975–1980 年五類議題佔比。');
+          playBtn.textContent = '收起完整折線圖';
+          ybAnimStaticShown = true;
         }
-        var rows = YB_ANIM_STEPS.map(function (s) {
-          var label = s.head ? s.year + ' 年（' + s.head + '）：' + s.top : s.year + ' 年：' + s.top;
-          return '<div>' + label + '</div>';
-        }).join('');
-        readout.innerHTML = '<div class="yb-anim-static">' + rows + '</div>';
-        playBtn.textContent = '收起逐年重點';
-        ybAnimStaticShown = true;
         return;
       }
       if (ybAnimTimer) {
@@ -6636,33 +6770,42 @@
         playBtn.textContent = '▶ 繼續播';
         return;
       }
-      if (ybAnimIdx >= YB_ANIM_STEPS.length - 1) { ybAnimIdx = -1; }
+      if (ybAnimIdx >= YB_CHART.years.length - 1) { ybChartReset(); ybAnimIdx = -1; }
       playBtn.textContent = '❚❚ 暫停';
       if (resetBtn) resetBtn.disabled = false;
+      ybAnimIdx++;
+      ybAnimShowStep(ybAnimIdx);
       ybAnimTimer = setInterval(function () {
         ybAnimIdx++;
-        if (ybAnimIdx >= YB_ANIM_STEPS.length) {
+        if (ybAnimIdx >= YB_CHART.years.length) {
           ybAnimStop();
           playBtn.textContent = '▶ 睇時間線動畫';
-          ybAnimIdx = -1;
+          ybAnimIdx = YB_CHART.years.length - 1;
           return;
         }
         ybAnimShowStep(ybAnimIdx);
       }, 2000);
-      ybAnimIdx++;
-      ybAnimShowStep(ybAnimIdx);
     }
     function ybAnimReset() {
       var playBtn = document.getElementById('yb-anim-play');
       var resetBtn = document.getElementById('yb-anim-reset');
-      var readout = document.getElementById('yb-anim-readout');
       ybAnimStop();
       ybAnimIdx = -1;
       ybAnimStaticShown = false;
-      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
-      if (readout) readout.innerHTML = '<span class="yb-anim-hint">撳「睇時間線動畫」，由 1975 年播到 1980 年，睇政府關注點點樣轉。</span>';
+      ybChartReset();
+      ybAnimSetStatusHint();
       if (playBtn) playBtn.textContent = '▶ 睇時間線動畫';
       if (resetBtn) resetBtn.disabled = true;
+    }
+    ybChartBuild();
+    /* reduce-motion: show the complete static chart on load, no auto-animation. */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      ybAnimReduced = true;
+      ybChartShowAll();
+      ybAnimSetStatus('完整折線圖：1975–1980 年五類議題佔比。');
+      var ybPlayBtn = document.getElementById('yb-anim-play');
+      if (ybPlayBtn) ybPlayBtn.textContent = '收起完整折線圖';
+      ybAnimStaticShown = true;
     }
   </script>
 
@@ -6953,7 +7096,7 @@
         <span id="archive-modal-pos" style="font-size:0.8rem; color:var(--ink-muted);"></span>
         <button class="btn btn-outline" onclick="stepArchiveModal(1)">下一份 →</button>
         <button class="btn btn-outline" id="archive-copy-link" onclick="copyRecordLink()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">複製連結</button>
-        <button class="btn btn-outline" onclick="openFocusForCurrentRecord()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">分類聚焦</button>
+        <button class="btn btn-outline" onclick="openFocusForCurrentRecord()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">睇呢類</button>
       </div>
     </div>
   </div>
