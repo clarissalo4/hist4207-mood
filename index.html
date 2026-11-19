@@ -1233,7 +1233,8 @@
     main a:not(.btn):hover { text-decoration: underline; text-underline-offset: 3px; }
     /* 3. Spacing & grid — more air, subtle alternating bands, roomier cards */
     main { gap: 5rem; }
-    #section-b, #section-d { background: var(--bg-band); }
+    #section-b { background: var(--bg-paper); }
+    #section-d { background: var(--bg-band); }
     .insight-box { padding: 1.05rem 1.15rem; }
     .mini-card { padding: 1.05rem 1.15rem; }
 
@@ -1352,6 +1353,22 @@
       color: var(--ink-primary);
       margin: 0.15rem 0 0.5rem;
     }
+
+    /* ==========================================================================
+       v34 — Section A timeline animation: play through 1975-1980 year observations
+       ========================================================================== */
+    .yb-anim { margin-bottom: 1rem; }
+    .yb-anim-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .yb-anim-btn { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.02em; background: #111111; color: #FFFFFF; border: 1px solid #111111; border-radius: 2px; padding: 0.55rem 1rem; cursor: pointer; }
+    .yb-anim-btn-ghost { background: #FFFFFF; color: #111111; }
+    .yb-anim-btn:disabled { opacity: 0.4; cursor: default; }
+    .yb-anim-readout { margin-top: 0.75rem; padding: 0.9rem 1rem; background: #F3EDE0; border-radius: 2px; }
+    .yb-anim-hint { font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink-secondary); }
+    .yb-anim-year { display: block; font-family: var(--font-serif); font-size: 1.9rem; font-weight: 700; line-height: 1.1; color: #111111; }
+    .yb-anim-head { display: block; font-family: var(--font-sans); font-size: 1rem; font-weight: 700; line-height: 1.35; color: var(--ink-primary); margin: 0.15rem 0 0.4rem; }
+    .yb-anim-top { display: block; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; color: var(--ink-secondary); }
+    .yb-anim-static { font-family: var(--font-sans); font-size: 0.9rem; line-height: 1.8; color: var(--ink-secondary); }
+    .insight-box.yb-active { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     /* ==========================================================================
        v32 — second aesthetics review + folder cards + nav toggle
@@ -1649,25 +1666,35 @@
         </div>
 
         <!-- Historical Annotation Cards -->
+        <!-- v34: timeline animation (Section A year observations) -->
+        <div class="yb-anim" id="yb-anim">
+          <div class="yb-anim-controls">
+            <button type="button" class="yb-anim-btn" id="yb-anim-play" onclick="ybAnimToggle()">▶ 睇時間線動畫</button>
+            <button type="button" class="yb-anim-btn yb-anim-btn-ghost" id="yb-anim-reset" onclick="ybAnimReset()" disabled>重頭播過</button>
+          </div>
+          <div class="yb-anim-readout" id="yb-anim-readout" aria-live="polite">
+            <span class="yb-anim-hint">撳「睇時間線動畫」，由 1975 年播到 1980 年，睇政府關注點點樣轉。</span>
+          </div>
+        </div>
         <div class="insight-grid">
-          <div class="insight-box">
+          <div class="insight-box" id="yb-card-1975">
             <span class="yb-year" style="color:#111111;">1975</span>
             <span class="yb-head">治安與管治主導</span>
             「政治與憲制」(28.8%) 與「法律與治安」(28.8%) 佔近六成篇幅，反映廉政公署成立初期及警廉衝突前夕的管治張力。
           </div>
-          <div class="insight-box">
+          <div class="insight-box" id="yb-card-1976">
             <span class="yb-year" style="color:#111111;">1976</span>
             <span class="yb-head">房屋議題急升</span>
             「房屋」關注度升至 <b>19.2%</b>，「勞工」亦達 5.8%，對應十年建屋計劃推進與公屋租金調整爭議。
           </div>
-          <div class="insight-box">
+          <div class="insight-box" id="yb-card-1977">
             <span class="yb-year" style="color:#111111;">1977</span>
             <span class="yb-head">政治高峰與環境</span>
             「政治與憲制」達全期最高 <b>45.9%</b>，「社區環境」升至 16.2%，折射警廉衝突高潮與清潔運動。
           </div>
-          <div class="insight-box">
+          <div class="insight-box" id="yb-card-1979-80">
             <span class="yb-year" style="color:#111111;">1979–80</span>
-            <span class="yb-head">經濟與交通爆發</span>
+            <span class="yb-head">經濟與交通升溫</span>
             1979 年「政治與憲制」佔 <b>42.9%</b>，「經濟與財政」23.8%（通脹與石油危機）；1980 年「交通」飆升至 <b>50.0%</b>（地鐵通車及加價潮）。
           </div>
         </div>
@@ -6550,6 +6577,91 @@
       renderBipartiteSVG();
       applyCsvFilters();
     });
+
+    /* v34: Section A timeline animation — steps through 1975-1980 year observations.
+       Uses ONLY the percentages already in the year-observation blocks. No new numbers.
+       Respects prefers-reduced-motion: no auto-animation, shows the years statically. */
+    var YB_ANIM_STEPS = [
+      { year: '1975', card: 'yb-card-1975', head: '治安與管治主導', top: '最多係「政治與憲制」28.8%，同「法律與治安」28.8% 打和' },
+      { year: '1976', card: 'yb-card-1976', head: '房屋議題急升', top: '最多係「房屋」19.2%，「勞工」5.8%' },
+      { year: '1977', card: 'yb-card-1977', head: '政治高峰與環境', top: '最多係「政治與憲制」45.9%（全期最高），「社區環境」16.2%' },
+      { year: '1978', card: null, head: '', top: '呢年冇獨立嘅年份觀察' },
+      { year: '1979', card: 'yb-card-1979-80', head: '經濟與交通升溫', top: '最多係「政治與憲制」42.9%，「經濟與財政」23.8%' },
+      { year: '1980', card: 'yb-card-1979-80', head: '經濟與交通升溫', top: '最多係「交通」50.0%' }
+    ];
+    var ybAnimTimer = null;
+    var ybAnimIdx = -1;
+    var ybAnimStaticShown = false;
+    function ybAnimShowStep(i) {
+      var readout = document.getElementById('yb-anim-readout');
+      var step = YB_ANIM_STEPS[i];
+      if (!readout || !step) return;
+      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
+      if (step.card) {
+        var card = document.getElementById(step.card);
+        if (card) card.classList.add('yb-active');
+      }
+      var headHtml = step.head ? '<span class="yb-anim-head">' + step.head + '</span>' : '';
+      readout.innerHTML = '<span class="yb-anim-year">' + step.year + '</span>' + headHtml + '<span class="yb-anim-top">' + step.top + '</span>';
+    }
+    function ybAnimStop() {
+      if (ybAnimTimer) { clearInterval(ybAnimTimer); ybAnimTimer = null; }
+    }
+    function ybAnimToggle() {
+      var playBtn = document.getElementById('yb-anim-play');
+      var resetBtn = document.getElementById('yb-anim-reset');
+      var readout = document.getElementById('yb-anim-readout');
+      if (!playBtn || !readout) return;
+      /* reduce-motion: no auto-animation — show the years statically instead. */
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (ybAnimStaticShown) {
+          readout.innerHTML = '<span class="yb-anim-hint">撳「睇時間線動畫」，由 1975 年播到 1980 年，睇政府關注點點樣轉。</span>';
+          playBtn.textContent = '▶ 睇時間線動畫';
+          ybAnimStaticShown = false;
+          return;
+        }
+        var rows = YB_ANIM_STEPS.map(function (s) {
+          var label = s.head ? s.year + ' 年（' + s.head + '）：' + s.top : s.year + ' 年：' + s.top;
+          return '<div>' + label + '</div>';
+        }).join('');
+        readout.innerHTML = '<div class="yb-anim-static">' + rows + '</div>';
+        playBtn.textContent = '收起逐年重點';
+        ybAnimStaticShown = true;
+        return;
+      }
+      if (ybAnimTimer) {
+        ybAnimStop();
+        playBtn.textContent = '▶ 繼續播';
+        return;
+      }
+      if (ybAnimIdx >= YB_ANIM_STEPS.length - 1) { ybAnimIdx = -1; }
+      playBtn.textContent = '❚❚ 暫停';
+      if (resetBtn) resetBtn.disabled = false;
+      ybAnimTimer = setInterval(function () {
+        ybAnimIdx++;
+        if (ybAnimIdx >= YB_ANIM_STEPS.length) {
+          ybAnimStop();
+          playBtn.textContent = '▶ 睇時間線動畫';
+          ybAnimIdx = -1;
+          return;
+        }
+        ybAnimShowStep(ybAnimIdx);
+      }, 2000);
+      ybAnimIdx++;
+      ybAnimShowStep(ybAnimIdx);
+    }
+    function ybAnimReset() {
+      var playBtn = document.getElementById('yb-anim-play');
+      var resetBtn = document.getElementById('yb-anim-reset');
+      var readout = document.getElementById('yb-anim-readout');
+      ybAnimStop();
+      ybAnimIdx = -1;
+      ybAnimStaticShown = false;
+      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
+      if (readout) readout.innerHTML = '<span class="yb-anim-hint">撳「睇時間線動畫」，由 1975 年播到 1980 年，睇政府關注點點樣轉。</span>';
+      if (playBtn) playBtn.textContent = '▶ 睇時間線動畫';
+      if (resetBtn) resetBtn.disabled = true;
+    }
   </script>
 
     <script>
