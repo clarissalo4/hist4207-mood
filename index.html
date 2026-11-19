@@ -1958,7 +1958,7 @@
 
               <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
                 <button class="btn btn-outline" onclick="resetCsvFilters()">重設所有篩選</button>
-                <button class="btn btn-outline" onclick="randomArchiveRecord()" title="喺而家篩選結果入面隨機抽一份，展開全文">🎲 隨機抽一份</button>
+                <button class="btn btn-outline" onclick="randomArchiveRecord()" title="喺而家篩選結果入面隨機抽一份，睇摘要">🎲 隨機抽一份</button>
                 <button class="btn btn-outline" id="myfolder-open-btn" onclick="openMyFolder()">☆ 我的檔案夾 <span id="myfolder-count">(0)</span></button>
                 </div>
             </div>
@@ -2054,7 +2054,7 @@
 
             <!-- v33: Featured reports strip (Van Gogh) -->
             <div style="margin-bottom:0.5rem;">
-              <h3 style="font-family:var(--font-serif); font-size:1.05rem; margin-bottom:0.4rem;">精選報告 <span style="font-size:0.78rem; color:var(--ink-muted); font-family:var(--font-sans); font-weight:400;">— 策展人揀嘅 6 份，撳入去睇全文</span></h3>
+              <h3 style="font-family:var(--font-serif); font-size:1.05rem; margin-bottom:0.4rem;">精選報告 <span style="font-size:0.78rem; color:var(--ink-muted); font-family:var(--font-sans); font-weight:400;">— 策展人揀嘅 6 份，撳入去睇摘要</span></h3>
               <div id="featured-strip" class="featured-strip"></div>
             </div>
 
@@ -2087,7 +2087,7 @@
                     <th onclick="sortArchiveBy('group')" title="撳一下排序">受訪階層 Group<span class="sort-ind" data-k="group"></span></th>
                     <th onclick="sortArchiveBy('sentiment')" title="撳一下排序">情緒 Sentiment<span class="sort-ind" data-k="sentiment"></span></th>
                     <th onclick="sortArchiveBy('salience')" title="撳一下排序">顯著度<span class="sort-ind" data-k="salience"></span></th>
-                    <th onclick="sortArchiveBy('topic')" title="撳一下排序">民情摘要（撳入去彈出全文）<span class="sort-ind" data-k="topic"></span></th>
+                    <th onclick="sortArchiveBy('topic')" title="撳一下排序">民情摘要（撳入去睇摘要）<span class="sort-ind" data-k="topic"></span></th>
                   </tr>
                 </thead>
                 <tbody id="csv-table-body"></tbody>
