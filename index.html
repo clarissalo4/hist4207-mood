@@ -1462,7 +1462,7 @@
     .tl-cite { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-top: 0.45rem; }
     .tl-rel-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: rgba(255,255,255,0.75); margin-right: 0.35rem; }
     .tl-mention { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: #991B1B; border: 1px solid #991B1B; border-radius: 999px; padding: 0.05rem 0.45rem; margin-left: 0.4rem; white-space: nowrap; vertical-align: middle; }
-    .tl-mention::before, .meta-pill.tl-dot::before { content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--accent); margin-right: 0.3rem; vertical-align: middle; }
+    .tl-mention::before { content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--accent); margin-right: 0.3rem; vertical-align: middle; }
     .save-star { background: none; border: none; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 0.25rem; color: #9CA3AF; vertical-align: middle; }
     .save-star.saved { color: #C2410C; }
     .theme-banner, .related-tl-banner { display: none; border: 1px solid var(--border-strong); border-left: 3px solid var(--accent); background: #FFF7ED; border-radius: 2px; padding: 0.6rem 0.8rem; margin-bottom: 0.8rem; font-size: 0.82rem; line-height: 1.6; }
@@ -2283,24 +2283,6 @@
         <p class="section-subtitle">呢個網站嘅數字全部嚟自同一份整理好嘅數據，唔係隨便估。以下係最重要嘅幾點；完整方法、錯誤率同埋決策紀錄，請睇 methods report。</p>
       </div>
 
-      <div class="insight-grid">
-        <div class="insight-box" id="method-source">
-          <h4>資料來源</h4>
-          <p>MOOD 報告（Movement of Opinion Direction），1975–1980 年，來自香港政府檔案處三個檔案系列：<strong>HKRS394-26、HKRS925-1、HKRS471-3</strong>。組員去檔案館人手掃描原件做 PDF，再用 steno 做 OCR 變成文字檔；CSV 嘅資料係根據 OCR 文字整理。最後整理出 <strong>170 份報告、229 個議題</strong>，其中 216 筆有日期，13 筆無日期。整理過程主要用 OCR 文字，個別有疑問嘅地方（例如 78 行印出標題）有對返 PDF 原件核實。</p>
-        </div>
-        <div class="insight-box" id="method-dedup">
-          <h4>去重</h4>
-          <p>搵到 <strong>78 組重複報告</strong>，每組留最長嗰份（以 OCR 段落頁數計，打和就留總編號最小嗰份），剔走 141 筆重複。去重前有 311 行議題記錄。</p>
-        </div>
-        <div class="insight-box" id="method-classify">
-          <h4>分類</h4>
-          <p>主題分類用 <strong>v2.2：9 類</strong>（政治、經濟、法律、交通、房屋、教育、公共衛生、社區環境、勞工），詞典加人手覆核。情緒係報告層面整體判斷，分支持、懷疑、憤怒、焦慮、冷淡五種，冇「混合」呢個選項。</p>
-        </div>
-        <div class="insight-box">
-          <h4>限制</h4>
-          <p>127 行低置信度分類未逐行覆核；8 份報告來源待定。「政府回應」欄係後加嘅，空白唔等於政府冇回應。檔案標題係編者擬定，唔係印出原標題；原文首行標題先係印出原題。</p>
-        </div>
-      </div>
       <div style="margin-top:1.5rem;">
         <h3 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:0.75rem;">工作流程</h3>
         <div class="wf-flow">
@@ -2336,6 +2318,24 @@
             <span class="wf-node">8</span>
             <span class="wf-label">視覺化 + 呢個網站</span>
           </div>
+        </div>
+      </div>
+      <div class="insight-grid">
+        <div class="insight-box" id="method-source">
+          <h4>資料來源</h4>
+          <p>MOOD 報告（Movement of Opinion Direction），1975–1980 年，來自香港政府檔案處三個檔案系列：<strong>HKRS394-26、HKRS925-1、HKRS471-3</strong>。組員去檔案館人手掃描原件做 PDF，再用 steno 做 OCR 變成文字檔；CSV 嘅資料係根據 OCR 文字整理。最後整理出 <strong>170 份報告、229 個議題</strong>，其中 216 筆有日期，13 筆無日期。整理過程主要用 OCR 文字，個別有疑問嘅地方（例如 78 行印出標題）有對返 PDF 原件核實。</p>
+        </div>
+        <div class="insight-box" id="method-dedup">
+          <h4>去重</h4>
+          <p>搵到 <strong>78 組重複報告</strong>，每組留最長嗰份（以 OCR 段落頁數計，打和就留總編號最小嗰份），剔走 141 筆重複。去重前有 311 行議題記錄。</p>
+        </div>
+        <div class="insight-box" id="method-classify">
+          <h4>分類</h4>
+          <p>主題分類用 <strong>v2.2：9 類</strong>（政治、經濟、法律、交通、房屋、教育、公共衛生、社區環境、勞工），詞典加人手覆核。情緒係報告層面整體判斷，分支持、懷疑、憤怒、焦慮、冷淡五種，冇「混合」呢個選項。</p>
+        </div>
+        <div class="insight-box">
+          <h4>限制</h4>
+          <p>127 行低置信度分類未逐行覆核；8 份報告來源待定。「政府回應」欄係後加嘅，空白唔等於政府冇回應。檔案標題係編者擬定，唔係印出原標題；原文首行標題先係印出原題。</p>
         </div>
       </div>
       <div style="margin-top:1.5rem;">
@@ -6156,7 +6156,7 @@
         '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.group) + '</span>' +
         '<span class="sentiment-badge ' + sentClass + '">' + escapeHtml(r.sentiment) + '</span>' +
         '<span class="meta-pill" style="margin:0;">顯著度：' + escapeHtml(r.salience) + '</span>' +
-        '<span class="meta-pill" style="margin:0;">來源：' + escapeHtml(r.series || '') + '</span>' + (isTimelineMentioned(r.id) ? '<span class="meta-pill tl-dot" style="margin:0; border-color:#991B1B; color:#991B1B;">年表有提及</span>' : '');
+        '<span class="meta-pill" style="margin:0;">來源：' + escapeHtml(r.series || '') + '</span>' + (isTimelineMentioned(r.id) ? '<span class="meta-pill tl-mention" style="margin:0; border-color:#991B1B; color:#991B1B;">年表有提及</span>' : '');
       document.getElementById('archive-modal-title').textContent = r.topic || '';
       document.getElementById('archive-modal-body').innerHTML = highlightQuery(escapeHtml(r.summary || '')) + modalExtrasHtml(r);
       document.getElementById('archive-modal-pos').textContent = '第 ' + (idx + 1) + ' / ' + modalList.length + ' 筆';
