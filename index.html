@@ -1264,6 +1264,108 @@
        ========================================================================== */
     /* faster (0.35s) and gentler (opacity 0.7, rise -16px) */
     .reveal-soft.is-visible.is-leaving { opacity: 0.7; transform: translateY(-16px); transition: opacity 0.35s ease, transform 0.35s ease; }
+
+    /* ==========================================================================
+       v27 — 工作流程 (Methods 內, 橫向時間線; 手機版改直向, 唔會溢出)
+       ========================================================================== */
+    /* 橫向時間線: 一條橫線, 7 個節點由左至右. 節點係黑圓白字, 線係黑線,
+       跟返網站黑白編輯風. 每一步用現有 reveal-soft (v25 機制), 碌到嗰陣淡入. */
+    .wf-flow {
+      display: flex;
+      margin-top: 1rem;
+      padding-top: 0.25rem;
+    }
+    .wf-step {
+      position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      padding: 2.25rem 0.45rem 0;
+      font-family: var(--font-serif);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--ink-primary);
+    }
+    .wf-step::before {
+      content: "";
+      position: absolute;
+      top: 0.8rem;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--ink-primary);
+    }
+    .wf-step:first-child::before { left: 50%; }
+    .wf-step:last-child::before { right: 50%; }
+    .wf-node {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1.6rem;
+      height: 1.6rem;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      border: 2px solid #FFFFFF;
+      border-radius: 50%;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .wf-label { display: block; }
+    /* 手機版 (720px 以下): 改做直向, 節點喺左, 唔會橫向溢出 */
+    @media (max-width: 720px) {
+      .wf-flow { flex-direction: column; }
+      .wf-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        text-align: left;
+        padding: 0 0 1.1rem 0;
+      }
+      .wf-step:last-child { padding-bottom: 0; }
+      .wf-step::before {
+        top: 0;
+        bottom: 0;
+        left: 0.8rem;
+        right: auto;
+        width: 2px;
+        height: auto;
+      }
+      .wf-step:first-child::before { top: 0.8rem; left: 0.8rem; }
+      .wf-step:last-child::before { top: 0; bottom: auto; left: 0.8rem; height: 0.8rem; }
+      .wf-node {
+        position: static;
+        transform: none;
+        flex: 0 0 1.6rem;
+      }
+      .wf-label { flex: 1; min-width: 0; }
+    }
+
+    /* ==========================================================================
+       v27b — 年份觀察卡: 年份數字放大, 標題獨立成行, 層次分明 (文字/數據唔郁)
+       ========================================================================== */
+    .yb-year {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+    .yb-head {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--ink-primary);
+      margin: 0.15rem 0 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -1455,19 +1557,23 @@
         <!-- Historical Annotation Cards -->
         <div class="insight-grid">
           <div class="insight-box">
-            <strong style="color:#1D4ED8;">1975 治安與管治主導</strong>
+            <span class="yb-year" style="color:#1D4ED8;">1975</span>
+            <span class="yb-head">治安與管治主導</span>
             「政治與憲制」(28.8%) 與「法律與治安」(28.8%) 佔近六成篇幅，反映廉政公署成立初期及警廉衝突前夕的管治張力。
           </div>
           <div class="insight-box">
-            <strong style="color:#7E22CE;">1976 房屋議題急升</strong>
+            <span class="yb-year" style="color:#7E22CE;">1976</span>
+            <span class="yb-head">房屋議題急升</span>
             「房屋」關注度升至 <b>19.2%</b>，「勞工」亦達 5.8%，對應十年建屋計劃推進與公屋租金調整爭議。
           </div>
           <div class="insight-box">
-            <strong style="color:#3730A3;">1977 政治高峰與環境</strong>
+            <span class="yb-year" style="color:#3730A3;">1977</span>
+            <span class="yb-head">政治高峰與環境</span>
             「政治與憲制」達全期最高 <b>45.9%</b>，「社區環境」升至 16.2%，折射警廉衝突高潮與清潔運動。
           </div>
           <div class="insight-box">
-            <strong style="color:#111111;">1979–80 經濟與交通爆發</strong>
+            <span class="yb-year" style="color:#111111;">1979–80</span>
+            <span class="yb-head">經濟與交通爆發</span>
             1979 年「政治與憲制」佔 <b>42.9%</b>，「經濟與財政」23.8%（通脹與石油危機）；1980 年「交通」飆升至 <b>50.0%</b>（地鐵通車及加價潮）。
           </div>
         </div>
@@ -2021,6 +2127,39 @@
         <div class="insight-box">
           <h4>限制，要留意</h4>
           <p>127 行低置信度分類未逐行覆核；8 份報告來源待定。「政府回應」欄係後加嘅，空白唔等於政府冇回應。檔案標題係編者擬定，唔係印出原標題；原文首行標題先係印出原題。</p>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <h3 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:0.75rem;">工作流程</h3>
+        <div class="wf-flow">
+          <div class="wf-step reveal-soft">
+            <span class="wf-node">1</span>
+            <span class="wf-label">檔案館原件（HKRS 三個系列）</span>
+          </div>
+          <div class="wf-step reveal-soft">
+            <span class="wf-node">2</span>
+            <span class="wf-label">人手掃描 → PDF</span>
+          </div>
+          <div class="wf-step reveal-soft">
+            <span class="wf-node">3</span>
+            <span class="wf-label">Steno OCR → 文字檔</span>
+          </div>
+          <div class="wf-step reveal-soft">
+            <span class="wf-node">4</span>
+            <span class="wf-label">Python：拆分報告、校正日期、初步分類</span>
+          </div>
+          <div class="wf-step reveal-soft">
+            <span class="wf-node">5</span>
+            <span class="wf-label">NotebookLM：寫摘要、判斷情緒、抽關鍵字</span>
+          </div>
+          <div class="wf-step reveal-soft">
+            <span class="wf-node">6</span>
+            <span class="wf-label">去重 + 人手覆核 → 最終數據（229 筆議題、170 份報告）</span>
+          </div>
+          <div class="wf-step reveal-soft">
+            <span class="wf-node">7</span>
+            <span class="wf-label">視覺化 + 呢個網站</span>
+          </div>
         </div>
       </div>
       <div style="margin-top:1.5rem;">
