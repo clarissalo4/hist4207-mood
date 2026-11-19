@@ -1604,7 +1604,7 @@
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem;" onclick="setAllCategories(true)">全部顯示</button>
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem; border-color:#9CA3AF; color:#111111;" onclick="setPeakCategoriesOnly()">只看核心高峰議題</button>
           <div id="a-category-pills" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
-          <div class="cat-focus-row"><span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">睇呢類：</span><span id="a-cat-focus-btns" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></span></div>
+          <div class="cat-focus-row"><span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">分類詳情：</span><span id="a-cat-focus-btns" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></span></div>
         </div>
 
         <!-- Year focus slider -->
@@ -6192,7 +6192,7 @@
       var html = '';
       html += '<div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">'
         + '<span class="dot" style="background:' + cat.color + '; width:14px; height:14px;"></span>'
-        + '<span style="font-family:var(--font-serif); font-size:1.25rem; font-weight:700;">' + escapeHtml(cat.name) + ' · 睇呢類</span>'
+        + '<span style="font-family:var(--font-serif); font-size:1.25rem; font-weight:700;">' + escapeHtml(cat.name) + ' · 分類詳情</span>'
         + '<span class="meta-pill" style="margin:0;">' + total + ' 筆議題</span>'
         + '<span class="meta-pill" style="margin:0;">最高 ' + escapeHtml(cat.peak) + '</span></div>';
       html += '<div class="cat-focus-sec"><h4>六年趨勢（佔當年議題 %）</h4>' + catSparkline(cat.vals)
@@ -7096,7 +7096,7 @@
         <span id="archive-modal-pos" style="font-size:0.8rem; color:var(--ink-muted);"></span>
         <button class="btn btn-outline" onclick="stepArchiveModal(1)">下一份 →</button>
         <button class="btn btn-outline" id="archive-copy-link" onclick="copyRecordLink()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">複製連結</button>
-        <button class="btn btn-outline" onclick="openFocusForCurrentRecord()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">睇呢類</button>
+        <button class="btn btn-outline" onclick="openFocusForCurrentRecord()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">分類詳情</button>
       </div>
     </div>
   </div>
