@@ -1368,6 +1368,14 @@
     footer .footer-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.01em; color: var(--ink-primary); }
     footer .footer-members, footer .footer-credits { font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 0.02em; color: var(--ink-secondary); }
     footer .footer-tech { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--ink-muted); }
+    /* footer credits: two memo cards (IT/data group / qualitative group) */
+    .credits-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--ink-muted); margin-bottom: 0.5rem; }
+    .credits-memos { display: flex; gap: 0.75rem; }
+    .memo-card { flex: 1 1 0; background: #F3EDE0; border-radius: 2px; padding: 0.9rem 1rem; }
+    .memo-card h5 { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; color: #111111; margin: 0 0 0.4rem; }
+    .memo-card p { font-family: var(--font-sans); font-size: 0.85rem; line-height: 1.6; color: var(--ink-secondary); margin: 0; }
+    .credits-cleaning { font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-secondary); margin-top: 0.5rem; }
+    @media (max-width: 720px) { .credits-memos { flex-direction: column; } }
     /* data-cleaning folder cards: tab protrudes from the card top edge */
     .folder-card { position: relative; margin-top: 1rem; padding-top: 1.5rem; background: #F3EDE0; }
     .folder-card h4 { position: absolute; top: -0.8rem; left: 0.9rem; background: #111111; color: #FFFFFF; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.35rem 0.75rem; margin: 0; max-width: calc(100% - 1.8rem); line-height: 1.4; }
@@ -1383,6 +1391,63 @@
       .hero-header { min-height: auto; padding: 3rem 0 2.5rem; }
       .nav-hide-text { display: none; }
     }
+
+    /* v33: museum-benchmark features */
+    .stamp-mini { font-family: var(--font-mono); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.06em; color: #991B1B; border: 1.5px solid #991B1B; padding: 0.1rem 0.4rem; border-radius: 3px; text-transform: uppercase; display: inline-block; transform: rotate(-2deg); margin-left: 0.5rem; vertical-align: middle; white-space: nowrap; }
+    .stamp-light { color: #FCA5A5; border-color: #FCA5A5; }
+    .hero-stamp { margin-top: 0.9rem; }
+    .theme-entries { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; align-items: stretch; }
+    .theme-entries-label { width: 100%; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+    .theme-entry { text-align: left; background: transparent; border: 1px solid rgba(255,255,255,0.55); color: #FFFFFF; border-radius: 2px; padding: 0.6rem 0.85rem; cursor: pointer; max-width: 250px; font-family: inherit; }
+    .theme-entry:hover { background: rgba(255,255,255,0.12); border-color: #FFFFFF; }
+    .theme-entry b { display: block; font-family: var(--font-serif); font-size: 1rem; font-weight: 700; }
+    .theme-entry span { display: block; font-size: 0.72rem; color: rgba(255,255,255,0.75); margin-top: 0.15rem; line-height: 1.4; }
+    .cat-focus-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; margin-top: 0.6rem; }
+    .cat-focus-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.28rem 0.65rem; border-radius: 999px; font-size: 0.76rem; font-weight: 600; border: 1px solid var(--border-strong); background: #FFFFFF; color: var(--ink-primary); cursor: pointer; font-family: var(--font-mono); }
+    .cat-focus-btn:hover { border-color: #111111; }
+    .featured-strip { display: flex; gap: 0.7rem; overflow-x: auto; padding: 0.35rem 0.1rem 0.7rem; margin-bottom: 0.5rem; }
+    .feat-card { flex: 0 0 250px; text-align: left; background: #FFFFFF; border: 1px solid var(--border-strong); border-radius: 2px; padding: 0.7rem 0.85rem; cursor: pointer; font-family: inherit; }
+    .feat-card:hover { border-color: #111111; }
+    .feat-card .feat-no { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; }
+    .feat-card .feat-title { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; line-height: 1.35; margin-top: 0.25rem; display: block; }
+    .feat-card .feat-meta { font-size: 0.72rem; color: var(--ink-muted); margin-top: 0.3rem; display: block; }
+    .map1957-wrap { position: relative; }
+    .map1957-wrap img { display: block; width: 100%; height: auto; }
+    .map-hotspot { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid #FFFFFF; background: #C2410C; color: #FFFFFF; cursor: pointer; padding: 0; box-shadow: 0 1px 5px rgba(0,0,0,0.45); font-family: var(--font-mono); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .map-hotspot:hover { background: #111111; }
+    .map-zoom-btn { position: absolute; right: 0.6rem; top: 0.6rem; z-index: 3; background: #111111; color: #FFFFFF; border: 1px solid #111111; border-radius: 2px; padding: 0.35rem 0.7rem; font-size: 0.78rem; font-weight: 700; cursor: pointer; font-family: var(--font-mono); }
+    .map-zoom-btn:hover { background: #C2410C; border-color: #C2410C; }
+    #map-lightbox { position: fixed; inset: 0; z-index: 1200; background: rgba(10,10,10,0.92); display: flex; flex-direction: column; }
+    #map-lightbox.hidden { display: none; }
+    #map-lightbox .map-lb-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; padding: 0.7rem 1rem; color: #FFFFFF; }
+    #map-lightbox .map-lb-bar .btn { background: #FFFFFF; color: #111111; border-color: #FFFFFF; }
+    #map-lightbox .map-lb-stage { flex: 1; overflow: hidden; position: relative; cursor: grab; }
+    #map-lightbox .map-lb-stage:active { cursor: grabbing; }
+    #map-lightbox .map-lb-stage img { position: absolute; left: 50%; top: 50%; max-width: none; max-height: none; transform: translate(-50%, -50%); transform-origin: center center; user-select: none; -webkit-user-drag: none; }
+    .glossary-box { border: 1px solid var(--border-paper); border-radius: 2px; background: #F3EDE0; padding: 0.7rem 0.9rem; margin-bottom: 1rem; }
+    .gloss-term { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; border: 1px solid var(--border-strong); background: #FFFFFF; color: var(--ink-primary); border-radius: 999px; padding: 0.25rem 0.6rem; margin: 0.15rem 0.2rem 0.15rem 0; cursor: pointer; }
+    .gloss-term:hover, .gloss-term.active { background: #111111; color: #FFFFFF; border-color: #111111; }
+    #glossary-def { font-size: 0.85rem; color: var(--ink-secondary); line-height: 1.6; margin-top: 0.5rem; }
+    .modal-kw-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; border: 1px solid var(--border-strong); background: #FFFFFF; color: var(--ink-primary); border-radius: 999px; padding: 0.2rem 0.55rem; margin: 0.15rem 0.2rem 0.15rem 0; cursor: pointer; }
+    .modal-kw-tag:hover { background: #111111; color: #FFFFFF; border-color: #111111; }
+    .record-cite { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-muted); line-height: 1.6; margin-top: 1rem; padding-top: 0.7rem; border-top: 1px solid var(--border-paper); }
+    .data-use { font-size: 0.78rem; color: var(--ink-secondary); line-height: 1.6; margin-top: 0.5rem; }
+    .tl-cite { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-top: 0.45rem; }
+    .tl-rel-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: rgba(255,255,255,0.75); margin-right: 0.35rem; }
+    .tl-mention { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: #991B1B; border: 1px solid #991B1B; border-radius: 999px; padding: 0.05rem 0.45rem; margin-left: 0.4rem; white-space: nowrap; vertical-align: middle; }
+    .save-star { background: none; border: none; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 0.25rem; color: #9CA3AF; vertical-align: middle; }
+    .save-star.saved { color: #C2410C; }
+    .theme-banner, .related-tl-banner { display: none; border: 1px solid var(--border-strong); border-left: 3px solid var(--accent); background: #FFF7ED; border-radius: 2px; padding: 0.6rem 0.8rem; margin-bottom: 0.8rem; font-size: 0.82rem; line-height: 1.6; }
+    .theme-banner.show, .related-tl-banner.show { display: block; }
+    .theme-banner .tl-report, .related-tl-banner .tl-report { background: #FFFFFF; color: #111111; border-color: #9CA3AF; }
+    .theme-banner .tl-report:hover, .related-tl-banner .tl-report:hover { background: #111111; color: #FFFFFF; border-color: #111111; }
+    #cat-focus-modal .archive-modal-card, #myfolder-modal .archive-modal-card { max-width: 720px; }
+    .cat-focus-sec { margin-top: 1rem; }
+    .cat-focus-sec h4 { font-family: var(--font-serif); font-size: 1rem; margin-bottom: 0.4rem; }
+    .cat-focus-row-item { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.4rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-paper); font-size: 0.85rem; }
+    .cat-focus-row-item button { background: none; border: none; padding: 0; font: inherit; text-align: left; cursor: pointer; color: var(--ink-primary); }
+    .cat-focus-row-item button:hover { text-decoration: underline; }
+    @media (max-width: 720px) { .feat-card { flex-basis: 210px; } .theme-entry { max-width: 100%; flex: 1 1 45%; } }
   </style>
 </head>
 <body>
@@ -1440,6 +1505,7 @@
         <span>•</span>
         <span>互動檔案庫</span>
       </div>
+      <div class="hero-stamp"><span class="stamp-badge stamp-light">CONFIDENTIAL // HKMOOD 1975–1980</span></div>
       <h1 class="hero-title">1975–1980 港英政府民情報告 數據視覺化分析<span class="hero-title-en">(MOOD Reports)</span></h1>
       <p class="hero-desc">
         用數位人文方法，拆開 1975–1980 年麥理浩時期港英政府嘅《民情報告》（MOOD Reports）：政府最關注咩、唔同階層嘅市民點睇、邊個階層講邊啲議題，同埋啲報告喺邊區最多。
@@ -1464,6 +1530,13 @@
           <div class="kpi-value"><span class="kpi-num" data-count="31">31</span> <span class="kpi-sub">份報告有地區 (vs 139 全港)</span></div>
         </div>
       </div>
+      <div class="theme-entries">
+        <div class="theme-entries-label">主題入口 · 撳入去直接睇相關檔案</div>
+        <button type="button" class="theme-entry" onclick="openThemeEntry('police')"><b>警廉衝突</b><span>1977 年警廉衝突高潮 · 法律與治安</span></button>
+        <button type="button" class="theme-entry" onclick="openThemeEntry('mtr')"><b>地鐵通車</b><span>1979 年地鐵車費公布 · 交通</span></button>
+        <button type="button" class="theme-entry" onclick="openThemeEntry('saumauping')"><b>秀茂坪</b><span>1976 年山泥傾瀉跟進 · 房屋／社區</span></button>
+        <button type="button" class="theme-entry" onclick="openThemeEntry('vietnam')"><b>越南船民</b><span>1975–1979 年船民問題 · 政治與憲制</span></button>
+      </div>
     </div>
     <a class="cover-scroll" href="#section-a"><span>SCROLL</span><em></em></a>
   </header>
@@ -1476,7 +1549,7 @@
     <section id="section-a">
       <div class="section-header">
         <div>
-          <span class="section-kicker">02 · Research Question A • 時間序列分析 (n=216)</span>
+          <span class="section-kicker">02 · Research Question A • 時間序列分析 (n=216)</span><span class="stamp-mini">HKMOOD</span>
           <h2 class="section-title">A. 政府關注焦點轉向：由「治安管治」轉向「民生基建」？</h2>
           <p class="section-subtitle">
             分析 1975–1980 年間各政策範疇在 MOOD 報告中的佔比變化（Attention Share %），滑鼠懸停可檢視各年度精確百分比。
@@ -1499,6 +1572,7 @@
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem;" onclick="setAllCategories(true)">全部顯示</button>
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem; border-color:#9CA3AF; color:#111111;" onclick="setPeakCategoriesOnly()">只看核心高峰議題</button>
           <div id="a-category-pills" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
+          <div class="cat-focus-row"><span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">分類聚焦：</span><span id="a-cat-focus-btns" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></span></div>
         </div>
 
         <!-- Year focus slider -->
@@ -1606,7 +1680,7 @@
     <section id="section-b">
       <div class="section-header">
         <div>
-          <span class="section-kicker" style="color:var(--accent-teal);">03 · Research Question B • 民情情緒與階層結構</span>
+          <span class="section-kicker" style="color:var(--accent-teal);">03 · Research Question B • 民情情緒與階層結構</span><span class="stamp-mini">HKMOOD</span>
           <h2 class="section-title">B. 市民點睇？邊啲議題最令人憤怒與焦慮？</h2>
           <p class="section-subtitle">
             兩幅互動圖：左邊睇邊個階層對邊啲議題有咩情緒；右邊睇唔同年份，各階層嘅情緒佔幾多。
@@ -1691,7 +1765,7 @@
     <section id="section-c">
       <div class="section-header">
         <div>
-          <span class="section-kicker" style="color:var(--accent-indigo);">04 · Research Question C • 網絡結構分析 (Gephi)</span>
+          <span class="section-kicker" style="color:var(--accent-indigo);">04 · Research Question C • 網絡結構分析 (Gephi)</span><span class="stamp-mini">HKMOOD</span>
           <h2 class="section-title">C. 邊個階層講邊啲議題？（階層—議題二分網絡圖）</h2>
           <p class="section-subtitle">
             左邊係受訪階層，右邊係政策議題。連線愈粗，即係嗰個階層提到嗰個議題嘅次數愈多。撳入任何一點，睇下唔同階層係咪各有各關心嘅議題。
@@ -1757,7 +1831,7 @@
     <section id="section-d">
       <div class="section-header">
         <div>
-          <span class="section-kicker">05 · Research Question D • 空間地理與原始史料庫</span>
+          <span class="section-kicker">05 · Research Question D • 空間地理與原始史料庫</span><span class="stamp-mini">HKMOOD</span>
           <h2 class="section-title">D. 歷史檔案夾：地區空間分佈與 MOOD Report 檢索資料庫</h2>
           <p class="section-subtitle">
             下面個檔案夾有兩層：第一層係原版 Kepler 地圖（3D 熱點加時間線）；第二層係最終版報告資料庫（229 筆），可以搜尋同篩選。
@@ -1825,9 +1899,19 @@
               <p style="font-size:0.78rem; color:#A8A08E; margin-top:0.6rem;">提示：如果地圖出唔到，請確認 mood_kepler_map_v20.html 同呢個網頁放喺同一個資料夾入面。地圖本身有 3D 傾斜視角，可以用滑鼠拖動、縮放。</p>
             </div>
             <figure class="hist1957-figure">
-              <img src="hist1957_3000.jpg" alt="1957 年香港歷史地圖（Historical Map of Hong Kong, 1957）" loading="lazy">
+              <div class="map1957-wrap">
+                <img src="hist1957_3000.jpg" alt="1957 年香港歷史地圖（Historical Map of Hong Kong, 1957）" loading="lazy" id="hist1957-img">
+                <button type="button" class="map-hotspot" style="left:58.2%; top:61.2%; width:24px; height:24px; font-size:0.6rem;" title="觀塘 Kwun Tong · 14 筆報告，撳入去睇嗰區檔案" aria-label="觀塘 Kwun Tong，14 筆報告" onclick="goDistrict('Kwun Tong')">14</button>
+                <button type="button" class="map-hotspot" style="left:49.7%; top:67.3%; width:16px; height:16px; font-size:0.6rem;" title="中西區 Central & Western · 6 筆報告，撳入去睇嗰區檔案" aria-label="中西區 Central & Western，6 筆報告" onclick="goDistrict('Central & Western')">6</button>
+                <button type="button" class="map-hotspot" style="left:52.4%; top:59.9%; width:15px; height:15px; font-size:0.6rem;" title="九龍 Kowloon · 5 筆報告，撳入去睇嗰區檔案" aria-label="九龍 Kowloon，5 筆報告" onclick="goDistrict('Kowloon')">5</button>
+                <button type="button" class="map-hotspot" style="left:49.7%; top:58.1%; width:14px; height:14px; font-size:0.6rem;" title="深水埗 Sham Shui Po · 4 筆報告，撳入去睇嗰區檔案" aria-label="深水埗 Sham Shui Po，4 筆報告" onclick="goDistrict('Sham Shui Po')">4</button>
+                <button type="button" class="map-hotspot" style="left:51.0%; top:63.6%; width:13px; height:13px; font-size:0.6rem;" title="尖沙咀 Tsim Sha Tsui · 3 筆報告，撳入去睇嗰區檔案" aria-label="尖沙咀 Tsim Sha Tsui，3 筆報告" onclick="goDistrict('Tsim Sha Tsui')">3</button>
+                <button type="button" class="map-hotspot" style="left:55.0%; top:56.2%; width:12px; height:12px; font-size:0.6rem;" title="黃大仙 Wong Tai Sin · 2 筆報告，撳入去睇嗰區檔案" aria-label="黃大仙 Wong Tai Sin，2 筆報告" onclick="goDistrict('Wong Tai Sin')">2</button>
+                <button type="button" class="map-zoom-btn" onclick="openMapLightbox()">放大睇 🔍</button>
+              </div>
               <figcaption><span class="fig-label">FIG. 1957 · HISTORICAL MAP OF HONG KONG, 1957 · 1:100,000</span><span class="fig-note">地政總署歷史地圖（data.gov.hk）· 僅作歷史背景：1957 年地圖，1975–1980 年間版圖已有變化，唔可以直接當做 MOOD 報告時期嘅地圖。</span></figcaption>
             </figure>
+            <p style="font-size:0.78rem; color:var(--ink-muted); margin:0.5rem 1.5rem 0;">地圖熱點（撳圓點睇嗰區檔案）：觀塘 Kwun Tong 14 筆 · 中西區 Central & Western 6 筆 · 九龍 Kowloon 5 筆 · 深水埗 Sham Shui Po 4 筆 · 尖沙咀 Tsim Sha Tsui 3 筆 · 黃大仙 Wong Tai Sin 2 筆</p>
           </div>
 
           <!-- =================================================================
@@ -1846,6 +1930,7 @@
               <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
                 <button class="btn btn-outline" onclick="resetCsvFilters()">重設所有篩選</button>
                 <button class="btn btn-outline" onclick="randomArchiveRecord()" title="喺而家篩選結果入面隨機抽一份，展開全文">🎲 隨機抽一份</button>
+                <button class="btn btn-outline" id="myfolder-open-btn" onclick="openMyFolder()">☆ 我的檔案夾 <span id="myfolder-count">(0)</span></button>
                 </div>
             </div>
 
@@ -1938,6 +2023,29 @@
               <span id="csv-source-badge" style="font-weight:700; color:var(--accent-teal);">資料來源：mood_records_clean_FINAL.csv（最終版）</span>
             </div>
 
+            <!-- v33: Featured reports strip (Van Gogh) -->
+            <div style="margin-bottom:0.5rem;">
+              <h3 style="font-family:var(--font-serif); font-size:1.05rem; margin-bottom:0.4rem;">精選報告 <span style="font-size:0.78rem; color:var(--ink-muted); font-family:var(--font-sans); font-weight:400;">— 策展人揀嘅 6 份，撳入去睇全文</span></h3>
+              <div id="featured-strip" class="featured-strip"></div>
+            </div>
+
+            <!-- v33: Archive glossary (UK National Archives) -->
+            <div class="glossary-box">
+              <div style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-bottom:0.35rem;">檔案詞彙：撳一個詞睇白話解釋</div>
+              <div>
+                <button type="button" class="gloss-term" onclick="showGlossary('HKRS')">HKRS</button>
+                <button type="button" class="gloss-term" onclick="showGlossary('MOOD')">MOOD</button>
+                <button type="button" class="gloss-term" onclick="showGlossary('v2.2')">v2.2</button>
+                <button type="button" class="gloss-term" onclick="showGlossary('keeper')">keeper</button>
+                <button type="button" class="gloss-term" onclick="showGlossary('seg_pages')">seg_pages</button>
+              </div>
+              <div id="glossary-def">撳上面任何一個詞，呢度會顯示白話解釋。</div>
+            </div>
+
+            <!-- v33: theme / related-timeline banner -->
+            <div id="theme-banner" class="theme-banner"></div>
+            <div id="related-tl-banner" class="related-tl-banner"></div>
+
             <!-- Archive Data Table -->
             <div class="archive-table-wrap">
               <table id="csv-table" class="archive-table">
@@ -1968,7 +2076,7 @@
   <section id="section-timeline">
     <div class="container">
       <div class="section-head">
-        <div class="section-kicker">06 · 年表 Timeline</div>
+        <div class="section-kicker">06 · 年表 Timeline</div><span class="stamp-mini stamp-light">HKMOOD</span>
         <h2 class="section-title">大事年表：背景同報告點樣互相呼應</h2>
         <p class="section-subtitle">呢條年表分兩層：<strong>背景大事</strong>係 1975–1980 年間發生嘅事（有啲報告冇直接寫出嚟）；<strong>MOOD 報告</strong>係我哋數據入面有記錄嘅。撳任何一份報告可以直接睇佢嘅摘要。</p>
       </div>
@@ -1979,7 +2087,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-bg">背景大事</span> 西貢淪陷，越戰結束</div>
           <p class="tl-desc">南越政府倒台，大量越南難民開始逃離。香港隨即成為第一收容港，呢個問題之後四年一直係 MOOD 報告嘅焦點。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T375')">報告 307 · 印支局勢</button> <button type="button" class="tl-report" onclick="openTimelineReport('T377')">報告 308 · 越南難民</button></div>
+          <div class="tl-cite">引用：MOOD 報告 307 號，1975-05-29 · HKRS925-1；MOOD 報告 308 號，1975-05-22 · HKRS925-1</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T375')">報告 307 · 印支局勢</button> <button type="button" class="tl-report" onclick="openTimelineReport('T377')">報告 308 · 越南難民</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -1988,7 +2096,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 對中國態度三部曲</div>
           <p class="tl-desc">三份系列報告（對中國、對台灣、對英國嘅態度），記錄香港人對中國政府嘅懷疑慢慢冷卻，左派右派分界模糊，英國威望下跌。係用民政署職員印象評估，唔係問卷調查。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T356')">報告 294 · 對中國態度</button> <button type="button" class="tl-report" onclick="openTimelineReport('T357')">報告 294 · 對台灣態度</button> <button type="button" class="tl-report" onclick="openTimelineReport('T358')">報告 294 · 對英國態度</button></div>
+          <div class="tl-cite">引用：MOOD 報告 294 號，1975-09-10 · HKRS925-1</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T356')">報告 294 · 對中國態度</button> <button type="button" class="tl-report" onclick="openTimelineReport('T357')">報告 294 · 對台灣態度</button> <button type="button" class="tl-report" onclick="openTimelineReport('T358')">報告 294 · 對英國態度</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2006,7 +2114,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 旺角槍擊事件</div>
           <p class="tl-desc">旺角發生槍擊案，公眾關注治安同警隊用槍。同份報告亦有 MTR 公布嘅反應。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T102')">報告 86 · 旺角槍擊</button> <button type="button" class="tl-report" onclick="openTimelineReport('T104')">報告 86 · MTR 公布</button></div>
+          <div class="tl-cite">引用：MOOD 報告 86 號，1976-01-22 · HKRS394-26</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T102')">報告 86 · 旺角槍擊</button> <button type="button" class="tl-report" onclick="openTimelineReport('T104')">報告 86 · MTR 公布</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2015,7 +2123,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 秀茂坪山泥傾瀉</div>
           <p class="tl-desc">1976 年 8 月秀茂坪山泥傾瀉，呢份報告跟進傳媒報道對公眾嘅影響；1977 年 2 月再有跟進報告。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T079')">報告 62 · 傳媒報道影響</button> <button type="button" class="tl-report" onclick="openTimelineReport('T065')">報告 51 · 災難跟進</button></div>
+          <div class="tl-cite">引用：MOOD 報告 62 號，1976-09-01 · HKRS394-26；MOOD 報告 51 號，1977-02-23 · HKRS394-26</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T079')">報告 62 · 傳媒報道影響</button> <button type="button" class="tl-report" onclick="openTimelineReport('T065')">報告 51 · 災難跟進</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2042,7 +2150,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 英女皇銀禧慶典</div>
           <p class="tl-desc">英女皇銀禧訪港慶典，公眾參與踴躍。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T286')">報告 233 · 銀禧慶典</button></div>
+          <div class="tl-cite">引用：MOOD 報告 233 號，1977-05-11 · HKRS925-1</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T286')">報告 233 · 銀禧慶典</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2051,7 +2159,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 總督施政報告</div>
           <p class="tl-desc">麥理浩總督喺立法局發表施政報告，2,443 名受訪者大多數反應正面，但關注食水限制、強迫教育同居屋細節。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T002')">報告 2 · 施政報告反應</button></div>
+          <div class="tl-cite">引用：MOOD 報告 2 號，1977-10-05 · HKRS394-26</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T002')">報告 2 · 施政報告反應</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2060,7 +2168,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 綠皮書諮詢</div>
           <p class="tl-desc">政府就綠皮書進行公眾諮詢，呢兩份報告評估諮詢過程同埋事後檢討。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T038')">報告 29 · 諮詢評估</button> <button type="button" class="tl-report" onclick="openTimelineReport('T264')">報告 217 · 事後檢討</button></div>
+          <div class="tl-cite">引用：MOOD 報告 29 號，1978-05-03 · HKRS394-26；MOOD 報告 217 號，1978-05-03 · HKRS925-1</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T038')">報告 29 · 諮詢評估</button> <button type="button" class="tl-report" onclick="openTimelineReport('T264')">報告 217 · 事後檢討</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2069,7 +2177,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 對中國大陸態度轉正面</div>
           <p class="tl-desc">經歷 1976 年嘅劇變之後，香港人對中國大陸嘅態度轉為越來越正面，中港關係改善、經濟同外交合作擴大。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T028')">報告 20 · 對大陸態度</button></div>
+          <div class="tl-cite">引用：MOOD 報告 20 號，1978-10-23 · HKRS394-26</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T028')">報告 20 · 對大陸態度</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2078,7 +2186,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-bg">背景大事</span> 改革開放開始</div>
           <p class="tl-desc">中共十一屆三中全會，鄧小平推動改革開放。中國由封閉轉向開放，係 1978 年態度轉變嘅大背景。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T028')">報告 20 · 對大陸態度</button></div>
+          <div class="tl-cite">引用：MOOD 報告 20 號，1978-10-23 · HKRS394-26</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T028')">報告 20 · 對大陸態度</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2087,7 +2195,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-bg">背景大事</span> 中美建交</div>
           <p class="tl-desc">美國同中國正式建立外交關係。同月嘅 MOOD 報告記錄公眾反應，仲有 Huey Fong 號難民船事件。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T251')">報告 205 · 中美建交反應</button> <button type="button" class="tl-report" onclick="openTimelineReport('T250')">報告 205 · Huey Fong 事件</button></div>
+          <div class="tl-cite">引用：MOOD 報告 205 號，1979-01-18 · HKRS925-1</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T251')">報告 205 · 中美建交反應</button> <button type="button" class="tl-report" onclick="openTimelineReport('T250')">報告 205 · Huey Fong 事件</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2096,7 +2204,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 越南船民高峰</div>
           <p class="tl-desc">1979 年係越南船民問題最嚴重嘅一年：3 月報告講難民問題，6 月啟德難民營騷亂，7 月日內瓦開會討論難民問題。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T247')">報告 204 · 難民問題</button> <button type="button" class="tl-report" onclick="openTimelineReport('T151')">報告 123 · 啟德營騷亂</button> <button type="button" class="tl-report" onclick="openTimelineReport('T148')">報告 122 · 日內瓦會議</button></div>
+          <div class="tl-cite">引用：MOOD 報告 204 號，1979-03-08 · HKRS925-1；MOOD 報告 123 號，1979-06-28 · HKRS394-26；MOOD 報告 122 號，1979-07-26 · HKRS394-26</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T247')">報告 204 · 難民問題</button> <button type="button" class="tl-report" onclick="openTimelineReport('T151')">報告 123 · 啟德營騷亂</button> <button type="button" class="tl-report" onclick="openTimelineReport('T148')">報告 122 · 日內瓦會議</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2105,7 +2213,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 地鐵車費公布</div>
           <p class="tl-desc">地鐵公布車費，公眾反應強烈；5 月再有交通白皮書同埋車費公布嘅初步反應。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T246')">報告 203 · 地鐵車費</button> <button type="button" class="tl-report" onclick="openTimelineReport('T245')">報告 202 · 白皮書＋車費</button></div>
+          <div class="tl-cite">引用：MOOD 報告 203 號，1979-04-19 · HKRS925-1；MOOD 報告 202 號，1979-05-16 · HKRS925-1</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T246')">報告 203 · 地鐵車費</button> <button type="button" class="tl-report" onclick="openTimelineReport('T245')">報告 202 · 白皮書＋車費</button></div>
         </div>
       </div>
       <div class="tl-item">
@@ -2114,7 +2222,7 @@
         <div class="tl-body">
           <div class="tl-title"><span class="tl-tag tl-tag-mood">MOOD 報告</span> 地區行政綠皮書</div>
           <p class="tl-desc">政府發表地區行政綠皮書，公眾對地區行政改革嘅反應。呢份係數據入面最長嘅報告之一（27 頁）。</p>
-          <div class="tl-links"><button type="button" class="tl-report" onclick="openTimelineReport('T403')">報告 324 · 地區行政綠皮書</button></div>
+          <div class="tl-cite">引用：MOOD 報告 324 號，1980-09-08 · HKRS925-1</div><div class="tl-links"><span class="tl-rel-label">相關報告：</span><button type="button" class="tl-report" onclick="openTimelineReport('T403')">報告 324 · 地區行政綠皮書</button></div>
         </div>
       </div>
       </div>
@@ -2128,7 +2236,7 @@
   <section id="section-methods">
     <div class="container">
       <div class="section-head">
-        <div class="section-kicker">07 · 方法 Methods</div>
+        <div class="section-kicker">07 · 方法 Methods</div><span class="stamp-mini">HKMOOD</span>
         <h2 class="section-title">資料係點嚟嘅，點樣整理</h2>
         <p class="section-subtitle">呢個網站嘅數字全部嚟自同一份整理好嘅數據，唔係隨便估。以下係最重要嘅幾點；完整方法、錯誤率同埋決策紀錄，請睇 methods report。</p>
       </div>
@@ -2226,8 +2334,22 @@
     <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem;">
       <div class="footer-title"><strong style="color:var(--ink-primary);">HIST4207 Historical Data Visualization Project</strong> — Hong Kong MOOD Reports (1975–1980)</div>
       <div class="footer-members">組員 Group Members： Wu Yu Tung (23232773) · Li Yat Hei (25217984) · Lo Tsz Ching (23235756) · Lee Wing Fei (25225014)</div>
-      <div class="footer-credits">分工 Credits： Lo Tsz Ching（網頁搭建、分類主表、SQLite 資料庫）· Wu Yu Tung（Flourish 圖表、詳細 CSV）· 數據清理：全組一齊開會討論、逐一檢查</div>
+      <div class="footer-credits" style="flex:1 1 100%;">
+        <div class="credits-label">分工 Credits</div>
+        <div class="credits-memos">
+          <div class="memo-card">
+            <h5>數據研究＋處理 IT 組</h5>
+            <p>Lo Tsz Ching（網頁搭建、分類主表、SQLite 資料庫）· Wu Yu Tung（Flourish 圖表、詳細 CSV）</p>
+          </div>
+          <div class="memo-card">
+            <h5>質性研究組</h5>
+            <p>Li Yat Hei（開題、質性研究）· Lee Wing Fei（質性研究）</p>
+          </div>
+        </div>
+        <div class="credits-cleaning">數據清理：全組一齊開會討論、逐一檢查</div>
+      </div>
       <div class="footer-tech">Interactive SVG &amp; Archival Database</div>
+      <div><span class="stamp-mini" style="margin-left:0;">CONFIDENTIAL // HKMOOD</span></div>
     </div>
   </footer>
 
@@ -5814,14 +5936,14 @@
         const sentClass = 'sent-' + (['Angry', 'Anxious', 'Skeptical', 'Supportive', 'Indifferent'].includes(r.sentiment) ? r.sentiment : 'Indifferent');
         let mainRow = `
           <tr class="data-row" data-rid="${r.id}" onclick="openArchiveModal('${r.id}')">
-            <td style="font-family:var(--font-mono); font-weight:700; white-space:nowrap; color:var(--accent-terracotta);" data-label="報告編號">${escapeHtml(r.id)}</td>
+            <td style="font-family:var(--font-mono); font-weight:700; white-space:nowrap; color:var(--accent-terracotta);" data-label="報告編號"><button type="button" class="save-star" data-rid="${r.id}" onclick="event.stopPropagation(); toggleSaveRecord('${r.id}', this)" title="收藏呢份報告">${isSaved(r.id) ? '★' : '☆'}</button>${escapeHtml(r.id)}</td>
             <td style="font-family:var(--font-mono); white-space:nowrap;" data-label="日期 / 年份">${escapeHtml(r.date)}</td>
             <td style="font-weight:600; white-space:nowrap;" data-label="地區">${highlightQuery(escapeHtml(r.location))}</td>
-            <td style="white-space:nowrap;" data-label="政策範疇">${highlightQuery(escapeHtml(r.category))}</td>
+            <td style="white-space:nowrap;" data-label="政策範疇"><span class="dot" style="background:${catColor(r.category)}"></span> ${highlightQuery(escapeHtml(r.category))}</td>
             <td style="white-space:nowrap;" data-label="受訪階層">${highlightQuery(escapeHtml(r.group))}</td>
             <td data-label="情緒"><span class="sentiment-badge ${sentClass}">${escapeHtml(r.sentiment)}</span></td>
             <td style="font-size:0.75rem; font-weight:700; color:${r.salience === 'High' ? '#B91C1C' : r.salience === 'Moderate' ? '#B45309' : '#64748B'};" data-label="顯著度">${escapeHtml(r.salience)}</td>
-            <td style="max-width:340px;" data-label="民情摘要">${highlightQuery(escapeHtml(r.summary.slice(0, 56)))}${r.summary.length > 56 ? '...' : ''}</td>
+            <td style="max-width:340px;" data-label="民情摘要">${highlightQuery(escapeHtml(r.summary.slice(0, 56)))}${r.summary.length > 56 ? '...' : ''}${isTimelineMentioned(r.id) ? '<span class="tl-mention">⏱ 年表有提及</span>' : ''}</td>
           </tr>
         `;
 
@@ -5873,13 +5995,13 @@
         '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.id) + '</span>' +
         '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.date || '未有日期') + '</span>' +
         '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.location) + '</span>' +
-        '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.category) + '</span>' +
+        '<span class="meta-pill" style="margin:0;"><span class="dot" style="background:' + catColor(r.category) + '"></span>' + escapeHtml(r.category) + '</span>' +
         '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.group) + '</span>' +
         '<span class="sentiment-badge ' + sentClass + '">' + escapeHtml(r.sentiment) + '</span>' +
         '<span class="meta-pill" style="margin:0;">顯著度：' + escapeHtml(r.salience) + '</span>' +
-        '<span class="meta-pill" style="margin:0;">來源：' + escapeHtml(r.series || '') + '</span>';
+        '<span class="meta-pill" style="margin:0;">來源：' + escapeHtml(r.series || '') + '</span>' + (isTimelineMentioned(r.id) ? '<span class="meta-pill" style="margin:0; border-color:#991B1B; color:#991B1B;">⏱ 年表有提及</span>' : '');
       document.getElementById('archive-modal-title').textContent = r.topic || '';
-      document.getElementById('archive-modal-body').innerHTML = highlightQuery(escapeHtml(r.summary || ''));
+      document.getElementById('archive-modal-body').innerHTML = highlightQuery(escapeHtml(r.summary || '')) + modalExtrasHtml(r);
       document.getElementById('archive-modal-pos').textContent = '第 ' + (idx + 1) + ' / ' + modalList.length + ' 筆';
       document.getElementById('archive-modal').classList.remove('hidden');
       if (history.replaceState) { try { history.replaceState(null, '', '#' + r.id); } catch (e) {} }
@@ -5929,6 +6051,420 @@
         navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
       } else { fallbackCopy(url); done(); }
     }
+
+    // =========================================================================
+    // v33: museum-benchmark features
+    // =========================================================================
+    const REPORT_NUM = {"T002":2,"T003":3,"T004":5,"T005":6,"T006":6,"T007":6,"T008":7,"T009":7,"T010":7,"T011":7,"T012":8,"T014":10,"T015":11,"T016":12,"T026":18,"T028":20,"T030":22,"T033":24,"T034":25,"T036":27,"T038":29,"T039":30,"T043":33,"T045":35,"T046":35,"T056":41,"T061":47,"T062":48,"T063":49,"T064":50,"T065":51,"T066":51,"T067":51,"T068":52,"T069":53,"T070":54,"T071":55,"T072":56,"T073":57,"T074":57,"T075":58,"T076":59,"T077":60,"T078":61,"T079":62,"T080":63,"T081":64,"T082":65,"T084":68,"T085":69,"T086":70,"T087":71,"T088":72,"T089":73,"T090":74,"T091":76,"T092":77,"T093":78,"T094":79,"T095":80,"T096":81,"T097":81,"T098":82,"T099":83,"T101":85,"T102":86,"T103":86,"T104":86,"T105":88,"T106":89,"T107":89,"T108":89,"T109":90,"T110":90,"T111":90,"T113":92,"T114":92,"T115":93,"T116":94,"T117":95,"T118":95,"T119":95,"T120":96,"T121":96,"T122":96,"T123":97,"T124":98,"T125":99,"T126":100,"T127":101,"T128":101,"T129":102,"T130":103,"T132":105,"T133":106,"T134":107,"T135":108,"T136":109,"T137":110,"T141":115,"T143":117,"T144":118,"T145":119,"T147":121,"T148":122,"T149":122,"T150":123,"T151":123,"T161":131,"T162":131,"T170":136,"T174":140,"T175":141,"T180":145,"T181":145,"T186":150,"T192":155,"T224":182,"T225":183,"T237":195,"T239":198,"T240":199,"T244":202,"T245":202,"T246":203,"T247":204,"T248":204,"T249":204,"T250":205,"T251":205,"T252":206,"T253":207,"T256":210,"T257":211,"T258":211,"T260":213,"T261":214,"T263":216,"T264":217,"T266":219,"T267":220,"T268":220,"T269":221,"T271":223,"T272":224,"T273":224,"T274":225,"T275":225,"T276":226,"T277":226,"T278":226,"T279":226,"T280":227,"T281":228,"T282":229,"T284":231,"T285":232,"T286":233,"T288":235,"T289":236,"T309":254,"T310":255,"T311":255,"T313":257,"T314":259,"T316":261,"T318":263,"T320":266,"T322":269,"T323":271,"T324":271,"T325":271,"T326":271,"T330":273,"T331":274,"T339":281,"T340":282,"T341":282,"T348":286,"T350":288,"T354":292,"T356":294,"T357":294,"T358":294,"T359":295,"T360":296,"T361":297,"T362":298,"T363":299,"T364":300,"T365":301,"T366":301,"T367":302,"T368":303,"T369":303,"T370":304,"T371":305,"T372":306,"T373":306,"T374":307,"T375":307,"T376":308,"T377":308,"T378":309,"T379":310,"T380":310,"T381":310,"T382":312,"T383":313,"T385":314,"T386":316,"T387":319,"T388":319,"T390":320,"T391":320,"T392":320,"T395":321,"T396":322,"T397":322,"T398":322,"T399":323,"T400":323,"T401":323,"T402":323,"T403":324,"T404":325,"T405":326,"T410":332,"T411":333};
+    const RECORD_KEYWORDS = {"T002":"Governor, LegCo Address, Water Restriction, Free Education, Home Ownership","T003":"MOOD System, Public Opinion, Methodology, Panel Sampling, HAD Directives","T004":"Petitions, Social Workers, SOCO, Government Concessions, Bureaucracy","T005":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T006":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T007":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T008":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T009":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T010":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T011":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T012":"Leisure Activities, Television, Overseas Travel, Summer Youth Programme, Cantonese Pop","T014":"Economic Recession, Unemployment, Stockmarket Plunge, Floating HK Dollar, Working Class","T015":"Economic Recovery, Factory Employment, Purchasing Power, Denim Export, Cautious Optimism","T016":"Living Trends, Youth Fashion, Dining Habits, Home Ownership, Consumer Behavior","T026":"Vice Establishments, Prostitution, Massage Parlours, Pornography, Public Decency","T028":"China Relations, Political Sentiment, Cross-Border Trade, Future Status, Public Perception","T030":"Economic Outlook, Inflation Pressure, Wage Levels, Employment, Cautious Optimism","T033":"Property Market, Housing Demand, Real Estate Prices, Home Ownership, Rental Rates","T034":"Traffic Congestion, Bus Safety, MTR Construction, Bus Accidents, Overloaded Buses","T036":"Water Charges, 35% Increase, Desalting Plant, East River Supply, Water Surplus","T038":"Green Paper, Public Consultation, Civic Engagement, Policy Awareness, Government Transparency","T039":"Consumer Council, Consumer Rights, Price Control, Market Supervision, Public Awareness","T043":"Police Advisers, Law Enforcement, Police Reform, Anti-Corruption, Public Reaction","T045":"Building Preservation, Heritage Monuments, Anti Rabies Campaign, Public Health, Heritage","T046":"Building Preservation, Heritage Monuments, Anti Rabies Campaign, Public Health, Heritage","T056":"Crime Rate, Street Robbery, Triad Activities, Neighborhood Safety, Police Presence","T061":"Budget Speeches, Unofficial Members, Legislative Council, Public Apathy, Economic Policies","T062":"Executive Council, Legislative Council, Civic Knowledge, Budget Reaction, Government Structure","T063":"Middle Class, Social Mobility, Home Ownership, Civil Service Image, Tax Burden","T064":"Budget Speech, Tax Freeze, Fiscal Policy, Public Reaction, Economic Stability","T065":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T066":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T067":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T068":"Government Image, Elsie Elliott, Public Administration, Political Criticism, Community Aspirations","T069":"Property Rates, Rateable Value, Tax Concessions, Legislative Council, Public Objections","T070":"Economic Growth, Consumer Spending, Retail Sales, Living Standards, Festive Expenditure","T071":"Rateable Value, Property Rates, Media Criticism, Tax Assessment, Ratepayers Reaction","T072":"Annual Paid Leave, Employment Ordinance, Labor Costs, Employer Anxiety, Factory Production","T073":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T074":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T075":"MP Visits, British Parliament, Colonial Governance, Civic Knowledge, Public Perception","T076":"School Leavers, White Collar Jobs, Employment Market, Blue Collar Shortage, Civil Service","T077":"Mid Autumn Festival, Economic Growth, Consumer Confidence, Festive Spending, Public Joy","T078":"Staggered Working Hours, Flexi Time, Commuter Congestion, Public Transport, Traffic Relief","T079":"Sau Mau Ping Disaster, Landslide, Housing Department, Media Coverage, Public Alarm","T080":"Rent Policy, Public Housing, Rental Increase, Estate Management, Housing Authority","T081":"Housing Protests, High Rent Policy, Estate Tenants, Housing Authority, Public Agitation","T082":"Electricity Supply, Voltage Change, Domestic Appliances, Power Utility, Public Convenience","T084":"Miss Universe Pageant, Mass Entertainment, Television Broadcasting, Tourism","T085":"Inland Revenue Ordinance, Tax Reform, Dividend Tax, Business Taxation","T086":"Hong Kong Standard Time, Daylight Saving, Working Hours, Public Convenience","T087":"Television Programmes, Broadcast Entertainment, Drama Series, Mass Media","T088":"Television Affairs, Commercial Stations, Civic Awareness, Current Affairs","T089":"Fixed Penalty System, Traffic Offences, Driver Licensing, Traffic Fines","T090":"Group A Estate Shops, Shop Rents, Commercial Tenants, Housing Authority","T091":"Identity Cards, Registration Policy, Security Habits, Public Protection","T092":"MTR Construction, Traffic Disruption, Excavation Noise, Public Mitigation","T093":"Queen Birthday, Public Holiday, Imperial Festivities, Community Events","T094":"Group B Estates, Shop Rent Hike, Commercial Tenancies, Housing Policy","T095":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T096":"Hong Kong Arts Festival, High Society, Cultural Events, Ticket Prices","T097":"Hong Kong Arts Festival, High Society, Cultural Events, Ticket Prices","T098":"Financial Budget, Tax Policy, Allowance Adjustments, Fiscal Management, Public Reaction","T099":"Economic Review, Social Welfare, Educational Provision, Fiscal Policy, Public Finance","T101":"Chinese New Year, Stock Market Boom, Factory Orders, Festive Economy","T102":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T103":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T104":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T105":"Vice Establishments, Prostitution, Criminal Syndicates, Adolescent Protection, Law Enforcement","T106":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T107":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T108":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T109":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T110":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T111":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T113":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T114":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T115":"Telephone Company, Inquiry Commission, Utility Fares, Telephone Rates, Kwun Tong Ammunition","T116":"Judicial System, Court Procedures, Traditional Reluctance, Legal Misfortunes, Litigation","T117":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T118":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T119":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T120":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T121":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T122":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T123":"Defense Costs, Garrison Contribution, UK HK Relations, Military Expenses, Public Finance","T124":"Death Penalty, Legislative Council, Unofficial Members, Capital Punishment, Crime Deterrence","T125":"Governor Address, Legislative Council, Augustine Chung Case, Adulterated Liquor, Media Coverage","T126":"Illegal Immigration, China Immigrants, Public Sentiment, Urban Overcrowding, Quality of Life","T127":"National Day, October First, PRC Celebrations, Cross-Border Sentiment, Civic Neutrality","T128":"National Day, October First, PRC Celebrations, Cross-Border Sentiment, Civic Neutrality","T129":"Public Identity, Civic Belonging, Permanent Settlement, Social Stability, Community Sentiment","T130":"Government Image, Administrative Reform, Public Complaints, Civil Freedom, Open Governance","T132":"District Boards, New Territories, Direct Elections, District Administration, Public Consultation","T133":"Group Weddings, Marriage Registries, Civil Registration, Public Support, Ceremonial Reform","T134":"Group Weddings, Marriage Registry, Public Sentiment, Scheduling, Festive Atmosphere","T135":"Public Utilities, KMB, Bus Services, Telephone Company, Mass Transit Railway","T136":"Kwun Tong, Public Utilities, Bus Fares, Service Quality, Government Oversight","T137":"Consumer Protection, Consumer Council, Public Utilities, Complaint Channels, Service Quality","T141":"ICAC, Corruption Prevention, Public Impressions, Law Enforcement, Community Relations","T143":"Fisheries, Tourism, Hotel Industry, Retail Trade, Commercial Rentals","T144":"Yee Wuis, Money Lenders, Finance Companies, Loan Sharks, Informal Credit","T145":"Cost of Living, Inflation, Food Prices, Housing Rent, Grassroots Livelihood","T147":"Illegal Parking, Goods Vehicles, Traffic Blackspots, Police Enforcement, Public Safety","T148":"Vietnamese Refugees, Geneva Conference, North Point, Bus Terminus Accident, Transport Supervision","T149":"Vietnamese Refugees, Geneva Conference, North Point, Bus Terminus Accident, Transport Supervision","T150":"Vietnamese Refugees, Chinese Immigrants, Kai Tak Riot, Governor Mission, Public Security","T151":"Vietnamese Refugees, Chinese Immigrants, Kai Tak Riot, Governor Mission, Public Security","T161":"Public Light Bus, Maxicabs, MTR Corridor, Goods Vehicles, Transport Policy","T162":"Public Light Bus, Maxicabs, MTR Corridor, Goods Vehicles, Transport Policy","T170":"Anti Smoking Campaign, School Syllabus, Public Education, Health Hazards, Youth Education","T174":"Cinema Trade, Taxi Industry, Business Profitability, Operating Costs, Entertainment","T175":"Economic Outlook, Cautious Optimism, Trade Performance, Inflation, Employment","T180":"Bus Safety, Driver Shortage, Overloading, Public Light Bus, Road Congestion","T181":"Bus Safety, Driver Shortage, Overloading, Public Light Bus, Road Congestion","T186":"Green Papers, Education Policy, Consultation Feedback, District Liaison, Public Outreach","T192":"Police Reform, UK Advisers, Public Confidence, ICAC Complaints, Police Morale","T224":"Annual Paid Leave, Employment Ordinance, Labor Costs, Employer Anxiety, Factory Production","T225":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T237":"Firecrackers Ban, Fireworks Displays, Festive Atmosphere, Public Safety, Government Control","T239":"Economic Forecast, Inflation, Fuel Prices, Public Transport, Business Profitability","T240":"MOOD File, Rating and Valuation Department, Public Records Office, Archival Cover","T244":"Taxi Fares, Transport White Paper, MTR Fares, Commuter Discontent","T245":"Taxi Fares, Transport White Paper, MTR Fares, Commuter Discontent","T246":"MTR Fares, Transport Charges, Commuter Expectations, Transit System","T247":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T248":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T249":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T250":"Huey Fong Incident, US-China Relations, Diplomatic Normalization, Refugees","T251":"Huey Fong Incident, US-China Relations, Diplomatic Normalization, Refugees","T252":"Cigarette Smoking, Public Health, Social Habits, Anti-Smoking","T253":"Vice Establishments, Prostitution, Pornography, Public Morality","T256":"Economic Outlook, Cautious Optimism, Trade Performance, Inflation","T257":"Coin Shortage, Typhoon Agnes, Disaster Relief, Retail Currency","T258":"Coin Shortage, Typhoon Agnes, Disaster Relief, Retail Currency","T260":"Traffic Congestion, Bus Accidents, Road Digging, Transit Disruption","T261":"Narcotics Control, Heroin Addiction, Drug Trafficking, Rehabilitation","T263":"Golden Jubilee School, Student Protest, Education Controversy, Teacher Strike, School Closure","T264":"Green Papers, Public Consultation, Government Policy, Civic Awareness, Official Jargon","T266":"City District Officer, Labour Legislation, Trade Unions, Consultative Committees","T267":"Chinese New Year, Worker Holidays, Annual Budget, Public Reaction","T268":"Chinese New Year, Worker Holidays, Annual Budget, Public Reaction","T269":"Judiciary, Judicial Delays, Court Administration, Public Confidence","T271":"Economic Stability, Business Expectations, Employment, Industrial Growth","T272":"Historic Preservation, Old Buildings, Anti-Rabies Campaign, Public Health","T273":"Historic Preservation, Old Buildings, Anti-Rabies Campaign, Public Health","T274":"Governor Address, LegCo Session, Policy Priorities, Social Expenditure","T275":"Governor Address, LegCo Session, Policy Priorities, Social Expenditure","T276":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T277":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T278":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T279":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T280":"Unlicensed Restaurants, Hygiene Standards, Food Safety, Enforcement","T281":"Leisure Habits, Television Viewing, Mahjong, Yum Char","T282":"MTR Construction, Traffic Diversions, Commercial Disruption, Noise Impact","T284":"Economic Recovery, Advertising Growth, Business Volume, Consumer Confidence","T285":"Child Care Centres, Working Mothers, Subsidized Care, Preschool Welfare","T286":"Silver Jubilee, Royal Celebrations, Community Events, Public Fun","T288":"MOOD Panel, Data Analysis, CDO Coordination, Sounding Methodology","T289":"Unofficials Budget Speeches, LegCo Debates, Public Indifference, Taxation","T309":"Electricity Supply, Voltage Change, Domestic Appliances, Power Utility, Public Convenience","T310":"Taxation System, Earnings Tax, Salaries Tax, Tax Fairness, Revenue Policy","T311":"Taxation System, Earnings Tax, Salaries Tax, Tax Fairness, Revenue Policy","T313":"Inland Revenue Ordinance, Tax Reform, Dividend Tax, Business Taxation","T314":"Hong Kong Standard Time, Daylight Saving, Working Hours, Public Convenience","T316":"Television Affairs, Commercial Stations, Civic Awareness, Current Affairs","T318":"Group A Estate Shops, Shop Rents, Commercial Tenants, Housing Authority","T320":"MTR Construction, Traffic Disruption, Excavation Noise, Public Mitigation","T322":"Group B Estates, Shop Rent Hike, Commercial Tenancies, Housing Policy","T323":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T324":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T325":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T326":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T330":"1976 Budget, Tax Relief, Economic Recovery, Financial Surplus","T331":"Estate Shop Rents, Housing Authority, Joint Communication, Tenant Agitation","T339":"Year-End Economy, Commercial Turnover, Retail Performance, Household Income","T340":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T341":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T348":"Defense Costs, Garrison Contribution, UK HK Relations, Military Expenses, Public Finance","T350":"Governor Speech, LegCo Session, Policy Priorities, Welfare Commitments","T354":"Public Identity, Civic Belonging, Permanent Settlement, Social Stability, Community Sentiment","T356":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T357":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T358":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T359":"Triads; Black Society; Fight Violent Crime Committee; Blundell Report; Fight Triad Publicity Campaign","T360":"crime reporting; victims of crime; police procedures; fear of reprisal; simplified procedures","T361":"Kaifong Welfare Associations; Mutual Aid Committees; E.E.C. textile quota; Secretariat for Chinese Affairs; area committees","T362":"Chinese martial arts; triads; Chinese University report; Fight Violent Crime Committee; registration of instructors","T363":"gambling policy; mahjong; Royal Hong Kong Jockey Club; number lotteries; off-course betting","T364":"clerks' pay dispute; industrial action; civil service; Queen's College; salary adjustments","T365":"Clean Hong Kong Campaign; Lap Sap Chung; hawkers; Hong Kong Electric; China Gas","T366":"Clean Hong Kong Campaign; Lap Sap Chung; hawkers; Hong Kong Electric; China Gas","T367":"Objectionable Publications Ordinance; pornography; bad books; social morals; newspaper hawkers","T368":"Commodities Exchange; speculation; Control of the Pill; oral contraceptives; Family Planning Association","T369":"Commodities Exchange; speculation; Control of the Pill; oral contraceptives; Family Planning Association","T370":"school leavers; Form V graduates; white-collar jobs; unemployment; technical institutes","T371":"unlicensed food caterers; Urban Council; food hygiene; temporary licences; lunch boxes","T372":"police shooting; firearms; violent criminals; Labour Relations Bill; cooling-off period","T373":"police shooting; firearms; violent criminals; Labour Relations Bill; cooling-off period","T374":"Hong Kong Future, Regional Stability, Economic Resilience, Business Outlook","T375":"Hong Kong Future, Regional Stability, Economic Resilience, Business Outlook","T376":"China Light and Power; tariff increase; Vietnamese refugees; resettlement; public utilities","T377":"China Light and Power; tariff increase; Vietnamese refugees; resettlement; public utilities","T378":"Royal Visit, Public Reception, Community Goodwill, Civic Identity","T379":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T380":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T381":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T382":"Rates Increase, Group A Estates, Housing Rent, Living Costs","T383":"Public Housing Rent, Group A Estates, Group B Estates, Rate Burdens","T385":"Private Secondary Schools, Tuition Fees, Education Costs, Low-Income Families","T386":"Lai Chi Kok Hospital, Leprosy Patients, Mei Foo San Tsuen, Health Anxiety","T387":"Greyhound Betting, Off-Course Betting, Public Morality, Gambling Expansion","T388":"Greyhound Betting, Off-Course Betting, Public Morality, Gambling Expansion","T390":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T391":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T392":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T395":"MOOD Methodology, Town Talk Successor, Public Opinion Sounding, Intelligence Gathering","T396":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T397":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T398":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T399":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T400":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T401":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T402":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T403":"District Administration, Green Paper, Direct Elections, Advisory Boards, Public Opinion","T404":"Public Utilities, Mass Transit Railway, Bus Services, Service Quality, Complaint Mechanisms","T405":"Kwun Tong, Public Utilities, KMB, Electricity Charges, Consumer Protection","T410":"Cost of Living, Inflation, Food Prices, House Rent, Low Income","T411":"Parking Facilities, Multi-Storey Carparks, On-Street Parking, Lorry Parking, Parking Meters"};
+    const CAT_COLOR = {"政治與憲制":"#1D4ED8","經濟與財政":"#D97706","法律與治安":"#15803D","房屋":"#7E22CE","公共衛生與醫療":"#DC2626","教育與青年":"#78350F","交通":"#DB2777","社區環境":"#475569","勞工":"#65A30D","其他/未分類":"#94A3B8"};
+    const WC_CAT = {"Budget":"#D97706","Bus":"#DB2777","Business":"#D97706","Corruption":"#15803D","Crime":"#15803D","Criminal":"#15803D","Duty":"#D97706","Economic":"#D97706","Economy":"#D97706","Education":"#78350F","Estate":"#7E22CE","ExCo":"#1D4ED8","Finance":"#D97706","Governor":"#1D4ED8","Housing":"#7E22CE","ICAC":"#15803D","Illegal":"#15803D","Inflation":"#D97706","Law":"#15803D","Legal":"#15803D","Police":"#15803D","Political":"#1D4ED8","Price":"#D97706","Rate":"#D97706","Safety":"#15803D","School":"#78350F","Security":"#15803D","Tax":"#D97706","Taxation":"#D97706","Transport":"#DB2777"};
+    function catColor(name) { return CAT_COLOR[name] || '#64748B'; }
+    function recordCitation(r) {
+      var num = REPORT_NUM[r.id];
+      var label = (num != null) ? ('MOOD 報告 ' + num + ' 號') : ('MOOD 報告議題 ' + r.id);
+      return label + '，' + (r.date || '未註明日期') + '，' + (r.series || '');
+    }
+    // Timeline-mentioned record ids (computed from the timeline buttons)
+    const TIMELINE_TIDS = (function () {
+      var s = {};
+      document.querySelectorAll('.tl-report').forEach(function (b) {
+        var m = (b.getAttribute('onclick') || '').match(/openTimelineReport\('(T\d+)'\)/);
+        if (m) s[m[1]] = true;
+      });
+      return s;
+    })();
+    function isTimelineMentioned(tid) { return !!TIMELINE_TIDS[tid]; }
+    // v33-1: site-wide category colours — word cloud + timeline dots
+    function applyCategoryColours() {
+      document.querySelectorAll('.wc-word').forEach(function (el) {
+        var term = (el.textContent || '').trim();
+        if (WC_CAT[term]) el.style.color = WC_CAT[term];
+      });
+      document.querySelectorAll('.tl-item').forEach(function (item) {
+        var btn = item.querySelector('.tl-report');
+        var dot = item.querySelector('.tl-dot');
+        if (!btn || !dot) return;
+        var m = (btn.getAttribute('onclick') || '').match(/openTimelineReport\('(T\d+)'\)/);
+        if (!m) return;
+        var rec = ARCHIVE_RECORDS.find(function (x) { return x.id === m[1]; });
+        if (!rec) return;
+        var c = catColor(rec.category);
+        dot.style.background = c;
+        dot.style.borderColor = '#111111';
+        dot.style.boxShadow = '0 0 0 2px ' + c;
+      });
+    }
+    // v33-3: category focus view (Rijksmuseum node pages)
+    function catSparkline(vals) {
+      var w = 220, h = 56, max = 50;
+      var pts = vals.map(function (v, i) {
+        var x = (i / 5) * (w - 8) + 4;
+        var y = h - 6 - (Math.min(v, max) / max) * (h - 14);
+        return x.toFixed(1) + ',' + y.toFixed(1);
+      }).join(' ');
+      var dots = vals.map(function (v, i) {
+        var x = (i / 5) * (w - 8) + 4;
+        var y = h - 6 - (Math.min(v, max) / max) * (h - 14);
+        return '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="3" fill="#111111"/>';
+      }).join('');
+      return '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" style="max-width:100%;"><polyline points="' + pts + '" fill="none" stroke="#111111" stroke-width="2"/>' + dots + '</svg>';
+    }
+    function openCategoryFocus(catName) {
+      var cat = CATEGORIES.find(function (c) { return c.name === catName; });
+      if (!cat) return;
+      var recs = ARCHIVE_RECORDS.filter(function (r) { return r.category === catName; });
+      var total = recs.length;
+      var bySal = recs.slice().sort(function (a, b) {
+        var ra = { High: 3, Moderate: 2, Low: 1 }[a.salience] || 0;
+        var rb = { High: 3, Moderate: 2, Low: 1 }[b.salience] || 0;
+        if (rb !== ra) return rb - ra;
+        return String(b.date || '').localeCompare(String(a.date || ''));
+      });
+      var top3 = bySal.slice(0, 3);
+      // related timeline items: those linking to a record in this category
+      var catIds = {};
+      recs.forEach(function (r) { catIds[r.id] = true; });
+      var relTl = [];
+      document.querySelectorAll('.tl-item').forEach(function (item) {
+        var linked = false;
+        item.querySelectorAll('.tl-report').forEach(function (b) {
+          var m = (b.getAttribute('onclick') || '').match(/openTimelineReport\('(T\d+)'\)/);
+          if (m && catIds[m[1]]) linked = true;
+        });
+        if (!linked) return;
+        var d = item.querySelector('.tl-date');
+        var t = item.querySelector('.tl-title');
+        relTl.push({ date: d ? d.textContent.trim() : '', title: t ? t.textContent.trim() : '' });
+      });
+      // top districts (excluding General Urban)
+      var dist = {};
+      recs.forEach(function (r) {
+        if (r.location && r.location !== 'General Urban') dist[r.location] = (dist[r.location] || 0) + 1;
+      });
+      var topDist = Object.keys(dist).sort(function (a, b) { return dist[b] - dist[a]; }).slice(0, 3);
+      var html = '';
+      html += '<div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">'
+        + '<span class="dot" style="background:' + cat.color + '; width:14px; height:14px;"></span>'
+        + '<span style="font-family:var(--font-serif); font-size:1.25rem; font-weight:700;">' + escapeHtml(cat.name) + ' · 分類聚焦</span>'
+        + '<span class="meta-pill" style="margin:0;">' + total + ' 筆議題</span>'
+        + '<span class="meta-pill" style="margin:0;">最高 ' + escapeHtml(cat.peak) + '</span></div>';
+      html += '<div class="cat-focus-sec"><h4>六年趨勢（佔當年議題 %）</h4>' + catSparkline(cat.vals)
+        + '<div style="display:flex; justify-content:space-between; font-size:0.7rem; color:var(--ink-muted); max-width:220px;"><span>1975</span><span>1976</span><span>1977</span><span>1978</span><span>1979</span><span>1980</span></div></div>';
+      html += '<div class="cat-focus-sec"><h4>代表報告（顯著度最高頭 3 份）</h4>';
+      top3.forEach(function (r) {
+        html += '<div class="cat-focus-row-item"><button type="button" onclick="closeCategoryFocus(); openArchiveModal(\'' + r.id + '\')">' + escapeHtml(r.id) + ' · ' + escapeHtml(r.topic || '') + '</button><span style="white-space:nowrap; color:var(--ink-muted);">' + escapeHtml(r.date || '') + ' · ' + escapeHtml(r.sentiment) + '</span></div>';
+      });
+      html += '</div>';
+      html += '<div class="cat-focus-sec"><h4>相關年表事件</h4>';
+      if (relTl.length) {
+        relTl.forEach(function (e) {
+          html += '<div class="cat-focus-row-item"><span>' + escapeHtml(e.date) + ' · ' + escapeHtml(e.title) + '</span><button type="button" onclick="closeCategoryFocus(); document.getElementById(\'section-timeline\').scrollIntoView({behavior:\'smooth\'})" style="color:var(--accent); font-weight:700;">睇年表 →</button></div>';
+        });
+      } else {
+        html += '<div style="font-size:0.85rem; color:var(--ink-secondary);">年表冇直接提及呢類嘅報告。</div>';
+      }
+      html += '</div>';
+      html += '<div class="cat-focus-sec"><h4>邊區最多</h4>';
+      if (topDist.length) {
+        topDist.forEach(function (d) {
+          html += '<div class="cat-focus-row-item"><span>' + escapeHtml(d) + '</span><span style="font-weight:700;">' + dist[d] + ' 筆</span></div>';
+        });
+      } else {
+        html += '<div style="font-size:0.85rem; color:var(--ink-secondary);">全部都係全港泛指（General Urban）。</div>';
+      }
+      html += '</div>';
+      document.getElementById('cat-focus-body').innerHTML = html;
+      document.getElementById('cat-focus-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCategoryFocus() {
+      document.getElementById('cat-focus-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    function renderCatFocusBtns() {
+      var wrap = document.getElementById('a-cat-focus-btns');
+      if (!wrap) return;
+      wrap.innerHTML = '';
+      CATEGORIES.forEach(function (cat) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'cat-focus-btn';
+        b.innerHTML = '<span class="dot" style="background:' + cat.color + '"></span><span>' + cat.name + '</span>';
+        b.onclick = function () { openCategoryFocus(cat.name); };
+        wrap.appendChild(b);
+      });
+    }
+    // v33-4: theme entries (V&A) + related-timeline banner
+    const THEME_DEFS = {
+      police: { cat: '法律與治安', kw: 'police' },
+      mtr: { cat: '交通', kw: 'MTR' },
+      saumauping: { cat: '', kw: 'Sau Mau Ping' },
+      vietnam: { cat: '', kw: 'Vietnam' }
+    };
+    function openThemeEntry(key) {
+      var def = THEME_DEFS[key];
+      if (!def) return;
+      document.getElementById('csv-search-input').value = def.kw;
+      document.getElementById('csv-filter-category').value = def.cat || 'ALL';
+      ['csv-filter-year', 'csv-filter-district', 'csv-filter-group', 'csv-filter-sentiment'].forEach(function (id) {
+        var el = document.getElementById(id); if (el) el.value = 'ALL';
+      });
+      applyCsvFilters();
+      switchFolderLayer(2);
+      document.getElementById('section-d').scrollIntoView({ behavior: 'smooth' });
+      showRelatedTimelineFor(lastFilteredRows);
+      var tb = document.getElementById('theme-banner');
+      var names = { police: '警廉衝突', mtr: '地鐵通車', saumauping: '秀茂坪', vietnam: '越南船民' };
+      tb.innerHTML = '<b>主題：' + names[key] + '</b> — 下面係已經篩選好嘅檔案。下面「相關年表」列出同呢批報告有關嘅年表事件。 <button type="button" class="btn btn-outline" style="padding:0.15rem 0.5rem; font-size:0.72rem; margin-left:0.4rem;" onclick="clearThemeEntry()">✕ 清除主題</button>';
+      tb.classList.add('show');
+    }
+    function clearThemeEntry() {
+      var tb = document.getElementById('theme-banner');
+      if (tb) { tb.classList.remove('show'); tb.innerHTML = ''; }
+      var rb = document.getElementById('related-tl-banner');
+      if (rb) { rb.classList.remove('show'); rb.innerHTML = ''; }
+      resetCsvFilters();
+    }
+    function showRelatedTimelineFor(rows) {
+      var rb = document.getElementById('related-tl-banner');
+      if (!rb) return;
+      var ids = {};
+      (rows || []).forEach(function (r) { ids[r.id] = true; });
+      var items = [];
+      document.querySelectorAll('.tl-item').forEach(function (item) {
+        var linked = [];
+        item.querySelectorAll('.tl-report').forEach(function (b) {
+          var m = (b.getAttribute('onclick') || '').match(/openTimelineReport\('(T\d+)'\)/);
+          if (m && ids[m[1]]) linked.push(m[1]);
+        });
+        if (!linked.length) return;
+        var d = item.querySelector('.tl-date');
+        var t = item.querySelector('.tl-title');
+        items.push({ date: d ? d.textContent.trim() : '', title: t ? t.textContent.trim() : '', tids: linked });
+      });
+      if (!items.length) { rb.classList.remove('show'); rb.innerHTML = ''; return; }
+      var h = '<b>相關年表：</b> ';
+      items.forEach(function (it, i) {
+        if (i) h += ' · ';
+        h += '<button type="button" class="tl-report" onclick="openTimelineReport(\'' + it.tids[0] + '\')">' + escapeHtml(it.date) + ' ' + escapeHtml(it.title.replace(/^(背景大事|MOOD 報告)\s*/, '')) + '</button>';
+      });
+      rb.innerHTML = h;
+      rb.classList.add('show');
+    }
+    // v33-9: featured reports strip (Van Gogh)
+    const FEATURED_TIDS = ['T102', 'T079', 'T403', 'T002', 'T375', 'T028'];
+    function renderFeaturedStrip() {
+      var wrap = document.getElementById('featured-strip');
+      if (!wrap) return;
+      wrap.innerHTML = '';
+      FEATURED_TIDS.forEach(function (tid) {
+        var r = ARCHIVE_RECORDS.find(function (x) { return x.id === tid; });
+        if (!r) return;
+        var num = REPORT_NUM[tid];
+        var card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'feat-card';
+        card.innerHTML = '<span class="feat-no" style="color:' + catColor(r.category) + ';">報告 ' + (num != null ? num : tid) + ' 號 · ' + escapeHtml(r.date || '') + '</span>'
+          + '<span class="feat-title">' + escapeHtml(r.topic || '') + '</span>'
+          + '<span class="feat-meta">' + escapeHtml(r.category) + ' · ' + escapeHtml(r.location) + ' · ' + escapeHtml(r.sentiment) + '</span>';
+        card.onclick = function () { openArchiveModal(tid); };
+        wrap.appendChild(card);
+      });
+    }
+    // v33-7a: archive glossary (UK National Archives)
+    const GLOSSARY = {
+      'HKRS': 'HKRS 係香港政府檔案處嘅檔案系列編號（例如 HKRS394-26、HKRS925-1、HKRS471-3），即係呢啲 MOOD 報告喺檔案館嘅出處。網站 229 筆記錄分屬三個系列。',
+      'MOOD': 'MOOD 係 Movement of Opinion Direction（民情報告），民政署 1975–1980 年做嘅秘密民意調查，定期追蹤市民對政策嘅反應，等政府知道民情。',
+      'v2.2': 'v2.2 係第二版主題分類方法：用一個 114 詞嘅詞典將 229 筆議題分做 9 類，再加人手覆核。人手判斷優先於詞典。',
+      'keeper': '去重之後，每組重覆報告只留低最長嗰份，嗰份就叫 keeper。比較標準係 OCR 段落頁數（seg_pages），打和就留總編號最細嗰份。',
+      'seg_pages': 'seg_pages 係 OCR 文字檔嘅段落頁數，用嚟比較邊份副本最長、決定去重嗰陣留邊份。頁數愈多，代表嗰份副本愈詳細。'
+    };
+    function showGlossary(term) {
+      var def = document.getElementById('glossary-def');
+      if (def) def.textContent = GLOSSARY[term] || '';
+      document.querySelectorAll('.gloss-term').forEach(function (b) {
+        b.classList.toggle('active', b.textContent.trim() === term);
+      });
+    }
+    // v33-7b/10: per-record keyword tags (from the CSV Keywords field)
+    function recordKeywords(r) {
+      var s = RECORD_KEYWORDS[r.id] || '';
+      return s.split(',').map(function (x) { return x.trim(); }).filter(Boolean).slice(0, 5);
+    }
+    function modalKeywordTag(term) {
+      closeArchiveModal();
+      searchArchiveKeyword(term);
+      showRelatedTimelineFor(lastFilteredRows);
+    }
+    // v33-7b/c: modal extras — keyword tags, citation, data-use, star
+    function modalExtrasHtml(r) {
+      var h = '';
+      var kws = recordKeywords(r);
+      if (kws.length) {
+        h += '<div style="margin-top:0.9rem;"><div style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-bottom:0.3rem;">關鍵字（撳入去睇所有有呢個詞嘅報告）：</div>';
+        kws.forEach(function (kw) {
+          h += '<button type="button" class="modal-kw-tag" onclick="modalKeywordTag(\'' + kw.replace(/'/g, "\\'") + '\')">' + escapeHtml(kw) + '</button>';
+        });
+        h += '</div>';
+      }
+      h += '<div class="record-cite">引用：' + escapeHtml(recordCitation(r)) + '</div>';
+      h += '<div class="data-use">數據使用：呢度顯示嘅係整理好嘅結構化記錄（摘要、分類、情緒等），可以引用。MOOD 報告原文全文唔提供（檔案版權）。</div>';
+      h += '<div style="margin-top:0.8rem;"><button type="button" class="btn btn-outline" id="archive-star-btn" onclick="toggleSaveRecord(\'' + r.id + '\', this)">' + (isSaved(r.id) ? '★ 已收藏' : '☆ 收藏') + '</button></div>';
+      return h;
+    }
+    function openFocusForCurrentRecord() {
+      var r = modalList[modalIdx];
+      if (!r) return;
+      closeArchiveModal();
+      openCategoryFocus(r.category);
+    }
+    // v33-8: my archive folder (Cooper Hewitt Shoebox) — localStorage, no login
+    const MYFOLDER_KEY = 'mood_myfolder_v1';
+    function getSavedIds() {
+      try { return JSON.parse(localStorage.getItem(MYFOLDER_KEY) || '[]'); } catch (e) { return []; }
+    }
+    function saveIds(ids) {
+      try { localStorage.setItem(MYFOLDER_KEY, JSON.stringify(ids)); } catch (e) {}
+      updateMyFolderCount();
+    }
+    function isSaved(tid) { return getSavedIds().indexOf(tid) >= 0; }
+    function toggleSaveRecord(tid, btn) {
+      var ids = getSavedIds();
+      var i = ids.indexOf(tid);
+      if (i >= 0) ids.splice(i, 1); else ids.push(tid);
+      saveIds(ids);
+      if (btn) {
+        btn.classList.toggle('saved', i < 0);
+        btn.textContent = (i < 0) ? '★ 已收藏' : '☆ 收藏';
+      }
+      var star = document.getElementById('archive-star-btn');
+      if (star) { star.classList.toggle('saved', isSaved(tid)); star.textContent = isSaved(tid) ? '★ 已收藏' : '☆ 收藏'; }
+      document.querySelectorAll('.save-star[data-rid="' + tid + '"]').forEach(function (b) {
+        b.classList.toggle('saved', isSaved(tid));
+        b.textContent = isSaved(tid) ? '★' : '☆';
+      });
+    }
+    function updateMyFolderCount() {
+      var el = document.getElementById('myfolder-count');
+      if (el) el.textContent = '(' + getSavedIds().length + ')';
+    }
+    function openMyFolder() {
+      var ids = getSavedIds();
+      var body = document.getElementById('myfolder-body');
+      if (!ids.length) {
+        body.innerHTML = '<p style="font-size:0.9rem; color:var(--ink-secondary);">你嘅檔案夾而家係空嘅。喺檔案庫撳任何一筆記錄入面嘅「☆ 收藏」，就可以將佢存入呢度，唔使登入。</p>';
+      } else {
+        var h = '';
+        ids.forEach(function (tid) {
+          var r = ARCHIVE_RECORDS.find(function (x) { return x.id === tid; });
+          if (!r) return;
+          var num = REPORT_NUM[tid];
+          h += '<div class="cat-focus-row-item"><button type="button" onclick="closeMyFolder(); openArchiveModal(\'' + tid + '\')">' + escapeHtml(tid) + ' · 報告 ' + (num != null ? num : '') + ' 號 · ' + escapeHtml(r.topic || '') + '</button><button type="button" onclick="toggleSaveRecord(\'' + tid + '\'); openMyFolder();" style="color:var(--accent); font-weight:700;">移除 ✕</button></div>';
+        });
+        body.innerHTML = h;
+      }
+      document.getElementById('myfolder-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMyFolder() {
+      document.getElementById('myfolder-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    function shareMyFolder() {
+      var ids = getSavedIds();
+      if (!ids.length) { alert('檔案夾係空嘅，收藏咗報告先可以分享。'); return; }
+      var url = location.origin + location.pathname + '#set=' + ids.join(',');
+      var btn = document.getElementById('myfolder-share-btn');
+      function done() { if (btn) { btn.textContent = '已複製連結！'; setTimeout(function () { btn.textContent = '分享檔案夾連結'; }, 1500); } }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
+      } else { fallbackCopy(url); done(); }
+    }
+    // v33-6: 1957 map lightbox (zoom + pan) and district hotspots
+    let mapLb = { fit: 0.35, zoom: 1, tx: 0, ty: 0, drag: null };
+    function mapLbFit() {
+      var stage = document.getElementById('map-lb-stage');
+      var img = document.getElementById('map-lb-img');
+      var iw = (img && img.naturalWidth) || 3000;
+      var ih = (img && img.naturalHeight) || 2308;
+      if (!stage || !stage.clientWidth) return 0.35;
+      return Math.min(stage.clientWidth / iw, stage.clientHeight / ih);
+    }
+    function openMapLightbox() {
+      var lb = document.getElementById('map-lightbox');
+      lb.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      mapLb.fit = mapLbFit();
+      resetMapLb();
+    }
+    function closeMapLightbox() {
+      document.getElementById('map-lightbox').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    function applyMapLb() {
+      var img = document.getElementById('map-lb-img');
+      if (img) img.style.transform = 'translate(calc(-50% + ' + mapLb.tx + 'px), calc(-50% + ' + mapLb.ty + 'px)) scale(' + (mapLb.fit * mapLb.zoom) + ')';
+    }
+    function resetMapLb() { mapLb.zoom = 1; mapLb.tx = 0; mapLb.ty = 0; applyMapLb(); }
+    function zoomMapLb(f) {
+      mapLb.zoom = Math.max(1, Math.min(5, mapLb.zoom * f));
+      if (mapLb.zoom === 1) { mapLb.tx = 0; mapLb.ty = 0; }
+      applyMapLb();
+    }
+    function goDistrict(district) {
+      var sel = document.getElementById('csv-filter-district');
+      if (sel) sel.value = district;
+      document.getElementById('csv-search-input').value = '';
+      applyCsvFilters();
+      switchFolderLayer(2);
+      document.getElementById('section-d').scrollIntoView({ behavior: 'smooth' });
+    }
+    // v33 init (runs after the main script's own init)
+    (function v33init() {
+      applyCategoryColours();
+      renderCatFocusBtns();
+      renderFeaturedStrip();
+      updateMyFolderCount();
+      // map lightbox drag-to-pan
+      var stage = document.getElementById('map-lb-stage');
+      if (stage) {
+        stage.addEventListener('mousedown', function (e) {
+          mapLb.drag = { x: e.clientX, y: e.clientY, tx: mapLb.tx, ty: mapLb.ty };
+        });
+        window.addEventListener('mousemove', function (e) {
+          if (!mapLb.drag) return;
+          mapLb.tx = mapLb.drag.tx + (e.clientX - mapLb.drag.x);
+          mapLb.ty = mapLb.drag.ty + (e.clientY - mapLb.drag.y);
+          applyMapLb();
+        });
+        window.addEventListener('mouseup', function () { mapLb.drag = null; });
+        stage.addEventListener('wheel', function (e) {
+          e.preventDefault();
+          zoomMapLb(e.deltaY < 0 ? 1.15 : 1 / 1.15);
+        }, { passive: false });
+      }
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          var lb = document.getElementById('map-lightbox');
+          if (lb && !lb.classList.contains('hidden')) closeMapLightbox();
+          var cf = document.getElementById('cat-focus-modal');
+          if (cf && !cf.classList.contains('hidden')) closeCategoryFocus();
+          var mf = document.getElementById('myfolder-modal');
+          if (mf && !mf.classList.contains('hidden')) closeMyFolder();
+        }
+      });
+      // v33-8: shared folder link #set=T102,T079,...
+      var sm = (location.hash || '').match(/^#set=(T\d+(?:,T\d+)*)$/);
+      if (sm) {
+        var ids = sm[1].split(',');
+        var cur = getSavedIds();
+        ids.forEach(function (id) { if (cur.indexOf(id) < 0) cur.push(id); });
+        saveIds(cur);
+        setTimeout(openMyFolder, 400);
+      }
+    })();
+
     // v31: workflow steps jump to the corresponding Methods card
     function wfGoTo(id) {
       var el = document.getElementById(id);
@@ -6303,8 +6839,51 @@
         <span id="archive-modal-pos" style="font-size:0.8rem; color:var(--ink-muted);"></span>
         <button class="btn btn-outline" onclick="stepArchiveModal(1)">下一份 →</button>
         <button class="btn btn-outline" id="archive-copy-link" onclick="copyRecordLink()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">複製連結</button>
+        <button class="btn btn-outline" onclick="openFocusForCurrentRecord()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">分類聚焦</button>
       </div>
     </div>
   </div>
+
+  <!-- v33: category focus modal (Rijksmuseum node pages) -->
+  <div id="cat-focus-modal" class="archive-modal hidden" onclick="if (event.target === this) closeCategoryFocus()" role="dialog" aria-modal="true" aria-labelledby="cat-focus-title">
+    <div class="archive-modal-card">
+      <button class="archive-modal-close" onclick="closeCategoryFocus()" aria-label="關閉">×</button>
+      <div id="cat-focus-body"></div>
+      <div style="margin-top:1rem; display:flex; gap:0.5rem;">
+        <button class="btn btn-outline" onclick="closeCategoryFocus()">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- v33: my archive folder modal (Cooper Hewitt Shoebox) -->
+  <div id="myfolder-modal" class="archive-modal hidden" onclick="if (event.target === this) closeMyFolder()" role="dialog" aria-modal="true" aria-labelledby="myfolder-title">
+    <div class="archive-modal-card">
+      <button class="archive-modal-close" onclick="closeMyFolder()" aria-label="關閉">×</button>
+      <h3 id="myfolder-title" style="font-family:var(--font-serif);">我的檔案夾</h3>
+      <p style="font-size:0.85rem; color:var(--ink-secondary);">撳星星收藏報告，唔使登入，存在呢部裝置嘅瀏覽器入面。分享連結可以將成個組合傳俾人。</p>
+      <div id="myfolder-body" style="margin-top:0.75rem;"></div>
+      <div style="margin-top:1rem; display:flex; gap:0.5rem;">
+        <button class="btn btn-primary" id="myfolder-share-btn" onclick="shareMyFolder()">分享檔案夾連結</button>
+        <button class="btn btn-outline" onclick="closeMyFolder()">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- v33: 1957 map lightbox (zoom + pan) -->
+  <div id="map-lightbox" class="hidden" role="dialog" aria-modal="true" aria-label="1957 年香港歷史地圖放大檢視">
+    <div class="map-lb-bar">
+      <strong style="font-family:var(--font-serif);">1957 年香港歷史地圖 · 放大檢視</strong>
+      <span style="font-size:0.8rem; color:rgba(255,255,255,0.7);">拖動睇唔同位置 · 撳 + / − 放大縮細</span>
+      <span style="flex:1;"></span>
+      <button type="button" class="btn" onclick="zoomMapLb(1.4)">＋ 放大</button>
+      <button type="button" class="btn" onclick="zoomMapLb(1/1.4)">－ 縮細</button>
+      <button type="button" class="btn" onclick="resetMapLb()">重設</button>
+      <button type="button" class="btn" onclick="closeMapLightbox()">✕ 關閉</button>
+    </div>
+    <div id="map-lb-stage" class="map-lb-stage">
+      <img id="map-lb-img" src="hist1957_3000.jpg" alt="1957 年香港歷史地圖（Historical Map of Hong Kong, 1957）" draggable="false">
+    </div>
+  </div>
+
 </body>
 </html>
