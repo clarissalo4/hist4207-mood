@@ -1116,7 +1116,8 @@
     #section-dots a:hover .dot-label, #section-dots a.active .dot-label { opacity: 1; transform: translateX(0); }
     #section-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: #FFFFFF; border: 2px solid #9CA3AF; flex: none; transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease; }
     #section-dots a.active .dot { background: #111111; border-color: #111111; transform: scale(1.25); }
-    @media (max-width: 720px) { #section-dots { display: none; } }
+    @media (max-width: 720px) { #section-dots { right: 8px; gap: 8px; } #section-dots .dot { width: 8px; height: 8px; border-width: 1px; } #section-dots .dot-label { display: none; } }
+    @media (max-width: 720px) { #kepler-iframe { height: 420px !important; } }
 
     /* v10: timeline */
     .tl-wrap { position: relative; margin: 1.5rem 0 0.5rem; padding-left: 0; }
@@ -1213,7 +1214,7 @@
     /* v15: word cloud */
     .wc-cloud { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.9rem; padding: 0.4rem 0; }
     .wc-word { font-family: var(--font-serif); font-weight: 700; background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: var(--ink-primary); line-height: 1.25; transition: color 0.15s ease, transform 0.2s ease, text-shadow 0.2s ease; }
-    .wc-word:hover { color: #000000; transform: perspective(500px) translateY(-2px) scale(1.12) rotateX(8deg); text-shadow: 0 2px 0 rgba(0,0,0,0.12); text-decoration: underline; text-underline-offset: 3px; }
+    .wc-word:hover { color: #000000; transform: translateY(-2px) scale(1.08); text-decoration: underline; text-underline-offset: 3px; }
 
     /* ==========================================================================
        v21 REFINEMENT — web serif, magazine details, spacing & grid
@@ -1419,7 +1420,7 @@
         <span>•</span>
         <span>Classification v2.2 (9 Policy Categories)</span>
         <span>•</span>
-        <span>100% Offline-Ready Interactive Archive</span>
+        <span>互動檔案庫</span>
       </div>
       <h1 class="hero-title">1975–1980 港英政府民情報告 (MOOD Reports) 數據視覺化分析</h1>
       <p class="hero-desc">
@@ -1488,6 +1489,7 @@
           <input type="range" id="year-slider" min="0" max="6" step="1" value="6" oninput="setChartYear(parseInt(this.value, 10))" style="flex:1; min-width:160px; accent-color:var(--accent-terracotta);" />
           <span id="year-slider-label" style="font-size:0.85rem; font-weight:800; min-width:4.2rem;">全部年份</span>
           <span id="year-slider-readout" style="font-size:0.8rem; color:var(--ink-secondary);">撳滑桿聚焦某一年，睇嗰年邊啲議題最突出。</span>
+          <div style="flex-basis:100%; display:flex; justify-content:space-between; font-size:0.7rem; color:var(--ink-muted); padding:0 0.1rem;"><span>1975</span><span>1976</span><span>1977</span><span>1978</span><span>1979</span><span>1980</span><span>全部</span></div>
         </div>
 
         <!-- View 1: Combined Interactive SVG Line Chart -->
@@ -1557,17 +1559,17 @@
         <!-- Historical Annotation Cards -->
         <div class="insight-grid">
           <div class="insight-box">
-            <span class="yb-year" style="color:#1D4ED8;">1975</span>
+            <span class="yb-year" style="color:#111111;">1975</span>
             <span class="yb-head">治安與管治主導</span>
             「政治與憲制」(28.8%) 與「法律與治安」(28.8%) 佔近六成篇幅，反映廉政公署成立初期及警廉衝突前夕的管治張力。
           </div>
           <div class="insight-box">
-            <span class="yb-year" style="color:#7E22CE;">1976</span>
+            <span class="yb-year" style="color:#111111;">1976</span>
             <span class="yb-head">房屋議題急升</span>
             「房屋」關注度升至 <b>19.2%</b>，「勞工」亦達 5.8%，對應十年建屋計劃推進與公屋租金調整爭議。
           </div>
           <div class="insight-box">
-            <span class="yb-year" style="color:#3730A3;">1977</span>
+            <span class="yb-year" style="color:#111111;">1977</span>
             <span class="yb-head">政治高峰與環境</span>
             「政治與憲制」達全期最高 <b>45.9%</b>，「社區環境」升至 16.2%，折射警廉衝突高潮與清潔運動。
           </div>
@@ -1636,6 +1638,7 @@
           <div class="embed-frame-wrap">
             <iframe src="https://public.flourish.studio/visualisation/30957642/embed" title="Recorded Sentiment by Social Group and Year" loading="lazy"></iframe>
           </div>
+          <p style="font-size:0.78rem; color:var(--ink-muted); margin:0.6rem 0 0;">注意：呢幅圖暫時只包括一般市民 116 筆，其餘四組將會補上</p>
         </div>
       </div>
 
@@ -1717,12 +1720,12 @@
               </div>
             </div>
 
-            <div class="insight-box" style="margin-bottom:0.65rem; background:#FFFBEB; border-color:#FDE68A;">
-              <strong style="color:#92400E;">唔同階層，政府問唔同嘅嘢</strong>
+            <div class="insight-box" style="margin-bottom:0.65rem; background:#FFFFFF; border-color:var(--border-paper);">
+              <strong style="color:#111111;">唔同階層，政府問唔同嘅嘢</strong>
               民政署問草根嗰陣，最多問房屋（11 筆）；問中產嗰陣，最多問經濟（18 筆）同政治（12 筆）——唔同階層，政府聽到嘅嘢都唔同。
             </div>
-            <div class="insight-box" style="background:#EEF2FF; border-color:#C7D2FE;">
-              <strong style="color:#3730A3;">青年同精英：數目少，但只喺少數議題出聲</strong>
+            <div class="insight-box" style="background:#FFFFFF; border-color:var(--border-paper);">
+              <strong style="color:#111111;">青年同精英：數目少，但只喺少數議題出聲</strong>
               青年得 11 筆，精英得 5 筆，數目雖然少，但佢哋出聲嗰啲議題好集中——政治憲制、教育同法律管治。
             </div>
           </div>
@@ -1798,6 +1801,7 @@
                   <div style="font-weight:700; font-size:1rem;">互動地圖未載入</div>
                   <div style="font-size:0.85rem; color:#A8A08E; max-width:420px;">為咗令第一頁開得快啲，地圖會喺你碌到呢度嗰陣先至自動載入。</div>
                   <button type="button" id="kepler-load-btn" class="btn btn-primary" onclick="loadKeplerNow()">立即載入地圖</button>
+                  <div id="kepler-error" style="display:none; font-size:0.85rem; color:#FCA5A5; max-width:420px;">地圖載入失敗，請檢查網絡連線後再試，或者撳上面「新視窗開大地圖」直接開啟。</div>
                 </div>
               </div>
               <p style="font-size:0.78rem; color:#A8A08E; margin-top:0.6rem;">提示：如果地圖出唔到，請確認 mood_kepler_map_v20.html 同呢個網頁放喺同一個資料夾入面。地圖本身有 3D 傾斜視角，可以用滑鼠拖動、縮放。</p>
@@ -2112,15 +2116,15 @@
       </div>
 
       <div class="insight-grid">
-        <div class="insight-box">
+        <div class="insight-box" id="method-source">
           <h4>資料來源</h4>
           <p>MOOD 報告（Movement of Opinion Direction），1975–1980 年，來自香港政府檔案處三個檔案系列：<strong>HKRS394-26、HKRS925-1、HKRS471-3</strong>。組員去檔案館人手掃描原件做 PDF，再用 steno 做 OCR 變成文字檔；CSV 嘅資料係根據 OCR 文字整理。最後整理出 <strong>170 份報告、229 個議題</strong>，其中 216 筆有日期，13 筆無日期。整理過程主要用 OCR 文字，個別有疑問嘅地方（例如 78 行印出標題）有對返 PDF 原件核實。</p>
         </div>
-        <div class="insight-box">
+        <div class="insight-box" id="method-dedup">
           <h4>去重</h4>
           <p>搵到 <strong>78 組重複報告</strong>，每組留最長嗰份（以 OCR 段落頁數計，打和就留總編號最小嗰份），剔走 141 筆重複。去重前有 311 行議題記錄。</p>
         </div>
-        <div class="insight-box">
+        <div class="insight-box" id="method-classify">
           <h4>分類</h4>
           <p>主題分類用 <strong>v2.2：9 類</strong>（政治、經濟、法律、交通、房屋、教育、公共衛生、社區環境、勞工），詞典加人手覆核。情緒係報告層面整體判斷，分支持、懷疑、憤怒、焦慮、冷淡五種，冇「混合」呢個選項。</p>
         </div>
@@ -2132,35 +2136,35 @@
       <div style="margin-top:1.5rem;">
         <h3 style="font-family:var(--font-serif); font-size:1.15rem; margin-bottom:0.75rem;">工作流程</h3>
         <div class="wf-flow">
-          <div class="wf-step reveal-soft">
+          <div class="wf-step reveal-soft" onclick="wfGoTo('method-source')" style="cursor:pointer;" title="撳去睇資料來源">
             <span class="wf-node">1</span>
             <span class="wf-label">檔案館原件（HKRS 三個系列）</span>
           </div>
-          <div class="wf-step reveal-soft">
+          <div class="wf-step reveal-soft" onclick="wfGoTo('method-source')" style="cursor:pointer;" title="撳去睇資料來源">
             <span class="wf-node">2</span>
             <span class="wf-label">人手掃描 → PDF</span>
           </div>
-          <div class="wf-step reveal-soft">
+          <div class="wf-step reveal-soft" onclick="wfGoTo('method-source')" style="cursor:pointer;" title="撳去睇資料來源">
             <span class="wf-node">3</span>
             <span class="wf-label">Steno OCR → 文字檔</span>
           </div>
-          <div class="wf-step reveal-soft">
+          <div class="wf-step reveal-soft" onclick="wfGoTo('method-classify')" style="cursor:pointer;" title="撳去睇分類">
             <span class="wf-node">4</span>
             <span class="wf-label">Python：拆分報告、校正日期、初步分類</span>
           </div>
-          <div class="wf-step reveal-soft">
+          <div class="wf-step reveal-soft" onclick="wfGoTo('method-classify')" style="cursor:pointer;" title="撳去睇分類">
             <span class="wf-node">5</span>
             <span class="wf-label">NotebookLM：寫摘要、判斷情緒、抽關鍵字</span>
           </div>
-          <div class="wf-step reveal-soft">
+          <div class="wf-step reveal-soft" onclick="wfGoTo('method-dedup')" style="cursor:pointer;" title="撳去睇去重">
             <span class="wf-node">6</span>
             <span class="wf-label">去重 + 人手覆核 → 最終數據（229 筆議題、170 份報告）</span>
           </div>
-          <div class="wf-step reveal-soft">
+          <div class="wf-step reveal-soft" onclick="wfGoTo('section-methods')" style="cursor:pointer;" title="撳去睇方法">
             <span class="wf-node">7</span>
             <span class="wf-label">質性分析：細讀報告、回應學者</span>
           </div>
-          <div class="wf-step reveal-soft">
+          <div class="wf-step reveal-soft" onclick="wfGoTo('section-a')" style="cursor:pointer;" title="撳去睇視覺化">
             <span class="wf-node">8</span>
             <span class="wf-label">視覺化 + 呢個網站</span>
           </div>
@@ -2205,7 +2209,7 @@
       <div><strong style="color:var(--ink-primary);">HIST4207 Historical Data Visualization Project</strong> — Hong Kong MOOD Reports (1975–1980)</div>
       <div>組員 Group Members： Wu Yu Tung (23232773) · Li Yat Hei (25217984) · Lo Tsz Ching (23235756) · Lee Wing Fei (25225014)</div>
       <div>分工 Credits： Lo Tsz Ching（網頁搭建、分類主表、SQLite 資料庫）· Wu Yu Tung（Flourish 圖表、詳細 CSV）· 數據清理：全組一齊開會討論、逐一檢查</div>
-      <div>100% Self-Contained Interactive SVG &amp; Archival Database</div>
+      <div>Interactive SVG &amp; Archival Database</div>
     </div>
   </footer>
 
@@ -5825,9 +5829,12 @@
       document.getElementById('archive-modal-pos').textContent = '';
       var nav = document.querySelector('#archive-modal .archive-modal-nav');
       if (nav) nav.style.display = 'none';
+      var fw = document.getElementById('archive-modal-full-wrap');
+      if (fw) fw.style.display = 'block';
       document.getElementById('archive-modal').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
+    function showFullRecordFromSummary() { showArchiveModalAt(modalIdx); }
     function openArchiveModal(id) {
       const pool = (typeof lastFilteredRows !== 'undefined' && lastFilteredRows.length) ? lastFilteredRows : ARCHIVE_RECORDS;
       modalList = pool;
@@ -5841,6 +5848,8 @@
       modalSummaryOnly = false;
       var nav = document.querySelector('#archive-modal .archive-modal-nav');
       if (nav) nav.style.display = '';
+      var fw2 = document.getElementById('archive-modal-full-wrap');
+      if (fw2) fw2.style.display = 'none';
       const sentClass = 'sent-' + (['Angry', 'Anxious', 'Skeptical', 'Supportive', 'Indifferent'].includes(r.sentiment) ? r.sentiment : 'Indifferent');
       document.getElementById('archive-modal-meta').innerHTML =
         '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.id) + '</span>' +
@@ -5855,14 +5864,18 @@
       document.getElementById('archive-modal-body').innerHTML = highlightQuery(escapeHtml(r.summary || ''));
       document.getElementById('archive-modal-pos').textContent = '第 ' + (idx + 1) + ' / ' + modalList.length + ' 筆';
       document.getElementById('archive-modal').classList.remove('hidden');
+      if (history.replaceState) { try { history.replaceState(null, '', '#' + r.id); } catch (e) {} }
       document.body.style.overflow = 'hidden';
     }
     function closeArchiveModal() {
       modalSummaryOnly = false;
       var nav = document.querySelector('#archive-modal .archive-modal-nav');
       if (nav) nav.style.display = '';
+      var fw3 = document.getElementById('archive-modal-full-wrap');
+      if (fw3) fw3.style.display = 'none';
       document.getElementById('archive-modal').classList.add('hidden');
       document.body.style.overflow = '';
+      if (history.replaceState) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
     }
     function stepArchiveModal(dir) {
       if (modalSummaryOnly) return;
@@ -5880,6 +5893,54 @@
       if (e.key === 'ArrowLeft') stepArchiveModal(-1);
       if (e.key === 'ArrowRight') stepArchiveModal(1);
     });
+    // v31: copy deep link for the current archive record
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    function copyRecordLink() {
+      var r = modalList[modalIdx];
+      if (!r) return;
+      var url = location.origin + location.pathname + '#' + r.id;
+      var btn = document.getElementById('archive-copy-link');
+      function done() { if (btn) { btn.textContent = '已複製！'; setTimeout(function () { btn.textContent = '複製連結'; }, 1500); } }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
+      } else { fallbackCopy(url); done(); }
+    }
+    // v31: workflow steps jump to the corresponding Methods card
+    function wfGoTo(id) {
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    // v31: keyboard section jumping (Arrow/Page keys, not in modal, not typing)
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp' && e.key !== 'PageDown' && e.key !== 'PageUp') return;
+      var m = document.getElementById('archive-modal');
+      if (m && !m.classList.contains('hidden')) return;
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+      var down = (e.key === 'ArrowDown' || e.key === 'PageDown');
+      var ids = ['overview', 'section-a', 'section-b', 'section-c', 'section-d', 'section-timeline', 'section-methods'];
+      var els = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+      if (!els.length) return;
+      var y = window.scrollY || window.pageYOffset;
+      var cur = 0;
+      els.forEach(function (el, i) { if (el.offsetTop <= y + 10) cur = i; });
+      var next = down ? Math.min(cur + 1, els.length - 1) : Math.max(cur - 1, 0);
+      if (next === cur) return;
+      e.preventDefault();
+      els[next].scrollIntoView({ behavior: 'smooth' });
+    });
+    // v31: deep link - open the record named in the URL hash, e.g. #T002
+    (function () {
+      var m = (location.hash || '').match(/^#(T\d+)$/);
+      if (!m) return;
+      var id = m[1];
+      if (ARCHIVE_RECORDS.some(function (x) { return x.id === id; })) { openArchiveModal(id); }
+    })();
 
     function resetCsvFilters() {
       document.getElementById('csv-search-input').value = '';
@@ -6135,13 +6196,26 @@
     // v18: lazy-load the Kepler map - only fetch the heavy kepler.gl app when the
     // user scrolls near it (400px pre-load margin), or when they press load / toggle.
     window.keplerLoaded = false;
+    window.keplerLoadTimer = null;
     function loadKeplerNow() {
       var iframe = document.getElementById('kepler-iframe');
       if (!iframe || window.keplerLoaded) return;
       window.keplerLoaded = true;
       var btn = document.getElementById('kepler-load-btn');
       if (btn) { btn.textContent = '載入中…'; btn.disabled = true; }
+      var err = document.getElementById('kepler-error');
+      if (err) err.style.display = 'none';
       iframe.src = iframe.getAttribute('data-src');
+      // v31: if the map still has not loaded after 20s, show an error and let the reader retry
+      if (window.keplerLoadTimer) clearTimeout(window.keplerLoadTimer);
+      window.keplerLoadTimer = setTimeout(function () {
+        var ph = document.getElementById('kepler-placeholder');
+        if (ph && ph.style.display !== 'none') {
+          if (err) err.style.display = 'block';
+          if (btn) { btn.textContent = '重新載入地圖'; btn.disabled = false; }
+          window.keplerLoaded = false;
+        }
+      }, 20000);
     }
     (function () {
       var iframe = document.getElementById('kepler-iframe');
@@ -6149,6 +6223,7 @@
       // hide the placeholder once the real map has actually loaded
       iframe.addEventListener('load', function () {
         if (!window.keplerLoaded) return; // still the initial about:blank
+        if (window.keplerLoadTimer) { clearTimeout(window.keplerLoadTimer); window.keplerLoadTimer = null; }
         var ph = document.getElementById('kepler-placeholder');
         if (ph) ph.style.display = 'none';
       });
@@ -6191,10 +6266,14 @@
       <div id="archive-modal-meta" class="archive-modal-meta"></div>
       <h3 id="archive-modal-title"></h3>
       <div id="archive-modal-body"></div>
+      <div id="archive-modal-full-wrap" style="display:none; margin-top:1rem;">
+        <button class="btn btn-primary" onclick="showFullRecordFromSummary()">睇完整記錄 →</button>
+      </div>
       <div class="archive-modal-nav">
         <button class="btn btn-outline" onclick="stepArchiveModal(-1)">← 上一份</button>
         <span id="archive-modal-pos" style="font-size:0.8rem; color:var(--ink-muted);"></span>
         <button class="btn btn-outline" onclick="stepArchiveModal(1)">下一份 →</button>
+        <button class="btn btn-outline" id="archive-copy-link" onclick="copyRecordLink()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">複製連結</button>
       </div>
     </div>
   </div>
