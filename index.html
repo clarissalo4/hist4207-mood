@@ -1381,6 +1381,8 @@
     /* 1957 caption: mono label + serif italic explanation */
     .hist1957-figure figcaption .fig-label { display: block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--ink-muted); }
     .hist1957-figure figcaption .fig-note { display: block; font-family: var(--font-serif); font-style: italic; font-size: 0.85rem; line-height: 1.6; color: var(--ink-secondary); margin-top: 0.35rem; }
+    .hist1957-figure figcaption .fig-hotspots { display: block; font-family: var(--font-sans); font-size: 0.85rem; line-height: 1.6; color: var(--ink-secondary); margin-top: 0.35rem; }
+    .hist1957-figure figcaption .fig-hotspots::before { content: ""; display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 999px; background: #C2410C; margin-right: 0.4rem; vertical-align: middle; }
     /* footer hierarchy (footer stays light) */
     footer .footer-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.01em; color: var(--ink-primary); }
     footer .footer-members, footer .footer-credits { font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 0.02em; color: var(--ink-secondary); }
@@ -1936,7 +1938,7 @@
                 <button type="button" class="map-hotspot" style="left:55.0%; top:56.2%; width:12px; height:12px; font-size:0.6rem;" title="黃大仙 Wong Tai Sin · 2 筆報告，撳入去睇嗰區檔案" aria-label="黃大仙 Wong Tai Sin，2 筆報告" onclick="goDistrict('Wong Tai Sin')">2</button>
                 <button type="button" class="map-zoom-btn" onclick="openMapLightbox()">放大睇 🔍</button>
               </div>
-              <figcaption><span class="fig-label">FIG. 1957 · HISTORICAL MAP OF HONG KONG, 1957 · 1:100,000</span><span class="fig-note">地政總署歷史地圖（data.gov.hk）· 僅作歷史背景：1957 年地圖，1975–1980 年間版圖已有變化，唔可以直接當做 MOOD 報告時期嘅地圖。</span></figcaption>
+              <figcaption><span class="fig-label">FIG. 1957 · HISTORICAL MAP OF HONG KONG, 1957 · 1:100,000</span><span class="fig-note">地政總署歷史地圖（data.gov.hk）· 僅作歷史背景：1957 年地圖，1975–1980 年間版圖已有變化，唔可以直接當做 MOOD 報告時期嘅地圖。</span><span class="fig-hotspots">橙色圓點係有 MOOD 報告嘅地區，數字係嗰區嘅議題數目。撳任何一個圓點，可以直接睇嗰區嘅報告。</span></figcaption>
             </figure>
             <p style="font-size:0.78rem; color:var(--ink-muted); margin:0.5rem 1.5rem 0;">地圖熱點（撳圓點睇嗰區檔案）：觀塘 Kwun Tong 14 筆 · 中西區 Central & Western 6 筆 · 九龍 Kowloon 5 筆 · 深水埗 Sham Shui Po 4 筆 · 尖沙咀 Tsim Sha Tsui 3 筆 · 黃大仙 Wong Tai Sin 2 筆</p>
           </div>
