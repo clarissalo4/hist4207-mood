@@ -22,11 +22,7 @@
       --ink-primary: #111111;
       --ink-secondary: #374151;
       --ink-muted: #6B7280;
-      --accent-terracotta: #111111;
       --accent: #C2410C;
-      --accent-amber: #6B7280;
-      --accent-teal: #374151;
-      --accent-indigo: #4B5563;
       --kepler-bg: #111111;
       --kepler-panel: #1F1F1F;
       --kepler-border: #333333;
@@ -109,7 +105,7 @@
       font-weight: 700;
       letter-spacing: 0.06em;
       padding: 0.25rem 0.6rem;
-      border-radius: 6px;
+      border-radius: 2px;
       flex-shrink: 0;
     }
 
@@ -161,7 +157,7 @@
     }
 
     .btn-primary {
-      background: var(--accent-terracotta);
+      background: var(--ink-primary);
       color: #FFFFFF;
       box-shadow: var(--shadow-sm);
     }
@@ -277,14 +273,19 @@
       justify-content: space-between;
       gap: 1rem;
       margin-bottom: 1.25rem;
+      /* v42: keep header (title + right-side tab buttons) above the .sec-ghost numeral */
+      position: relative;
+      z-index: 1;
     }
+    /* v42: same for timeline/methods .section-head (no own rule existed) */
+    .section-head { position: relative; z-index: 1; }
 
     .section-kicker {
       font-size: 0.76rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--accent-terracotta);
+      color: var(--ink-primary);
       display: block;
       margin-bottom: 0.25rem;
     }
@@ -443,7 +444,7 @@
       color: #111111;
       border: 1px solid #D1D5DB;
       padding: 0.12rem 0.45rem;
-      border-radius: 6px;
+      border-radius: 2px;
     }
 
     .insight-grid {
@@ -623,12 +624,12 @@
       font-family: var(--font-mono);
       font-size: 0.72rem;
       padding: 0.15rem 0.45rem;
-      border-radius: 5px;
+      border-radius: 2px;
       background: rgba(26, 34, 48, 0.1);
     }
 
     .folder-tab.active .folder-tab-num {
-      background: var(--accent-terracotta);
+      background: var(--ink-primary);
       color: #FFFFFF;
     }
 
@@ -664,10 +665,10 @@
       color: #991B1B;
       border: 1.5px solid #991B1B;
       padding: 0.15rem 0.5rem;
-      border-radius: 4px;
+      border-radius: 2px;
       text-transform: uppercase;
       display: inline-block;
-      transform: rotate(-2deg);
+      transform: none;
     }
 
     /* Layer 1: Dark Kepler-Style Map + Timeline Player */
@@ -809,7 +810,7 @@
 
     .form-control:focus {
       outline: none;
-      border-color: var(--accent-terracotta);
+      border-color: var(--ink-primary);
       background: #FFFFFF;
     }
 
@@ -841,7 +842,7 @@
     }
 
     table.archive-table td {
-      padding: 0.7rem 0.85rem;
+      padding: 0.85rem 0.85rem;
       border-bottom: 1px solid #F1F5F9;
       vertical-align: top;
     }
@@ -863,10 +864,10 @@
       font-weight: 700;
       white-space: nowrap;
     }
-    .sent-Angry       { background: #FEE2E2; color: #991B1B; }
-    .sent-Anxious     { background: #FEF3C7; color: #92400E; }
-    .sent-Skeptical   { background: #EDE9FE; color: #5B21B6; }
-    .sent-Supportive  { background: #DBEAFE; color: #1E40AF; }
+    .sent-Angry       { background: #FEE2E2; color: #A8543F; }
+    .sent-Anxious     { background: #FEF3C7; color: #A67C37; }
+    .sent-Skeptical   { background: #EDE9FE; color: #6E5A7E; }
+    .sent-Supportive  { background: #DBEAFE; color: #3D5A80; }
     .sent-Indifferent { background: #F1F5F9; color: #475569; }
 
     /* ==========================================================================
@@ -899,9 +900,9 @@
 
     /* --- nav: catalogue index strip --- */
     .navbar { background: rgba(245, 242, 236, 0.96); border-bottom: 1px solid var(--border-paper); box-shadow: none; }
-    .brand-badge { background: var(--ink-primary); color: #F5F2EC; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; border-radius: 4px; }
+    .brand-badge { background: var(--ink-primary); color: #F5F2EC; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; border-radius: 2px; }
     .brand-title { font-family: var(--font-serif); }
-    .nav-links a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--ink-muted); border-radius: 4px; }
+    .nav-links a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--ink-muted); border-radius: 2px; }
     .nav-links a:hover { background: var(--bg-subtle); color: var(--ink-primary); }
 
     /* --- hero: journal masthead, centred --- */
@@ -938,34 +939,34 @@
     .filter-bar { border-bottom: 1px solid var(--border-paper); }
     .cat-pill { font-family: var(--font-mono); font-size: 0.72rem; border: 1px solid var(--border-strong); background: var(--bg-card); border-radius: 999px; }
     .svg-tooltip { background: rgba(35, 32, 27, 0.96); border: 1px solid rgba(245, 242, 236, 0.25); color: #F5F2EC; border-radius: 2px; }
-    .mini-card { background: #F3EDE0; border: 1px solid var(--border-paper); border-radius: 2px; }
-    .peak-tag { background: #F3EDE0; color: var(--accent-terracotta); border: 1px solid var(--border-paper); font-family: var(--font-mono); }
+    .mini-card { background: #FFFFFF; border: 1px solid var(--border-paper); border-radius: 2px; }
+    .peak-tag { background: #FFFFFF; color: var(--ink-primary); border: 1px solid var(--border-paper); font-family: var(--font-mono); }
     .insight-grid { border-top: 1px solid var(--border-paper); }
-    .insight-box { background: #F3EDE0; border: 1px solid var(--border-paper); border-radius: 2px; font-family: var(--font-serif); color: var(--ink-secondary); }
+    .insight-box { background: #FFFFFF; border: 1px solid var(--border-paper); border-radius: 2px; font-family: var(--font-serif); color: var(--ink-secondary); }
     .insight-box strong { font-family: var(--font-sans); }
 
     /* --- Section B --- */
-    .presenter-alert { background: #F3EDE0; border: 1px solid var(--border-paper); border-left: 3px solid var(--ink-primary); border-radius: 0 2px 2px 0; color: var(--ink-secondary); }
+    .presenter-alert { background: #FFFFFF; border: 1px solid var(--border-paper); border-left: 3px solid var(--ink-primary); border-radius: 0 2px 2px 0; color: var(--ink-secondary); }
     .embed-card { border-radius: var(--radius-lg); }
-    .embed-header { background: #F3EDE0; }
+    .embed-header { background: #FFFFFF; }
     .social-stat-box { background: var(--bg-card); border-radius: 2px; }
 
     /* --- Section C --- */
-    .network-canvas-box { background: #F3EDE0; border-radius: 2px; }
+    .network-canvas-box { background: #FFFFFF; border-radius: 2px; }
     .inspector-dark { background: #23201B; color: #F5F2EC; border-radius: 2px; }
 
     /* --- Section D: archive catalogue --- */
     .folder-tab { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.04em; background: var(--bg-folder-tab); border-radius: 2px 2px 0 0; }
     .folder-tab.active { background: var(--bg-card); }
     .folder-tab-num { font-family: var(--font-mono); }
-    .folder-tab.active .folder-tab-num { background: var(--accent-terracotta); }
+    .folder-tab.active .folder-tab-num { background: var(--ink-primary); }
     .folder-body { background: #F3EDE0; border-radius: 2px; box-shadow: var(--shadow-md); }
     .folder-stamp-bar { background: #F3EDE0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; }
     .stamp-badge { font-family: var(--font-mono); letter-spacing: 0.1em; }
     .form-control { background: var(--bg-card); border: 1px solid var(--border-strong); border-radius: 6px; color: var(--ink-primary); }
     .archive-table thead th { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); border-bottom: 1px solid var(--ink-primary); }
     .archive-table tbody td { border-bottom: 1px solid var(--border-paper); }
-    .archive-table tbody tr:hover { background: #F3EDE0; }
+    .archive-table tbody tr:hover { background: #F3F4F6; }
     .hist1957-figure { margin: 1.5rem 1.5rem 0; background: var(--bg-card); border: 1px solid var(--border-paper); border-radius: 2px; overflow: hidden; }
     .hist1957-figure img { display: block; width: 100%; height: auto; }
     .hist1957-figure figcaption { padding: 0.8rem 1rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--ink-muted); border-top: 1px solid var(--border-paper); line-height: 1.7; }
@@ -980,10 +981,10 @@
     /* v20: 3D exit - a section turns away as it scrolls out the top */
     .reveal-3d.is-visible.is-leaving { opacity: 0.5; transform: perspective(1400px) rotateX(-18deg) translateY(-60px) scale(0.94); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal-soft.is-visible.is-leaving { opacity: 0.55; transform: translateY(-50px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-soft { opacity: 0; transform: translateY(32px); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal-soft { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal-soft.is-visible { opacity: 1; transform: translateY(0); }
     .card, .kpi-card, .embed-card, .mini-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .card:hover, .embed-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(35, 32, 27, 0.09); }
+    .card:hover, .embed-card:hover { border-color: #111111; }
     @media (prefers-reduced-motion: reduce) {
       .reveal-3d, .reveal-soft { opacity: 1 !important; transform: none !important; transition: none !important; }
       html { scroll-behavior: auto; }
@@ -1014,11 +1015,17 @@
     .meta-pill span:nth-child(5) { background: #F3F4F6; border-color: #D1D5DB; color: #374151; }
 
     /* --- section accent colours (colour-coded, muted) --- */
-    #section-a { --section-accent: #111111; }
-    #section-b { --section-accent: #374151; }
-    #section-c { --section-accent: #4B5563; }
-    #section-d { --section-accent: #6B7280; }
-    main > section { border-top: 3px solid var(--section-accent, var(--ink-primary)); padding-top: 1.75rem; padding-bottom: 3rem; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+    #section-a { --section-accent: #C2410C; border-top: 4px solid var(--accent); }
+    #section-b { --section-accent: #C2410C; }
+    #section-c { --section-accent: #C2410C; }
+    #section-d { --section-accent: #C2410C; }
+    main > section { position: relative; border-top: 3px solid var(--section-accent, var(--ink-primary)); padding-top: 1.75rem; padding-bottom: 3rem; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+    .sec-vertical { writing-mode: vertical-rl; text-orientation: mixed; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.35em; color: var(--ink-muted); position: absolute; right: 1rem; top: 2.75rem; }
+    @media (max-width: 720px) { .sec-vertical { display: none; } }
+    .sec-ghost { font-family: var(--font-serif); font-weight: 900; font-size: clamp(4rem, 10vw, 7rem); line-height: 1; color: #EDEEF0; position: absolute; top: 1.5rem; right: 4.5rem; z-index: 0; pointer-events: none; }
+    @media (max-width: 720px) { .sec-ghost { display: none; } }
+    /* dark sections (C + timeline): ghost must stay dark, not light grey on black */
+    #section-c .sec-ghost, #section-timeline .sec-ghost { color: #232323; }
     main > section .section-kicker { color: var(--section-accent); }
     #section-a .peak-tag { background: #F3F4F6; color: #111111; border-color: #D1D5DB; }
     #section-b .presenter-alert { border-left-color: var(--section-accent); }
@@ -1031,23 +1038,23 @@
     /* v6: sortable archive headers */
     #csv-table thead th { cursor: pointer; user-select: none; }
     #csv-table thead th:hover { background: var(--bg-subtle); }
-    #csv-table thead th .sort-ind { color: var(--accent-terracotta); font-size: 0.7rem; }
+    #csv-table thead th .sort-ind { color: var(--ink-primary); font-size: 0.7rem; }
     /* v6: clickable KPI cards */
     .kpi-card.kpi-click { cursor: pointer; }
     .kpi-card.kpi-click:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(35, 32, 27, 0.14); }
-    .kpi-card.kpi-click:hover .kpi-label::after { content: "  ↗"; color: var(--accent-terracotta); }
+    .kpi-card.kpi-click:hover .kpi-label::after { content: "  ↗"; color: var(--ink-primary); }
     /* v6: year-focus slider dots */
     #svg-temporal-combined .chart-dot { transition: opacity 0.3s ease; }
     #svg-temporal-combined .chart-dot.dim { opacity: 0.15; }
     #svg-temporal-combined .chart-dot.dot-active { opacity: 1; }
     /* v6: staggered hero entrance */
-    @keyframes heroIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-    .hero-header.is-visible .meta-pill { animation: heroIn 0.9s ease both; }
-    .hero-header.is-visible .hero-title { animation: heroIn 0.9s ease 0.12s both; }
-    .hero-header.is-visible .hero-desc { animation: heroIn 0.9s ease 0.24s both; }
-    .hero-header.is-visible .hero-cta-btn { animation: heroIn 0.9s ease 0.32s both; }
-    .hero-header.is-visible .kpi-grid { animation: heroIn 0.9s ease 0.42s both; }
-    .hero-header.is-visible .cover-scroll { animation: heroIn 0.9s ease 0.58s both; }
+    @keyframes heroIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-header.is-visible .meta-pill { animation: heroIn 0.7s ease both; }
+    .hero-header.is-visible .hero-title { animation: heroIn 0.7s ease 0.12s both; }
+    .hero-header.is-visible .hero-desc { animation: heroIn 0.7s ease 0.24s both; }
+    .hero-header.is-visible .hero-cta-btn { animation: heroIn 0.7s ease 0.32s both; }
+    .hero-header.is-visible .kpi-grid { animation: heroIn 0.7s ease 0.42s both; }
+    .hero-header.is-visible .cover-scroll { animation: heroIn 0.7s ease 0.58s both; }
     @media (prefers-reduced-motion: reduce) {
       .hero-header.is-visible .meta-pill, .hero-header.is-visible .hero-title,
       .hero-header.is-visible .hero-desc, .hero-header.is-visible .hero-cta-btn,
@@ -1060,13 +1067,13 @@
     .archive-modal.hidden { display: none; }
     .archive-modal-card { position: relative; width: 100%; max-width: 640px; max-height: 85vh; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border-paper); border-radius: 2px; padding: 1.6rem 1.6rem 1.4rem; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35); }
     .archive-modal-close { position: absolute; top: 0.7rem; right: 0.9rem; border: none; background: none; font-size: 1.7rem; line-height: 1; color: var(--ink-muted); cursor: pointer; padding: 0.2rem 0.4rem; }
-    .archive-modal-close:hover { color: var(--accent-terracotta); }
+    .archive-modal-close:hover { color: var(--ink-primary); }
     .archive-modal-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin-bottom: 0.8rem; padding-right: 2rem; }
     .archive-modal-card h3 { font-family: var(--font-serif); font-size: 1.35rem; line-height: 1.35; color: var(--ink-primary); margin: 0 0 0.7rem; padding-right: 1.5rem; }
     .archive-modal-card #archive-modal-body { font-size: 0.98rem; line-height: 1.75; color: var(--ink-secondary); white-space: pre-wrap; }
 
     /* v7: search highlight */
-    #csv-table mark, .archive-modal-card mark { background: #111111; color: #FFFFFF; padding: 0 0.1em; border-radius: 3px; }
+    #csv-table mark, .archive-modal-card mark { background: #111111; color: #FFFFFF; padding: 0 0.1em; border-radius: 2px; }
     /* v7: modal prev/next footer */
     .archive-modal-nav { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 1.1rem; padding-top: 0.9rem; border-top: 1px solid var(--border-paper); }
     /* v7: mobile card layout for the archive table */
@@ -1086,7 +1093,7 @@
     .hero-header .meta-pill { letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.72rem; }
     .kpi-grid { gap: 1.1rem; margin-top: 2.2rem; }
     .kpi-card { padding: 1.25rem 1.3rem; border-top: 2px solid #111111; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05); }
-    .kpi-value { font-size: 2.05rem; letter-spacing: -0.02em; }
+    .kpi-value { font-size: 3.2rem; letter-spacing: -0.02em; }
     .kpi-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.68rem; }
     .section-title { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.25; letter-spacing: -0.01em; }
     .section-kicker { letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.72rem; }
@@ -1102,13 +1109,13 @@
     #csv-table thead th { letter-spacing: 0.05em; }
 
     /* v9: scroll progress + side dot nav */
-    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: #111111; z-index: 1000; }
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--accent); z-index: 1000; }
     #section-dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 900; }
     #section-dots a { display: flex; align-items: center; justify-content: flex-end; gap: 8px; text-decoration: none; }
     #section-dots .dot-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-primary); background: #FFFFFF; border: 1px solid var(--border-strong); border-radius: 999px; padding: 2px 8px; opacity: 0; transform: translateX(4px); transition: opacity 0.15s ease, transform 0.15s ease; white-space: nowrap; pointer-events: none; }
     #section-dots a:hover .dot-label, #section-dots a.active .dot-label { opacity: 1; transform: translateX(0); }
     #section-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: #FFFFFF; border: 2px solid #9CA3AF; flex: none; transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease; }
-    #section-dots a.active .dot { background: #111111; border-color: #111111; transform: scale(1.25); }
+    #section-dots a.active .dot { background: var(--accent); border-color: var(--accent); transform: scale(1.25); }
     @media (max-width: 720px) { #section-dots { right: 8px; gap: 8px; } #section-dots .dot { width: 8px; height: 8px; border-width: 1px; } #section-dots .dot-label { display: none; } }
     @media (max-width: 720px) { #kepler-iframe { height: 420px !important; } }
 
@@ -1161,8 +1168,8 @@
     .hero-title { font-family: var(--font-sans); font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4rem); line-height: 1.06; letter-spacing: -0.02em; color: #FFFFFF; max-width: 18ch; }
     .hero-desc { color: rgba(255,255,255,0.88); font-size: 1.08rem; max-width: 58ch; }
     .hero-cta { margin: 1.6rem 0 2.2rem; }
-    .hero-cta-btn { display: inline-block; text-decoration: none; color: #FFFFFF; border: 1px solid #FFFFFF; padding: 0.7rem 1.6rem; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; transition: background 0.2s ease, color 0.2s ease; }
-    .hero-cta-btn:hover { background: #FFFFFF; color: #111111; }
+    .hero-cta-btn { display: inline-block; text-decoration: none; color: #FFFFFF; background: var(--accent); border: 1px solid var(--accent); padding: 0.7rem 1.6rem; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; transition: background 0.2s ease, color 0.2s ease; }
+    .hero-cta-btn:hover { background: #FFFFFF; color: var(--accent); }
     .hero-header .kpi-grid { border-top: 1px solid rgba(255,255,255,0.35); border-bottom: 1px solid rgba(255,255,255,0.35); padding: 1.1rem 0; gap: 0; }
     .hero-header .kpi-card { background: transparent; color: #FFFFFF; border: none; border-radius: 0; box-shadow: none; padding: 0.4rem 1rem; text-align: left; border-right: 1px solid rgba(255,255,255,0.35); }
     .hero-header .kpi-card:last-child { border-right: none; }
@@ -1179,7 +1186,7 @@
 
     /* --- editorial section headers: black kicker pill + big bold sans title --- */
     .section-kicker, main > section .section-kicker { background: #111111; color: #FFFFFF !important; padding: 0.3rem 0.75rem; display: inline-block; }
-    .section-title { font-family: var(--font-sans); font-weight: 800; font-size: clamp(1.7rem, 3.1vw, 2.4rem); letter-spacing: -0.015em; }
+    .section-title { font-family: var(--font-sans); font-weight: 800; font-size: clamp(2rem, 4.5vw, 3.4rem); letter-spacing: -0.015em; }
     main > section { border-top-width: 2px; }
 
     /* --- dark timeline band (full-bleed) --- */
@@ -1200,8 +1207,21 @@
     #section-timeline .tl-noreport { color: rgba(255,255,255,0.55); }
     #section-timeline .tl-note { color: rgba(255,255,255,0.6); border-top-color: #333333; }
 
+    /* v41 Batch 2: Section C dark (P0-4) */
+    #section-c { background: #111111; color: #FFFFFF; }
+    #section-c .section-kicker { background: #FFFFFF; color: #111111 !important; }
+    #section-c .section-title { color: #FFFFFF; }
+    #section-c .section-subtitle { color: rgba(255,255,255,0.75); }
+    #section-c .section-subtitle strong { color: #FFFFFF; }
+    #section-c .sec-vertical { color: rgba(255,255,255,0.5); }
+    #section-c .card { background: transparent; border-color: rgba(255,255,255,0.25) !important; color: #FFFFFF; }
+    #section-c .network-canvas-box { background: #1A1A1A; border-color: #333333; }
+    #section-c .btn-outline { background: transparent; color: #FFFFFF; border-color: rgba(255,255,255,0.6); }
+    #section-c .btn-outline:hover { background: #FFFFFF; color: #111111; border-color: #FFFFFF; }
+    #section-c .inspector-dark { background: #1E293B; border: 1px solid #334155; border-top: 3px solid var(--accent); }
+
     /* v13: display titles back to serif - heavy CJK sans renders badly (faked bold) */
-    .hero-title { font-family: var(--font-serif); font-weight: 700; font-size: clamp(2.2rem, 4.8vw, 3.5rem); line-height: 1.22; letter-spacing: 0.02em; max-width: 22ch; }
+    .hero-title { font-family: var(--font-serif); font-weight: 700; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1.08; letter-spacing: 0.02em; max-width: 18ch; display: flex; flex-direction: column; }
     .section-title { font-family: var(--font-serif); font-weight: 700; letter-spacing: 0.01em; }
     /* v14: back-to-top */
     #back-to-top { position: fixed; right: 18px; bottom: 18px; z-index: 950; width: 44px; height: 44px; border-radius: 2px; border: 1px solid #111111; background: #111111; color: #FFFFFF; font-size: 1.1rem; font-weight: 800; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: none; }
@@ -1210,7 +1230,7 @@
     /* v15: word cloud */
     .wc-cloud { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.9rem; padding: 0.4rem 0; }
     .wc-word { font-family: var(--font-serif); font-weight: 700; background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: var(--ink-primary); line-height: 1.25; transition: color 0.15s ease, transform 0.2s ease, text-shadow 0.2s ease; }
-    .wc-word:hover { color: #000000; transform: translateY(-2px) scale(1.08); text-decoration: underline; text-underline-offset: 3px; }
+    .wc-word:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 
     /* ==========================================================================
        v21 REFINEMENT — web serif, magazine details, spacing & grid
@@ -1227,7 +1247,7 @@
     #section-timeline { border-top: none; }
     /* archive table: tabular numerals, clean white sticky header, sharp corners */
     .archive-table { font-variant-numeric: tabular-nums; }
-    .archive-table th { background: #F3EDE0; }
+    .archive-table th { background: #FFFFFF; }
     .archive-table-wrap { border-radius: 2px; }
     /* refined hover for content links (not buttons) */
     main a:not(.btn):hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -1242,7 +1262,7 @@
        v23 — flat transitions, made visible again (no 3D anywhere)
        ========================================================================== */
     /* stronger flat entrance: rise 56px over 1s (was 32px / 0.9s, too subtle) */
-    .reveal-soft { transform: translateY(56px); transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal-soft { transform: translateY(56px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
     /* flat exit: gentle fade + small rise only, no rotation */
     .reveal-soft.is-visible.is-leaving { opacity: 0.4; transform: translateY(-24px); transition: opacity 0.6s ease, transform 0.6s ease; }
 
@@ -1339,7 +1359,7 @@
     .yb-year {
       display: block;
       font-family: var(--font-serif);
-      font-size: 1.9rem;
+      font-size: 3rem;
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: 0.02em;
@@ -1354,39 +1374,14 @@
       margin: 0.15rem 0 0.5rem;
     }
 
-    /* ==========================================================================
-       v37 — Section A line-chart animation: 1975-1980 category shares (SVG, flat, no fill)
-       ========================================================================== */
-    .yb-anim { margin-bottom: 1rem; }
-    .yb-anim-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-    .yb-anim-btn { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.02em; background: #111111; color: #FFFFFF; border: 1px solid #111111; border-radius: 2px; padding: 0.55rem 1rem; cursor: pointer; }
-    .yb-anim-btn-ghost { background: #FFFFFF; color: #111111; }
-    .yb-anim-btn:disabled { opacity: 0.4; cursor: default; }
-    .yb-anim-chart { margin-top: 0.75rem; background: #FFFFFF; border: 1px solid var(--border-paper); border-radius: 2px; padding: 0.9rem 1rem 0.7rem; }
-    .yb-anim-legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin-bottom: 0.5rem; font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-secondary); }
-    .yb-anim-legend span { white-space: nowrap; }
-    .yb-anim-legend i { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 999px; margin-right: 0.35rem; vertical-align: baseline; }
-    #yb-chart { display: block; width: 100%; height: auto; }
-    #yb-chart .yb-grid { stroke: #E5E5E0; stroke-width: 1; }
-    #yb-chart .yb-axis { stroke: #111111; stroke-width: 1; }
-    #yb-chart .yb-ylab, #yb-chart .yb-xlab { font-family: var(--font-sans); font-size: 12px; fill: var(--ink-muted); }
-    #yb-chart .yb-xlab-now { font-weight: 700; fill: #C2410C; }
-    #yb-chart .yb-seg { fill: none; stroke-width: 2; stroke-linecap: round; transition: stroke-dashoffset 1.6s ease; }
-    #yb-chart .yb-dot { stroke: #FFFFFF; stroke-width: 1; transition: opacity 0.4s ease; }
-    #yb-chart .yb-ring { fill: none; stroke: #C2410C; stroke-width: 2; }
-    .yb-anim-status { margin-top: 0.6rem; font-family: var(--font-sans); font-size: 0.9rem; line-height: 1.6; color: var(--ink-secondary); }
-    .yb-anim-hint { font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink-secondary); }
-    .yb-anim-year { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: #111111; }
-    .yb-anim-note { margin-top: 0.35rem; font-family: var(--font-sans); font-size: 0.8rem; color: var(--ink-muted); }
+    /* Year-observation card highlight (used by the top-chart timeline animation). */
     .insight-box.yb-active { outline: 2px solid var(--accent); outline-offset: 2px; }
-    @media (prefers-reduced-motion: reduce) {
-      #yb-chart .yb-seg, #yb-chart .yb-dot { transition: none; }
-    }
 
     /* ==========================================================================
        v32 — second aesthetics review + folder cards + nav toggle
        ========================================================================== */
-    .hero-title-en { display: block; font-family: var(--font-serif); font-style: italic; font-size: 0.55em; font-weight: 400; letter-spacing: 0.04em; color: rgba(255,255,255,0.85); margin-top: 0.4rem; }
+    .hero-title-en { display: block; order: -1; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: #FFFFFF; margin-bottom: 0.8rem; }
+    .hero-title-en::before { content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; background: var(--accent); margin-right: 0.5rem; }
     /* one accent (#C2410C) on small decorative elements only */
     .section-kicker::before { content: ""; display: inline-block; width: 0.55rem; height: 0.55rem; background: var(--accent); margin-right: 0.5rem; }
     /* drop cap moved to the Methods "資料來源" opening paragraph */
@@ -1425,7 +1420,7 @@
     }
 
     /* v33: museum-benchmark features */
-    .stamp-mini { font-family: var(--font-mono); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.06em; color: #991B1B; border: 1.5px solid #991B1B; padding: 0.1rem 0.4rem; border-radius: 3px; text-transform: uppercase; display: inline-block; transform: rotate(-2deg); margin-left: 0.5rem; vertical-align: middle; white-space: nowrap; }
+    .stamp-mini { font-family: var(--font-mono); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.06em; color: #991B1B; border: 1.5px solid #991B1B; padding: 0.1rem 0.4rem; border-radius: 2px; text-transform: uppercase; display: inline-block; transform: none; margin-left: 0.5rem; vertical-align: middle; white-space: nowrap; }
     .stamp-light { color: #FCA5A5; border-color: #FCA5A5; }
     .hero-stamp { margin-top: 0.9rem; }
     .theme-entries { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; align-items: stretch; }
@@ -1456,7 +1451,7 @@
     #map-lightbox .map-lb-stage { flex: 1; overflow: hidden; position: relative; cursor: grab; }
     #map-lightbox .map-lb-stage:active { cursor: grabbing; }
     #map-lightbox .map-lb-stage img { position: absolute; left: 50%; top: 50%; max-width: none; max-height: none; transform: translate(-50%, -50%); transform-origin: center center; user-select: none; -webkit-user-drag: none; }
-    .glossary-box { border: 1px solid var(--border-paper); border-radius: 2px; background: #F3EDE0; padding: 0.7rem 0.9rem; margin-bottom: 1rem; }
+    .glossary-box { border: 1px solid var(--border-paper); border-radius: 2px; background: #FFFFFF; padding: 0.7rem 0.9rem; margin-bottom: 1rem; }
     .gloss-term { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; border: 1px solid var(--border-strong); background: #FFFFFF; color: var(--ink-primary); border-radius: 999px; padding: 0.25rem 0.6rem; margin: 0.15rem 0.2rem 0.15rem 0; cursor: pointer; }
     .gloss-term:hover, .gloss-term.active { background: #111111; color: #FFFFFF; border-color: #111111; }
     #glossary-def { font-size: 0.85rem; color: var(--ink-secondary); line-height: 1.6; margin-top: 0.5rem; }
@@ -1467,6 +1462,7 @@
     .tl-cite { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-top: 0.45rem; }
     .tl-rel-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: rgba(255,255,255,0.75); margin-right: 0.35rem; }
     .tl-mention { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: #991B1B; border: 1px solid #991B1B; border-radius: 999px; padding: 0.05rem 0.45rem; margin-left: 0.4rem; white-space: nowrap; vertical-align: middle; }
+    .tl-mention::before, .meta-pill.tl-dot::before { content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--accent); margin-right: 0.3rem; vertical-align: middle; }
     .save-star { background: none; border: none; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 0.25rem; color: #9CA3AF; vertical-align: middle; }
     .save-star.saved { color: #C2410C; }
     .theme-banner, .related-tl-banner { display: none; border: 1px solid var(--border-strong); border-left: 3px solid var(--accent); background: #FFF7ED; border-radius: 2px; padding: 0.6rem 0.8rem; margin-bottom: 0.8rem; font-size: 0.82rem; line-height: 1.6; }
@@ -1579,6 +1575,8 @@
          SECTION A: GOVERNMENT ATTENTION SHIFT (1975–1980)
          ======================================================================= -->
     <section id="section-a">
+      <span class="sec-ghost" aria-hidden="true">02</span>
+      <span class="sec-vertical">TIME SERIES 1975–1980</span>
       <div class="section-header">
         <div>
           <span class="section-kicker">02 · Research Question A • 時間序列分析 (n=216)</span><span class="stamp-mini">HKMOOD</span>
@@ -1604,13 +1602,15 @@
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem;" onclick="setAllCategories(true)">全部顯示</button>
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem; border-color:#9CA3AF; color:#111111;" onclick="setPeakCategoriesOnly()">只看核心高峰議題</button>
           <div id="a-category-pills" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
-          <div class="cat-focus-row"><span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">分類詳情：</span><span id="a-cat-focus-btns" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></span></div>
+          <div class="cat-focus-row"><span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">想深入睇邊一類？</span><span id="a-cat-focus-btns" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></span></div>
         </div>
 
         <!-- Year focus slider -->
         <div id="a-year-slider-wrap" style="display:flex; flex-wrap:wrap; align-items:center; gap:0.75rem; margin:0.75rem 0; padding:0.6rem 0.9rem; background:var(--bg-subtle); border:1px solid var(--border-paper); border-radius:2px;">
           <span style="font-size:0.8rem; font-weight:700;">年份聚焦</span>
-          <input type="range" id="year-slider" min="0" max="6" step="1" value="6" oninput="setChartYear(parseInt(this.value, 10))" style="flex:1; min-width:160px; accent-color:var(--accent-terracotta);" />
+          <button type="button" class="btn btn-dark" id="a-anim-play" onclick="aAnimToggle()" style="padding:0.35rem 0.75rem; font-size:0.8rem;">▶ 睇時間線動畫</button>
+          <button type="button" class="btn btn-outline" id="a-anim-reset" onclick="aAnimReset()" disabled style="padding:0.35rem 0.75rem; font-size:0.8rem;">重頭播過</button>
+          <input type="range" id="year-slider" min="0" max="6" step="1" value="6" oninput="setChartYear(parseInt(this.value, 10))" style="flex:1; min-width:160px; accent-color:var(--ink-primary);" />
           <span id="year-slider-label" style="font-size:0.85rem; font-weight:800; min-width:4.2rem;">全部年份</span>
           <span id="year-slider-readout" style="font-size:0.8rem; color:var(--ink-secondary);">撳滑桿聚焦某一年，睇嗰年邊啲議題最突出。</span>
           <div style="flex-basis:100%; display:flex; justify-content:space-between; font-size:0.7rem; color:var(--ink-muted); padding:0 0.1rem;"><span>1975</span><span>1976</span><span>1977</span><span>1978</span><span>1979</span><span>1980</span><span>全部</span></div>
@@ -1681,20 +1681,6 @@
         </div>
 
         <!-- Historical Annotation Cards -->
-        <!-- v37: line-chart animation (Section A year observations) -->
-        <div class="yb-anim" id="yb-anim">
-          <div class="yb-anim-controls">
-            <button type="button" class="yb-anim-btn" id="yb-anim-play" onclick="ybAnimToggle()">▶ 睇時間線動畫</button>
-            <button type="button" class="yb-anim-btn yb-anim-btn-ghost" id="yb-anim-reset" onclick="ybAnimReset()" disabled>重頭播過</button>
-          </div>
-          <div class="yb-anim-chart">
-            <div class="yb-anim-legend"><span><i style="background:#1D4ED8"></i>政治與憲制</span><span><i style="background:#D97706"></i>經濟與財政</span><span><i style="background:#15803D"></i>法律與治安</span><span><i style="background:#DB2777"></i>交通</span><span><i style="background:#7E22CE"></i>房屋</span></div>
-            <svg id="yb-chart" viewBox="0 0 720 340" role="img" aria-label="1975 至 1980 年五類議題佔比折線圖" preserveAspectRatio="xMidYMid meet"></svg>
-            <div class="yb-anim-note">1980 年只有 10 筆有日期記錄。</div>
-          </div>
-          <div class="yb-anim-status" id="yb-anim-status" aria-live="polite">
-          </div>
-        </div>
         <div class="insight-grid">
           <div class="insight-box" id="yb-card-1975">
             <span class="yb-year" style="color:#111111;">1975</span>
@@ -1724,9 +1710,11 @@
          SECTION B: PUBLIC SENTIMENT & SOCIAL GROUPS (FLOURISH EMBEDS)
          ======================================================================= -->
     <section id="section-b">
+      <span class="sec-ghost" aria-hidden="true">03</span>
+      <span class="sec-vertical">GROUPS × ISSUES</span>
       <div class="section-header">
         <div>
-          <span class="section-kicker" style="color:var(--accent-teal);">03 · Research Question B • 民情情緒與階層結構</span><span class="stamp-mini">HKMOOD</span>
+          <span class="section-kicker">03 · Research Question B • 民情情緒與階層結構</span><span class="stamp-mini">HKMOOD</span>
           <h2 class="section-title">B. 市民點睇？邊啲議題最令人憤怒與焦慮？</h2>
           <p class="section-subtitle">
             兩幅互動圖：左邊睇邊個階層對邊啲議題有咩情緒；右邊睇唔同年份，各階層嘅情緒佔幾多。
@@ -1742,7 +1730,7 @@
 
       <!-- Presenter Filter Reminder -->
       <div class="presenter-alert">
-        💡 <strong>簡報操作提示：</strong>唔好淨係留喺「All」。喺圖上面揀某一年或者某個階層，先睇到唔同階層嘅分別。青年得 11 筆、精英／街坊得 5 筆，出現嘅範疇好窄：青年只係喺政治、教育、法律同公共衛生；精英／街坊只係喺政治同法律。
+        <strong>簡報操作提示：</strong>唔好淨係留喺「All」。喺圖上面揀某一年或者某個階層，先睇到唔同階層嘅分別。青年得 11 筆、精英／街坊得 5 筆，出現嘅範疇好窄：青年只係喺政治、教育、法律同公共衛生；精英／街坊只係喺政治同法律。
       </div>
 
       <div id="b-flourish-grid" class="flourish-grid">
@@ -1750,7 +1738,7 @@
         <div id="b-card-sankey" class="embed-card">
           <div class="embed-header">
             <div>
-              <div style="font-size:0.7rem; font-weight:800; color:var(--accent-teal); text-transform:uppercase;">Flourish 1 • Sankey Diagram</div>
+              <div style="font-size:0.7rem; font-weight:800; color:var(--accent); text-transform:uppercase;">Flourish 1 • Sankey Diagram</div>
               <div style="font-weight:700; font-size:0.95rem;">Recorded Sentiment by Social Group and Issue</div>
             </div>
             <a href="https://public.flourish.studio/visualisation/30956322/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.32rem 0.65rem; font-size:0.75rem;">
@@ -1766,7 +1754,7 @@
         <div id="b-card-stacked" class="embed-card">
           <div class="embed-header">
             <div>
-              <div style="font-size:0.7rem; font-weight:800; color:var(--accent-amber); text-transform:uppercase;">Flourish 2 • 100% Stacked Column</div>
+              <div style="font-size:0.7rem; font-weight:800; color:var(--accent); text-transform:uppercase;">Flourish 2 • 100% Stacked Column</div>
               <div style="font-weight:700; font-size:0.95rem;">Recorded Sentiment by Social Group and Year</div>
             </div>
             <a href="https://public.flourish.studio/visualisation/30957642/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.32rem 0.65rem; font-size:0.75rem;">
@@ -1796,7 +1784,7 @@
         </div>
         <div class="social-stat-box">
           <div style="font-size:0.74rem; color:var(--ink-secondary);">Youth/Students 青年學生</div>
-          <div style="font-size:1.35rem; font-weight:800; color:var(--accent-indigo);">11 <span style="font-size:0.75rem; font-weight:400; color:var(--ink-muted);">筆</span></div>
+          <div style="font-size:1.35rem; font-weight:800; color:var(--accent);">11 <span style="font-size:0.75rem; font-weight:400; color:var(--ink-muted);">筆</span></div>
         </div>
         <div class="social-stat-box">
           <div style="font-size:0.74rem; color:var(--ink-secondary);">Local Elites/Kaifong 精英/街坊</div>
@@ -1809,12 +1797,14 @@
          SECTION C: BIPARTITE NETWORK ANALYSIS (GEPHI STYLE)
          ======================================================================= -->
     <section id="section-c">
+      <span class="sec-ghost" aria-hidden="true">04</span>
+      <span class="sec-vertical">NETWORK</span>
       <div class="section-header">
         <div>
-          <span class="section-kicker" style="color:var(--accent-indigo);">04 · Research Question C • 網絡結構分析 (Gephi)</span><span class="stamp-mini">HKMOOD</span>
+          <span class="section-kicker">04 · Research Question C • 網絡結構分析 (Gephi)</span><span class="stamp-mini">HKMOOD</span>
           <h2 class="section-title">C. 邊個階層講邊啲議題？（階層—議題二分網絡圖）</h2>
           <p class="section-subtitle">
-            左邊係受訪階層，右邊係政策議題。連線愈粗，即係嗰個階層提到嗰個議題嘅次數愈多。撳入任何一點，睇下唔同階層係咪各有各關心嘅議題。
+            左邊係受訪階層，右邊係政策議題。連線愈粗，即係嗰個階層提到嗰個議題嘅次數愈多。撳入任何一點，睇下政府問唔同階層唔同嘅嘢。
           </p>
         </div>
 
@@ -1825,10 +1815,10 @@
 
       <div class="network-layout">
         <div class="card" style="padding:1rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.65rem; font-size:0.78rem; color:var(--ink-secondary);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.65rem; font-size:0.78rem; color:rgba(255,255,255,0.75);">
             <div>
-              <span style="margin-right:1rem;"><span class="dot" style="background:#D97706;"></span> 左側：社會階層 (Class)</span>
-              <span><span class="dot" style="background:#0F766E;"></span> 右側：政策議題 (Issue)</span>
+              <span style="margin-right:1rem;"><span class="dot" style="background:#FFFFFF;"></span> 左側：社會階層 (Class)</span>
+              <span><span class="dot" style="background:#3D5A80;"></span> 右側：政策議題 (Issue)</span>
             </div>
             <span>撳任何一點，睇下連繫有幾多筆</span>
           </div>
@@ -1852,18 +1842,18 @@
                 撳左邊任何一個階層（例如 Grassroots 草根），或者右邊任何一個議題，呢度就會列出佢同對面邊啲有連繫、連繫有幾強（即係一齊出現過幾多次），再加埋歷史背景。
               </p>
               <div id="net-edges" style="border-top:1px solid #334155; padding-top:0.6rem; font-size:0.78rem; display:flex; flex-direction:column; gap:0.35rem;">
-                <div style="display:flex; justify-content:space-between;"><span>一般市民 ↔ 政治 39 · 法律 26 · 交通 20</span><span style="color:#111111; font-family:var(--font-mono);">共 126 筆</span></div>
-                <div style="display:flex; justify-content:space-between;"><span>草根 ↔ 房屋 11 · 經濟 6 · 交通 6</span><span style="color:#111111; font-family:var(--font-mono);">共 38 筆</span></div>
-                <div style="display:flex; justify-content:space-between;"><span>青年 ↔ 政治 4 · 教育 3 · 法律 3</span><span style="color:#111111; font-family:var(--font-mono);">得 11 筆</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>一般市民 ↔ 政治 39 · 法律 26 · 交通 20</span><span style="color:#FFFFFF; font-family:var(--font-mono);">共 126 筆</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>草根 ↔ 房屋 11 · 經濟 6 · 交通 6</span><span style="color:#FFFFFF; font-family:var(--font-mono);">共 38 筆</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>青年 ↔ 政治 4 · 教育 3 · 法律 3</span><span style="color:#FFFFFF; font-family:var(--font-mono);">得 11 筆</span></div>
               </div>
             </div>
 
-            <div class="insight-box" style="margin-bottom:0.65rem; background:#F3EDE0; border-color:var(--border-paper); border-left:3px solid #111111;">
-              <strong style="color:#111111;">唔同階層，政府問唔同嘅嘢</strong>
+            <div class="insight-box" style="margin-bottom:0.65rem; background:#1A1A1A; border-color:#334155; border-left:3px solid #C2410C; color:#F1F5F9;">
+              <strong style="color:#FFFFFF;">唔同階層，政府問唔同嘅嘢</strong>
               民政署問草根嗰陣，最多問房屋（11 筆）；問中產嗰陣，最多問經濟（18 筆）同政治（12 筆）——唔同階層，政府聽到嘅嘢都唔同。
             </div>
-            <div class="insight-box" style="background:#F3EDE0; border-color:var(--border-paper); border-left:3px solid #111111;">
-              <strong style="color:#111111;">青年同精英：數目少，但只喺少數議題出聲</strong>
+            <div class="insight-box" style="background:#1A1A1A; border-color:#334155; border-left:3px solid #C2410C; color:#F1F5F9;">
+              <strong style="color:#FFFFFF;">青年同精英：數目少，但只喺少數議題出聲</strong>
               青年得 11 筆，精英得 5 筆，數目雖然少，但佢哋出聲嗰啲議題好集中——政治憲制、教育同法律管治。
             </div>
           </div>
@@ -1875,6 +1865,8 @@
          SECTION D: TWO-LAYER HISTORICAL ARCHIVE FOLDER (MAP+TIMELINE & CSV DB)
          ======================================================================= -->
     <section id="section-d">
+      <span class="sec-ghost" aria-hidden="true">05</span>
+      <span class="sec-vertical">ARCHIVE // HKRS</span>
       <div class="section-header">
         <div>
           <span class="section-kicker">05 · Research Question D • 空間地理與原始史料庫</span><span class="stamp-mini">HKMOOD</span>
@@ -1908,7 +1900,7 @@
               <span>•</span>
               <span>全港泛指 <b>General Urban: 139 份報告</b> vs 具體地區標註 <b>31 份</b></span>
             </div>
-            <div id="folder-status-text" style="font-weight:600; color:var(--accent-terracotta);">
+            <div id="folder-status-text" style="font-weight:600; color:var(--ink-primary);">
               目前檢視：第一層 Kepler 原版地圖
             </div>
           </div>
@@ -1975,7 +1967,7 @@
 
               <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
                 <button class="btn btn-outline" onclick="resetCsvFilters()">重設所有篩選</button>
-                <button class="btn btn-outline" onclick="randomArchiveRecord()" title="喺而家篩選結果入面隨機抽一份，睇摘要">🎲 隨機抽一份</button>
+                <button class="btn btn-outline" onclick="randomArchiveRecord()" title="喺而家篩選結果入面隨機抽一份，睇摘要">隨機抽一份</button>
                 <button class="btn btn-outline" id="myfolder-open-btn" onclick="openMyFolder()">☆ 我的檔案夾 <span id="myfolder-count">(0)</span></button>
                 </div>
             </div>
@@ -2066,7 +2058,7 @@
             <!-- Live Filter Status Bar -->
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem; font-size:0.8rem; color:var(--ink-secondary);">
               <span id="csv-result-counter">顯示 229 筆最終版檔案記錄（170 份報告）</span>
-              <span id="csv-source-badge" style="font-weight:700; color:var(--accent-teal);">資料來源：mood_records_clean_FINAL.csv（最終版）</span>
+              <span id="csv-source-badge" style="font-weight:700; color:var(--accent);">資料來源：mood_records_clean_FINAL.csv（最終版）</span>
             </div>
 
             <!-- v33: Featured reports strip (Van Gogh) -->
@@ -2120,6 +2112,8 @@
        SECTION: TIMELINE — 大事年表
        ========================================================================= -->
   <section id="section-timeline">
+      <span class="sec-ghost" aria-hidden="true">06</span>
+      <span class="sec-vertical">TIMELINE</span>
     <div class="container">
       <div class="section-head">
         <div class="section-kicker">06 · 年表 Timeline</div><span class="stamp-mini stamp-light">HKMOOD</span>
@@ -2280,6 +2274,8 @@
        SECTION: METHODS — 資料與方法
        ========================================================================= -->
   <section id="section-methods">
+      <span class="sec-ghost" aria-hidden="true">07</span>
+      <span class="sec-vertical">METHODS</span>
     <div class="container">
       <div class="section-head">
         <div class="section-kicker">07 · 方法 Methods</div><span class="stamp-mini">HKMOOD</span>
@@ -2409,15 +2405,15 @@
     const YEARS = ['1975', '1976', '1977', '1978', '1979', '1980'];
 
     const CATEGORIES = [
-      { id: 'politics',  name: '政治與憲制',     color: '#1D4ED8', group: 'governance', peak: '45.9% (1977)', peakIdx: 2, vals: [28.8, 17.3, 45.9, 13.0, 42.9, 10.0], counts: [21, 9, 17, 3, 9, 1], visible: true },
-      { id: 'economy',   name: '經濟與財政',     color: '#D97706', group: 'livelihood', peak: '26.1% (1978)', peakIdx: 3, vals: [17.8, 17.3, 8.1, 26.1, 23.8, 10.0], counts: [13, 9, 3, 6, 5, 1], visible: true },
-      { id: 'law',       name: '法律與治安',     color: '#15803D', group: 'governance', peak: '28.8% (1975)', peakIdx: 0, vals: [28.8, 13.5, 2.7, 21.7, 0.0, 20.0], counts: [21, 7, 1, 5, 0, 2], visible: true },
-      { id: 'housing',   name: '房屋',           color: '#7E22CE', group: 'livelihood', peak: '19.2% (1976)', peakIdx: 1, vals: [4.1, 19.2, 2.7, 4.3, 0.0, 0.0], counts: [3, 10, 1, 1, 0, 0], visible: true },
-      { id: 'health',    name: '公共衛生與醫療', color: '#DC2626', group: 'livelihood', peak: '10.8% (1977)', peakIdx: 2, vals: [1.4, 9.6, 10.8, 8.7, 0.0, 0.0], counts: [1, 5, 4, 2, 0, 0], visible: true },
-      { id: 'education', name: '教育與青年',     color: '#78350F', group: 'livelihood', peak: '10.0% (1980)', peakIdx: 5, vals: [2.7, 5.8, 8.1, 4.3, 4.8, 10.0], counts: [2, 3, 3, 1, 1, 1], visible: true },
-      { id: 'transport', name: '交通',           color: '#DB2777', group: 'livelihood', peak: '50.0% (1980)', peakIdx: 5, vals: [9.6, 9.6, 5.4, 21.7, 28.6, 50.0], counts: [7, 5, 2, 5, 6, 5], visible: true },
+      { id: 'politics',  name: '政治與憲制',     color: '#3D5A80', group: 'governance', peak: '45.9% (1977)', peakIdx: 2, vals: [28.8, 17.3, 45.9, 13.0, 42.9, 10.0], counts: [21, 9, 17, 3, 9, 1], visible: true },
+      { id: 'economy',   name: '經濟與財政',     color: '#A67C37', group: 'livelihood', peak: '26.1% (1978)', peakIdx: 3, vals: [17.8, 17.3, 8.1, 26.1, 23.8, 10.0], counts: [13, 9, 3, 6, 5, 1], visible: true },
+      { id: 'law',       name: '法律與治安',     color: '#4E7A5A', group: 'governance', peak: '28.8% (1975)', peakIdx: 0, vals: [28.8, 13.5, 2.7, 21.7, 0.0, 20.0], counts: [21, 7, 1, 5, 0, 2], visible: true },
+      { id: 'housing',   name: '房屋',           color: '#6E5A7E', group: 'livelihood', peak: '19.2% (1976)', peakIdx: 1, vals: [4.1, 19.2, 2.7, 4.3, 0.0, 0.0], counts: [3, 10, 1, 1, 0, 0], visible: true },
+      { id: 'health',    name: '公共衛生與醫療', color: '#A8543F', group: 'livelihood', peak: '10.8% (1977)', peakIdx: 2, vals: [1.4, 9.6, 10.8, 8.7, 0.0, 0.0], counts: [1, 5, 4, 2, 0, 0], visible: true },
+      { id: 'education', name: '教育與青年',     color: '#8A6D4B', group: 'livelihood', peak: '10.0% (1980)', peakIdx: 5, vals: [2.7, 5.8, 8.1, 4.3, 4.8, 10.0], counts: [2, 3, 3, 1, 1, 1], visible: true },
+      { id: 'transport', name: '交通',           color: '#9C5B6E', group: 'livelihood', peak: '50.0% (1980)', peakIdx: 5, vals: [9.6, 9.6, 5.4, 21.7, 28.6, 50.0], counts: [7, 5, 2, 5, 6, 5], visible: true },
       { id: 'community', name: '社區環境',       color: '#475569', group: 'livelihood', peak: '16.2% (1977)', peakIdx: 2, vals: [4.1, 1.9, 16.2, 0.0, 0.0, 0.0], counts: [3, 1, 6, 0, 0, 0], visible: true },
-      { id: 'labour',    name: '勞工',           color: '#65A30D', group: 'livelihood', peak: '5.8% (1976)',  peakIdx: 1, vals: [1.4, 5.8, 0.0, 0.0, 0.0, 0.0], counts: [1, 3, 0, 0, 0, 0], visible: true },
+      { id: 'labour',    name: '勞工',           color: '#6B7A3F', group: 'livelihood', peak: '5.8% (1976)',  peakIdx: 1, vals: [1.4, 5.8, 0.0, 0.0, 0.0, 0.0], counts: [1, 3, 0, 0, 0, 0], visible: true },
       { id: 'other',     name: '其他/未分類',    color: '#94A3B8', group: 'livelihood', peak: '1.4% (1975)',  peakIdx: 0, vals: [1.4, 0.0, 0.0, 0.0, 0.0, 0.0], counts: [1, 0, 0, 0, 0, 0], visible: true }
     ];
 
@@ -2593,7 +2589,7 @@
               <text x="${padL - 4}" y="${yP(50) + 3}" text-anchor="end" font-size="9" fill="#64748B">50</text>
               <polygon points="${areaPts}" fill="${cat.color}" fill-opacity="0.16" />
               <polyline fill="none" stroke="${cat.color}" stroke-width="2.2" points="${pts}" />
-              ${cat.vals.map((v, i) => `<circle cx="${xP(i).toFixed(1)}" cy="${yP(v).toFixed(1)}" r="${i === cat.peakIdx ? 4.2 : 2.5}" fill="${i === cat.peakIdx ? '#DC2626' : cat.color}" stroke="#FFFFFF" stroke-width="1" />`).join('')}
+              ${cat.vals.map((v, i) => `<circle cx="${xP(i).toFixed(1)}" cy="${yP(v).toFixed(1)}" r="${i === cat.peakIdx ? 4.2 : 2.5}" fill="${i === cat.peakIdx ? '#A8543F' : cat.color}" stroke="#FFFFFF" stroke-width="1" />`).join('')}
               <text x="${pkX}" y="${Math.max(11, pkY - 6)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#B91C1C">${cat.vals[cat.peakIdx]}%</text>
               ${YEARS.map((yr, i) => `<text x="${xP(i).toFixed(1)}" y="${H - 5}" text-anchor="middle" font-size="9" fill="#475569">${yr.slice(2)}</text>`).join('')}
             </svg>
@@ -2707,34 +2703,34 @@
     // 3. SECTION C: INTERACTIVE PURE-SVG BIPARTITE NETWORK
     // =========================================================================
     const NET_NODES = [
-      { id: 'gp', label: 'General Public (n=126)', side: 'left', y: 55,  r: 24, color: '#1E293B',
+      { id: 'gp', label: 'General Public (n=126)', side: 'left', y: 55,  r: 24, color: '#FFFFFF',
         desc: '一般市民係最多人講嘅一群（126 筆），講得最多係政治憲制（39）、法律治安（26）、交通（20）——政府就係靠呢啲嚟判斷整體民情係點。' },
-      { id: 'gr', label: 'Grassroots (n=38)',      side: 'left', y: 142, r: 19, color: '#D97706',
+      { id: 'gr', label: 'Grassroots (n=38)',      side: 'left', y: 142, r: 19, color: '#FFFFFF',
         desc: '草根（38 筆）講得最多係房屋（11），其次係經濟、交通、政治各 6 筆，反映公屋加租、徙置區環境同基本生活開支嘅壓力。' },
-      { id: 'mc', label: 'Middle Class/Professionals (n=49)', side: 'left', y: 228, r: 20, color: '#B45309',
+      { id: 'mc', label: 'Middle Class/Professionals (n=49)', side: 'left', y: 228, r: 20, color: '#FFFFFF',
         desc: '中產同專業人士（49 筆）最關心經濟（18）同政治憲制（12），其次係交通（7）。' },
-      { id: 'yt', label: 'Youth/Students (n=11)',  side: 'left', y: 312, r: 15, color: '#3730A3',
+      { id: 'yt', label: 'Youth/Students (n=11)',  side: 'left', y: 312, r: 15, color: '#FFFFFF',
         desc: '青年學生得 11 筆，講政治憲制（4）、教育（3）同法律治安（3）。' },
-      { id: 'el', label: 'Local Elites/Kaifong (n=5)', side: 'left', y: 382, r: 13, color: '#BE123C',
+      { id: 'el', label: 'Local Elites/Kaifong (n=5)', side: 'left', y: 382, r: 13, color: '#FFFFFF',
         desc: '地方精英同街坊會領袖得 5 筆，講法律治安（3）同政治憲制（2）。' },
 
-      { id: 'pol', label: '政治與憲制 Politics',   side: 'right', y: 28,  r: 19, color: '#1D4ED8',
+      { id: 'pol', label: '政治與憲制 Politics',   side: 'right', y: 28,  r: 19, color: '#5B7BA6',
         desc: '政治與憲制主要係一般市民（39）、中產（12）同青年（4）講得多，1977 年升到最高（45.9%）。' },
-      { id: 'eco', label: '經濟與財政 Economy',    side: 'right', y: 69,  r: 18, color: '#0F766E',
+      { id: 'eco', label: '經濟與財政 Economy',    side: 'right', y: 69,  r: 18, color: '#A67C37',
         desc: '經濟與財政係中產（18）同一般市民（16）都關心嘅議題，1978 年升到最高（26.1%）。' },
-      { id: 'hou', label: '房屋 Housing',          side: 'right', y: 110, r: 16, color: '#7E22CE',
+      { id: 'hou', label: '房屋 Housing',          side: 'right', y: 110, r: 16, color: '#6E5A7E',
         desc: '房屋係草根講得最多嘅議題（11 筆），1976 年佔 19.2%，主要係公屋編配同加租爭議。' },
-      { id: 'tra', label: '交通 Transport',        side: 'right', y: 151, r: 18, color: '#DB2777',
+      { id: 'tra', label: '交通 Transport',        side: 'right', y: 151, r: 18, color: '#9C5B6E',
         desc: '交通議題在 1980 年飆升至 50.0%，涉及地鐵通車初期票價及巴士加價潮。' },
-      { id: 'law', label: '法律與治安 Law & Order',side: 'right', y: 192, r: 18, color: '#15803D',
+      { id: 'law', label: '法律與治安 Law & Order',side: 'right', y: 192, r: 18, color: '#4E7A5A',
         desc: '法律與治安在 1975 年（28.8%）與 1978 年（21.7%）備受關注，主要由一般市民（26）反映。' },
-      { id: 'edu', label: '教育與青年 Education',  side: 'right', y: 233, r: 15, color: '#78350F',
+      { id: 'edu', label: '教育與青年 Education',  side: 'right', y: 233, r: 15, color: '#8A6D4B',
         desc: '教育主要係一般市民（7）同青年學生（3）出聲嘅地方，講九年免費教育同升學制度。' },
-      { id: 'hea', label: '醫療與環境 Health/Env', side: 'right', y: 274, r: 15, color: '#DC2626',
+      { id: 'hea', label: '醫療與環境 Health/Env', side: 'right', y: 274, r: 15, color: '#A8543F',
         desc: '公共衛生同社區環境喺 1977 年特別多，主要係清潔香港運動同屋邨衛生投訴。' },
-      { id: 'com', label: '社區環境 Community',   side: 'right', y: 315, r: 14, color: '#475569',
+      { id: 'com', label: '社區環境 Community',   side: 'right', y: 315, r: 14, color: '#64748B',
         desc: '社區環境喺 1977 年升到 16.2%，主要係一般市民（6）同草根（4）講。' },
-      { id: 'lab', label: '勞工 Labour',           side: 'right', y: 356, r: 13, color: '#65A30D',
+      { id: 'lab', label: '勞工 Labour',           side: 'right', y: 356, r: 13, color: '#6B7A3F',
         desc: '勞工議題得 5 筆，1976 年佔 5.8%，主要係中產（3）同一般市民（2）。' },
       { id: 'oth', label: '其他/未分類 Other',     side: 'right', y: 397, r: 11, color: '#94A3B8',
         desc: '其他／未分類得 1 筆（1975 年）。' }
@@ -2768,7 +2764,7 @@
         const sN = NET_NODES.find(n => n.id === e.s);
         const tN = NET_NODES.find(n => n.id === e.t);
         const isLit = !activeNetNodeId || e.s === activeNetNodeId || e.t === activeNetNodeId;
-        const strokeCol = activeNetNodeId ? (isLit ? '#C2410C' : 'rgba(148,163,184,0.15)') : 'rgba(100,116,139,0.35)';
+        const strokeCol = activeNetNodeId ? (isLit ? '#C2410C' : 'rgba(148,163,184,0.30)') : 'rgba(255,255,255,0.35)';
         const strokeW = Math.max(1.2, e.w * 0.28);
         const d = `M ${leftX} ${sN.y} C ${leftX + 120} ${sN.y}, ${rightX - 120} ${tN.y}, ${rightX} ${tN.y}`;
 
@@ -2794,7 +2790,7 @@
         html += `
           <g class="net-node" data-nid="${n.id}" style="cursor:pointer; opacity:${op}; transition:opacity 0.15s;" onclick="selectNetworkNode('${n.id}')" onmouseenter="hoverNetNode('${n.id}')" onmouseleave="hoverNetNode(null)">
             <circle cx="${cx}" cy="${n.y}" r="${n.r}" fill="${n.color}" stroke="${n.id === activeNetNodeId ? '#F97316' : '#FFFFFF'}" stroke-width="${n.id === activeNetNodeId ? 3.5 : 2}" />
-            <text x="${txtX}" y="${n.y + 4}" text-anchor="${anchor}" font-size="12" font-weight="${n.id === activeNetNodeId ? '800' : '600'}" fill="#1E293B">${n.label}</text>
+            <text x="${txtX}" y="${n.y + 4}" text-anchor="${anchor}" font-size="12" font-weight="${n.id === activeNetNodeId ? '800' : '600'}" fill="#FFFFFF">${n.label}</text>
           </g>
         `;
       });
@@ -2839,7 +2835,7 @@
         const other = NET_NODES.find(n => n.id === otherId);
         return `<div style="display:flex; justify-content:space-between;">
           <span>↔ ${other.label}</span>
-          <strong style="color:#111111; font-family:var(--font-mono);">權重 ${e.w}</strong>
+          <strong style="color:#FFFFFF; font-family:var(--font-mono);">權重 ${e.w}</strong>
         </div>`;
       }).join('');
     }
@@ -2851,9 +2847,9 @@
       document.getElementById('net-title').textContent = '撳左邊嘅階層，或者右邊嘅議題';
       document.getElementById('net-desc').innerHTML = '撳左邊任何一個階層（例如 Grassroots 草根），或者右邊任何一個議題，呢度就會列出佢同對面邊啲有連繫、連繫有幾強（即係一齊出現過幾多次），再加埋歷史背景。';
       document.getElementById('net-edges').innerHTML = `
-        <div style="display:flex; justify-content:space-between;"><span>一般市民 ↔ 政治 39 · 法律 26 · 交通 20</span><span style="color:#111111; font-family:var(--font-mono);">共 126 筆</span></div>
-        <div style="display:flex; justify-content:space-between;"><span>草根 ↔ 房屋 11 · 經濟 6 · 交通 6</span><span style="color:#111111; font-family:var(--font-mono);">共 38 筆</span></div>
-        <div style="display:flex; justify-content:space-between;"><span>青年 ↔ 政治 4 · 教育 3 · 法律 3</span><span style="color:#111111; font-family:var(--font-mono);">得 11 筆</span></div>
+        <div style="display:flex; justify-content:space-between;"><span>一般市民 ↔ 政治 39 · 法律 26 · 交通 20</span><span style="color:#FFFFFF; font-family:var(--font-mono);">共 126 筆</span></div>
+        <div style="display:flex; justify-content:space-between;"><span>草根 ↔ 房屋 11 · 經濟 6 · 交通 6</span><span style="color:#FFFFFF; font-family:var(--font-mono);">共 38 筆</span></div>
+        <div style="display:flex; justify-content:space-between;"><span>青年 ↔ 政治 4 · 教育 3 · 法律 3</span><span style="color:#FFFFFF; font-family:var(--font-mono);">得 11 筆</span></div>
       `;
     }
 
@@ -5904,6 +5900,7 @@
     let chartYearIdx = 6; // 6 = all years
     function setChartYear(v) {
       chartYearIdx = v;
+      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
       const label = document.getElementById('year-slider-label');
       const readout = document.getElementById('year-slider-readout');
       if (v >= 6) {
@@ -5926,6 +5923,77 @@
         else if (yi === chartYearIdx) { d.classList.add('dot-active'); d.classList.remove('dim'); }
         else { d.classList.add('dim'); d.classList.remove('dot-active'); }
       });
+    }
+
+    /* Top-chart timeline animation: steps the year slider 1975 -> 1980 using the
+       existing setChartYear(), so the slider thumb, label/readout and dot highlight
+       all move together. Respects prefers-reduced-motion (no auto-play; jump to
+       the full static chart). The matching year-observation card is highlighted. */
+    var A_ANIM_LABEL_PLAY = '\u25b6 \u776d\u6642\u9593\u7dda\u52d5\u756b';
+    var aAnimTimer = null;
+    var aAnimIdx = -1;
+    var aAnimReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var A_ANIM_CARD = ['yb-card-1975', 'yb-card-1976', 'yb-card-1977', null, 'yb-card-1979-80', 'yb-card-1979-80'];
+    function aAnimHighlightCard(i) {
+      var cardId = A_ANIM_CARD[i];
+      if (cardId) { var card = document.getElementById(cardId); if (card) card.classList.add('yb-active'); }
+    }
+    function aAnimClearCard() {
+      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
+    }
+    function aAnimStop() {
+      if (aAnimTimer) { clearInterval(aAnimTimer); aAnimTimer = null; }
+    }
+    function aAnimSetPlayLabel(t) {
+      var b = document.getElementById('a-anim-play');
+      if (b) b.textContent = t;
+    }
+    function aAnimSetResetEnabled(on) {
+      var b = document.getElementById('a-anim-reset');
+      if (b) b.disabled = !on;
+    }
+    function aAnimStep(i) {
+      var slider = document.getElementById('year-slider');
+      if (slider) slider.value = String(i);
+      setChartYear(i);
+      aAnimHighlightCard(i);
+    }
+    function aAnimFinish() {
+      aAnimStop();
+      aAnimIdx = -1;
+      var slider = document.getElementById('year-slider');
+      if (slider) slider.value = '6';
+      setChartYear(6);
+      aAnimClearCard();
+      aAnimSetPlayLabel(A_ANIM_LABEL_PLAY);
+      aAnimSetResetEnabled(false);
+    }
+    function aAnimToggle() {
+      var playBtn = document.getElementById('a-anim-play');
+      if (!playBtn) return;
+      /* The slider and dots live in the combined view; switch to it first. */
+      var combined = document.getElementById('a-view-combined');
+      if (combined && combined.classList.contains('hidden')) switchSectionA('combined');
+      /* reduce-motion: no auto-play — jump straight to the full static chart. */
+      if (aAnimReduced) { aAnimFinish(); return; }
+      if (aAnimTimer) {
+        aAnimStop();
+        aAnimSetPlayLabel('▶ 繼續播');
+        return;
+      }
+      if (aAnimIdx >= 5) aAnimIdx = -1;
+      aAnimSetPlayLabel('\u275a\u275a \u66ab\u505c');
+      aAnimSetResetEnabled(true);
+      aAnimIdx++;
+      aAnimStep(aAnimIdx);
+      aAnimTimer = setInterval(function () {
+        aAnimIdx++;
+        if (aAnimIdx >= 6) { aAnimFinish(); return; }
+        aAnimStep(aAnimIdx);
+      }, 1800);
+    }
+    function aAnimReset() {
+      aAnimFinish();
     }
     function highlightQuery(escapedStr) {
       const q = (document.getElementById('csv-search-input').value || '').trim();
@@ -5982,14 +6050,14 @@
         const sentClass = 'sent-' + (['Angry', 'Anxious', 'Skeptical', 'Supportive', 'Indifferent'].includes(r.sentiment) ? r.sentiment : 'Indifferent');
         let mainRow = `
           <tr class="data-row" data-rid="${r.id}" onclick="openArchiveModal('${r.id}')">
-            <td style="font-family:var(--font-mono); font-weight:700; white-space:nowrap; color:var(--accent-terracotta);" data-label="報告編號"><button type="button" class="save-star" data-rid="${r.id}" onclick="event.stopPropagation(); toggleSaveRecord('${r.id}', this)" title="收藏呢份報告">${isSaved(r.id) ? '★' : '☆'}</button>${escapeHtml(r.id)}</td>
+            <td style="font-family:var(--font-mono); font-weight:700; white-space:nowrap; color:var(--ink-primary);" data-label="報告編號"><button type="button" class="save-star" data-rid="${r.id}" onclick="event.stopPropagation(); toggleSaveRecord('${r.id}', this)" title="收藏呢份報告">${isSaved(r.id) ? '★' : '☆'}</button>${escapeHtml(r.id)}</td>
             <td style="font-family:var(--font-mono); white-space:nowrap;" data-label="日期 / 年份">${escapeHtml(r.date)}</td>
             <td style="font-weight:600; white-space:nowrap;" data-label="地區">${highlightQuery(escapeHtml(r.location))}</td>
             <td style="white-space:nowrap;" data-label="政策範疇"><span class="dot" style="background:${catColor(r.category)}"></span> ${highlightQuery(escapeHtml(r.category))}</td>
             <td style="white-space:nowrap;" data-label="受訪階層">${highlightQuery(escapeHtml(r.group))}</td>
             <td data-label="情緒"><span class="sentiment-badge ${sentClass}">${escapeHtml(r.sentiment)}</span></td>
             <td style="font-size:0.75rem; font-weight:700; color:${r.salience === 'High' ? '#B91C1C' : r.salience === 'Moderate' ? '#B45309' : '#64748B'};" data-label="顯著度">${escapeHtml(r.salience)}</td>
-            <td style="max-width:340px;" data-label="民情摘要">${highlightQuery(escapeHtml(r.summary.slice(0, 56)))}${r.summary.length > 56 ? '...' : ''}${isTimelineMentioned(r.id) ? '<span class="tl-mention">⏱ 年表有提及</span>' : ''}</td>
+            <td style="max-width:340px;" data-label="民情摘要">${highlightQuery(escapeHtml(r.summary.slice(0, 56)))}${r.summary.length > 56 ? '...' : ''}${isTimelineMentioned(r.id) ? '<span class="tl-mention">年表有提及</span>' : ''}</td>
           </tr>
         `;
 
@@ -6045,7 +6113,7 @@
         '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.group) + '</span>' +
         '<span class="sentiment-badge ' + sentClass + '">' + escapeHtml(r.sentiment) + '</span>' +
         '<span class="meta-pill" style="margin:0;">顯著度：' + escapeHtml(r.salience) + '</span>' +
-        '<span class="meta-pill" style="margin:0;">來源：' + escapeHtml(r.series || '') + '</span>' + (isTimelineMentioned(r.id) ? '<span class="meta-pill" style="margin:0; border-color:#991B1B; color:#991B1B;">⏱ 年表有提及</span>' : '');
+        '<span class="meta-pill" style="margin:0;">來源：' + escapeHtml(r.series || '') + '</span>' + (isTimelineMentioned(r.id) ? '<span class="meta-pill tl-dot" style="margin:0; border-color:#991B1B; color:#991B1B;">年表有提及</span>' : '');
       document.getElementById('archive-modal-title').textContent = r.topic || '';
       document.getElementById('archive-modal-body').innerHTML = highlightQuery(escapeHtml(r.summary || '')) + modalExtrasHtml(r);
       document.getElementById('archive-modal-pos').textContent = '第 ' + (idx + 1) + ' / ' + modalList.length + ' 筆';
@@ -6103,8 +6171,8 @@
     // =========================================================================
     const REPORT_NUM = {"T002":2,"T003":3,"T004":5,"T005":6,"T006":6,"T007":6,"T008":7,"T009":7,"T010":7,"T011":7,"T012":8,"T014":10,"T015":11,"T016":12,"T026":18,"T028":20,"T030":22,"T033":24,"T034":25,"T036":27,"T038":29,"T039":30,"T043":33,"T045":35,"T046":35,"T056":41,"T061":47,"T062":48,"T063":49,"T064":50,"T065":51,"T066":51,"T067":51,"T068":52,"T069":53,"T070":54,"T071":55,"T072":56,"T073":57,"T074":57,"T075":58,"T076":59,"T077":60,"T078":61,"T079":62,"T080":63,"T081":64,"T082":65,"T084":68,"T085":69,"T086":70,"T087":71,"T088":72,"T089":73,"T090":74,"T091":76,"T092":77,"T093":78,"T094":79,"T095":80,"T096":81,"T097":81,"T098":82,"T099":83,"T101":85,"T102":86,"T103":86,"T104":86,"T105":88,"T106":89,"T107":89,"T108":89,"T109":90,"T110":90,"T111":90,"T113":92,"T114":92,"T115":93,"T116":94,"T117":95,"T118":95,"T119":95,"T120":96,"T121":96,"T122":96,"T123":97,"T124":98,"T125":99,"T126":100,"T127":101,"T128":101,"T129":102,"T130":103,"T132":105,"T133":106,"T134":107,"T135":108,"T136":109,"T137":110,"T141":115,"T143":117,"T144":118,"T145":119,"T147":121,"T148":122,"T149":122,"T150":123,"T151":123,"T161":131,"T162":131,"T170":136,"T174":140,"T175":141,"T180":145,"T181":145,"T186":150,"T192":155,"T224":182,"T225":183,"T237":195,"T239":198,"T240":199,"T244":202,"T245":202,"T246":203,"T247":204,"T248":204,"T249":204,"T250":205,"T251":205,"T252":206,"T253":207,"T256":210,"T257":211,"T258":211,"T260":213,"T261":214,"T263":216,"T264":217,"T266":219,"T267":220,"T268":220,"T269":221,"T271":223,"T272":224,"T273":224,"T274":225,"T275":225,"T276":226,"T277":226,"T278":226,"T279":226,"T280":227,"T281":228,"T282":229,"T284":231,"T285":232,"T286":233,"T288":235,"T289":236,"T309":254,"T310":255,"T311":255,"T313":257,"T314":259,"T316":261,"T318":263,"T320":266,"T322":269,"T323":271,"T324":271,"T325":271,"T326":271,"T330":273,"T331":274,"T339":281,"T340":282,"T341":282,"T348":286,"T350":288,"T354":292,"T356":294,"T357":294,"T358":294,"T359":295,"T360":296,"T361":297,"T362":298,"T363":299,"T364":300,"T365":301,"T366":301,"T367":302,"T368":303,"T369":303,"T370":304,"T371":305,"T372":306,"T373":306,"T374":307,"T375":307,"T376":308,"T377":308,"T378":309,"T379":310,"T380":310,"T381":310,"T382":312,"T383":313,"T385":314,"T386":316,"T387":319,"T388":319,"T390":320,"T391":320,"T392":320,"T395":321,"T396":322,"T397":322,"T398":322,"T399":323,"T400":323,"T401":323,"T402":323,"T403":324,"T404":325,"T405":326,"T410":332,"T411":333};
     const RECORD_KEYWORDS = {"T002":"Governor, LegCo Address, Water Restriction, Free Education, Home Ownership","T003":"MOOD System, Public Opinion, Methodology, Panel Sampling, HAD Directives","T004":"Petitions, Social Workers, SOCO, Government Concessions, Bureaucracy","T005":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T006":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T007":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T008":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T009":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T010":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T011":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T012":"Leisure Activities, Television, Overseas Travel, Summer Youth Programme, Cantonese Pop","T014":"Economic Recession, Unemployment, Stockmarket Plunge, Floating HK Dollar, Working Class","T015":"Economic Recovery, Factory Employment, Purchasing Power, Denim Export, Cautious Optimism","T016":"Living Trends, Youth Fashion, Dining Habits, Home Ownership, Consumer Behavior","T026":"Vice Establishments, Prostitution, Massage Parlours, Pornography, Public Decency","T028":"China Relations, Political Sentiment, Cross-Border Trade, Future Status, Public Perception","T030":"Economic Outlook, Inflation Pressure, Wage Levels, Employment, Cautious Optimism","T033":"Property Market, Housing Demand, Real Estate Prices, Home Ownership, Rental Rates","T034":"Traffic Congestion, Bus Safety, MTR Construction, Bus Accidents, Overloaded Buses","T036":"Water Charges, 35% Increase, Desalting Plant, East River Supply, Water Surplus","T038":"Green Paper, Public Consultation, Civic Engagement, Policy Awareness, Government Transparency","T039":"Consumer Council, Consumer Rights, Price Control, Market Supervision, Public Awareness","T043":"Police Advisers, Law Enforcement, Police Reform, Anti-Corruption, Public Reaction","T045":"Building Preservation, Heritage Monuments, Anti Rabies Campaign, Public Health, Heritage","T046":"Building Preservation, Heritage Monuments, Anti Rabies Campaign, Public Health, Heritage","T056":"Crime Rate, Street Robbery, Triad Activities, Neighborhood Safety, Police Presence","T061":"Budget Speeches, Unofficial Members, Legislative Council, Public Apathy, Economic Policies","T062":"Executive Council, Legislative Council, Civic Knowledge, Budget Reaction, Government Structure","T063":"Middle Class, Social Mobility, Home Ownership, Civil Service Image, Tax Burden","T064":"Budget Speech, Tax Freeze, Fiscal Policy, Public Reaction, Economic Stability","T065":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T066":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T067":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T068":"Government Image, Elsie Elliott, Public Administration, Political Criticism, Community Aspirations","T069":"Property Rates, Rateable Value, Tax Concessions, Legislative Council, Public Objections","T070":"Economic Growth, Consumer Spending, Retail Sales, Living Standards, Festive Expenditure","T071":"Rateable Value, Property Rates, Media Criticism, Tax Assessment, Ratepayers Reaction","T072":"Annual Paid Leave, Employment Ordinance, Labor Costs, Employer Anxiety, Factory Production","T073":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T074":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T075":"MP Visits, British Parliament, Colonial Governance, Civic Knowledge, Public Perception","T076":"School Leavers, White Collar Jobs, Employment Market, Blue Collar Shortage, Civil Service","T077":"Mid Autumn Festival, Economic Growth, Consumer Confidence, Festive Spending, Public Joy","T078":"Staggered Working Hours, Flexi Time, Commuter Congestion, Public Transport, Traffic Relief","T079":"Sau Mau Ping Disaster, Landslide, Housing Department, Media Coverage, Public Alarm","T080":"Rent Policy, Public Housing, Rental Increase, Estate Management, Housing Authority","T081":"Housing Protests, High Rent Policy, Estate Tenants, Housing Authority, Public Agitation","T082":"Electricity Supply, Voltage Change, Domestic Appliances, Power Utility, Public Convenience","T084":"Miss Universe Pageant, Mass Entertainment, Television Broadcasting, Tourism","T085":"Inland Revenue Ordinance, Tax Reform, Dividend Tax, Business Taxation","T086":"Hong Kong Standard Time, Daylight Saving, Working Hours, Public Convenience","T087":"Television Programmes, Broadcast Entertainment, Drama Series, Mass Media","T088":"Television Affairs, Commercial Stations, Civic Awareness, Current Affairs","T089":"Fixed Penalty System, Traffic Offences, Driver Licensing, Traffic Fines","T090":"Group A Estate Shops, Shop Rents, Commercial Tenants, Housing Authority","T091":"Identity Cards, Registration Policy, Security Habits, Public Protection","T092":"MTR Construction, Traffic Disruption, Excavation Noise, Public Mitigation","T093":"Queen Birthday, Public Holiday, Imperial Festivities, Community Events","T094":"Group B Estates, Shop Rent Hike, Commercial Tenancies, Housing Policy","T095":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T096":"Hong Kong Arts Festival, High Society, Cultural Events, Ticket Prices","T097":"Hong Kong Arts Festival, High Society, Cultural Events, Ticket Prices","T098":"Financial Budget, Tax Policy, Allowance Adjustments, Fiscal Management, Public Reaction","T099":"Economic Review, Social Welfare, Educational Provision, Fiscal Policy, Public Finance","T101":"Chinese New Year, Stock Market Boom, Factory Orders, Festive Economy","T102":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T103":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T104":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T105":"Vice Establishments, Prostitution, Criminal Syndicates, Adolescent Protection, Law Enforcement","T106":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T107":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T108":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T109":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T110":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T111":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T113":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T114":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T115":"Telephone Company, Inquiry Commission, Utility Fares, Telephone Rates, Kwun Tong Ammunition","T116":"Judicial System, Court Procedures, Traditional Reluctance, Legal Misfortunes, Litigation","T117":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T118":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T119":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T120":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T121":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T122":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T123":"Defense Costs, Garrison Contribution, UK HK Relations, Military Expenses, Public Finance","T124":"Death Penalty, Legislative Council, Unofficial Members, Capital Punishment, Crime Deterrence","T125":"Governor Address, Legislative Council, Augustine Chung Case, Adulterated Liquor, Media Coverage","T126":"Illegal Immigration, China Immigrants, Public Sentiment, Urban Overcrowding, Quality of Life","T127":"National Day, October First, PRC Celebrations, Cross-Border Sentiment, Civic Neutrality","T128":"National Day, October First, PRC Celebrations, Cross-Border Sentiment, Civic Neutrality","T129":"Public Identity, Civic Belonging, Permanent Settlement, Social Stability, Community Sentiment","T130":"Government Image, Administrative Reform, Public Complaints, Civil Freedom, Open Governance","T132":"District Boards, New Territories, Direct Elections, District Administration, Public Consultation","T133":"Group Weddings, Marriage Registries, Civil Registration, Public Support, Ceremonial Reform","T134":"Group Weddings, Marriage Registry, Public Sentiment, Scheduling, Festive Atmosphere","T135":"Public Utilities, KMB, Bus Services, Telephone Company, Mass Transit Railway","T136":"Kwun Tong, Public Utilities, Bus Fares, Service Quality, Government Oversight","T137":"Consumer Protection, Consumer Council, Public Utilities, Complaint Channels, Service Quality","T141":"ICAC, Corruption Prevention, Public Impressions, Law Enforcement, Community Relations","T143":"Fisheries, Tourism, Hotel Industry, Retail Trade, Commercial Rentals","T144":"Yee Wuis, Money Lenders, Finance Companies, Loan Sharks, Informal Credit","T145":"Cost of Living, Inflation, Food Prices, Housing Rent, Grassroots Livelihood","T147":"Illegal Parking, Goods Vehicles, Traffic Blackspots, Police Enforcement, Public Safety","T148":"Vietnamese Refugees, Geneva Conference, North Point, Bus Terminus Accident, Transport Supervision","T149":"Vietnamese Refugees, Geneva Conference, North Point, Bus Terminus Accident, Transport Supervision","T150":"Vietnamese Refugees, Chinese Immigrants, Kai Tak Riot, Governor Mission, Public Security","T151":"Vietnamese Refugees, Chinese Immigrants, Kai Tak Riot, Governor Mission, Public Security","T161":"Public Light Bus, Maxicabs, MTR Corridor, Goods Vehicles, Transport Policy","T162":"Public Light Bus, Maxicabs, MTR Corridor, Goods Vehicles, Transport Policy","T170":"Anti Smoking Campaign, School Syllabus, Public Education, Health Hazards, Youth Education","T174":"Cinema Trade, Taxi Industry, Business Profitability, Operating Costs, Entertainment","T175":"Economic Outlook, Cautious Optimism, Trade Performance, Inflation, Employment","T180":"Bus Safety, Driver Shortage, Overloading, Public Light Bus, Road Congestion","T181":"Bus Safety, Driver Shortage, Overloading, Public Light Bus, Road Congestion","T186":"Green Papers, Education Policy, Consultation Feedback, District Liaison, Public Outreach","T192":"Police Reform, UK Advisers, Public Confidence, ICAC Complaints, Police Morale","T224":"Annual Paid Leave, Employment Ordinance, Labor Costs, Employer Anxiety, Factory Production","T225":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T237":"Firecrackers Ban, Fireworks Displays, Festive Atmosphere, Public Safety, Government Control","T239":"Economic Forecast, Inflation, Fuel Prices, Public Transport, Business Profitability","T240":"MOOD File, Rating and Valuation Department, Public Records Office, Archival Cover","T244":"Taxi Fares, Transport White Paper, MTR Fares, Commuter Discontent","T245":"Taxi Fares, Transport White Paper, MTR Fares, Commuter Discontent","T246":"MTR Fares, Transport Charges, Commuter Expectations, Transit System","T247":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T248":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T249":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T250":"Huey Fong Incident, US-China Relations, Diplomatic Normalization, Refugees","T251":"Huey Fong Incident, US-China Relations, Diplomatic Normalization, Refugees","T252":"Cigarette Smoking, Public Health, Social Habits, Anti-Smoking","T253":"Vice Establishments, Prostitution, Pornography, Public Morality","T256":"Economic Outlook, Cautious Optimism, Trade Performance, Inflation","T257":"Coin Shortage, Typhoon Agnes, Disaster Relief, Retail Currency","T258":"Coin Shortage, Typhoon Agnes, Disaster Relief, Retail Currency","T260":"Traffic Congestion, Bus Accidents, Road Digging, Transit Disruption","T261":"Narcotics Control, Heroin Addiction, Drug Trafficking, Rehabilitation","T263":"Golden Jubilee School, Student Protest, Education Controversy, Teacher Strike, School Closure","T264":"Green Papers, Public Consultation, Government Policy, Civic Awareness, Official Jargon","T266":"City District Officer, Labour Legislation, Trade Unions, Consultative Committees","T267":"Chinese New Year, Worker Holidays, Annual Budget, Public Reaction","T268":"Chinese New Year, Worker Holidays, Annual Budget, Public Reaction","T269":"Judiciary, Judicial Delays, Court Administration, Public Confidence","T271":"Economic Stability, Business Expectations, Employment, Industrial Growth","T272":"Historic Preservation, Old Buildings, Anti-Rabies Campaign, Public Health","T273":"Historic Preservation, Old Buildings, Anti-Rabies Campaign, Public Health","T274":"Governor Address, LegCo Session, Policy Priorities, Social Expenditure","T275":"Governor Address, LegCo Session, Policy Priorities, Social Expenditure","T276":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T277":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T278":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T279":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T280":"Unlicensed Restaurants, Hygiene Standards, Food Safety, Enforcement","T281":"Leisure Habits, Television Viewing, Mahjong, Yum Char","T282":"MTR Construction, Traffic Diversions, Commercial Disruption, Noise Impact","T284":"Economic Recovery, Advertising Growth, Business Volume, Consumer Confidence","T285":"Child Care Centres, Working Mothers, Subsidized Care, Preschool Welfare","T286":"Silver Jubilee, Royal Celebrations, Community Events, Public Fun","T288":"MOOD Panel, Data Analysis, CDO Coordination, Sounding Methodology","T289":"Unofficials Budget Speeches, LegCo Debates, Public Indifference, Taxation","T309":"Electricity Supply, Voltage Change, Domestic Appliances, Power Utility, Public Convenience","T310":"Taxation System, Earnings Tax, Salaries Tax, Tax Fairness, Revenue Policy","T311":"Taxation System, Earnings Tax, Salaries Tax, Tax Fairness, Revenue Policy","T313":"Inland Revenue Ordinance, Tax Reform, Dividend Tax, Business Taxation","T314":"Hong Kong Standard Time, Daylight Saving, Working Hours, Public Convenience","T316":"Television Affairs, Commercial Stations, Civic Awareness, Current Affairs","T318":"Group A Estate Shops, Shop Rents, Commercial Tenants, Housing Authority","T320":"MTR Construction, Traffic Disruption, Excavation Noise, Public Mitigation","T322":"Group B Estates, Shop Rent Hike, Commercial Tenancies, Housing Policy","T323":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T324":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T325":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T326":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T330":"1976 Budget, Tax Relief, Economic Recovery, Financial Surplus","T331":"Estate Shop Rents, Housing Authority, Joint Communication, Tenant Agitation","T339":"Year-End Economy, Commercial Turnover, Retail Performance, Household Income","T340":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T341":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T348":"Defense Costs, Garrison Contribution, UK HK Relations, Military Expenses, Public Finance","T350":"Governor Speech, LegCo Session, Policy Priorities, Welfare Commitments","T354":"Public Identity, Civic Belonging, Permanent Settlement, Social Stability, Community Sentiment","T356":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T357":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T358":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T359":"Triads; Black Society; Fight Violent Crime Committee; Blundell Report; Fight Triad Publicity Campaign","T360":"crime reporting; victims of crime; police procedures; fear of reprisal; simplified procedures","T361":"Kaifong Welfare Associations; Mutual Aid Committees; E.E.C. textile quota; Secretariat for Chinese Affairs; area committees","T362":"Chinese martial arts; triads; Chinese University report; Fight Violent Crime Committee; registration of instructors","T363":"gambling policy; mahjong; Royal Hong Kong Jockey Club; number lotteries; off-course betting","T364":"clerks' pay dispute; industrial action; civil service; Queen's College; salary adjustments","T365":"Clean Hong Kong Campaign; Lap Sap Chung; hawkers; Hong Kong Electric; China Gas","T366":"Clean Hong Kong Campaign; Lap Sap Chung; hawkers; Hong Kong Electric; China Gas","T367":"Objectionable Publications Ordinance; pornography; bad books; social morals; newspaper hawkers","T368":"Commodities Exchange; speculation; Control of the Pill; oral contraceptives; Family Planning Association","T369":"Commodities Exchange; speculation; Control of the Pill; oral contraceptives; Family Planning Association","T370":"school leavers; Form V graduates; white-collar jobs; unemployment; technical institutes","T371":"unlicensed food caterers; Urban Council; food hygiene; temporary licences; lunch boxes","T372":"police shooting; firearms; violent criminals; Labour Relations Bill; cooling-off period","T373":"police shooting; firearms; violent criminals; Labour Relations Bill; cooling-off period","T374":"Hong Kong Future, Regional Stability, Economic Resilience, Business Outlook","T375":"Hong Kong Future, Regional Stability, Economic Resilience, Business Outlook","T376":"China Light and Power; tariff increase; Vietnamese refugees; resettlement; public utilities","T377":"China Light and Power; tariff increase; Vietnamese refugees; resettlement; public utilities","T378":"Royal Visit, Public Reception, Community Goodwill, Civic Identity","T379":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T380":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T381":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T382":"Rates Increase, Group A Estates, Housing Rent, Living Costs","T383":"Public Housing Rent, Group A Estates, Group B Estates, Rate Burdens","T385":"Private Secondary Schools, Tuition Fees, Education Costs, Low-Income Families","T386":"Lai Chi Kok Hospital, Leprosy Patients, Mei Foo San Tsuen, Health Anxiety","T387":"Greyhound Betting, Off-Course Betting, Public Morality, Gambling Expansion","T388":"Greyhound Betting, Off-Course Betting, Public Morality, Gambling Expansion","T390":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T391":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T392":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T395":"MOOD Methodology, Town Talk Successor, Public Opinion Sounding, Intelligence Gathering","T396":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T397":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T398":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T399":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T400":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T401":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T402":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T403":"District Administration, Green Paper, Direct Elections, Advisory Boards, Public Opinion","T404":"Public Utilities, Mass Transit Railway, Bus Services, Service Quality, Complaint Mechanisms","T405":"Kwun Tong, Public Utilities, KMB, Electricity Charges, Consumer Protection","T410":"Cost of Living, Inflation, Food Prices, House Rent, Low Income","T411":"Parking Facilities, Multi-Storey Carparks, On-Street Parking, Lorry Parking, Parking Meters"};
-    const CAT_COLOR = {"政治與憲制":"#1D4ED8","經濟與財政":"#D97706","法律與治安":"#15803D","房屋":"#7E22CE","公共衛生與醫療":"#DC2626","教育與青年":"#78350F","交通":"#DB2777","社區環境":"#475569","勞工":"#65A30D","其他/未分類":"#94A3B8"};
-    const WC_CAT = {"Budget":"#D97706","Bus":"#DB2777","Business":"#D97706","Corruption":"#15803D","Crime":"#15803D","Criminal":"#15803D","Duty":"#D97706","Economic":"#D97706","Economy":"#D97706","Education":"#78350F","Estate":"#7E22CE","ExCo":"#1D4ED8","Finance":"#D97706","Governor":"#1D4ED8","Housing":"#7E22CE","ICAC":"#15803D","Illegal":"#15803D","Inflation":"#D97706","Law":"#15803D","Legal":"#15803D","Police":"#15803D","Political":"#1D4ED8","Price":"#D97706","Rate":"#D97706","Safety":"#15803D","School":"#78350F","Security":"#15803D","Tax":"#D97706","Taxation":"#D97706","Transport":"#DB2777"};
+    const CAT_COLOR = {"政治與憲制":"#3D5A80","經濟與財政":"#A67C37","法律與治安":"#4E7A5A","房屋":"#6E5A7E","公共衛生與醫療":"#A8543F","教育與青年":"#8A6D4B","交通":"#9C5B6E","社區環境":"#475569","勞工":"#6B7A3F","其他/未分類":"#94A3B8"};
+    const WC_CAT = {"Budget":"#A67C37","Bus":"#9C5B6E","Business":"#A67C37","Corruption":"#4E7A5A","Crime":"#4E7A5A","Criminal":"#4E7A5A","Duty":"#A67C37","Economic":"#A67C37","Economy":"#A67C37","Education":"#8A6D4B","Estate":"#6E5A7E","ExCo":"#3D5A80","Finance":"#A67C37","Governor":"#3D5A80","Housing":"#6E5A7E","ICAC":"#4E7A5A","Illegal":"#4E7A5A","Inflation":"#A67C37","Law":"#4E7A5A","Legal":"#4E7A5A","Police":"#4E7A5A","Political":"#3D5A80","Price":"#A67C37","Rate":"#A67C37","Safety":"#4E7A5A","School":"#8A6D4B","Security":"#4E7A5A","Tax":"#A67C37","Taxation":"#A67C37","Transport":"#9C5B6E"};
     function catColor(name) { return CAT_COLOR[name] || '#64748B'; }
     function recordCitation(r) {
       var num = REPORT_NUM[r.id];
@@ -6597,216 +6665,6 @@
       applyCsvFilters();
     });
 
-    /* v37: Section A line-chart animation — 1975-1980 category shares (SVG, flat, no fill).
-       Data: final CSV, v2.2, 216 dated rows. Percentages of each year's dated rows.
-       Steps through 1975-1980, drawing one year per step (~2s). Respects
-       prefers-reduced-motion: shows the full static chart, no auto-animation. */
-    var YB_CHART = {
-      years: [1975, 1976, 1977, 1978, 1979, 1980],
-      cats: [
-        { name: '政治與憲制', color: '#1D4ED8', vals: [28.8, 17.3, 45.9, 13.0, 42.9, 10.0] },
-        { name: '經濟與財政', color: '#D97706', vals: [17.8, 17.3, 8.1, 26.1, 23.8, 10.0] },
-        { name: '法律與治安', color: '#15803D', vals: [28.8, 13.5, 2.7, 21.7, 0.0, 20.0] },
-        { name: '交通', color: '#DB2777', vals: [9.6, 9.6, 5.4, 21.7, 28.6, 50.0] },
-        { name: '房屋', color: '#7E22CE', vals: [4.1, 19.2, 2.7, 4.3, 0.0, 0.0] }
-      ],
-      card: ['yb-card-1975', 'yb-card-1976', 'yb-card-1977', null, 'yb-card-1979-80', 'yb-card-1979-80']
-    };
-    var YB_GEO = { left: 44, right: 704, top: 16, bottom: 304, ymax: 50 };
-    function ybX(i) { return YB_GEO.left + i * (YB_GEO.right - YB_GEO.left) / 5; }
-    function ybY(v) { return YB_GEO.bottom - (v / YB_GEO.ymax) * (YB_GEO.bottom - YB_GEO.top); }
-    var ybSegs = [];   /* ybSegs[cat][seg] -> line element (seg j links year j to j+1) */
-    var ybDots = [];   /* ybDots[cat][year] -> circle element */
-    var ybRings = [];  /* ybRings[year] -> g element (orange rings round that year's dots) */
-    var ybXlabs = [];  /* x-axis year labels */
-    function ybChartBuild() {
-      var svg = document.getElementById('yb-chart');
-      if (!svg) return;
-      var NS = 'http://www.w3.org/2000/svg';
-      function el(tag, attrs) {
-        var e = document.createElementNS(NS, tag);
-        for (var k in attrs) e.setAttribute(k, attrs[k]);
-        return e;
-      }
-      var g, t;
-      /* gridlines + y labels (0-50%) */
-      for (g = 0; g <= 50; g += 10) {
-        var gy = ybY(g);
-        svg.appendChild(el('line', { x1: YB_GEO.left, y1: gy, x2: YB_GEO.right, y2: gy, 'class': 'yb-grid' }));
-        t = el('text', { x: YB_GEO.left - 8, y: gy + 4, 'text-anchor': 'end', 'class': 'yb-ylab' });
-        t.textContent = g + '%';
-        svg.appendChild(t);
-      }
-      /* axes */
-      svg.appendChild(el('line', { x1: YB_GEO.left, y1: YB_GEO.top, x2: YB_GEO.left, y2: YB_GEO.bottom, 'class': 'yb-axis' }));
-      svg.appendChild(el('line', { x1: YB_GEO.left, y1: YB_GEO.bottom, x2: YB_GEO.right, y2: YB_GEO.bottom, 'class': 'yb-axis' }));
-      /* x labels */
-      YB_CHART.years.forEach(function (yr, i) {
-        t = el('text', { x: ybX(i), y: YB_GEO.bottom + 22, 'text-anchor': 'middle', 'class': 'yb-xlab' });
-        t.textContent = yr;
-        svg.appendChild(t);
-        ybXlabs.push(t);
-      });
-      /* segments + dots (hidden until their year is reached) */
-      YB_CHART.cats.forEach(function (c, ci) {
-        var segs = [];
-        for (var j = 0; j < 5; j++) {
-          var x1 = ybX(j), y1 = ybY(c.vals[j]), x2 = ybX(j + 1), y2 = ybY(c.vals[j + 1]);
-          var len = Math.hypot(x2 - x1, y2 - y1);
-          var ln = el('line', { x1: x1.toFixed(1), y1: y1.toFixed(1), x2: x2.toFixed(1), y2: y2.toFixed(1), 'class': 'yb-seg', stroke: c.color });
-          ln.style.strokeDasharray = len.toFixed(1);
-          ln.style.strokeDashoffset = len.toFixed(1);
-          svg.appendChild(ln);
-          segs.push(ln);
-        }
-        ybSegs.push(segs);
-        var dots = [];
-        c.vals.forEach(function (v, i) {
-          var d = el('circle', { cx: ybX(i).toFixed(1), cy: ybY(v).toFixed(1), r: 3.5, 'class': 'yb-dot', fill: c.color });
-          d.style.opacity = '0';
-          svg.appendChild(d);
-          dots.push(d);
-        });
-        ybDots.push(dots);
-      });
-      /* rings: one group per year, on top, hidden until that year is current */
-      YB_CHART.years.forEach(function (yr, i) {
-        var gEl = el('g', { 'class': 'yb-ring-g' });
-        gEl.style.display = 'none';
-        YB_CHART.cats.forEach(function (c) {
-          gEl.appendChild(el('circle', { cx: ybX(i).toFixed(1), cy: ybY(c.vals[i]).toFixed(1), r: 7, 'class': 'yb-ring' }));
-        });
-        svg.appendChild(gEl);
-        ybRings.push(gEl);
-      });
-    }
-    function ybNoTransition(elm, fn) {
-      var prev = elm.style.transition;
-      elm.style.transition = 'none';
-      fn();
-      void elm.getBoundingClientRect();
-      elm.style.transition = prev;
-    }
-    function ybChartHighlightYear(i) {
-      ybRings.forEach(function (gEl, gi) { gEl.style.display = (gi === i) ? '' : 'none'; });
-      ybXlabs.forEach(function (t, ti) { if (ti === i) t.classList.add('yb-xlab-now'); else t.classList.remove('yb-xlab-now'); });
-      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
-      var cardId = YB_CHART.card[i];
-      if (cardId) { var card = document.getElementById(cardId); if (card) card.classList.add('yb-active'); }
-    }
-    function ybChartClearHighlight() {
-      ybRings.forEach(function (gEl) { gEl.style.display = 'none'; });
-      ybXlabs.forEach(function (t) { t.classList.remove('yb-xlab-now'); });
-      document.querySelectorAll('.insight-box.yb-active').forEach(function (el) { el.classList.remove('yb-active'); });
-    }
-    function ybTopText(i) {
-      var max = -1;
-      YB_CHART.cats.forEach(function (c) { if (c.vals[i] > max) max = c.vals[i]; });
-      var tops = YB_CHART.cats.filter(function (c) { return c.vals[i] === max; });
-      var names = tops.map(function (c) { return '「' + c.name + '」' + max.toFixed(1) + '%'; });
-      if (tops.length > 1) return '最多係' + names.join('，同') + '打和';
-      return '最多係' + names[0];
-    }
-    function ybAnimSetStatus(html) {
-      var s = document.getElementById('yb-anim-status');
-      if (s) s.innerHTML = html;
-    }
-    function ybAnimSetStatusHint() {
-      ybAnimSetStatus('');
-    }
-    function ybAnimShowStep(i) {
-      YB_CHART.cats.forEach(function (c, ci) {
-        if (ybDots[ci] && ybDots[ci][i]) ybDots[ci][i].style.opacity = '1';
-        if (i > 0 && ybSegs[ci] && ybSegs[ci][i - 1]) ybSegs[ci][i - 1].style.strokeDashoffset = '0';
-      });
-      ybChartHighlightYear(i);
-      ybAnimSetStatus('<span class="yb-anim-year">' + YB_CHART.years[i] + ' 年</span>：' + ybTopText(i));
-    }
-    function ybChartShowAll() {
-      YB_CHART.cats.forEach(function (c, ci) {
-        (ybSegs[ci] || []).forEach(function (ln) { ybNoTransition(ln, function () { ln.style.strokeDashoffset = '0'; }); });
-        (ybDots[ci] || []).forEach(function (d) { ybNoTransition(d, function () { d.style.opacity = '1'; }); });
-      });
-      ybChartClearHighlight();
-    }
-    function ybChartReset() {
-      YB_CHART.cats.forEach(function (c, ci) {
-        (ybSegs[ci] || []).forEach(function (ln) {
-          var len = ln.style.strokeDasharray;
-          ybNoTransition(ln, function () { ln.style.strokeDashoffset = len; });
-        });
-        (ybDots[ci] || []).forEach(function (d) { ybNoTransition(d, function () { d.style.opacity = '0'; }); });
-      });
-      ybChartClearHighlight();
-    }
-    var ybAnimTimer = null;
-    var ybAnimIdx = -1;
-    var ybAnimStaticShown = false;
-    var ybAnimReduced = false;
-    function ybAnimStop() {
-      if (ybAnimTimer) { clearInterval(ybAnimTimer); ybAnimTimer = null; }
-    }
-    function ybAnimToggle() {
-      var playBtn = document.getElementById('yb-anim-play');
-      var resetBtn = document.getElementById('yb-anim-reset');
-      if (!playBtn) return;
-      /* reduce-motion: no auto-animation — toggle the full static chart instead. */
-      if (ybAnimReduced) {
-        if (ybAnimStaticShown) {
-          ybChartReset();
-          ybAnimSetStatusHint();
-          playBtn.textContent = '▶ 睇時間線動畫';
-          ybAnimStaticShown = false;
-        } else {
-          ybChartShowAll();
-          ybAnimSetStatus('完整折線圖：1975–1980 年五類議題佔比。');
-          playBtn.textContent = '收起完整折線圖';
-          ybAnimStaticShown = true;
-        }
-        return;
-      }
-      if (ybAnimTimer) {
-        ybAnimStop();
-        playBtn.textContent = '▶ 繼續播';
-        return;
-      }
-      if (ybAnimIdx >= YB_CHART.years.length - 1) { ybChartReset(); ybAnimIdx = -1; }
-      playBtn.textContent = '❚❚ 暫停';
-      if (resetBtn) resetBtn.disabled = false;
-      ybAnimIdx++;
-      ybAnimShowStep(ybAnimIdx);
-      ybAnimTimer = setInterval(function () {
-        ybAnimIdx++;
-        if (ybAnimIdx >= YB_CHART.years.length) {
-          ybAnimStop();
-          playBtn.textContent = '▶ 睇時間線動畫';
-          ybAnimIdx = YB_CHART.years.length - 1;
-          return;
-        }
-        ybAnimShowStep(ybAnimIdx);
-      }, 2000);
-    }
-    function ybAnimReset() {
-      var playBtn = document.getElementById('yb-anim-play');
-      var resetBtn = document.getElementById('yb-anim-reset');
-      ybAnimStop();
-      ybAnimIdx = -1;
-      ybAnimStaticShown = false;
-      ybChartReset();
-      ybAnimSetStatusHint();
-      if (playBtn) playBtn.textContent = '▶ 睇時間線動畫';
-      if (resetBtn) resetBtn.disabled = true;
-    }
-    ybChartBuild();
-    /* reduce-motion: show the complete static chart on load, no auto-animation. */
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      ybAnimReduced = true;
-      ybChartShowAll();
-      ybAnimSetStatus('完整折線圖：1975–1980 年五類議題佔比。');
-      var ybPlayBtn = document.getElementById('yb-anim-play');
-      if (ybPlayBtn) ybPlayBtn.textContent = '收起完整折線圖';
-      ybAnimStaticShown = true;
-    }
   </script>
 
     <script>
@@ -7096,7 +6954,7 @@
         <span id="archive-modal-pos" style="font-size:0.8rem; color:var(--ink-muted);"></span>
         <button class="btn btn-outline" onclick="stepArchiveModal(1)">下一份 →</button>
         <button class="btn btn-outline" id="archive-copy-link" onclick="copyRecordLink()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">複製連結</button>
-        <button class="btn btn-outline" onclick="openFocusForCurrentRecord()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">分類詳情</button>
+        <button class="btn btn-outline" onclick="openFocusForCurrentRecord()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">呢個分類嘅詳情</button>
       </div>
     </div>
   </div>
