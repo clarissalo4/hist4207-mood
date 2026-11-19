@@ -5533,7 +5533,8 @@
   </script>
 
     <script>
-    /* V4: 3D scroll-reveal for sections (perspective unfold, not flat sliding).
+    /* V25: stable scroll-reveal (v24 + scroll/load trigger; content, data, captions unchanged).
+       V4: 3D scroll-reveal for sections (perspective unfold, not flat sliding).
        Classes are added by JS only, so content stays visible when JS is off.
        Respects prefers-reduced-motion. */
     (function () {
@@ -5551,18 +5552,25 @@
           el.style.transitionDelay = (i * 0.09) + 's';
         });
       });
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-visible');
-            io.unobserve(e.target);
-            // clear the stagger delay once the entrance has played, so hover stays snappy
-            var d = parseFloat(e.target.style.transitionDelay || '0') * 1000;
-            setTimeout(function () { e.target.style.transitionDelay = ''; }, d + 1100);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('.reveal-3d, .reveal-soft').forEach(function (el) { io.observe(el); });
+      // v25: stable reveal - the observer stays as a backup, but the primary
+      // trigger is now a scroll/load check (same test revealInView already used).
+      // This removes the timing case where a section could sit in view without
+      // the observer callback firing before the user looks at it.
+      var io = null;
+      if ('IntersectionObserver' in window) {
+        io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+              // clear the stagger delay once the entrance has played, so hover stays snappy
+              var d = parseFloat(e.target.style.transitionDelay || '0') * 1000;
+              setTimeout(function () { e.target.style.transitionDelay = ''; }, d + 1100);
+            }
+          });
+        }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
+        document.querySelectorAll('.reveal-3d, .reveal-soft').forEach(function (el) { io.observe(el); });
+      }
       // v19 fail-safe: if the observer ever misses an element, reveal anything
       // already in the viewport on scroll and shortly after load - no section
       // should ever stay invisible.
@@ -5582,6 +5590,12 @@
           requestAnimationFrame(function () { revealTicking = false; revealInView(); });
         }
       }, { passive: true });
+      // v25: reveal immediately on script run (script is at end of body, so the
+      // hero + first section are already in the DOM), again on load/resize,
+      // and keep the 1.2s fail-safe. Sections no longer wait for the observer.
+      revealInView();
+      window.addEventListener('load', revealInView);
+      window.addEventListener('resize', revealInView);
       setTimeout(revealInView, 1200);
       // v23: flat exit - a revealed section gently fades as it scrolls out
       // the top (opacity only, no rotation), and comes back if you scroll up.
