@@ -180,8 +180,12 @@
        3. HERO / OVERVIEW SECTION
        ========================================================================== */
     .hero-header {
-      background-image: radial-gradient(#CBD5E1 0.9px, transparent 0.9px);
-      background-size: 20px 20px;
+      /* Fix 3: the dotted tile below was the file's only repeating background
+         pattern (a 20px dot grid). It is dead on the hero — the V4 layer sets
+         background-image: none and the Santal layer paints the 1957 map over
+         it — but it is removed outright so the file contains no tiling
+         background pattern at all. Hero unchanged: it still uses the 1957
+         map background (see the Santal hero rule). */
       border-bottom: 1px solid var(--border-paper);
       padding: 2.75rem 0 2.5rem;
     }
@@ -1657,6 +1661,26 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
   background: #FFFFFF;
   color: #111111;
 }
+/* Fix 3 (Lo): white sections must read as one continuous plain-white band.
+   The sections sit inside <main class="container"> (1240px), so on wide
+   screens the near-black body (#0E0E0E) showed as gutters left and right of
+   each white section — the white read as an inset slab, not a plain white
+   background. Break the three white sections out to full viewport width
+   (the same calc(50% - 50vw) breakout #section-conclusion already uses),
+   with background-image: none so no pattern can tile. Content width is
+   unchanged: #section-b / #section-d get the matching inner padding, and
+   #section-methods keeps its inner .container, so nothing moves. Dark
+   sections and the hero (1957 map) are untouched. */
+#section-b, #section-d, #section-methods {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #FFFFFF;
+  background-image: none;
+}
+#section-b, #section-d {
+  padding-left: max(1.25rem, calc(50vw - 620px));
+  padding-right: max(1.25rem, calc(50vw - 620px));
+}
 #section-d .section-title, #section-methods .section-title { color: #111111; }
 #section-d .sec-ghost, #section-methods .sec-ghost { color: #E5E7EB; }
 #section-d .folder-body, #section-d .csv-layer-shell, #section-d .feat-card, #section-d .glossary-box, #section-d .theme-entry, #section-d .folder-card, #section-methods .folder-card { background: #FFFFFF; }
@@ -1771,6 +1795,18 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 .archive-sort-btn:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
 .archive-sort-btn .sort-ind { color: #C2410C; font-size: 0.7rem; }
 .archive-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.5rem; }
+/* v49 fix (Lo): responsive archive — TABLE on desktop, CARDS on mobile.
+   Both views are rendered from the same records; CSS alone switches which
+   one shows, at the site's 720px breakpoint. Desktop hides the card grid;
+   mobile hides the table wrap (so the old mobile table-as-blocks rules
+   below no longer render) and shows the cards in a single column.
+   No manual toggle: the switch is purely by screen width. */
+#csv-card-grid { display: none; }
+@media (max-width: 720px) {
+  #section-d .archive-table-wrap { display: none; }
+  #csv-card-grid { display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
+  .archive-card { padding: 1.4rem; }
+}
 .archive-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 2px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.9rem; cursor: pointer; transition: border-color 0.18s ease, box-shadow 0.18s ease; }
 .archive-card:hover { border-color: #111111; box-shadow: 0 10px 30px rgba(17, 17, 17, 0.07); }
 .archive-card:focus-visible { outline: 2px solid #C2410C; outline-offset: 3px; }
@@ -1873,6 +1909,21 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 @media (max-width: 720px) {
   #section-b .embed-frame-wrap { padding: 10px; height: 400px; }
   #section-b .flourish-fallback { inset: 10px !important; }
+}
+/* Single-chart enlarge (Lo): the stacked chart (30969585) is a Flourish
+   faceted chart — 3 fixed columns, 5 panels in 2 rows (top row: General
+   Public / Grassroots / Middle Class; bottom row: Youth/Students / Local
+   Elites). When the grid goes single-column the iframe gets ~2x wider, each
+   facet panel grows taller with it, and the 2-row grid no longer fits the
+   512px frame — the bottom row was clipped by .embed-card's overflow:hidden,
+   so only the top 3 panels showed. The enlarged frame is therefore 900px
+   tall on desktop, giving both facet rows room; the chart reflows to fill
+   it when its iframe resizes. Mobile keeps 400px: facets are narrow there,
+   so both rows already fit. The Sankey (30956322) is a single unfaceted
+   diagram that scales to its container, so the taller frame only gives it
+   more room — same rule, no chart-specific code. */
+@media (min-width: 721px) {
+  #section-b .flourish-grid.single-col .embed-frame-wrap { height: 900px; }
 }
 </style>
 <style>
@@ -2724,7 +2775,27 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
               <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('topic')" title="撳一下排序">民情摘要<span class="sort-ind" data-k="topic"></span></button>
             </div>
 
-            <!-- Archive record cards (v49: spacious grid, click a card for the full record) -->
+            <!-- Archive records (responsive, Lo): TABLE on desktop, CARDS on mobile.
+                 Both views are rendered from the same records by renderCsvTable();
+                 CSS alone switches which one shows, at the 720px breakpoint.
+                 Click a row / card for the full record. No manual toggle. -->
+            <div class="archive-table-wrap">
+              <table id="csv-table" class="archive-table">
+                <thead>
+                  <tr>
+                    <th onclick="sortArchiveBy('id')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('id')}" title="撳一下排序">報告編號<span class="sort-ind" data-k="id"></span></th>
+                    <th onclick="sortArchiveBy('date')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('date')}" title="撳一下排序">日期 / 年份<span class="sort-ind" data-k="date"></span></th>
+                    <th onclick="sortArchiveBy('location')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('location')}" title="撳一下排序">地區 Location<span class="sort-ind" data-k="location"></span></th>
+                    <th onclick="sortArchiveBy('category')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('category')}" title="撳一下排序">政策範疇 Category<span class="sort-ind" data-k="category"></span></th>
+                    <th onclick="sortArchiveBy('group')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('group')}" title="撳一下排序">受訪階層 Group<span class="sort-ind" data-k="group"></span></th>
+                    <th onclick="sortArchiveBy('sentiment')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('sentiment')}" title="撳一下排序">情緒 Sentiment<span class="sort-ind" data-k="sentiment"></span></th>
+                    <th onclick="sortArchiveBy('salience')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('salience')}" title="撳一下排序">顯著度<span class="sort-ind" data-k="salience"></span></th>
+                    <th onclick="sortArchiveBy('topic')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('topic')}" title="撳一下排序">民情摘要（撳入去睇摘要）<span class="sort-ind" data-k="topic"></span></th>
+                  </tr>
+                </thead>
+                <tbody id="csv-table-body"></tbody>
+              </table>
+            </div>
             <div id="csv-card-grid" class="archive-card-grid"></div>
           </div>
         </div>
@@ -3349,6 +3420,13 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
         cCard.classList.remove('hidden');
         document.getElementById('tab-b-stacked').classList.add('active');
       }
+      // Enlarged view: the visible card's frame is taller (900px, see the
+      // single-col rule in the Section B CSS), and the iframe resizes with
+      // it — the Flourish chart inside reflows on its own window resize, so
+      // both facet rows of the stacked chart now fit. No iframe reload here:
+      // reloading would reset the reader's in-chart filter (topic / year)
+      // back to its default.
+      void grid.offsetHeight;
     }
 
     // =========================================================================
@@ -6747,7 +6825,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
     function sortArchiveBy(key) {
       if (archiveSort.key === key) { archiveSort.dir = -archiveSort.dir; }
       else { archiveSort.key = key; archiveSort.dir = 1; }
-      document.querySelectorAll('.archive-sort-btn .sort-ind').forEach(function (el) {
+      document.querySelectorAll('.archive-sort-btn .sort-ind, #csv-table thead th .sort-ind').forEach(function (el) {
         el.textContent = (el.getAttribute('data-k') === key) ? (archiveSort.dir === 1 ? ' ▲' : ' ▼') : '';
       });
       applyCsvFilters();
@@ -6920,7 +6998,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
       const fGrp = document.getElementById('csv-filter-group').value;
       const fSent = document.getElementById('csv-filter-sentiment').value;
 
-      const filtered = ARCHIVE_RECORDS.filter(rec => {
+      let filtered = ARCHIVE_RECORDS.filter(rec => {
         if (fYear !== 'ALL' && rec.year !== fYear) return false;
         if (fDist !== 'ALL' && !rec.location.toLowerCase().includes(fDist.toLowerCase())) return false;
         if (fCat !== 'ALL' && !rec.category.includes(fCat)) return false;
@@ -6948,13 +7026,38 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
     }
 
     function renderCsvTable(rows) {
+      const tbody = document.getElementById('csv-table-body');
       const grid = document.getElementById('csv-card-grid');
       document.getElementById('csv-result-counter').textContent = `符合條件共 ${rows.length} 筆檔案記錄（總庫存 ${ARCHIVE_RECORDS.length} 筆）`;
 
+      // Responsive archive (Lo): the SAME filtered records render twice —
+      // once as table rows (desktop) and once as cards (mobile ≤720px).
+      // CSS alone decides which view shows; both stay in sync because this
+      // one function rebuilds both from the same rows. Filters, search
+      // highlight, sorting, random pick and favourites all work off this
+      // same list, and a row / card click opens the same record overlay.
       if (rows.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:2rem; color:var(--ink-muted);">找不到符合篩選條件的 MOOD 報告記錄，請嘗試放寬關鍵字或點擊「重設所有篩選」。</td></tr>`;
         grid.innerHTML = `<div class="archive-empty">找不到符合篩選條件的 MOOD 報告記錄，請嘗試放寬關鍵字或點擊「重設所有篩選」。</div>`;
         return;
       }
+
+      tbody.innerHTML = rows.map(r => {
+        const sentClass = 'sent-' + (['Angry', 'Anxious', 'Skeptical', 'Supportive', 'Indifferent'].includes(r.sentiment) ? r.sentiment : 'Indifferent');
+        const salColor = r.salience === 'High' ? '#B91C1C' : r.salience === 'Moderate' ? '#B45309' : '#64748B';
+        return `
+          <tr class="data-row" data-rid="${r.id}" onclick="openArchiveModal('${r.id}')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openArchiveModal('${r.id}')}">
+            <td style="font-family:var(--font-mono); font-weight:700; white-space:nowrap; color:var(--ink-primary);" data-label="報告編號"><button type="button" class="save-star" data-rid="${r.id}" onclick="event.stopPropagation(); toggleSaveRecord('${r.id}', this)" title="收藏呢份報告">${isSaved(r.id) ? '★' : '☆'}</button>${escapeHtml(r.id)}</td>
+            <td style="font-family:var(--font-mono); white-space:nowrap;" data-label="日期 / 年份">${escapeHtml(r.date)}</td>
+            <td style="font-weight:600; white-space:nowrap;" data-label="地區">${highlightQuery(escapeHtml(r.location))}</td>
+            <td style="white-space:nowrap;" data-label="政策範疇"><span class="dot" style="background:${catColor(r.category)}"></span> ${highlightQuery(escapeHtml(r.category))}</td>
+            <td style="white-space:nowrap;" data-label="受訪階層">${highlightQuery(escapeHtml(r.group))}</td>
+            <td data-label="情緒"><span class="sentiment-badge ${sentClass}">${escapeHtml(r.sentiment)}</span></td>
+            <td style="font-size:0.75rem; font-weight:700; color:${salColor};" data-label="顯著度">${escapeHtml(r.salience)}</td>
+            <td style="max-width:340px;" data-label="民情摘要">${highlightQuery(escapeHtml((r.summary || '').slice(0, 56)))}${(r.summary || '').length > 56 ? '...' : ''}${isTimelineMentioned(r.id) ? '<span class="tl-mention">年表有提及</span>' : ''}</td>
+          </tr>
+        `;
+      }).join('');
 
       grid.innerHTML = rows.map(r => {
         const sentClass = 'sent-' + (['Angry', 'Anxious', 'Skeptical', 'Supportive', 'Indifferent'].includes(r.sentiment) ? r.sentiment : 'Indifferent');
@@ -7116,8 +7219,15 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
     // order never matters) supports chained opens such as
     // closeMyFolder() -> openArchiveModal().
     function _moodModalStack() {
-      if (!window._moodModalStack) window._moodModalStack = [];
-      return window._moodModalStack;
+      // Store the stack under a DIFFERENT window key than this function's
+      // own name: a top-level function declaration already creates
+      // window._moodModalStack (the function itself), so the old
+      // `if (!window._moodModalStack) window._moodModalStack = []` never
+      // fired and this returned the function — stack.push() then threw on
+      // every modal open (the modal still appeared, but focus was never
+      // moved in and never restored on close).
+      if (!window._moodModalStackArr) window._moodModalStackArr = [];
+      return window._moodModalStackArr;
     }
     function _modalFocusableEls(modal) {
       return Array.prototype.slice.call(modal.querySelectorAll(
@@ -7158,8 +7268,15 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
       // The archive grid re-renders on filtering: if the original card was
       // replaced, return focus to the fresh card for the same record.
       if (el && !el.isConnected && entry.rid) {
-        el = document.querySelector('.archive-card[data-rid="' + entry.rid + '"] .ac-title-btn') ||
-             document.querySelector('.archive-card[data-rid="' + entry.rid + '"] .save-star');
+        // Responsive archive: return focus to the VISIBLE view — the table
+        // row on desktop, the card title button on mobile (≤720px).
+        if (window.matchMedia && window.matchMedia('(max-width: 720px)').matches) {
+          el = document.querySelector('.archive-card[data-rid="' + entry.rid + '"] .ac-title-btn') ||
+               document.querySelector('.archive-card[data-rid="' + entry.rid + '"] .save-star');
+        } else {
+          el = document.querySelector('#csv-table tr.data-row[data-rid="' + entry.rid + '"]') ||
+               document.querySelector('#csv-table .save-star[data-rid="' + entry.rid + '"]');
+        }
       }
       if (el && el.isConnected) el.focus({ preventScroll: true });
     }
