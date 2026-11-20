@@ -1426,6 +1426,8 @@
     .memo-card h5 { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; color: #111111; margin: 0 0 0.4rem; }
     .memo-card p { font-family: var(--font-sans); font-size: 0.85rem; line-height: 1.6; color: var(--ink-secondary); margin: 0; }
     .credits-cleaning { font-family: var(--font-sans); font-size: 0.85rem; color: var(--ink-secondary); margin-top: 0.5rem; }
+    .credits-list { list-style: none; margin: 0; padding: 0; font-family: var(--font-sans); font-size: 0.85rem; line-height: 1.7; }
+    .credits-list li { padding: 0.05rem 0; }
     @media (max-width: 720px) { .credits-memos { flex-direction: column; } }
     /* data-cleaning folder cards: tab protrudes from the card top edge */
     .folder-card { position: relative; margin-top: 1rem; padding-top: 1.5rem; background: #F3EDE0; }
@@ -3576,18 +3578,14 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
       <div class="footer-title"><strong style="color:var(--ink-primary);">HIST4207 Historical Data Visualization Project</strong> — Hong Kong MOOD Reports (1975–1980)</div>
       <div class="footer-members">組員 Group Members： Wu Yu Tung (23232773) · Li Yat Hei (25217984) · Lo Tsz Ching (23235756) · Lee Wing Fei (25225014)</div>
       <div class="footer-credits" style="flex:1 1 100%;">
-        <div class="credits-label">分工 Credits</div>
-        <div class="credits-memos">
-          <div class="memo-card">
-            <h5>數據研究＋處理 IT 組</h5>
-            <p>Lo Tsz Ching（網頁搭建、分類主表、SQLite 資料庫）· Wu Yu Tung（Flourish 圖表、Gephi 網絡圖、詳細 CSV）</p>
-          </div>
-          <div class="memo-card">
-            <h5>質性研究組</h5>
-            <p>Li Yat Hei（開題、質性研究）· Lee Wing Fei（質性研究）</p>
-          </div>
-        </div>
-        <div class="credits-cleaning">數據清理：全組一齊開會討論、逐一檢查</div>
+        <div class="credits-label">製作 Credits</div>
+        <ul class="credits-list">
+          <li>網頁搭建、數據整理、Kepler 地理空間分析：Lo Tsz Ching</li>
+          <li>Gephi、Flourish 圖表、數據整理：Wu Yu Tung</li>
+          <li>開題、質性研究：Li Yat Hei</li>
+          <li>質性研究：Lee Wing Fei</li>
+          <li>數據清理：全組一齊</li>
+        </ul>
       </div>
       <div class="footer-tech">Interactive SVG &amp; Archival Database</div>
       <div><span class="stamp-mini" style="margin-left:0;">CONFIDENTIAL // HKMOOD</span></div>
