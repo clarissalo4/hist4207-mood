@@ -829,11 +829,12 @@
     }
 
     /* Lo: desktop archive table rows were too wide — cap the table at
-       1100px and centre it on desktop only. The white section background
+       860px (Excel-row width, same as the record overlay's reading column)
+       and centre it on desktop only. The white section background
        stays full-width; only the table narrows. Mobile cards untouched. */
     @media (min-width: 721px) {
       #section-d .archive-table-wrap {
-        max-width: 1100px;
+        max-width: 860px;
         margin-left: auto;
         margin-right: auto;
       }
@@ -1133,7 +1134,13 @@
 
     /* v9: scroll progress + side dot nav */
     #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--accent); z-index: 1000; }
-    #section-dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 900; }
+    /* Lo: dot nav shows only while scrolling — hidden when idle (opacity 0
+       + visibility hidden, so it is not focusable), fades in on scroll,
+       fades out ~1.5s after scrolling stops. Stays visible while hovered
+       or focused. */
+    #section-dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 900; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0.3s ease; }
+    #section-dots.dots-visible { opacity: 1; visibility: visible; pointer-events: auto; }
+    @media (prefers-reduced-motion: reduce) { #section-dots { transition: none; } }
     #section-dots a { display: flex; align-items: center; justify-content: flex-end; gap: 8px; text-decoration: none; }
     #section-dots .dot-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-primary); background: #FFFFFF; border: 1px solid var(--border-strong); border-radius: 999px; padding: 2px 8px; opacity: 0; transform: translateX(4px); transition: opacity 0.15s ease, transform 0.15s ease; white-space: nowrap; pointer-events: none; }
     #section-dots a:hover .dot-label, #section-dots a.active .dot-label { opacity: 1; transform: translateX(0); }
@@ -8336,6 +8343,31 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
+    })();
+    // Lo: dot nav shows only while scrolling — hidden when idle, fades in
+    // on scroll, fades out ~1.5s after scrolling stops. Stays visible while
+    // hovered or focused (mouse/tap/keyboard), so it never vanishes mid-use.
+    (function () {
+      var nav = document.getElementById('section-dots');
+      if (!nav) return;
+      var hideTimer = null;
+      var hovering = false;
+      var focused = false;
+      function show() {
+        nav.classList.add('dots-visible');
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+      }
+      function scheduleHide() {
+        if (hideTimer) clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () {
+          if (!hovering && !focused) nav.classList.remove('dots-visible');
+        }, 1500);
+      }
+      window.addEventListener('scroll', function () { show(); scheduleHide(); }, { passive: true });
+      nav.addEventListener('mouseenter', function () { hovering = true; show(); });
+      nav.addEventListener('mouseleave', function () { hovering = false; scheduleHide(); });
+      nav.addEventListener('focusin', function () { focused = true; show(); });
+      nav.addEventListener('focusout', function () { focused = false; scheduleHide(); });
     })();
 </script>
 
