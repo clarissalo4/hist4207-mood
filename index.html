@@ -1469,11 +1469,12 @@
     .feat-card .feat-meta { font-size: 0.72rem; color: var(--ink-muted); margin-top: 0.3rem; display: block; }
     .map1957-wrap { position: relative; }
     .map1957-wrap img { display: block; width: 100%; height: auto; }
-    .map-hotspot { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid #FFFFFF; background: #C2410C; color: #FFFFFF; cursor: pointer; padding: 0; box-shadow: 0 1px 5px rgba(0,0,0,0.45); font-family: var(--font-mono); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .map-hotspot { position: absolute; z-index: 2; transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid #FFFFFF; background: #C2410C; color: #FFFFFF; cursor: pointer; padding: 0; box-shadow: 0 1px 5px rgba(0,0,0,0.45); font-family: var(--font-mono); font-weight: 700; display: flex; align-items: center; justify-content: center; }
     .map-hotspot:hover { background: #111111; }
     /* v50 (8): 1957 map district AREAS (C&W + Kowloon) — SVG overlay on the
-       figure, below the remaining dot buttons (DOM order), polygons clickable
-       via goDistrict(); labels are badges at the polygon centroids. */
+       figure (z-index 1); dot buttons sit ABOVE it (z-index 2) so a click on a
+       district dot reaches the button, not the polygon underneath. Polygons
+       stay clickable via goDistrict(); labels are badges at the polygon centroids. */
     .map1957-areas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
     .map1957-areas .map-area { fill: #C2410C; fill-opacity: 0.25; stroke: #C2410C; stroke-width: 0.35; stroke-linejoin: round; cursor: pointer; pointer-events: visiblePainted; }
     .map1957-areas .map-area:hover, .map1957-areas .map-area:focus { fill-opacity: 0.45; stroke-width: 0.55; outline: none; }
@@ -1481,6 +1482,14 @@
     .map1957-areas .map-area-label circle { fill: #C2410C; stroke: #FFFFFF; stroke-width: 0.25; }
     .map1957-areas .map-area-label text { fill: #FFFFFF; font-family: var(--font-mono); font-size: 1.7px; font-weight: 700; text-anchor: middle; }
     .map-hotspot::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; }
+    /* v55: on small screens the 1957 map is only ~300px wide, so the 4 dots
+       sit 13–26px apart — a 36px hit area would swallow neighbouring dots.
+       Shrink the invisible hit area to 20px (still bigger than the smallest
+       12px dot) so each dot centre stays its own button. The 「5」 badge sits
+       only ~6px from the Wong Tai Sin dot on mobile, so a tap exactly on the
+       badge still opens Wong Tai Sin there; the Kowloon area itself remains
+       tappable everywhere else on the polygon. */
+    @media (max-width: 720px) { .map-hotspot::before { width: 20px; height: 20px; } }
     .map-zoom-btn { position: absolute; right: 0.6rem; top: 0.6rem; z-index: 3; background: #111111; color: #FFFFFF; border: 1px solid #111111; border-radius: 2px; padding: 0.35rem 0.7rem; font-size: 0.78rem; font-weight: 700; cursor: pointer; font-family: var(--font-mono); }
     .map-zoom-btn:hover { background: #C2410C; border-color: #C2410C; }
     #map-lightbox { position: fixed; inset: 0; z-index: 1200; background: rgba(10,10,10,0.92); display: flex; flex-direction: column; }
