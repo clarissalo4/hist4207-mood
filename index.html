@@ -841,14 +841,17 @@
       background: #F4EFE4;
       color: var(--ink-primary);
       font-weight: 700;
-      padding: 0.72rem 0.85rem;
+      padding: 0.45rem 0.85rem;
       border-bottom: 1px solid var(--border-strong);
       white-space: nowrap;
       z-index: 5;
     }
 
     table.archive-table td {
-      padding: 0.85rem 0.85rem;
+      /* Row height halved (Lo, 「上下好寬」「收窄一半」): vertical padding
+         cut from 0.85rem to 0.38rem; the summary cell is also clamped to
+         2 lines (see .summary-text). Rows go from ~111px to ~54px. */
+      padding: 0.38rem 0.85rem;
       border-bottom: 1px solid #F1F5F9;
       vertical-align: top;
     }
@@ -1202,7 +1205,7 @@
     main > section { border-top-width: 2px; }
 
     /* --- dark timeline band (full-bleed) --- */
-    #section-timeline { background: #111111; color: #FFFFFF; border-top: 4px solid var(--accent); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: 0; padding-right: 0; }
+    #section-timeline { background: #232323; color: #FFFFFF; border-top: 4px solid var(--accent); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: 0; padding-right: 0; }
     #section-timeline .section-kicker { background: #FFFFFF; color: #111111 !important; }
     #section-timeline .section-title { color: #FFFFFF; }
     #section-timeline .section-subtitle { color: rgba(255,255,255,0.75); }
@@ -1220,7 +1223,7 @@
     #section-timeline .tl-note { color: rgba(255,255,255,0.6); border-top-color: #333333; }
 
     /* v41 Batch 2: Section C dark (P0-4) */
-    #section-c { background: #111111; color: #FFFFFF; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: max(1.25rem, calc(50vw - 620px)); padding-right: max(1.25rem, calc(50vw - 620px)); }
+    #section-c { background: #232323; color: #FFFFFF; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: max(1.25rem, calc(50vw - 620px)); padding-right: max(1.25rem, calc(50vw - 620px)); }
     #section-c .section-kicker { background: #FFFFFF; color: #111111 !important; }
     #section-c .section-title { color: #FFFFFF; }
     #section-c .section-subtitle { color: rgba(255,255,255,0.75); }
@@ -1459,6 +1462,15 @@
     .map1957-wrap img { display: block; width: 100%; height: auto; }
     .map-hotspot { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid #FFFFFF; background: #C2410C; color: #FFFFFF; cursor: pointer; padding: 0; box-shadow: 0 1px 5px rgba(0,0,0,0.45); font-family: var(--font-mono); font-weight: 700; display: flex; align-items: center; justify-content: center; }
     .map-hotspot:hover { background: #111111; }
+    /* v50 (8): 1957 map district AREAS (C&W + Kowloon) — SVG overlay on the
+       figure, below the remaining dot buttons (DOM order), polygons clickable
+       via goDistrict(); labels are badges at the polygon centroids. */
+    .map1957-areas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+    .map1957-areas .map-area { fill: #C2410C; fill-opacity: 0.25; stroke: #C2410C; stroke-width: 0.35; stroke-linejoin: round; cursor: pointer; pointer-events: visiblePainted; }
+    .map1957-areas .map-area:hover, .map1957-areas .map-area:focus { fill-opacity: 0.45; stroke-width: 0.55; outline: none; }
+    .map1957-areas .map-area-label { pointer-events: none; }
+    .map1957-areas .map-area-label circle { fill: #C2410C; stroke: #FFFFFF; stroke-width: 0.25; }
+    .map1957-areas .map-area-label text { fill: #FFFFFF; font-family: var(--font-mono); font-size: 1.7px; font-weight: 700; text-anchor: middle; }
     .map-hotspot::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; }
     .map-zoom-btn { position: absolute; right: 0.6rem; top: 0.6rem; z-index: 3; background: #111111; color: #FFFFFF; border: 1px solid #111111; border-radius: 2px; padding: 0.35rem 0.7rem; font-size: 0.78rem; font-weight: 700; cursor: pointer; font-family: var(--font-mono); }
     .map-zoom-btn:hover { background: #C2410C; border-color: #C2410C; }
@@ -1500,18 +1512,18 @@
        Near-black #0E0E0E, white text, serif display type, orange #C2410C accent.
        ========================================================================== */
     :root {
-      --bg-paper: #0E0E0E;
-      --bg-card: #161616;
-      --bg-subtle: #1F1F1F;
-      --bg-folder-tab: #1F1F1F;
-      --bg-band: #161616;
+      --bg-paper: #232323;
+      --bg-card: #2A2A2A;
+      --bg-subtle: #2E2E2E;
+      --bg-folder-tab: #2E2E2E;
+      --bg-band: #2A2A2A;
       --border-paper: #2A2A2A;
       --border-strong: #3A3A3A;
       --ink-primary: #FFFFFF;
       --ink-secondary: #D4D4D4;
       --ink-muted: #9CA3AF;
-      --kepler-bg: #0E0E0E;
-      --kepler-panel: #161616;
+      --kepler-bg: #232323;
+      --kepler-panel: #2A2A2A;
       --kepler-border: #2A2A2A;
       --shadow-sm: none;
       --shadow-md: none;
@@ -1521,7 +1533,7 @@
       --font-display: "Source Serif 4", "Noto Serif TC", "Songti TC", "PMingLiU", serif;
     }
     /* navbar */
-    .navbar { background: rgba(14, 14, 14, 0.96); }
+    .navbar { background: rgba(35, 35, 35, 0.96); }
     .navbar .brand-badge { background: #C2410C; color: #FFFFFF; }
     .brand-title { font-family: var(--font-display); font-weight: 800; }
     /* hero */
@@ -1612,12 +1624,19 @@ main > section { padding-top: 4.5rem; padding-bottom: 6rem; }
 .kpi-grid, .insight-grid, .small-multiples-grid { gap: 1.5rem; }
 .flourish-grid, .network-layout, .kepler-grid { gap: 2rem; }
 #csv-keyword-chips .cat-pill { padding: 0.55rem 1rem; font-size: 0.9rem; }
-/* D. Spacious archive table (and fix the row-hover that stayed warm cream). */
-table.archive-table th { padding: 1rem 1.1rem; }
-table.archive-table td { padding: 1.3rem 1.1rem; font-size: 0.95rem; line-height: 1.6; }
-table.archive-table td[data-label="民情摘要"] { font-size: 1.02rem; line-height: 1.75; }
-table.archive-table td[data-label="報告編號"] { font-size: 1rem; }
+/* D. Compact archive table rows (Lo, 「上下好寬」「收窄一半」): the
+   "spacious" padding (td 1.3rem, summary 1.02rem/1.75) made rows ~126px
+   tall. Vertical padding is cut to 0.38rem, the summary is 0.88rem/1.5
+   and clamped to 2 lines (see .summary-text), so rows are ~54px — about
+   half. The row-hover fix (dark, not warm cream) is kept. */
+table.archive-table th { padding: 0.45rem 1.1rem; }
+table.archive-table td { padding: 0.38rem 1.1rem; font-size: 0.88rem; line-height: 1.5; }
+table.archive-table td[data-label="民情摘要"] { font-size: 0.88rem; line-height: 1.5; }
+table.archive-table td[data-label="報告編號"] { font-size: 0.9rem; }
 table.archive-table tr.data-row:hover { background: #1F1F1F; }
+/* Summary clamped to 2 lines with an ellipsis; the full text is still
+   reachable by clicking the row to open the record overlay. */
+table.archive-table td .summary-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card:hover, .embed-card:hover { border-color: #3A3A3A; }
 /* E. Fullscreen minimal record overlay. */
 .archive-modal { padding: 0; background: rgba(14, 14, 14, 0.97); }
@@ -1638,18 +1657,18 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
    Scoped variable overrides flip var()-based colours to the light theme inside
    these three sections only; hardcoded dark colours are overridden below. */
 #section-b, #section-d, #section-methods {
-  --bg-paper: #FFFFFF;
+  --bg-paper: #F7F5F0;
   --bg-card: #FFFFFF;
   --bg-subtle: #F3F4F6;
   --bg-folder-tab: #F3F4F6;
-  --bg-band: #FFFFFF;
+  --bg-band: #F7F5F0;
   --border-paper: #E5E7EB;
   --border-strong: #D1D5DB;
   --ink-primary: #111111;
   --ink-secondary: #374151;
   --ink-muted: #6B7280;
-  --mask-bg: #FFFFFF;
-  background: #FFFFFF;
+  --mask-bg: #F7F5F0;
+  background: #F7F5F0;
   color: #111111;
 }
 /* Fix 3 (Lo): white sections must read as one continuous plain-white band.
@@ -1665,7 +1684,7 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
 #section-b, #section-d, #section-methods {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  background: #FFFFFF;
+  background: #F7F5F0;
   background-image: none;
 }
 #section-b, #section-d {
@@ -1789,16 +1808,16 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 @media (max-width: 720px) {
   #section-d .archive-table-wrap { display: none; }
   #csv-card-grid { display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
-  .archive-card { padding: 1.4rem; }
+  .archive-card { padding: 1.1rem; }
 }
-.archive-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 2px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.9rem; cursor: pointer; transition: border-color 0.18s ease, box-shadow 0.18s ease; }
+.archive-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 2px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; cursor: pointer; transition: border-color 0.18s ease, box-shadow 0.18s ease; }
 .archive-card:hover { border-color: #111111; box-shadow: 0 10px 30px rgba(17, 17, 17, 0.07); }
 .archive-card:focus-visible { outline: 2px solid #C2410C; outline-offset: 3px; }
 .ac-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .ac-id { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; color: #111111; }
 .ac-date { font-family: var(--font-mono); font-size: 0.8rem; color: #6B7280; white-space: nowrap; }
 .ac-title { font-family: var(--font-serif); font-size: 1.18rem; font-weight: 700; line-height: 1.45; color: #111111; }
-.ac-summary { font-size: 0.93rem; line-height: 1.8; color: #374151; margin: 0; }
+.ac-summary { font-size: 0.93rem; line-height: 1.65; color: #374151; margin: 0; }
 .ac-summary-label { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; color: #C2410C; }
 .ac-summary-note { font-size: 0.72rem; line-height: 1.55; color: #6B7280; margin: -0.45rem 0 0; }
 /* Record overlay: report-level summary label + same-report issue list */
@@ -1910,6 +1929,19 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
    more room — same rule, no chart-specific code. */
 @media (min-width: 721px) {
   #section-b .flourish-grid.single-col .embed-frame-wrap { height: 900px; }
+}
+/* Sankey frame taller (Lo, 「housing睇唔到」): the Sankey (30956322) has 9
+   issue categories on the right (Politics, Law and Order, Public Health,
+   Transport, Education, Economy, Community Environment, Housing, Labour).
+   At the default 512px frame the bottom category (Housing) was cut off.
+   The Sankey gets its own 800px frame on desktop so all 9 categories and
+   their labels fit. The stacked chart keeps its 512px default / 900px
+   single-col rule. Mobile gets 650px so Housing fits there too. The
+   single-col 900px rule above still wins in enlarged view (higher
+   specificity), giving the Sankey even more room there. */
+#b-card-sankey .embed-frame-wrap { height: 800px; }
+@media (max-width: 720px) {
+  #b-card-sankey .embed-frame-wrap { height: 650px; }
 }
 </style>
 <style>
@@ -2107,28 +2139,32 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
 #back-to-top.show { visibility: visible; }
 
 /* (n) Archive table width (Lo): on desktop the Section D table stretched
-   the full ~1240px content width, so every row read too wide. Cap the
-   table frame at 860px and centre it — the same width as the record
-   overlay's content column, a compact spreadsheet-row-like reading
-   width. Desktop only (min-width: 721px, the site's table/cards
-   breakpoint) — the mobile card view is untouched. Only the table frame
-   narrows: #section-d itself keeps its full-viewport white background,
-   and the folder, filters, search and sort above the table keep their
-   existing width. Columns, sorting, filtering and search are unchanged. */
+   the full ~1240px content width, so every row read too wide. It was
+   capped at 860px (Lo, 「excel一行嘅闊度」), but at 860px the 8 columns'
+   minimum content widths (~1150px: report ID, date, district, category,
+   class incl. "Middle Class/Professionals", sentiment, salience, summary)
+   overflowed the frame and the left columns were cut off (Lo, 「表格版面
+   好窄，唔可以拉闊啲」). The cap is now 1150px — the smallest width that
+   fits all 8 columns cleanly, centred, no wider than needed. Desktop only
+   (min-width: 721px, the site's table/cards breakpoint) — the mobile card
+   view is untouched. Only the table frame widens: #section-d itself keeps
+   its full-viewport white background, and the folder, filters, search and
+   sort above the table keep their existing width. Columns, sorting,
+   filtering and search are unchanged. */
 @media (min-width: 721px) {
-  #section-d .archive-table-wrap { max-width: 860px; margin-left: auto; margin-right: auto; }
+  #section-d .archive-table-wrap { max-width: 1150px; margin-left: auto; margin-right: auto; }
 }
 
 /* ===== v50: 07/08 background swap (Lo) + grey detail modals + section transitions =====
    Placed last so it wins the cascade over the v49 white-sections layer and
    the Item 4 conclusion rules at equal specificity. Nothing above changes:
-   the 860px archive table cap in (n) stays exactly as it was. */
+   the 1150px archive table cap in (n) stays exactly as it was. */
 
 /* --- (1) 07 Conclusion: dark band -> WHITE, so the page alternates
    03 white, 04 dark, 05 white, 06 dark, 07 white, 08 dark. The orange top
    border stays; the kicker returns to the standard orange pill every
    other section uses. Contrast on #FFFFFF: #111111 = 18.9:1. --- */
-#section-conclusion { background: #FFFFFF; color: #111111; --mask-bg: #FFFFFF; }
+#section-conclusion { background: #F7F5F0; color: #111111; --mask-bg: #F7F5F0; }
 #section-conclusion .section-kicker { background: #C2410C; color: #FFFFFF !important; }
 #section-conclusion .section-title { color: #111111; }
 #section-conclusion .conclusion-text { color: #111111; }
@@ -2144,45 +2180,46 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    Contrast on #111111: #FFFFFF = 18.9:1, #F5F5F5 = 17.7:1,
    #D4D4D4 = 12.6:1, #9CA3AF = 7.4:1, stamp red #F87171 = 6.9:1. --- */
 #section-methods {
-  --bg-paper: #111111;
-  --bg-card: #161616;
-  --bg-subtle: #1F1F1F;
-  --bg-folder-tab: #1F1F1F;
-  --bg-band: #161616;
+  --bg-paper: #232323;
+  --bg-card: #2A2A2A;
+  --bg-subtle: #2E2E2E;
+  --bg-folder-tab: #2E2E2E;
+  --bg-band: #2A2A2A;
   --border-paper: #2A2A2A;
   --border-strong: #3A3A3A;
   --ink-primary: #FFFFFF;
   --ink-secondary: #D4D4D4;
   --ink-muted: #9CA3AF;
-  --mask-bg: #111111;
-  background: #111111;
+  --mask-bg: #232323;
+  background: #232323;
   color: #F5F5F5;
 }
 #section-methods .section-title { color: #FFFFFF; }
 #section-methods .sec-ghost { color: #2B2B2B; }
-#section-methods .folder-card { background: #161616; }
-#section-methods .insight-box { background: #161616; color: #F5F5F5; }
+#section-methods .folder-card { background: #2A2A2A; }
+#section-methods .insight-box { background: #2A2A2A; color: #F5F5F5; }
 #section-methods .stamp-mini { color: #F87171; border-color: #F87171; }
 
-/* --- (3) Category detail + my-folder modals: near-black -> GREY (Lo).
-   Card #2E2E2E over a #262626 backdrop — visibly grey, not black. Both
-   modals share the .archive-modal system, so both get the same grey; the
-   fullscreen record modal (#archive-modal) keeps its colours here —
-   v51 below then gives it the same grey too, at Lo's follow-up request.
-   Scoped variables lift the muted text, hairlines and
+/* --- (3) Category detail + my-folder modals: near-black -> TRANSLUCENT GREY (Lo).
+   Card rgba(46,46,46,0.92) over a rgba(38,38,38,0.85) backdrop — visibly
+   grey, not black, and translucent so the page behind shows through
+   faintly. Both modals share the .archive-modal system, so both get the
+   same grey; the fullscreen record modal (#archive-modal) keeps its
+   colours here — v51 below then gives it the same grey too, at Lo's
+   follow-up request. Scoped variables lift the muted text, hairlines and
    link orange that were tuned for near-black, so everything stays
    WCAG AA on the grey: #FFFFFF = 13.6:1, #D4D4D4 = 9.9:1,
    #C9CDD3 = 8.6:1, #FB923C = 5.7:1 on #2E2E2E. The fixed x close button
    keeps its #F5F5F5 (14.6:1 on the #262626 backdrop); the in-modal
    outline buttons get a lighter border so they read clearly too. --- */
 #cat-focus-modal, #myfolder-modal {
-  background: rgba(38, 38, 38, 0.97);
+  background: rgba(38, 38, 38, 0.85);
   --ink-muted: #C9CDD3;
   --border-paper: #4A4A4A;
   --border-strong: #6E6E6E;
   --accent: #FB923C;
 }
-#cat-focus-modal .archive-modal-card, #myfolder-modal .archive-modal-card { background: #2E2E2E; }
+#cat-focus-modal .archive-modal-card, #myfolder-modal .archive-modal-card { background: rgba(46, 46, 46, 0.92); }
 #cat-focus-modal .btn-outline, #myfolder-modal .btn-outline { background: transparent; color: #FFFFFF; border-color: #9CA3AF; }
 #cat-focus-modal .btn-outline:hover, #myfolder-modal .btn-outline:hover { background: #3D3D3D; color: #FFFFFF; border-color: #FFFFFF; }
 
@@ -2190,30 +2227,34 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    The old solid wipe panel (#section-wipe) is GONE — no panel, no sweep.
    The v52 Web Animations API fade FLASHED once per section change, so
    v53 restores the pre-v47 CSS-transition fade: .sec-fade sets opacity 0
-   with a single continuous `transition: opacity 0.6s ease`, and
-   .sec-fade-in sets opacity 1. The script adds .sec-fade (never present
+   with a single continuous `transition: opacity 0.8s ease, transform
+   0.8s ease`, and .sec-fade-in sets opacity 1. The fade is 0.8s (not
+   0.6s) and the incoming section also rises gently translateY(14px) ->
+   0, so the chapter change reads clearly (Lo, 「而家過場太唔明顯」)
+   without being dizzying. The script adds .sec-fade (never present
    in the HTML, so with JS off nothing is ever hidden — fail-open) and
    an IntersectionObserver toggles .sec-fade-in: added as a section
    reaches the viewport, removed ONLY once it is fully out of view, so
    incoming and outgoing overlap and the screen is never left blank.
    Under prefers-reduced-motion the script adds no classes at all, and
-   the guard below forces full opacity with no transition anyway. The
-   sections' --mask-bg declarations elsewhere are now inert leftovers
-   of the wipe era. --- */
-.sec-fade { opacity: 0; transition: opacity 0.6s ease; }
-.sec-fade.sec-fade-in { opacity: 1; }
+   the guard below forces full opacity, no transform and no transition
+   anyway. The sections' --mask-bg declarations elsewhere are now inert
+   leftovers of the wipe era. --- */
+.sec-fade { opacity: 0; transform: translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.sec-fade.sec-fade-in { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
-  .sec-fade { opacity: 1; transition: none; }
+  .sec-fade { opacity: 1; transform: none; transition: none; }
 }
 #overview, #section-a, #section-c, #section-timeline { --mask-bg: #0E0E0E; }
 
 /* ===== v51: record modal joins the grey + title alignment; advanced-search filter collapse =====
    Placed after v50 so it wins the cascade at equal specificity. */
-/* --- (1) Fullscreen record modal (#archive-modal): the SAME grey as the
-   category / my-folder modals in v50 (3) — backdrop #262626, card #2E2E2E —
-   so all three modals match. Light text unchanged and still AA on the
-   grey: body #F5F5F5 = 12.9:1, muted #9CA3AF = 5.9:1 on #2E2E2E. Record
-   data, citation and data-use wording untouched.
+/* --- (1) Fullscreen record modal (#archive-modal): the SAME translucent
+   grey as the category / my-folder modals in v50 (3) — backdrop
+   rgba(38,38,38,0.85), card rgba(46,46,46,0.92) — so all three modals
+   match. Light text unchanged and still AA on the grey: body #F5F5F5 =
+   12.9:1, muted #9CA3AF = 5.9:1 on #2E2E2E. Record data, citation and
+   data-use wording untouched.
    Title alignment: #archive-modal-title's own margin shorthand in the
    Santal layer (1rem 0 1.2rem) zeroed the auto side margins that centre
    every other child of the card into the 860px column, so the title sat
@@ -2221,8 +2262,8 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    The longhands below restore the same auto margins — same column, same
    max-width, same left edge as everything else; the big serif typeface
    and size are unchanged, as are the prev/next nav and counter. --- */
-#archive-modal { background: rgba(38, 38, 38, 0.97); }
-#archive-modal .archive-modal-card { background: #2E2E2E; }
+#archive-modal { background: rgba(38, 38, 38, 0.85); }
+#archive-modal .archive-modal-card { background: rgba(46, 46, 46, 0.92); }
 #archive-modal-title { margin-left: auto; margin-right: auto; }
 
 
@@ -2239,15 +2280,18 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    card itself never scrolls — #cat-focus-body scrolls inside it — and
    the 關閉 footer stays pinned at the card's bottom. The x close button
    keeps its existing position:fixed placement and stays put.
-   (2) Uniform grey: the backdrop goes from rgba(38,38,38,0.97) to solid
-   #2E2E2E, the exact shade the card already paints, so backdrop and card
-   read as one consistent grey with no visible step. The header
-   .meta-pill spans go transparent (they rendered #1F1F1F, a darker patch
-   on the #2E2E2E card); their #F5F5F5 text (12.9:1 on #2E2E2E) and
-   #3A3A3A border are unchanged, and all other text keeps the scoped
-   v50 variables, so everything stays WCAG AA on the grey. The
+   (2) Translucent grey (Lo, 「透灰色好過實灰色」): the backdrop goes from
+   solid #2E2E2E to rgba(38,38,38,0.85) and the card to rgba(46,46,46,0.92),
+   so the page behind shows through faintly and the popup feels lighter,
+   not a flat solid block. Card and backdrop stay one grey family (card
+   slightly more opaque than the backdrop, so it still stands out), with
+   no jarring step. The header .meta-pill spans stay transparent (they
+   rendered #1F1F1F, a darker patch on the card); their #F5F5F5 text
+   (still ≥9:1 on the translucent grey — the grey is dark and mostly
+   opaque) and #3A3A3A border are unchanged, and all other text keeps the
+   scoped v50 variables, so everything stays WCAG AA on the grey. The
    trend-chart sparkline is already #F5F5F5 and is left alone. */
-#cat-focus-modal { background: #2E2E2E; }
+#cat-focus-modal { background: rgba(38, 38, 38, 0.85); }
 #cat-focus-modal .archive-modal-card {
   display: flex;
   flex-direction: column;
@@ -2976,16 +3020,16 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
                 </div>
                 <div style="display:flex; gap:0.4rem; flex-shrink:0; align-items:center;">
                   <div class="tab-group" style="background:#111111; border-color:#333333;">
-                    <button id="kepler-3d" class="tab-btn" style="color:#CBD5E1;" onclick="setKeplerMode('3d')">3D</button>
-                    <button id="kepler-2d" class="tab-btn active" style="color:#FFFFFF;" onclick="setKeplerMode('2d')">2D 平面</button>
+                    <button id="kepler-3d" class="tab-btn active" style="color:#FFFFFF;" onclick="setKeplerMode('3d')">3D</button>
+                    <button id="kepler-2d" class="tab-btn" style="color:#CBD5E1;" onclick="setKeplerMode('2d')">2D 平面</button>
                   </div>
-                  <a id="kepler-open-link" href="mood_kepler_map_v21.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex-shrink:0;">新視窗開大地圖 ↗</a>
+                  <a id="kepler-open-link" href="mood_kepler_map_v20.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex-shrink:0;">新視窗開大地圖 ↗</a>
                 </div>
               </div>
             </div>
             <div style="background:#23201B; padding:0 1.5rem 1.5rem;">
               <div id="kepler-wrap" style="position:relative;">
-                <iframe id="kepler-iframe" data-src="mood_kepler_map_v21.html" src="about:blank" title="MOOD Reports Kepler Map" style="width:100%; height:640px; border:1px solid #3A352C; border-radius:2px; background:#23201B; display:block;"></iframe>
+                <iframe id="kepler-iframe" data-src="mood_kepler_map_v20.html" src="about:blank" title="MOOD Reports Kepler Map" style="width:100%; height:640px; border:1px solid #3A352C; border-radius:2px; background:#23201B; display:block;"></iframe>
                 <div id="kepler-placeholder" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.9rem; background:#23201B; border:1px solid #3A352C; border-radius:2px; color:#E7E5E4; text-align:center; padding:1rem;">
                   <div style="font-weight:700; font-size:1rem;">互動地圖未載入</div>
                   <div style="font-size:0.85rem; color:#A8A08E; max-width:420px;">為咗令第一頁開得快啲，地圖會喺你碌到呢度嗰陣先至自動載入。</div>
@@ -2998,17 +3042,27 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
             <figure class="hist1957-figure">
               <div class="map1957-wrap">
                 <img src="hist1957_3000.jpg" alt="1957 年香港歷史地圖（Historical Map of Hong Kong, 1957）" loading="lazy" id="hist1957-img">
+                <svg class="map1957-areas" viewBox="0 0 100 76.93" preserveAspectRatio="none" aria-label="中西區同九龍區以範圍顯示">
+                  <polygon class="map-area" points="48.34,49.29 43.12,49.28 43.15,52.76 43.96,52.76 44.26,52.59 44.72,52.85 45.68,52.4 46.61,52.9 47.49,54.36 47.51,54.64 47.95,55.0 47.99,55.15 47.79,55.36 47.87,55.62 47.99,55.74 48.14,55.7 48.96,55.16 49.09,54.71 49.5,54.92 49.96,54.76 50.09,54.84 50.53,54.07 50.49,53.66 50.67,53.43 50.46,53.31 50.45,52.8 50.79,52.14 50.67,52.07 50.81,51.82 50.59,51.84 50.74,51.65 50.71,50.26 48.34,49.29" onclick="goDistrict('Central &amp; Western')" tabindex="0" role="button" aria-label="中西區 Central &amp; Western，6 筆報告" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goDistrict('Central &amp; Western');}"><title>中西區 Central &amp; Western · 6 筆報告，撳入去睇嗰區檔案</title></polygon>
+                  <polygon class="map-area" points="51.63,45.15 49.8,45.21 49.98,45.44 49.51,45.42 49.6,45.7 49.42,45.84 49.06,45.38 48.76,45.72 48.35,45.72 48.34,49.29 51.61,50.63 53.26,49.77 53.26,48.9 52.97,48.36 52.7,48.28 52.59,47.94 51.81,47.02 51.42,46.02 51.47,45.49 51.63,45.15" onclick="goDistrict('Kowloon')" tabindex="0" role="button" aria-label="九龍 Kowloon，5 筆報告" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goDistrict('Kowloon');}"><title>九龍 Kowloon · 5 筆報告，撳入去睇嗰區檔案</title></polygon>
+                  <polygon class="map-area" points="51.4,42.34 50.54,42.44 50.22,42.03 49.86,42.26 49.74,42.22 49.57,42.48 49.06,42.28 48.74,42.38 48.57,42.23 48.51,42.55 48.14,42.54 47.99,42.66 48.0,43.03 48.27,43.17 47.8,43.26 47.51,43.08 47.23,43.28 46.72,42.98 46.48,43.3 46.17,43.43 45.99,43.35 46.24,43.81 46.92,44.15 46.93,44.27 47.37,44.54 47.16,44.91 46.82,45.09 46.45,45.58 45.83,45.9 46.03,46.34 46.0,46.98 48.35,46.98 48.35,45.72 48.76,45.72 49.06,45.38 49.42,45.84 49.6,45.7 49.51,45.42 49.98,45.44 49.8,45.21 51.63,45.15 51.95,44.19 51.57,43.18 51.45,43.19 51.57,42.65 51.4,42.34" onclick="goDistrict('Kowloon')" tabindex="0" role="button" aria-label="九龍 Kowloon，5 筆報告" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goDistrict('Kowloon');}"><title>九龍 Kowloon · 5 筆報告，撳入去睇嗰區檔案</title></polygon>
+                  <polygon class="map-area" points="52.29,41.98 51.79,41.95 51.42,42.13 51.57,42.65 51.45,43.19 51.57,43.18 51.95,44.29 51.43,45.59 51.41,45.94 51.9,47.17 52.59,47.94 52.7,48.28 52.97,48.36 53.11,48.75 53.23,48.78 53.26,49.77 54.94,48.9 56.43,48.9 57.55,49.55 57.54,48.49 57.02,47.96 57.01,47.78 56.18,47.17 56.38,46.96 56.29,46.87 56.43,46.66 55.22,45.56 55.68,44.95 55.61,43.97 55.38,43.92 54.81,44.13 54.23,44.61 53.9,44.6 54.01,44.49 53.78,44.19 53.31,44.33 53.34,44.0 53.16,43.8 53.17,43.55 52.78,43.3 52.95,42.82 52.58,42.67 52.53,42.3 52.29,41.98" onclick="goDistrict('Kowloon')" tabindex="0" role="button" aria-label="九龍 Kowloon，5 筆報告" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goDistrict('Kowloon');}"><title>九龍 Kowloon · 5 筆報告，撳入去睇嗰區檔案</title></polygon>
+                  <polygon class="map-area" points="58.16,44.03 57.78,41.38 57.94,40.64 57.3,40.69 57.16,40.82 56.81,40.84 56.86,41.01 56.43,41.1 56.18,41.0 55.9,41.18 55.15,41.21 54.85,41.04 54.93,41.12 54.65,41.23 54.57,41.47 54.09,41.27 54.03,41.45 53.8,41.38 53.86,41.86 53.07,41.78 53.01,41.89 52.8,41.81 52.29,41.98 52.56,42.36 52.58,42.67 52.95,42.82 52.78,43.3 53.17,43.55 53.16,43.8 53.34,44.0 53.31,44.33 53.78,44.19 54.01,44.49 53.9,44.6 54.23,44.61 54.77,44.15 55.38,43.92 55.94,44.26 56.1,44.1 56.48,44.05 56.83,44.35 57.41,44.24 57.39,44.13 58.16,44.03" onclick="goDistrict('Kowloon')" tabindex="0" role="button" aria-label="九龍 Kowloon，5 筆報告" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goDistrict('Kowloon');}"><title>九龍 Kowloon · 5 筆報告，撳入去睇嗰區檔案</title></polygon>
+                  <polygon class="map-area" points="58.16,44.03 57.39,44.13 57.41,44.24 56.83,44.35 56.48,44.05 56.1,44.1 55.94,44.26 55.61,43.97 55.68,44.95 55.22,45.56 56.43,46.66 56.29,46.87 56.38,46.96 56.18,47.17 57.01,47.78 57.02,47.96 57.54,48.49 57.55,49.55 60.83,51.45 60.83,50.98 60.69,50.84 60.53,50.87 60.4,50.15 60.55,49.76 60.98,49.68 60.98,49.34 60.76,48.62 60.55,48.53 60.25,48.1 60.51,47.43 60.71,47.42 60.78,47.15 61.0,47.0 60.85,46.77 60.54,46.75 60.48,46.59 60.66,45.88 60.36,46.15 60.13,46.18 59.8,45.78 59.49,45.8 58.85,44.6 58.76,44.05 58.18,44.04 58.16,44.03" onclick="goDistrict('Kowloon')" tabindex="0" role="button" aria-label="九龍 Kowloon，5 筆報告" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();goDistrict('Kowloon');}"><title>九龍 Kowloon · 5 筆報告，撳入去睇嗰區檔案</title></polygon>
+                  <g class="map-area-label" aria-hidden="true">
+                    <circle cx="48.35" cy="53.25" r="1.3" /><text x="48.35" y="53.25" dominant-baseline="central">6</text>
+                    <circle cx="53.7" cy="44.92" r="1.3" /><text x="53.7" y="44.92" dominant-baseline="central">5</text>
+                  </g>
+                </svg>
                 <button type="button" class="map-hotspot" style="left:58.2%; top:61.2%; width:24px; height:24px; font-size:0.6rem;" title="觀塘 Kwun Tong · 14 筆報告，撳入去睇嗰區檔案" aria-label="觀塘 Kwun Tong，14 筆報告" onclick="goDistrict('Kwun Tong')">14</button>
-                <button type="button" class="map-hotspot" style="left:49.7%; top:67.3%; width:16px; height:16px; font-size:0.6rem;" title="中西區 Central & Western · 6 筆報告，撳入去睇嗰區檔案" aria-label="中西區 Central & Western，6 筆報告" onclick="goDistrict('Central & Western')">6</button>
-                <button type="button" class="map-hotspot" style="left:52.4%; top:59.9%; width:15px; height:15px; font-size:0.6rem;" title="九龍 Kowloon · 5 筆報告，撳入去睇嗰區檔案" aria-label="九龍 Kowloon，5 筆報告" onclick="goDistrict('Kowloon')">5</button>
                 <button type="button" class="map-hotspot" style="left:49.7%; top:58.1%; width:14px; height:14px; font-size:0.6rem;" title="深水埗 Sham Shui Po · 4 筆報告，撳入去睇嗰區檔案" aria-label="深水埗 Sham Shui Po，4 筆報告" onclick="goDistrict('Sham Shui Po')">4</button>
                 <button type="button" class="map-hotspot" style="left:51.0%; top:63.6%; width:13px; height:13px; font-size:0.6rem;" title="尖沙咀 Tsim Sha Tsui · 3 筆報告，撳入去睇嗰區檔案" aria-label="尖沙咀 Tsim Sha Tsui，3 筆報告" onclick="goDistrict('Tsim Sha Tsui')">3</button>
                 <button type="button" class="map-hotspot" style="left:55.0%; top:56.2%; width:12px; height:12px; font-size:0.6rem;" title="黃大仙 Wong Tai Sin · 2 筆報告，撳入去睇嗰區檔案" aria-label="黃大仙 Wong Tai Sin，2 筆報告" onclick="goDistrict('Wong Tai Sin')">2</button>
                 <button type="button" class="map-zoom-btn" onclick="openMapLightbox()">放大睇 🔍</button>
               </div>
-              <figcaption><span class="fig-label">FIG. 1957 · HISTORICAL MAP OF HONG KONG, 1957 · 1:100,000</span><span class="fig-note">地政總署歷史地圖（data.gov.hk）· 僅作歷史背景：1957 年地圖，1975–1980 年間版圖已有變化，唔可以直接當做 MOOD 報告時期嘅地圖。</span><span class="fig-hotspots">橙色圓點係有 MOOD 報告嘅地區，數字係嗰區嘅議題數目。撳任何一個圓點，可以直接睇嗰區嘅報告。</span></figcaption>
+              <figcaption><span class="fig-label">FIG. 1957 · HISTORICAL MAP OF HONG KONG, 1957 · 1:100,000</span><span class="fig-note">地政總署歷史地圖（data.gov.hk）· 僅作歷史背景：1957 年地圖，1975–1980 年間版圖已有變化，唔可以直接當做 MOOD 報告時期嘅地圖。</span><span class="fig-hotspots">橙色圓點係有 MOOD 報告嘅地區，數字係嗰區嘅議題數目；中西區同九龍區就以橙色範圍顯示。撳任何一個圓點或者範圍，可以直接睇嗰區嘅報告。</span></figcaption>
             </figure>
-            <p style="font-size:0.78rem; color:var(--ink-muted); margin:0.5rem 1.5rem 0;">地圖熱點（撳圓點睇嗰區檔案）：觀塘 Kwun Tong 14 筆 · 中西區 Central & Western 6 筆 · 九龍 Kowloon 5 筆 · 深水埗 Sham Shui Po 4 筆 · 尖沙咀 Tsim Sha Tsui 3 筆 · 黃大仙 Wong Tai Sin 2 筆</p>
+            <p style="font-size:0.78rem; color:var(--ink-muted); margin:0.5rem 1.5rem 0;">地圖熱點（撳圓點／範圍睇嗰區檔案）：觀塘 Kwun Tong 14 筆 · 中西區 Central & Western 6 筆 · 九龍 Kowloon 5 筆 · 深水埗 Sham Shui Po 4 筆 · 尖沙咀 Tsim Sha Tsui 3 筆 · 黃大仙 Wong Tai Sin 2 筆</p>
           </div>
 
           <!-- =================================================================
@@ -7436,7 +7490,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
             <td style="white-space:nowrap;" data-label="受訪階層">${highlightQuery(escapeHtml(r.group))}</td>
             <td data-label="情緒"><span class="sentiment-badge ${sentClass}">${escapeHtml(r.sentiment)}</span></td>
             <td style="font-size:0.75rem; font-weight:700; color:${salColor};" data-label="顯著度">${escapeHtml(r.salience)}</td>
-            <td style="max-width:340px;" data-label="民情摘要">${highlightQuery(escapeHtml((r.summary || '').slice(0, 56)))}${(r.summary || '').length > 56 ? '...' : ''}${isTimelineMentioned(r.id) ? '<span class="tl-mention">年表有提及</span>' : ''}</td>
+            <td style="max-width:340px;" data-label="民情摘要"><span class="summary-text">${highlightQuery(escapeHtml((r.summary || '').slice(0, 56)))}${(r.summary || '').length > 56 ? '...' : ''}</span>${isTimelineMentioned(r.id) ? '<span class="tl-mention">年表有提及</span>' : ''}</td>
           </tr>
         `;
       }).join('');
@@ -8617,13 +8671,14 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    section change (a brief blank flicker), so the Web Animations API is
    gone from section transitions entirely: no el.animate(), no inline
    opacity, no fill modes. Instead the v53 style layer defines
-   .sec-fade (opacity 0, transition: opacity 0.6s ease) and
-   .sec-fade.sec-fade-in (opacity 1), and this script only toggles those
-   two classes:
+   .sec-fade (opacity 0, translateY(14px), transition: opacity 0.8s ease,
+   transform 0.8s ease) and
+   .sec-fade.sec-fade-in (opacity 1, translateY(0)), and this script only
+   toggles those two classes:
    - INCOMING: an IntersectionObserver adds .sec-fade-in the moment any
      part of a section reaches the viewport (a small rootMargin starts
      the fade just before it arrives), so it fades in over one smooth,
-     continuous 0.6s CSS transition while it scrolls into view.
+     continuous 0.8s CSS transition while it scrolls into view.
    - OUTGOING: .sec-fade-in is removed ONLY when the section is fully
      out of view (isIntersecting === false), so the reader never watches
      a section fade away and the viewport is never left blank — the
