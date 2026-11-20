@@ -1827,14 +1827,17 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 #section-d .gloss-term { background: #FFFFFF; color: #111111; border-color: #D1D5DB; }
 #section-d .gloss-term:hover, #section-d .gloss-term.active { background: #111111; color: #FFFFFF; border-color: #111111; }
 
-/* Fix C (Lo): chapter transition — a solid panel in the incoming section's
-   background colour sweeps from top to bottom (0.64s) when the reader crosses
-   into a new section. The panel is created by JS only, is pointer-events
-   none, and is removed by transitionend plus a timed fallback, so it can
-   never hide content. Reduced-motion users get no panel at all. */
-#section-wipe { position: fixed; inset: 0; z-index: 5000; pointer-events: none; background: #0E0E0E; transform: translateY(-102%); will-change: transform; }
-#section-wipe.wiping { transition: transform 0.64s cubic-bezier(0.65, 0, 0.35, 1); transform: translateY(102%); }
-@media (prefers-reduced-motion: reduce) { #section-wipe { display: none !important; } }
+/* Section cross-fade (Lo): the chapter transition is a gentle fade, in the
+   pre-v47 style — no solid wipe panel. A section starts transparent (JS
+   adds .sec-fade only) and fades to full opacity over 0.6s when it enters
+   the viewport; once it has scrolled fully out of view it fades back to
+   transparent, so scrolling back replays the fade. Reduced-motion users
+   get no fade at all (sections stay fully visible). */
+main > section.sec-fade { opacity: 0; transition: opacity 0.6s ease; }
+main > section.sec-fade.sec-fade-in { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  main > section.sec-fade { opacity: 1 !important; transition: none !important; }
+}
 
 </style>
 <style>
@@ -8002,11 +8005,12 @@ window.addEventListener('DOMContentLoaded', () => {
        Respects prefers-reduced-motion. */
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var sections = document.querySelectorAll('header.hero-header, main > section');
-      sections.forEach(function (el) {
-        // v22: flat design - every section gets the gentle fade, no 3D tilt
-        el.classList.add('reveal-soft');
-      });
+      var sections = document.querySelectorAll('main > section');
+      // v22: flat design - the hero gets the gentle fade; sections use the
+      // section cross-fade (.sec-fade) instead of .reveal-soft, so the two
+      // opacity transitions never fight. See the section-fade IIFE below.
+      var heroEl = document.querySelector('header.hero-header');
+      if (heroEl) heroEl.classList.add('reveal-soft');
       var cards = document.querySelectorAll('.kpi-card, .insight-box, .mini-card, .embed-card, .social-stat-box');
       cards.forEach(function (el) { el.classList.add('reveal-soft'); });
       // v16: stagger - cards inside the same section cascade in one after another
@@ -8096,65 +8100,49 @@ window.addEventListener('DOMContentLoaded', () => {
       }, { passive: true });
       updateLeaving();
     })();
-    /* Fix C (Lo): chapter transition — a solid panel in the incoming
-       section's background colour sweeps from top to bottom (0.64s) when the
-       reader crosses into a new section, whether by scrolling, the top nav,
-       the side dots, keyboard jumping or presentation mode. It is a separate
-       fixed overlay (never a mask over content): the panel is created by JS
-       only, is pointer-events none, and is removed by transitionend plus a
-       750ms timed fallback, so content can never stay hidden. It fires once
-       per section (the observer unobserves after the first entry) and never
-       on initial load (armed 1.5s after script run). Reduced-motion users
-       get no panel at all. */
+    /* Section cross-fade (Lo): the chapter transition is a gentle fade, in
+       the pre-v47 style — no solid wipe panel. Each section fades in
+       (opacity 0 → 1, 0.6s) when it enters the viewport, and fades back
+       out only once it has scrolled fully out of view, so scrolling back
+       replays the fade. The classes are added by JS only, so content stays
+       visible when JS is off. A scroll/load check reveals anything already
+       in view, and reduced-motion users get no fade at all. The
+       per-element reveal (.reveal-soft on cards) is untouched and composes
+       with this section fade. */
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var wipeEl = null, wipeTimer = null, wipeBusy = false, wipeArmed = false;
-      setTimeout(function () { wipeArmed = true; }, 1500);
-      function sectionBgColor(el) {
-        var node = el;
-        while (node && node !== document.body) {
-          var bg = getComputedStyle(node).backgroundColor;
-          if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') return bg;
-          node = node.parentElement;
-        }
-        var bodyBg = getComputedStyle(document.body).backgroundColor;
-        return (bodyBg && bodyBg !== 'rgba(0, 0, 0, 0)' && bodyBg !== 'transparent') ? bodyBg : '#0E0E0E';
-      }
-      function playSectionWipe(sectionEl) {
-        if (!wipeArmed || wipeBusy) return;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (!wipeEl) {
-          wipeEl = document.createElement('div');
-          wipeEl.id = 'section-wipe';
-          wipeEl.setAttribute('aria-hidden', 'true');
-          document.body.appendChild(wipeEl);
-        }
-        wipeEl.style.background = sectionBgColor(sectionEl);
-        void wipeEl.offsetWidth;
-        wipeBusy = true;
-        wipeEl.classList.add('wiping');
-        var done = function () {
-          if (!wipeBusy) return;
-          wipeBusy = false;
-          wipeEl.classList.remove('wiping');
-        };
-        wipeEl.addEventListener('transitionend', function h(e) {
-          if (e.propertyName === 'transform') { wipeEl.removeEventListener('transitionend', h); done(); }
+      var sections = document.querySelectorAll('main > section');
+      sections.forEach(function (el) { el.classList.add('sec-fade'); });
+      function fadeInView() {
+        sections.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight * 1.5 && r.bottom > 0) el.classList.add('sec-fade-in');
         });
-        clearTimeout(wipeTimer);
-        wipeTimer = setTimeout(done, 750);
       }
-      if ('IntersectionObserver' in window) {
-        var wio = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              playSectionWipe(e.target);
-              wio.unobserve(e.target);
-            }
-          });
-        }, { threshold: 0.05 });
-        document.querySelectorAll('header.hero-header, main > section').forEach(function (el) { wio.observe(el); });
+      if (!('IntersectionObserver' in window)) {
+        sections.forEach(function (el) { el.classList.add('sec-fade-in'); });
+        return;
       }
+      var sio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('sec-fade-in');
+          } else if (e.intersectionRatio === 0) {
+            e.target.classList.remove('sec-fade-in');
+          }
+        });
+      }, { threshold: 0.05 });
+      sections.forEach(function (el) { sio.observe(el); });
+      fadeInView();
+      window.addEventListener('load', fadeInView);
+      window.addEventListener('resize', fadeInView);
+      var fadeTicking = false;
+      window.addEventListener('scroll', function () {
+        if (!fadeTicking) {
+          fadeTicking = true;
+          requestAnimationFrame(function () { fadeTicking = false; fadeInView(); });
+        }
+      }, { passive: true });
     })();
     /* v49 fix pass: the mask/wipe reveal was removed so the page uses ONE
        reveal language — the fail-open fade/rise (.reveal-soft) above.
