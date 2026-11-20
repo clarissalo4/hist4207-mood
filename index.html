@@ -266,8 +266,17 @@
       gap: 3.75rem;
     }
 
+    /* Nav is ~73px tall on desktop (~61px mobile); 96px clears it with
+       room to spare so a jumped-to section heading never hides under it. */
     section {
-      scroll-margin-top: 80px;
+      scroll-margin-top: 96px;
+    }
+
+    /* Hero/cover is a header element, not a section element, so it
+       needs its own scroll margin — otherwise jumping to 01 總覽
+       lands its top under the fixed nav. */
+    #overview {
+      scroll-margin-top: 96px;
     }
 
     .section-header {
@@ -1533,7 +1542,9 @@
       --font-display: "Source Serif 4", "Noto Serif TC", "Songti TC", "PMingLiU", serif;
     }
     /* navbar */
-    .navbar { background: rgba(35, 35, 35, 0.96); }
+    /* navbar — fully opaque #232323 (the softened dark) so no page
+       content ever shows through it while scrolling underneath. */
+    .navbar { background: #232323; }
     .navbar .brand-badge { background: #C2410C; color: #FFFFFF; }
     .brand-title { font-family: var(--font-display); font-weight: 800; }
     /* hero */
@@ -1901,7 +1912,7 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
    Card titles and the stacked-chart caveat stay exactly as written. */
 #section-b .embed-card { background: #FFFFFF; border: 1px solid #E5E7EB; }
 #section-b .embed-header { background: #F9FAFB; border-bottom: 1px solid #E5E7EB; color: #111111; }
-#section-b .embed-frame-wrap { background: #FFFFFF; padding: 12px; height: 512px; }
+#section-b .embed-frame-wrap { background: #FFFFFF; padding: 12px; height: 680px; }
 #section-b .embed-frame-wrap iframe {
   background: #FFFFFF;
   border: 1px solid #E5E7EB;
@@ -1912,7 +1923,7 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 /* Stacked-chart caveat note: back on the white card foot (was the dark frame foot). */
 #b-card-stacked > p { background: #FFFFFF; padding: 0 16px 14px; }
 @media (max-width: 720px) {
-  #section-b .embed-frame-wrap { padding: 10px; height: 400px; }
+  #section-b .embed-frame-wrap { padding: 10px; height: 560px; }
   #section-b .flourish-fallback { inset: 10px !important; }
 }
 /* Single-chart enlarge (Lo): the stacked chart (30969585) is a Flourish
@@ -1920,28 +1931,31 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
    Public / Grassroots / Middle Class; bottom row: Youth/Students / Local
    Elites). When the grid goes single-column the iframe gets ~2x wider, each
    facet panel grows taller with it, and the 2-row grid no longer fits the
-   512px frame — the bottom row was clipped by .embed-card's overflow:hidden,
-   so only the top 3 panels showed. The enlarged frame is therefore 900px
-   tall on desktop, giving both facet rows room; the chart reflows to fill
-   it when its iframe resizes. Mobile keeps 400px: facets are narrow there,
-   so both rows already fit. The Sankey (30956322) is a single unfaceted
-   diagram that scales to its container, so the taller frame only gives it
-   more room — same rule, no chart-specific code. */
+   680px frame — the bottom row and the 「Made with Flourish」 credit were
+   clipped by .embed-card's overflow:hidden. The enlarged frame is therefore
+   1150px tall on desktop, giving both facet rows plus the bottom text room;
+   the chart reflows to fill it when its iframe resizes. Mobile keeps the
+   560px frame: facets are narrow there, so both rows already fit. The Sankey
+   (30956322) is a single unfaceted diagram that scales to its container, so
+   the taller frame only gives it more room — same rule, no chart-specific
+   code. */
 @media (min-width: 721px) {
-  #section-b .flourish-grid.single-col .embed-frame-wrap { height: 900px; }
+  #section-b .flourish-grid.single-col .embed-frame-wrap { height: 1150px; }
 }
-/* Sankey frame taller (Lo, 「housing睇唔到」): the Sankey (30956322) has 9
-   issue categories on the right (Politics, Law and Order, Public Health,
-   Transport, Education, Economy, Community Environment, Housing, Labour).
-   At the default 512px frame the bottom category (Housing) was cut off.
-   The Sankey gets its own 800px frame on desktop so all 9 categories and
-   their labels fit. The stacked chart keeps its 512px default / 900px
-   single-col rule. Mobile gets 650px so Housing fits there too. The
-   single-col 900px rule above still wins in enlarged view (higher
-   specificity), giving the Sankey even more room there. */
-#b-card-sankey .embed-frame-wrap { height: 800px; }
+/* Sankey frame taller (Lo, 「housing睇唔到」, then 「最底嘅字無法顯示曬」):
+   the Sankey (30956322) has 9 issue categories on the right (Politics,
+   Law and Order, Public Health, Transport, Education, Economy, Community
+   Environment, Housing, Labour). At the default 512px frame the bottom
+   category (Housing) was cut off; at 800px Housing showed but the bottom
+   text (the 「Made with Flourish」 credit) was still clipped. The Sankey
+   gets its own 950px frame on desktop so all 9 categories, their labels
+   AND the bottom credit fit. The stacked chart keeps its 680px default /
+   1150px single-col rule. Mobile gets 800px so the bottom text fits
+   there too. The single-col 1150px rule above still wins in enlarged
+   view (higher specificity), giving the Sankey even more room there. */
+#b-card-sankey .embed-frame-wrap { height: 950px; }
 @media (max-width: 720px) {
-  #b-card-sankey .embed-frame-wrap { height: 650px; }
+  #b-card-sankey .embed-frame-wrap { height: 800px; }
 }
 </style>
 <style>
@@ -2227,21 +2241,23 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    The old solid wipe panel (#section-wipe) is GONE — no panel, no sweep.
    The v52 Web Animations API fade FLASHED once per section change, so
    v53 restores the pre-v47 CSS-transition fade: .sec-fade sets opacity 0
-   with a single continuous `transition: opacity 0.8s ease, transform
-   0.8s ease`, and .sec-fade-in sets opacity 1. The fade is 0.8s (not
-   0.6s) and the incoming section also rises gently translateY(14px) ->
-   0, so the chapter change reads clearly (Lo, 「而家過場太唔明顯」)
-   without being dizzying. The script adds .sec-fade (never present
-   in the HTML, so with JS off nothing is ever hidden — fail-open) and
-   an IntersectionObserver toggles .sec-fade-in: added as a section
-   reaches the viewport, removed ONLY once it is fully out of view, so
-   incoming and outgoing overlap and the screen is never left blank.
-   Under prefers-reduced-motion the script adds no classes at all, and
-   the guard below forces full opacity, no transform and no transition
+   with a single continuous `transition: opacity 1s ease, transform
+   1s ease`, and .sec-fade-in sets opacity 1 and scale 1. The fade is
+   1.0s (0.6s, then 0.8s, still too subtle for Lo) and the incoming
+   section rises translateY(24px) -> 0 with a slight scale 0.985 -> 1,
+   all in ONE smooth motion, so the chapter change reads clearly
+   (Lo, 「每節之間嘅過場動畫都仲係好唔明顯」) without being dizzying.
+   The script adds .sec-fade (never present in the HTML, so with JS off
+   nothing is ever hidden — fail-open) and an IntersectionObserver
+   toggles .sec-fade-in: added as a section reaches the viewport,
+   removed ONLY once it is fully out of view, so incoming and outgoing
+   overlap and the screen is never left blank. Under
+   prefers-reduced-motion the script adds no classes at all, and the
+   guard below forces full opacity, no transform and no transition
    anyway. The sections' --mask-bg declarations elsewhere are now inert
    leftovers of the wipe era. --- */
-.sec-fade { opacity: 0; transform: translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.sec-fade.sec-fade-in { opacity: 1; transform: translateY(0); }
+.sec-fade { opacity: 0; transform: translateY(24px) scale(0.985); transition: opacity 1s ease, transform 1s ease; }
+.sec-fade.sec-fade-in { opacity: 1; transform: translateY(0) scale(1); }
 @media (prefers-reduced-motion: reduce) {
   .sec-fade { opacity: 1; transform: none; transition: none; }
 }
@@ -8671,14 +8687,15 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    section change (a brief blank flicker), so the Web Animations API is
    gone from section transitions entirely: no el.animate(), no inline
    opacity, no fill modes. Instead the v53 style layer defines
-   .sec-fade (opacity 0, translateY(14px), transition: opacity 0.8s ease,
-   transform 0.8s ease) and
-   .sec-fade.sec-fade-in (opacity 1, translateY(0)), and this script only
-   toggles those two classes:
+   .sec-fade (opacity 0, translateY(24px) scale(0.985), transition:
+   opacity 1s ease, transform 1s ease) and
+   .sec-fade.sec-fade-in (opacity 1, translateY(0) scale(1)), and this
+   script only toggles those two classes:
    - INCOMING: an IntersectionObserver adds .sec-fade-in the moment any
-     part of a section reaches the viewport (a small rootMargin starts
-     the fade just before it arrives), so it fades in over one smooth,
-     continuous 0.8s CSS transition while it scrolls into view.
+     part of a section reaches the viewport edge (rootMargin 0%, so the
+     full 1.0s motion plays visibly as the section arrives, not while
+     it is still off-screen), so it fades in over one smooth,
+     continuous 1.0s CSS transition while it scrolls into view.
    - OUTGOING: .sec-fade-in is removed ONLY when the section is fully
      out of view (isIntersecting === false), so the reader never watches
      a section fade away and the viewport is never left blank — the
@@ -8722,7 +8739,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
         if (en.isIntersecting) en.target.classList.add('sec-fade-in');
         else en.target.classList.remove('sec-fade-in');
       });
-    }, { rootMargin: '12% 0px 12% 0px', threshold: 0 });
+    }, { rootMargin: '0% 0px 0% 0px', threshold: 0 });
     els.forEach(function (el) { io.observe(el); });
     /* Fail-open guard: anything on screen must end up fully visible,
        even if an observer callback is ever missed. */
