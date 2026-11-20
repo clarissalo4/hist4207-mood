@@ -828,18 +828,6 @@
       overflow-y: auto;
     }
 
-    /* Lo: desktop archive table rows were too wide — cap the table at
-       860px (Excel-row width, same as the record overlay's reading column)
-       and centre it on desktop only. The white section background
-       stays full-width; only the table narrows. Mobile cards untouched. */
-    @media (min-width: 721px) {
-      #section-d .archive-table-wrap {
-        max-width: 860px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
     table.archive-table {
       width: 100%;
       border-collapse: collapse;
@@ -1134,13 +1122,7 @@
 
     /* v9: scroll progress + side dot nav */
     #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--accent); z-index: 1000; }
-    /* Lo: dot nav shows only while scrolling — hidden when idle (opacity 0
-       + visibility hidden, so it is not focusable), fades in on scroll,
-       fades out ~1.5s after scrolling stops. Stays visible while hovered
-       or focused. */
-    #section-dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 900; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0.3s ease; }
-    #section-dots.dots-visible { opacity: 1; visibility: visible; pointer-events: auto; }
-    @media (prefers-reduced-motion: reduce) { #section-dots { transition: none; } }
+    #section-dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 900; }
     #section-dots a { display: flex; align-items: center; justify-content: flex-end; gap: 8px; text-decoration: none; }
     #section-dots .dot-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-primary); background: #FFFFFF; border: 1px solid var(--border-strong); border-radius: 999px; padding: 2px 8px; opacity: 0; transform: translateX(4px); transition: opacity 0.15s ease, transform 0.15s ease; white-space: nowrap; pointer-events: none; }
     #section-dots a:hover .dot-label, #section-dots a.active .dot-label { opacity: 1; transform: translateX(0); }
@@ -1638,13 +1620,6 @@ main > section { padding-top: 4.5rem; padding-bottom: 6rem; }
 .filter-pill:hover { border-color: #F5F5F5; }
 .filter-pill.active { background: #C2410C; border-color: #C2410C; color: #FFFFFF; }
 .filter-pill:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
-/* Fix D (Lo): the 44 filter pills sit behind an 「進階搜索」 toggle — the
-   panel is collapsed by default so the pills stop eating the page. The
-   button inverts to black while expanded; the orange badge counts active
-   filter groups so an applied filter is never lost while collapsed. */
-#csv-filter-pills.collapsed { display: none; }
-#section-d #adv-search-btn.expanded, #section-d #adv-search-btn.expanded:hover { background: #111111; color: #FFFFFF; border-color: #111111; }
-.adv-badge { display: inline-flex; align-items: center; background: #C2410C; color: #FFFFFF; border-radius: 999px; padding: 0.1rem 0.55rem; font-size: 0.75rem; font-weight: 700; margin-left: 0.4rem; white-space: nowrap; }
 .csv-controls-grid.pills-on select.form-control { display: none; }
 .csv-controls-grid.pills-on #csv-search-input { grid-column: 1 / -1; padding: 1rem 1.1rem; font-size: 1.05rem; }
 #csv-keyword-chips .cat-pill { padding: 0.55rem 1rem; font-size: 0.9rem; }
@@ -1655,44 +1630,25 @@ table.archive-table td[data-label="民情摘要"] { font-size: 1.02rem; line-hei
 table.archive-table td[data-label="報告編號"] { font-size: 1rem; }
 table.archive-table tr.data-row:hover { background: #1F1F1F; }
 .card:hover, .embed-card:hover { border-color: #3A3A3A; }
-/* E. Fullscreen minimal record overlay.
-   Fix B + Fix E (Lo): popups are GREY now, not near-black — the record
-   overlay, the category-detail popup and the my-folder popup all share the
-   same grey card (#2E2E2E). Fix F: the backdrop is the same solid #2E2E2E
-   as the card (was #262626), so the whole popup reads as one uniform grey
-   with no visible step. White / light text on #2E2E2E stays well above WCAG AA. */
-.archive-modal { padding: 0; background: #2E2E2E; }
-.archive-modal-card { max-width: none; width: 100%; min-height: 100vh; min-height: 100svh; max-height: none; border: none; border-radius: 0; box-shadow: none; padding: 5rem 1.25rem 3rem; background: #2E2E2E; }
-/* Outline buttons inside the grey modals need a visible border: the dark
-   theme's #3A3A3A border is nearly invisible on #2E2E2E, so lighten it. */
-.archive-modal-card .btn-outline { border-color: #9CA3AF; color: #F5F5F5; }
+/* E. Fullscreen minimal record overlay. */
+.archive-modal { padding: 0; background: rgba(14, 14, 14, 0.97); }
+.archive-modal-card { max-width: none; width: 100%; min-height: 100vh; min-height: 100svh; max-height: none; border: none; border-radius: 0; box-shadow: none; padding: 5rem 1.25rem 3rem; background: #0E0E0E; }
 .archive-modal-card > * { max-width: 860px; margin-left: auto; margin-right: auto; }
 .archive-modal-close { position: fixed; top: 1rem; right: 1.25rem; font-size: 2.4rem; padding: 0.4rem 0.8rem; color: #F5F5F5; z-index: 10000; }
-#archive-modal-title { font-size: 1.9rem; line-height: 1.35; margin: 1rem auto 1.2rem; }
+#archive-modal-title { font-size: 1.9rem; line-height: 1.35; margin: 1rem 0 1.2rem; }
 #archive-modal-body { font-size: 1.02rem; line-height: 1.8; }
 .archive-modal-nav { margin-top: 2.5rem; gap: 1rem; }
 .archive-modal-nav .btn { padding: 0.8rem 1.4rem; font-size: 0.95rem; }
 
-/* Fix F (Lo): category popup must scroll + one uniform grey.
-   Scroll: the v49 fullscreen card (min-height 100vh, max-height none) plus
-   the locked body meant a tall popup could not be scrolled at all. Make the
-   category card a flex column capped at 90vh: the body scrolls inside it,
-   the 關閉 footer stays visible at the bottom, the × stays fixed.
-   Grey: solid #2E2E2E chosen (Lo: translucent also fine) so card and
-   backdrop are one consistent shade; the popup header pills were #1F1F1F
-   (a darker patch) — make them transparent so they read as the card grey. */
-#cat-focus-modal .archive-modal-card { display: flex; flex-direction: column; min-height: 0; max-height: 90vh; max-height: 90svh; overflow-y: hidden; }
-#cat-focus-modal #cat-focus-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
-#cat-focus-modal .meta-pill { background: transparent; }
-
-/* ===== v49 white sections: 03 Section B (#section-b) + 05 Archive (#section-d) + 07 Conclusion (#section-conclusion) =====
-   Lo: white background is easier to read for the dense archive text and the
-   short conclusion, and Section B white too so the page alternates
-   black/white from 03 on
-   (03 white, 04 dark, 05 white, 06 dark, 07 white, 08 dark methods).
+/* ===== v49 white sections: 03 Section B (#section-b) + 05 Archive (#section-d) + 08 Methods (#section-methods) =====
+   Lo: white background is easier to read for the dense archive + methods text,
+   and Section B white too so the page alternates black/white from 03 on
+   (03 white, 04 dark, 05 white, 06 dark; v50 swaps the last two — 07
+   conclusion white, 08 methods dark — via the v50 block at the end of
+   the last stylesheet, which also flips the methods variables back).
    Scoped variable overrides flip var()-based colours to the light theme inside
    these three sections only; hardcoded dark colours are overridden below. */
-#section-b, #section-d, #section-conclusion {
+#section-b, #section-d, #section-methods {
   --bg-paper: #FFFFFF;
   --bg-card: #FFFFFF;
   --bg-subtle: #F3F4F6;
@@ -1712,12 +1668,12 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
    screens the near-black body (#0E0E0E) showed as gutters left and right of
    each white section — the white read as an inset slab, not a plain white
    background. Break the three white sections out to full viewport width
-   (the same calc(50% - 50vw) breakout), with background-image: none so
-   no pattern can tile. Content width is unchanged: #section-b / #section-d
-   get the matching inner padding, #section-conclusion keeps its own padding
-   in its rule, and #section-methods keeps its inner .container, so nothing
-   moves. Dark sections and the hero (1957 map) are untouched. */
-#section-b, #section-d, #section-conclusion {
+   (the same calc(50% - 50vw) breakout #section-conclusion already uses),
+   with background-image: none so no pattern can tile. Content width is
+   unchanged: #section-b / #section-d get the matching inner padding, and
+   #section-methods keeps its inner .container, so nothing moves. Dark
+   sections and the hero (1957 map) are untouched. */
+#section-b, #section-d, #section-methods {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: #FFFFFF;
@@ -1727,9 +1683,9 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
   padding-left: max(1.25rem, calc(50vw - 620px));
   padding-right: max(1.25rem, calc(50vw - 620px));
 }
-#section-d .section-title { color: #111111; }
-#section-d .sec-ghost, #section-conclusion .sec-ghost { color: #E5E7EB; }
-#section-d .folder-body, #section-d .csv-layer-shell, #section-d .feat-card, #section-d .glossary-box, #section-d .theme-entry, #section-d .folder-card { background: #FFFFFF; }
+#section-d .section-title, #section-methods .section-title { color: #111111; }
+#section-d .sec-ghost, #section-methods .sec-ghost { color: #E5E7EB; }
+#section-d .folder-body, #section-d .csv-layer-shell, #section-d .feat-card, #section-d .glossary-box, #section-d .theme-entry, #section-d .folder-card, #section-methods .folder-card { background: #FFFFFF; }
 #section-d .theme-entry:hover { background: #F3F4F6; border-color: #111111; }
 #section-d .folder-stamp-bar { background: #F3F4F6; color: #374151; }
 #section-d .filter-pill { color: #111111; border-color: #111111; background: #FFFFFF; }
@@ -1742,7 +1698,7 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
 #section-d .archive-table tbody tr:hover, #section-d table.archive-table tr.data-row:hover { background: #F3F4F6; }
 #section-d .btn-outline { background: #FFFFFF; color: #111111; border-color: #111111; }
 #section-d .btn-outline:hover { background: #F3F4F6; color: #111111; border-color: #111111; }
-#section-d .stamp-mini, #section-d .stamp-badge { color: #DC2626; border-color: #DC2626; }
+#section-d .stamp-mini, #section-d .stamp-badge, #section-methods .stamp-mini { color: #DC2626; border-color: #DC2626; }
 #section-d p[style*="A8A08E"] { color: #6B7280 !important; }
 
 #section-d .archive-table thead th { color: #374151; }
@@ -1775,15 +1731,16 @@ footer .memo-card p { color: #E5E5E5; }
 table.archive-table th { background: #F4EFE4; color: #111111; }
 .archive-table thead th { color: #111111; }
 #section-d .archive-table thead th { background: #F4EFE4; color: #111111; }
-/* (2) Record modal summary: light text on the grey modal card.
-       #F5F5F5 on #2E2E2E = 12.46:1 */
+/* (2) Record modal summary: light text on the near-black modal card.
+       #F5F5F5 on #0E0E0E = 17.71:1 */
 .archive-modal-card #archive-modal-body { color: #F5F5F5; }
 /* (3) Insight boxes / presenter alert: light text on dark cards (#F5F5F5 on
        #161616 = 16.60:1); Methods insight boxes become white cards with dark
        text (#374151 on #FFFFFF = 10.31:1); glossary def dark on white;
        memo-card body light on its dark card (#E5E7EB on #1A1A1A = 14.06:1). */
 .insight-box { color: #F5F5F5; }
-#section-d .insight-box { color: #374151; }
+#section-d .insight-box, #section-methods .insight-box { color: #374151; }
+#section-methods .insight-box { background: #FFFFFF; }
 .presenter-alert { color: #F5F5F5; }
 #section-d #glossary-def { color: #374151; }
 .memo-card p { color: #E5E7EB; }
@@ -1800,7 +1757,7 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
        visible grey on dark sections; light grey kept on the white sections. */
 .sec-ghost { color: #2E2E2E; }
 #section-c .sec-ghost, #section-timeline .sec-ghost { color: #2E2E2E; }
-#section-d .sec-ghost, #section-conclusion .sec-ghost { color: #E5E7EB; }
+#section-d .sec-ghost, #section-methods .sec-ghost { color: #E5E7EB; }
 /* (7) Filter group labels on the white archive section: dark text.
        #374151 on #FFFFFF = 10.31:1 */
 #section-d .filter-pill-label { color: #374151; }
@@ -1826,18 +1783,6 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
        #111111 on #FFFFFF = 18.9:1. */
 #section-d .gloss-term { background: #FFFFFF; color: #111111; border-color: #D1D5DB; }
 #section-d .gloss-term:hover, #section-d .gloss-term.active { background: #111111; color: #FFFFFF; border-color: #111111; }
-
-/* Section cross-fade (Lo): the chapter transition is a gentle fade, in the
-   pre-v47 style — no solid wipe panel. A section starts transparent (JS
-   adds .sec-fade only) and fades to full opacity over 0.6s when it enters
-   the viewport; once it has scrolled fully out of view it fades back to
-   transparent, so scrolling back replays the fade. Reduced-motion users
-   get no fade at all (sections stay fully visible). */
-main > section.sec-fade { opacity: 0; transition: opacity 0.6s ease; }
-main > section.sec-fade.sec-fade-in { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  main > section.sec-fade { opacity: 1 !important; transition: none !important; }
-}
 
 </style>
 <style>
@@ -1880,15 +1825,13 @@ main > section.sec-fade.sec-fade-in { opacity: 1; }
 .modal-sibling-btn { display: block; width: 100%; text-align: left; font-family: inherit; font-size: 0.88rem; line-height: 1.55; background: none; border: 1px solid var(--border-strong); border-radius: 2px; color: var(--ink-primary); padding: 0.45rem 0.7rem; margin: 0.3rem 0 0; cursor: pointer; }
 .modal-sibling-btn:hover { border-color: #C2410C; }
 .modal-sibling-btn .sib-id { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: #C2410C; margin-right: 0.5rem; }
-/* Conclusion section (07): white band after the timeline, before the dark methods section (08) */
-#section-conclusion { background: #FFFFFF; color: #111111; border-top: 4px solid var(--accent); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: max(1.25rem, calc(50vw - 620px)); padding-right: max(1.25rem, calc(50vw - 620px)); }
-#section-conclusion .section-kicker { background: #C2410C; color: #FFFFFF !important; }
-#section-conclusion .section-title { color: #111111; }
-#section-conclusion .conclusion-text { font-family: var(--font-serif); font-size: 1.3rem; line-height: 2.05; color: #111111; max-width: 44em; margin: 1.25rem 0 0; }
-/* Fix A (Lo): 08 Methods is now the dark section — near-black band (#111111)
-   with the same full-viewport breakout the conclusion used to have; its inner
-   .container still sets the content width, so nothing moves. */
-#section-methods { background: #111111; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
+/* Conclusion section (07): band after the timeline, before methods (08).
+   v50: recoloured WHITE (and 08 methods recoloured dark) by the v50 block
+   at the end of the last stylesheet; the rules below are the pre-swap base. */
+#section-conclusion { background: #111111; color: #FFFFFF; border-top: 4px solid var(--accent); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: max(1.25rem, calc(50vw - 620px)); padding-right: max(1.25rem, calc(50vw - 620px)); }
+#section-conclusion .section-kicker { background: #FFFFFF; color: #111111 !important; }
+#section-conclusion .section-title { color: #FFFFFF; }
+#section-conclusion .conclusion-text { font-family: var(--font-serif); font-size: 1.3rem; line-height: 2.05; color: #F5F5F5; max-width: 44em; margin: 1.25rem 0 0; }
 @media (max-width: 720px) { #section-conclusion .conclusion-text { font-size: 1.12rem; line-height: 1.95; } }
 .ac-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; }
 .ac-salience { font-size: 0.78rem; font-weight: 700; }
@@ -2082,7 +2025,6 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
 /* Screen-reader-only live region (record overlay announcements). */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
-
 /* (b)+(d) Nav: shorter brand (HTML), tighter gaps, nothing wraps — the
    brand, all 7 links and the 全螢幕簡報 button each stay on one line. */
 .nav-inner { gap: 1.25rem; }
@@ -2147,7 +2089,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    aria-hidden; previously near-invisible on dark, visible on white). */
 .sec-ghost { color: #2B2B2B; }
 #section-c .sec-ghost, #section-timeline .sec-ghost { color: #2B2B2B; }
-#section-b .sec-ghost, #section-d .sec-ghost, #section-conclusion .sec-ghost { color: #E7E9EC; }
+#section-b .sec-ghost, #section-d .sec-ghost, #section-methods .sec-ghost { color: #E7E9EC; }
 
 /* (l) Desktop nav brand truncation fix (1440px audit: title clipped 26px).
    The nav container caps at 1240px, so at desktop widths the brand + 8 links
@@ -2181,12 +2123,314 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    visible and tappable (same behaviour on desktop and phone). */
 #back-to-top { visibility: hidden; }
 #back-to-top.show { visibility: visible; }
+
+/* (n) Archive table width (Lo): on desktop the Section D table stretched
+   the full ~1240px content width, so every row read too wide. Cap the
+   table frame at 860px and centre it — the same width as the record
+   overlay's content column, a compact spreadsheet-row-like reading
+   width. Desktop only (min-width: 721px, the site's table/cards
+   breakpoint) — the mobile card view is untouched. Only the table frame
+   narrows: #section-d itself keeps its full-viewport white background,
+   and the folder, filters, search and sort above the table keep their
+   existing width. Columns, sorting, filtering and search are unchanged. */
+@media (min-width: 721px) {
+  #section-d .archive-table-wrap { max-width: 860px; margin-left: auto; margin-right: auto; }
+}
+
+/* ===== v50: 07/08 background swap (Lo) + grey detail modals + section transitions =====
+   Placed last so it wins the cascade over the v49 white-sections layer and
+   the Item 4 conclusion rules at equal specificity. Nothing above changes:
+   the 860px archive table cap in (n) stays exactly as it was. */
+
+/* --- (1) 07 Conclusion: dark band -> WHITE, so the page alternates
+   03 white, 04 dark, 05 white, 06 dark, 07 white, 08 dark. The orange top
+   border stays; the kicker returns to the standard orange pill every
+   other section uses. Contrast on #FFFFFF: #111111 = 18.9:1. --- */
+#section-conclusion { background: #FFFFFF; color: #111111; --mask-bg: #FFFFFF; }
+#section-conclusion .section-kicker { background: #C2410C; color: #FFFFFF !important; }
+#section-conclusion .section-title { color: #111111; }
+#section-conclusion .conclusion-text { color: #111111; }
+#section-conclusion .sec-ghost { color: #E7E9EC; }
+
+/* --- (2) 08 Methods: white -> DARK. The scoped variables flip back to the
+   dark Santal values, so every var()-based component inside follows
+   (subtitle, workflow steps and their connecting line, vertical label,
+   bibliography text), and the hardcoded white overrides from the v49
+   layer are reverted below. Content untouched: all 8 workflow steps, the
+   insight boxes, the data-cleaning cards, the limitations text and the
+   bibliography stay exactly as written.
+   Contrast on #111111: #FFFFFF = 18.9:1, #F5F5F5 = 17.7:1,
+   #D4D4D4 = 12.6:1, #9CA3AF = 7.4:1, stamp red #F87171 = 6.9:1. --- */
+#section-methods {
+  --bg-paper: #111111;
+  --bg-card: #161616;
+  --bg-subtle: #1F1F1F;
+  --bg-folder-tab: #1F1F1F;
+  --bg-band: #161616;
+  --border-paper: #2A2A2A;
+  --border-strong: #3A3A3A;
+  --ink-primary: #FFFFFF;
+  --ink-secondary: #D4D4D4;
+  --ink-muted: #9CA3AF;
+  --mask-bg: #111111;
+  background: #111111;
+  color: #F5F5F5;
+}
+#section-methods .section-title { color: #FFFFFF; }
+#section-methods .sec-ghost { color: #2B2B2B; }
+#section-methods .folder-card { background: #161616; }
+#section-methods .insight-box { background: #161616; color: #F5F5F5; }
+#section-methods .stamp-mini { color: #F87171; border-color: #F87171; }
+
+/* --- (3) Category detail + my-folder modals: near-black -> GREY (Lo).
+   Card #2E2E2E over a #262626 backdrop — visibly grey, not black. Both
+   modals share the .archive-modal system, so both get the same grey; the
+   fullscreen record modal (#archive-modal) keeps its colours here —
+   v51 below then gives it the same grey too, at Lo's follow-up request.
+   Scoped variables lift the muted text, hairlines and
+   link orange that were tuned for near-black, so everything stays
+   WCAG AA on the grey: #FFFFFF = 13.6:1, #D4D4D4 = 9.9:1,
+   #C9CDD3 = 8.6:1, #FB923C = 5.7:1 on #2E2E2E. The fixed x close button
+   keeps its #F5F5F5 (14.6:1 on the #262626 backdrop); the in-modal
+   outline buttons get a lighter border so they read clearly too. --- */
+#cat-focus-modal, #myfolder-modal {
+  background: rgba(38, 38, 38, 0.97);
+  --ink-muted: #C9CDD3;
+  --border-paper: #4A4A4A;
+  --border-strong: #6E6E6E;
+  --accent: #FB923C;
+}
+#cat-focus-modal .archive-modal-card, #myfolder-modal .archive-modal-card { background: #2E2E2E; }
+#cat-focus-modal .btn-outline, #myfolder-modal .btn-outline { background: transparent; color: #FFFFFF; border-color: #9CA3AF; }
+#cat-focus-modal .btn-outline:hover, #myfolder-modal .btn-outline:hover { background: #3D3D3D; color: #FFFFFF; border-color: #FFFFFF; }
+
+/* --- (4) Section transitions (see the v52 script before </body>).
+   The old solid wipe panel (#section-wipe) is GONE — no panel, no sweep.
+   Section changes are now a gentle opacity cross-fade (the pre-v47 style)
+   driven entirely by that script through the Web Animations API, so this
+   layer needs no CSS for it at all: no element is ever hidden by a
+   stylesheet rule, and with JS off, reduced motion, or no WAAPI support
+   every section simply stays fully visible. The sections' --mask-bg
+   declarations elsewhere are now inert leftovers of the wipe era. --- */
+#overview, #section-a, #section-c, #section-timeline { --mask-bg: #0E0E0E; }
+
+/* ===== v51: record modal joins the grey + title alignment; advanced-search filter collapse =====
+   Placed after v50 so it wins the cascade at equal specificity. */
+/* --- (1) Fullscreen record modal (#archive-modal): the SAME grey as the
+   category / my-folder modals in v50 (3) — backdrop #262626, card #2E2E2E —
+   so all three modals match. Light text unchanged and still AA on the
+   grey: body #F5F5F5 = 12.9:1, muted #9CA3AF = 5.9:1 on #2E2E2E. Record
+   data, citation and data-use wording untouched.
+   Title alignment: #archive-modal-title's own margin shorthand in the
+   Santal layer (1rem 0 1.2rem) zeroed the auto side margins that centre
+   every other child of the card into the 860px column, so the title sat
+   at the card's left edge while the meta pills, body and nav centred.
+   The longhands below restore the same auto margins — same column, same
+   max-width, same left edge as everything else; the big serif typeface
+   and size are unchanged, as are the prev/next nav and counter. --- */
+#archive-modal { background: rgba(38, 38, 38, 0.97); }
+#archive-modal .archive-modal-card { background: #2E2E2E; }
+#archive-modal-title { margin-left: auto; margin-right: auto; }
+
+/* --- (2) Advanced search: the five filter-pill groups collapse behind
+   the 進階搜索 toggle (collapsed by default; instant display toggle, so
+   nothing animates over or covers the results). The keyword box, sort
+   bar and result counter are outside the panel and stay visible in both
+   states. The toggle inverts while open, its chevron flips, and the
+   count badge (accent pill, set by the v51 script) shows whenever any
+   filter group has a selection — open or collapsed — so an active
+   filter is never hidden from the reader. --- */
+.adv-search-row { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.9rem; }
+.adv-search-btn { display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; padding: 0.6rem 1.1rem; font-weight: 700; }
+.adv-search-chev { display: inline-block; font-size: 0.8rem; transition: transform 0.2s ease; }
+#section-d .adv-search-btn[aria-expanded="true"] { background: #111111; color: #FFFFFF; border-color: #111111; }
+.adv-search-btn[aria-expanded="true"] .adv-search-chev { transform: rotate(180deg); }
+.adv-search-count { background: #C2410C; color: #FFFFFF; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; border-radius: 999px; padding: 0.12rem 0.55rem; }
+#csv-filter-pills.adv-collapsed { display: none; }
+@media (prefers-reduced-motion: reduce) { .adv-search-chev { transition: none; } }
+
+/* ===== v52: category popup (#cat-focus-modal) — internal scroll + one uniform grey =====
+   Placed after v50/v51 so it wins the cascade at equal specificity.
+   Scoped to #cat-focus-modal ONLY: the fullscreen record overlay
+   (#archive-modal) and the my-folder popup (#myfolder-modal) keep their
+   existing scroll behaviour and backdrop exactly as they were.
+   (1) Scroll: the card inherited the fullscreen treatment (min-height
+   100vh, max-height none) and the page body is locked while the modal
+   is open, so a tall popup (e.g. politics, with its long timeline-events
+   list) overflowed the viewport with no way to reach its bottom section
+   (邊區最多). The card is now a flex column capped at 90vh/90svh; the
+   card itself never scrolls — #cat-focus-body scrolls inside it — and
+   the 關閉 footer stays pinned at the card's bottom. The x close button
+   keeps its existing position:fixed placement and stays put.
+   (2) Uniform grey: the backdrop goes from rgba(38,38,38,0.97) to solid
+   #2E2E2E, the exact shade the card already paints, so backdrop and card
+   read as one consistent grey with no visible step. The header
+   .meta-pill spans go transparent (they rendered #1F1F1F, a darker patch
+   on the #2E2E2E card); their #F5F5F5 text (12.9:1 on #2E2E2E) and
+   #3A3A3A border are unchanged, and all other text keeps the scoped
+   v50 variables, so everything stays WCAG AA on the grey. The
+   trend-chart sparkline is already #F5F5F5 and is left alone. */
+#cat-focus-modal { background: #2E2E2E; }
+#cat-focus-modal .archive-modal-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 90vh;
+  max-height: 90svh;
+  overflow: hidden;
+}
+#cat-focus-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+#cat-focus-modal .cat-focus-footer { flex-shrink: 0; }
+#cat-focus-modal .meta-pill { background: transparent; color: #F5F5F5; border-color: #3A3A3A; }
+
+/* ===== v51: right-side dot nav shows only while scrolling (Lo) =====
+   The dot nav is hidden by default. The scroll handler in the v9 script
+   adds .dots-on while the page is scrolling (and while the reader is
+   hovering, focusing or touching the nav) and removes it ~1.5s after
+   scrolling stops, so it fades in/out over ~0.3s. visibility keeps the
+   hidden nav out of the tab order and pointer-events:none makes sure an
+   invisible nav can never swallow a tap. Top nav, mobile menu and the
+   back-to-top button are untouched. */
+#section-dots {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+#section-dots.dots-on {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s ease;
+}
+</style>
+<style>
+/* ===== v53: 「網站導航」 dropdown — help / guide panel in the top nav =====
+   A clearly-labelled guide button (solid orange, so it reads as a help
+   button, not a mono section link) in .nav-inner; its panel drops DOWN
+   from the button (absolute, top: calc(100% + 10px), right-aligned to the
+   button). Panel is [hidden] when closed, so it never blocks the page,
+   is out of the tab order, and cannot swallow clicks. Dark Santal panel:
+   near-black #161616, hairline #3A3A3A, serif headings, orange accent —
+   the same system as the navbar and the grey detail modals. Text on the
+   panel: #FFFFFF = 16.6:1, #D4D4D4 = 11.9:1, #FB923C = 6.4:1 on #161616. */
+.site-guide-wrap { position: relative; flex-shrink: 0; }
+.site-guide-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  min-height: 42px; padding: 0.5rem 0.85rem;
+  background: #C2410C; color: #FFFFFF; border: 1px solid #C2410C;
+  font-family: inherit; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em;
+  border-radius: 2px; cursor: pointer; white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.site-guide-btn:hover { background: #9A3412; border-color: #9A3412; }
+.site-guide-btn:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85); }
+.site-guide-q {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.15rem; height: 1.15rem; border-radius: 50%;
+  border: 1.5px solid #FFFFFF; font-size: 0.72rem; font-weight: 800; line-height: 1;
+  flex-shrink: 0;
+}
+.site-guide-chev { display: inline-block; font-size: 0.75rem; transition: transform 0.2s ease; }
+.site-guide-btn[aria-expanded="true"] .site-guide-chev { transform: rotate(180deg); }
+@keyframes sgDrop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.site-guide-panel {
+  position: absolute; top: calc(100% + 10px); right: 0; z-index: 1001;
+  width: min(700px, calc(100vw - 2rem));
+  max-height: calc(100vh - 92px); max-height: calc(100dvh - 92px);
+  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  background: #161616; color: #F5F5F5;
+  border: 1px solid #3A3A3A; border-radius: 2px;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.55);
+  padding: 1.4rem 1.5rem 1.15rem; text-align: left;
+  animation: sgDrop 0.22s ease;
+}
+.site-guide-panel[hidden] { display: none; }
+.sg-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding-bottom: 0.9rem; border-bottom: 1px solid #2A2A2A; }
+.sg-title { font-family: var(--font-display, var(--font-serif)); font-size: 1.45rem; font-weight: 900; line-height: 1.3; color: #FFFFFF; margin: 0; }
+.sg-sub { font-size: 0.8rem; line-height: 1.6; color: #D4D4D4; margin-top: 0.35rem; }
+.sg-close {
+  flex-shrink: 0; width: 40px; height: 40px;
+  background: none; border: 1px solid #3A3A3A; border-radius: 2px;
+  color: #F5F5F5; font-size: 1.35rem; line-height: 1; cursor: pointer;
+}
+.sg-close:hover { background: #262626; border-color: #F5F5F5; }
+.sg-close:focus-visible, .sg-nav-link:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85); }
+.sg-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1.5rem; margin-top: 1.05rem; }
+.sg-col h3 {
+  font-family: var(--font-display, var(--font-serif)); font-size: 1.02rem; font-weight: 700;
+  color: #FFFFFF; margin: 0 0 0.7rem; padding-bottom: 0.45rem; border-bottom: 2px solid #C2410C;
+}
+.sg-teach { list-style: none; margin: 0; padding: 0; }
+.sg-teach li { font-size: 0.86rem; line-height: 1.65; color: #D4D4D4; padding: 0.5rem 0; border-bottom: 1px solid #262626; }
+.sg-teach li:last-child { border-bottom: none; }
+.sg-teach strong { display: block; color: #FFFFFF; font-size: 0.88rem; margin-bottom: 0.1rem; }
+.sg-teach strong .sg-star { color: #FB923C; }
+.sg-nav-list { list-style: none; margin: 0; padding: 0; }
+.sg-nav-link {
+  display: flex; gap: 0.7rem; align-items: baseline;
+  min-height: 44px; padding: 0.5rem 0.4rem;
+  text-decoration: none; border-bottom: 1px solid #262626;
+}
+.sg-nav-link:hover { background: #1F1F1F; }
+.sg-nav-link:hover .sg-nav-name { color: #FB923C; }
+.sg-nav-num { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: #FB923C; flex-shrink: 0; }
+.sg-nav-text { display: flex; flex-direction: column; gap: 0.05rem; min-width: 0; }
+.sg-nav-name { font-weight: 700; font-size: 0.92rem; color: #FFFFFF; }
+.sg-nav-desc { font-size: 0.8rem; line-height: 1.5; color: #D4D4D4; }
+.sg-foot { font-size: 0.78rem; color: #9CA3AF; margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid #2A2A2A; }
+/* Narrow desktop band: make room for the extra button on one line. */
+@media (min-width: 1025px) {
+  .nav-inner { gap: 0.6rem; }
+  .nav-links { gap: 0.45rem; }
+  .site-guide-btn { padding: 0.5rem 0.7rem; font-size: 0.84rem; }
+}
+/* Mobile: the panel goes full-width fixed under the sticky bar, so it is
+   easy to tap and read; the two columns stack (教學 first, then 導航). */
+@media (max-width: 720px) {
+  /* Nav-row compaction so the brand title keeps its full width next to
+     the new guide button: the presentation button shortens to 「簡報」
+     (its span text stays in the accessibility tree — only the painted
+     label shrinks), and the brand / guide / hide controls tighten. */
+  .navbar .container { padding-left: 0.7rem; padding-right: 0.7rem; }
+  .nav-inner { gap: 0.35rem; }
+  .brand { gap: 0.35rem; }
+  .brand-badge { font-size: 0.6rem; padding: 0.18rem 0.35rem; }
+  .brand-title { font-size: 0.76rem; letter-spacing: -0.01em; }
+  #btnPresentation { padding: 0.45rem 0.6rem; min-height: 44px; }
+  #btnPresentation span { font-size: 0; }
+  #btnPresentation span::after { content: "簡報"; font-size: 0.8rem; letter-spacing: 0.04em; }
+  .nav-hide-btn { min-width: 40px; padding: 0.45rem 0.5rem; }
+  .site-guide-btn { min-height: 44px; padding: 0.5rem 0.55rem; font-size: 0.8rem; gap: 0.35rem; }
+  .site-guide-q { width: 1rem; height: 1rem; font-size: 0.65rem; }
+  .site-guide-chev { display: none; }
+  .site-guide-panel {
+    position: fixed; top: 68px; left: 0.75rem; right: 0.75rem; width: auto;
+    max-height: calc(100vh - 84px); max-height: calc(100dvh - 84px);
+    padding: 1.15rem 1.1rem 1rem;
+  }
+  .sg-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .sg-title { font-size: 1.3rem; }
+}
+@media (max-width: 400px) {
+  .site-guide-q { display: none; }
+  .brand-title { font-size: 0.72rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-guide-panel { animation: none; }
+  .site-guide-chev { transition: none; }
+}
 </style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳至主要內容</a>
   <div id="sr-announcer" class="sr-only" role="status" aria-live="polite"></div>
-
   <!-- =========================================================================
        STICKY TOP NAVIGATION BAR
        ========================================================================= -->
@@ -2206,6 +2450,51 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
         <a href="#section-timeline">06 年表</a>
         <a href="#section-conclusion">07 小結</a>
         <a href="#section-methods">08 方法</a>
+      </div>
+
+      <div class="site-guide-wrap" id="siteGuideWrap">
+        <button type="button" id="btnSiteGuide" class="site-guide-btn" onclick="toggleSiteGuide()" aria-expanded="false" aria-controls="site-guide-panel" aria-haspopup="true" title="網站教學同導航">
+          <span class="site-guide-q" aria-hidden="true">?</span>
+          <span>網站導航</span>
+          <span class="site-guide-chev" aria-hidden="true">▾</span>
+        </button>
+        <div id="site-guide-panel" class="site-guide-panel" hidden role="region" aria-label="網站教學與導航">
+          <div class="sg-head">
+            <div>
+              <h2 class="sg-title">點樣用呢個網站</h2>
+              <p class="sg-sub">呢度有 228 筆記錄、169 份報告（1975–1980，9 大政策範疇），嚟自民政署秘密民意報告 MOOD；檔案來源：HKRS394-26、HKRS925-1、HKRS471-3。</p>
+            </div>
+            <button type="button" class="sg-close" onclick="closeSiteGuide()" aria-label="關閉網站導航">×</button>
+          </div>
+          <div class="sg-grid">
+            <div class="sg-col">
+              <h3>網站教學</h3>
+              <ul class="sg-teach">
+                <li><strong>搵記錄（05 地圖 · 檔案庫）</strong>喺搜尋框打關鍵字，例如 MTR、房屋、Kwun Tong；搵到嘅字會喺結果入面標色。</li>
+                <li><strong>五個篩選</strong>撳「進階搜索」開五組掣：年份、政策範疇（9 類）、地區、受訪階層、情緒。撳邊個即刻篩；撳「重設所有篩選」清晒。</li>
+                <li><strong>排序</strong>檔案庫上面有一排排序掣，撳日期、範疇、情緒等排次序，再撳多次就掉轉方向。</li>
+                <li><strong>隨機抽一份 · 收藏 <span class="sg-star">★</span></strong>撳「隨機抽一份」會隨機開一份畀你睇；撳記錄旁邊嘅 ☆ 變 ★ 就係收藏，去「☆ 我的檔案夾」隨時睇返。</li>
+                <li><strong>睇全份記錄</strong>撳任何一筆記錄（電腦版一行、手機版一張卡），會開全頁記錄：有成份報告嘅摘要、政府回應同關鍵字，仲列埋同一份報告嘅其他議題，撳落去就跳到嗰筆。留意摘要係成份報告共用，唔係淨係嗰個議題。</li>
+                <li><strong>睇圖（03 民情）</strong>兩幅 Flourish 圖可以撳年份、階層嚟篩。桑基圖要喺圖入面揀「All years (includes undated) | All sentiments」，先係全部 228 筆；唔好用預設嘅「All」，嗰個會錯顯示 886 筆。另一幅情緒比例圖只有 215 筆有日期嘅記錄。</li>
+                <li><strong>用地圖（05 地圖）</strong>先撳檔案夾上面「Kepler 地圖」嗰層；用 2D／3D 掣切換平面同立體睇法，地圖左邊可以開關唔同圖層，仲可以拖動同縮放。格仔愈高愈深色，即係嗰區報告愈多。</li>
+              </ul>
+            </div>
+            <nav class="sg-col" aria-label="網站導航">
+              <h3>導航 · 去邊節</h3>
+              <ul class="sg-nav-list">
+                <li><a class="sg-nav-link" href="#overview" onclick="closeSiteGuide()"><span class="sg-nav-num">01</span><span class="sg-nav-text"><span class="sg-nav-name">總覽</span><span class="sg-nav-desc">MOOD 係咩，228 筆、169 份報告一眼睇晒。</span></span></a></li>
+                <li><a class="sg-nav-link" href="#section-a" onclick="closeSiteGuide()"><span class="sg-nav-num">02</span><span class="sg-nav-text"><span class="sg-nav-name">焦點</span><span class="sg-nav-desc">政府關注點六年點變，睇折線圖同關鍵詞。</span></span></a></li>
+                <li><a class="sg-nav-link" href="#section-b" onclick="closeSiteGuide()"><span class="sg-nav-num">03</span><span class="sg-nav-text"><span class="sg-nav-name">民情</span><span class="sg-nav-desc">邊個階層有咩情緒，Flourish 兩幅圖。</span></span></a></li>
+                <li><a class="sg-nav-link" href="#section-c" onclick="closeSiteGuide()"><span class="sg-nav-num">04</span><span class="sg-nav-text"><span class="sg-nav-name">網絡</span><span class="sg-nav-desc">邊個階層講邊啲議題，睇連線圖。</span></span></a></li>
+                <li><a class="sg-nav-link" href="#section-d" onclick="closeSiteGuide()"><span class="sg-nav-num">05</span><span class="sg-nav-text"><span class="sg-nav-name">地圖</span><span class="sg-nav-desc">Kepler 地圖加 228 筆檔案庫，喺呢度搜尋記錄。</span></span></a></li>
+                <li><a class="sg-nav-link" href="#section-timeline" onclick="closeSiteGuide()"><span class="sg-nav-num">06</span><span class="sg-nav-text"><span class="sg-nav-name">年表</span><span class="sg-nav-desc">16 項大事，背景同 MOOD 報告對照。</span></span></a></li>
+                <li><a class="sg-nav-link" href="#section-conclusion" onclick="closeSiteGuide()"><span class="sg-nav-num">07</span><span class="sg-nav-text"><span class="sg-nav-name">小結</span><span class="sg-nav-desc">結論：由治安管治轉向民生基建。</span></span></a></li>
+                <li><a class="sg-nav-link" href="#section-methods" onclick="closeSiteGuide()"><span class="sg-nav-num">08</span><span class="sg-nav-text"><span class="sg-nav-name">方法</span><span class="sg-nav-desc">資料點嚟、點掃描、點分類同清理。</span></span></a></li>
+              </ul>
+            </nav>
+          </div>
+          <p class="sg-foot">閂呢個面板：再撳多次「網站導航」、撳面板外面，或者撳 Esc。</p>
+        </div>
       </div>
 
       <button id="btnPresentation" class="btn btn-primary" onclick="togglePresentationMode()">
@@ -2772,11 +3061,19 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
               </select>
             </div>
 
-            <!-- Fix D (Lo): filter pills live behind an 「進階搜索」 toggle — collapsed by default -->
-            <div style="display:flex; align-items:center; gap:0.75rem; margin:0 0 1rem;">
-              <button type="button" id="adv-search-btn" class="btn btn-outline" onclick="toggleAdvancedSearch()" aria-expanded="false" aria-controls="csv-filter-pills">進階搜索 <span id="adv-search-chev" aria-hidden="true">▾</span><span id="adv-search-badge" class="adv-badge" style="display:none;"></span></button>
+            <!-- v51: advanced-search toggle — the five filter-pill groups below
+                 live in a collapsible panel, collapsed by default. Only the
+                 pills hide; the keyword box above, the sort bar and the
+                 result counter stay visible in both states. -->
+            <div class="adv-search-row">
+              <button type="button" id="adv-search-toggle" class="btn btn-outline adv-search-btn" aria-expanded="false" aria-controls="csv-filter-pills" onclick="toggleAdvSearch()">
+                <span>進階搜索</span>
+                <span id="adv-search-count" class="adv-search-count" hidden>已選 0 項</span>
+                <span class="adv-search-chev" aria-hidden="true">▾</span>
+              </button>
             </div>
-            <div id="csv-filter-pills" class="filter-pills collapsed" aria-label="快速篩選"></div>
+
+            <div id="csv-filter-pills" class="filter-pills adv-collapsed" aria-label="快速篩選"></div>
               <!-- Keyword chips: click to search -->
             <div id="csv-keyword-chips" style="display:flex; flex-wrap:wrap; align-items:center; gap:0.4rem; margin-bottom:1rem;">
               <span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.2rem;">常用關鍵字：</span>
@@ -7088,34 +7385,6 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
       lastFilteredRows = filtered;
       renderCsvTable(filtered);
       syncFilterPills();
-      updateAdvancedSearchBadge();
-    }
-
-    /* Fix D (Lo): 「進階搜索」 toggle for the filter pills. The pills are
-       collapsed by default; the button expands/collapses them and shows an
-       orange 「已選 N 項」 badge while any filter group is active, so an
-       applied filter is never lost while the panel is collapsed. Clearing
-       uses the existing 「重設所有篩選」 button, which stays visible. */
-    function toggleAdvancedSearch() {
-      var host = document.getElementById('csv-filter-pills');
-      var btn = document.getElementById('adv-search-btn');
-      if (!host || !btn) return;
-      var collapsed = host.classList.toggle('collapsed');
-      btn.classList.toggle('expanded', !collapsed);
-      btn.setAttribute('aria-expanded', String(!collapsed));
-      var chev = document.getElementById('adv-search-chev');
-      if (chev) chev.textContent = collapsed ? '▾' : '▲';
-    }
-    function updateAdvancedSearchBadge() {
-      var badge = document.getElementById('adv-search-badge');
-      if (!badge) return;
-      var n = 0;
-      ['csv-filter-year', 'csv-filter-district', 'csv-filter-category', 'csv-filter-group', 'csv-filter-sentiment'].forEach(function (id) {
-        var sel = document.getElementById(id);
-        if (sel && sel.value !== 'ALL') n++;
-      });
-      if (n > 0) { badge.style.display = ''; badge.textContent = '已選 ' + n + ' 項'; }
-      else { badge.style.display = 'none'; badge.textContent = ''; }
     }
 
     function renderCsvTable(rows) {
@@ -8005,12 +8274,11 @@ window.addEventListener('DOMContentLoaded', () => {
        Respects prefers-reduced-motion. */
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var sections = document.querySelectorAll('main > section');
-      // v22: flat design - the hero gets the gentle fade; sections use the
-      // section cross-fade (.sec-fade) instead of .reveal-soft, so the two
-      // opacity transitions never fight. See the section-fade IIFE below.
-      var heroEl = document.querySelector('header.hero-header');
-      if (heroEl) heroEl.classList.add('reveal-soft');
+      var sections = document.querySelectorAll('header.hero-header, main > section');
+      sections.forEach(function (el) {
+        // v22: flat design - every section gets the gentle fade, no 3D tilt
+        el.classList.add('reveal-soft');
+      });
       var cards = document.querySelectorAll('.kpi-card, .insight-box, .mini-card, .embed-card, .social-stat-box');
       cards.forEach(function (el) { el.classList.add('reveal-soft'); });
       // v16: stagger - cards inside the same section cascade in one after another
@@ -8099,50 +8367,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       }, { passive: true });
       updateLeaving();
-    })();
-    /* Section cross-fade (Lo): the chapter transition is a gentle fade, in
-       the pre-v47 style — no solid wipe panel. Each section fades in
-       (opacity 0 → 1, 0.6s) when it enters the viewport, and fades back
-       out only once it has scrolled fully out of view, so scrolling back
-       replays the fade. The classes are added by JS only, so content stays
-       visible when JS is off. A scroll/load check reveals anything already
-       in view, and reduced-motion users get no fade at all. The
-       per-element reveal (.reveal-soft on cards) is untouched and composes
-       with this section fade. */
-    (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var sections = document.querySelectorAll('main > section');
-      sections.forEach(function (el) { el.classList.add('sec-fade'); });
-      function fadeInView() {
-        sections.forEach(function (el) {
-          var r = el.getBoundingClientRect();
-          if (r.top < window.innerHeight * 1.5 && r.bottom > 0) el.classList.add('sec-fade-in');
-        });
-      }
-      if (!('IntersectionObserver' in window)) {
-        sections.forEach(function (el) { el.classList.add('sec-fade-in'); });
-        return;
-      }
-      var sio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('sec-fade-in');
-          } else if (e.intersectionRatio === 0) {
-            e.target.classList.remove('sec-fade-in');
-          }
-        });
-      }, { threshold: 0.05 });
-      sections.forEach(function (el) { sio.observe(el); });
-      fadeInView();
-      window.addEventListener('load', fadeInView);
-      window.addEventListener('resize', fadeInView);
-      var fadeTicking = false;
-      window.addEventListener('scroll', function () {
-        if (!fadeTicking) {
-          fadeTicking = true;
-          requestAnimationFrame(function () { fadeTicking = false; fadeInView(); });
-        }
-      }, { passive: true });
     })();
     /* v49 fix pass: the mask/wipe reveal was removed so the page uses ONE
        reveal language — the fail-open fade/rise (.reveal-soft) above.
@@ -8312,11 +8536,46 @@ window.addEventListener('DOMContentLoaded', () => {
       io.observe(wrap);
     })();
     // v9: scroll progress bar + side dot nav active state
+    // v51: the dot nav is hidden unless the page is scrolling — it fades
+    // in on scroll, stays while the reader hovers / focuses / touches it,
+    // and fades out ~1.5s after scrolling stops.
     (function () {
       var targets = ['overview', 'section-a', 'section-b', 'section-c', 'section-d', 'section-timeline', 'section-conclusion', 'section-methods'];
       var links = Array.prototype.slice.call(document.querySelectorAll('#section-dots a'));
       var bar = document.getElementById('scroll-progress');
-      function onScroll() {
+      var dotsNav = document.getElementById('section-dots');
+      var dotsHideTimer = null;
+      // Hover, keyboard focus and touch are tracked separately: the nav
+      // only auto-hides when NONE of them is active, so a click while the
+      // cursor is still over the nav never fades it out, and a touch that
+      // ends without a click cannot leave it stuck on.
+      var dotsHover = false, dotsFocus = false, dotsTouch = false;
+      function dotsInteracting() { return dotsHover || dotsFocus || dotsTouch; }
+      function dotsShow() {
+        if (dotsHideTimer) { clearTimeout(dotsHideTimer); dotsHideTimer = null; }
+        if (dotsNav) dotsNav.classList.add('dots-on');
+      }
+      function dotsScheduleHide() {
+        if (dotsHideTimer) clearTimeout(dotsHideTimer);
+        dotsHideTimer = setTimeout(function () {
+          dotsHideTimer = null;
+          if (!dotsInteracting() && dotsNav) dotsNav.classList.remove('dots-on');
+        }, 1500);
+      }
+      if (dotsNav) {
+        dotsNav.addEventListener('pointerenter', function () { dotsHover = true; dotsShow(); });
+        dotsNav.addEventListener('pointerleave', function () { dotsHover = false; dotsScheduleHide(); });
+        dotsNav.addEventListener('focusin', function () { dotsFocus = true; dotsShow(); });
+        dotsNav.addEventListener('focusout', function () { dotsFocus = false; dotsScheduleHide(); });
+        dotsNav.addEventListener('touchstart', function () { dotsTouch = true; dotsShow(); }, { passive: true });
+        dotsNav.addEventListener('touchend', function () { dotsTouch = false; dotsScheduleHide(); }, { passive: true });
+        dotsNav.addEventListener('touchcancel', function () { dotsTouch = false; dotsScheduleHide(); });
+        // After a tap/click the jump's own scrolling keeps it shown; the
+        // hide timer still respects a cursor hovering over the nav.
+        dotsNav.addEventListener('click', function () { dotsScheduleHide(); });
+      }
+      function onScroll(initial) {
+        if (!initial) { dotsShow(); dotsScheduleHide(); }
         var h = document.documentElement;
         var max = h.scrollHeight - h.clientHeight;
         bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
@@ -8329,33 +8588,8 @@ window.addEventListener('DOMContentLoaded', () => {
         var btt = document.getElementById('back-to-top');
         if (btt) btt.classList.toggle('show', h.scrollTop > 600);
       }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-    // Lo: dot nav shows only while scrolling — hidden when idle, fades in
-    // on scroll, fades out ~1.5s after scrolling stops. Stays visible while
-    // hovered or focused (mouse/tap/keyboard), so it never vanishes mid-use.
-    (function () {
-      var nav = document.getElementById('section-dots');
-      if (!nav) return;
-      var hideTimer = null;
-      var hovering = false;
-      var focused = false;
-      function show() {
-        nav.classList.add('dots-visible');
-        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
-      }
-      function scheduleHide() {
-        if (hideTimer) clearTimeout(hideTimer);
-        hideTimer = setTimeout(function () {
-          if (!hovering && !focused) nav.classList.remove('dots-visible');
-        }, 1500);
-      }
-      window.addEventListener('scroll', function () { show(); scheduleHide(); }, { passive: true });
-      nav.addEventListener('mouseenter', function () { hovering = true; show(); });
-      nav.addEventListener('mouseleave', function () { hovering = false; scheduleHide(); });
-      nav.addEventListener('focusin', function () { focused = true; show(); });
-      nav.addEventListener('focusout', function () { focused = false; scheduleHide(); });
+      window.addEventListener('scroll', function () { onScroll(false); }, { passive: true });
+      onScroll(true);
     })();
 </script>
 
@@ -8383,7 +8617,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <div class="archive-modal-card">
       <button class="archive-modal-close" onclick="closeCategoryFocus()" aria-label="關閉">×</button>
       <div id="cat-focus-body"></div>
-      <div style="margin-top:1rem; display:flex; gap:0.5rem;">
+      <div class="cat-focus-footer" style="margin-top:1rem; display:flex; gap:0.5rem;">
         <button class="btn btn-outline" onclick="closeCategoryFocus()">關閉</button>
       </div>
     </div>
@@ -8417,6 +8651,208 @@ window.addEventListener('DOMContentLoaded', () => {
       <img id="map-lb-img" src="hist1957_3000.jpg" alt="1957 年香港歷史地圖（Historical Map of Hong Kong, 1957）" draggable="false">
     </div>
   </div>
+
+<script>
+/* v52: section transitions (Lo) — the pre-v47 FADE is back. The v50 solid
+   wipe panel is removed entirely: no panel is created, nothing sweeps
+   across the screen. When the current section changes, the incoming
+   section fades in (opacity 0 -> 1) while the outgoing section fades out
+   (opacity 1 -> 0), a gentle cross-fade between chapters at ~0.6s with a
+   smooth ease-out — the same total time the wipe took, without the
+   curtain. One mechanism covers every way of moving between sections —
+   scrolling, the top nav, the side dots, keyboard section jumps and
+   presentation mode all end in a scroll, and the same centre-band
+   IntersectionObserver the wipe used detects the change. The fade plays
+   once per entry: a short settle timer means a fast multi-section jump
+   fades once, between the section left and the section actually landed
+   on.
+   FAIL-OPEN by construction: the fades run only through the Web
+   Animations API on the section elements themselves. No stylesheet rule
+   and no inline style ever sets a section's opacity, so with JS off,
+   reduced motion, no IntersectionObserver, or no WAAPI support, nothing
+   runs and every section stays fully visible. A section left faded out
+   is restored the moment any part of it is on screen again — it fades
+   back in rather than leaving a blank gap — and a timed guard does the
+   same even if an animation callback never fires.
+   prefers-reduced-motion: the script returns immediately, no fades —
+   navigation stays instant. The existing per-element reveal-soft
+   entrances are untouched: they animate the elements INSIDE the
+   sections, this script only ever touches the section elements' own
+   opacity, and only while a fade is playing. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+  var ids = ['overview', 'section-a', 'section-b', 'section-c', 'section-d', 'section-timeline', 'section-conclusion', 'section-methods'];
+  var els = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  if (!els.length) return;
+  if (!els[0].animate) return;
+  var current = null, started = false, pending = null, timer = null;
+  var fading = {}, faded = {};
+  function key(el) { return el.id; }
+  function modalOpen() {
+    return !!document.querySelector('.archive-modal:not(.hidden), #map-lightbox:not(.hidden)');
+  }
+  function cancelFades(el) {
+    try {
+      el.getAnimations().forEach(function (a) { a.cancel(); });
+    } catch (e) {}
+    delete fading[key(el)];
+    delete faded[key(el)];
+  }
+  function fadeIn(el, duration) {
+    cancelFades(el);
+    try {
+      el.animate([
+        { opacity: 0 },
+        { opacity: 1 }
+      ], { duration: duration || 600, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'none' });
+    } catch (e) {}
+  }
+  function fadeOut(el) {
+    cancelFades(el);
+    var k = key(el);
+    fading[k] = true;
+    var anim;
+    try {
+      anim = el.animate([
+        { opacity: 1 },
+        { opacity: 0 }
+      ], { duration: 520, easing: 'ease-in', fill: 'forwards' });
+    } catch (e) { delete fading[k]; return; }
+    var done = function () {
+      if (!fading[k]) return;
+      delete fading[k];
+      var r = el.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) {
+        /* Still partly on screen (the reader stopped at the boundary):
+           bring it back gently instead of leaving a blank gap. */
+        fadeIn(el, 350);
+      } else {
+        faded[k] = true;
+      }
+    };
+    if (anim.finished && anim.finished.then) anim.finished.then(done, done);
+    else anim.onfinish = done;
+    setTimeout(done, 700);
+  }
+  function crossFade(from, to) {
+    if (modalOpen() || document.hidden) return;
+    if (from && from !== to) fadeOut(from);
+    fadeIn(to, 600);
+  }
+  /* Restore any faded-out section the moment part of it is on screen
+     again (e.g. scrolling back up): it fades back in, never a blank gap. */
+  var restoreIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting && faded[key(en.target)]) fadeIn(en.target, 300);
+    });
+  }, { threshold: 0 });
+  els.forEach(function (el) { restoreIO.observe(el); });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var el = en.target;
+      if (!started) { current = el; return; }
+      if (el === current) return;
+      if (!pending) pending = { from: current, to: el };
+      else pending.to = el;
+      current = el;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (pending) { crossFade(pending.from, pending.to); pending = null; }
+      }, 110);
+    });
+    started = true;
+  }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+<script>
+/* v51: advanced search — the five archive filter-pill groups live in a
+   collapsible panel (#csv-filter-pills), collapsed by default, controlled
+   by the 進階搜索 toggle. Display toggle only: filter logic, options and
+   the select elements (the source of truth) are untouched, and the
+   keyword box, sort bar and result counter stay visible in both states.
+   The badge counts the filter groups with a non-全部 selection, so a
+   reader who collapses the panel still sees filters are active; the
+   always-visible 重設所有篩選 button remains the clear-all control. The
+   badge refreshes through applyCsvFilters, which every filter path
+   funnels through (pills, selects, keyword input/chips, theme entries,
+   reset), so it cannot drift out of sync. */
+function toggleAdvSearch() {
+  var panel = document.getElementById('csv-filter-pills');
+  var btn = document.getElementById('adv-search-toggle');
+  if (!panel || !btn) return;
+  var collapsed = panel.classList.toggle('adv-collapsed');
+  btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+}
+function updateAdvSearchBtn() {
+  var badge = document.getElementById('adv-search-count');
+  if (!badge) return;
+  var ids = ['csv-filter-year', 'csv-filter-category', 'csv-filter-district', 'csv-filter-group', 'csv-filter-sentiment'];
+  var n = 0;
+  ids.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el && el.value && el.value !== 'ALL') n++;
+  });
+  badge.textContent = '已選 ' + n + ' 項';
+  badge.hidden = n === 0;
+}
+(function () {
+  if (typeof applyCsvFilters === 'function') {
+    var origApplyCsvFilters = applyCsvFilters;
+    applyCsvFilters = function () {
+      var r = origApplyCsvFilters.apply(null, arguments);
+      updateAdvSearchBtn();
+      return r;
+    };
+  }
+  updateAdvSearchBtn();
+})();
+</script>
+
+<script>
+/* v53: 「網站導航」 dropdown — the guide button in the top nav opens a
+   panel that drops down from the button. Open/close is just the panel's
+   [hidden] attribute plus aria-expanded on the button, so when closed
+   the panel is display:none (never blocks the page, out of the tab
+   order); when open, its links are ordinary anchors in the tab order
+   right after the button. Close paths: the button again, the panel's
+   own × button, any nav link inside the panel (each carries
+   onclick="closeSiteGuide()"), a click anywhere outside the wrap, or
+   Esc (which also returns focus to the button). No other nav, dot-nav,
+   modal or section-transition code is touched. */
+function siteGuideSet(open) {
+  var panel = document.getElementById('site-guide-panel');
+  var btn = document.getElementById('btnSiteGuide');
+  if (!panel || !btn) return;
+  panel.hidden = !open;
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function toggleSiteGuide() {
+  var panel = document.getElementById('site-guide-panel');
+  if (!panel) return;
+  siteGuideSet(panel.hidden);
+}
+function closeSiteGuide() {
+  siteGuideSet(false);
+}
+document.addEventListener('click', function (ev) {
+  var wrap = document.getElementById('siteGuideWrap');
+  var panel = document.getElementById('site-guide-panel');
+  if (!wrap || !panel || panel.hidden) return;
+  if (!wrap.contains(ev.target)) closeSiteGuide();
+});
+document.addEventListener('keydown', function (ev) {
+  if (ev.key !== 'Escape' && ev.key !== 'Esc') return;
+  var panel = document.getElementById('site-guide-panel');
+  if (!panel || panel.hidden) return;
+  closeSiteGuide();
+  var btn = document.getElementById('btnSiteGuide');
+  if (btn) btn.focus();
+});
+</script>
 
 </body>
 </html>
