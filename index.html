@@ -828,6 +828,17 @@
       overflow-y: auto;
     }
 
+    /* Lo: desktop archive table rows were too wide — cap the table at
+       1100px and centre it on desktop only. The white section background
+       stays full-width; only the table narrows. Mobile cards untouched. */
+    @media (min-width: 721px) {
+      #section-d .archive-table-wrap {
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
     table.archive-table {
       width: 100%;
       border-collapse: collapse;
@@ -1620,6 +1631,13 @@ main > section { padding-top: 4.5rem; padding-bottom: 6rem; }
 .filter-pill:hover { border-color: #F5F5F5; }
 .filter-pill.active { background: #C2410C; border-color: #C2410C; color: #FFFFFF; }
 .filter-pill:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+/* Fix D (Lo): the 44 filter pills sit behind an 「進階搜索」 toggle — the
+   panel is collapsed by default so the pills stop eating the page. The
+   button inverts to black while expanded; the orange badge counts active
+   filter groups so an applied filter is never lost while collapsed. */
+#csv-filter-pills.collapsed { display: none; }
+#section-d #adv-search-btn.expanded, #section-d #adv-search-btn.expanded:hover { background: #111111; color: #FFFFFF; border-color: #111111; }
+.adv-badge { display: inline-flex; align-items: center; background: #C2410C; color: #FFFFFF; border-radius: 999px; padding: 0.1rem 0.55rem; font-size: 0.75rem; font-weight: 700; margin-left: 0.4rem; white-space: nowrap; }
 .csv-controls-grid.pills-on select.form-control { display: none; }
 .csv-controls-grid.pills-on #csv-search-input { grid-column: 1 / -1; padding: 1rem 1.1rem; font-size: 1.05rem; }
 #csv-keyword-chips .cat-pill { padding: 0.55rem 1rem; font-size: 0.9rem; }
@@ -1630,23 +1648,31 @@ table.archive-table td[data-label="民情摘要"] { font-size: 1.02rem; line-hei
 table.archive-table td[data-label="報告編號"] { font-size: 1rem; }
 table.archive-table tr.data-row:hover { background: #1F1F1F; }
 .card:hover, .embed-card:hover { border-color: #3A3A3A; }
-/* E. Fullscreen minimal record overlay. */
-.archive-modal { padding: 0; background: rgba(14, 14, 14, 0.97); }
-.archive-modal-card { max-width: none; width: 100%; min-height: 100vh; min-height: 100svh; max-height: none; border: none; border-radius: 0; box-shadow: none; padding: 5rem 1.25rem 3rem; background: #0E0E0E; }
+/* E. Fullscreen minimal record overlay.
+   Fix B + Fix E (Lo): popups are GREY now, not near-black — the record
+   overlay, the category-detail popup and the my-folder popup all share the
+   same grey card (#2E2E2E) over a #262626 backdrop, so they match. White /
+   light text on #2E2E2E stays well above WCAG AA. */
+.archive-modal { padding: 0; background: rgba(38, 38, 38, 0.97); }
+.archive-modal-card { max-width: none; width: 100%; min-height: 100vh; min-height: 100svh; max-height: none; border: none; border-radius: 0; box-shadow: none; padding: 5rem 1.25rem 3rem; background: #2E2E2E; }
+/* Outline buttons inside the grey modals need a visible border: the dark
+   theme's #3A3A3A border is nearly invisible on #2E2E2E, so lighten it. */
+.archive-modal-card .btn-outline { border-color: #9CA3AF; color: #F5F5F5; }
 .archive-modal-card > * { max-width: 860px; margin-left: auto; margin-right: auto; }
 .archive-modal-close { position: fixed; top: 1rem; right: 1.25rem; font-size: 2.4rem; padding: 0.4rem 0.8rem; color: #F5F5F5; z-index: 10000; }
-#archive-modal-title { font-size: 1.9rem; line-height: 1.35; margin: 1rem 0 1.2rem; }
+#archive-modal-title { font-size: 1.9rem; line-height: 1.35; margin: 1rem auto 1.2rem; }
 #archive-modal-body { font-size: 1.02rem; line-height: 1.8; }
 .archive-modal-nav { margin-top: 2.5rem; gap: 1rem; }
 .archive-modal-nav .btn { padding: 0.8rem 1.4rem; font-size: 0.95rem; }
 
-/* ===== v49 white sections: 03 Section B (#section-b) + 05 Archive (#section-d) + 08 Methods (#section-methods) =====
-   Lo: white background is easier to read for the dense archive + methods text,
-   and Section B white too so the page alternates black/white from 03 on
-   (03 white, 04 dark, 05 white, 06 dark, 07 dark conclusion, 08 white).
+/* ===== v49 white sections: 03 Section B (#section-b) + 05 Archive (#section-d) + 07 Conclusion (#section-conclusion) =====
+   Lo: white background is easier to read for the dense archive text and the
+   short conclusion, and Section B white too so the page alternates
+   black/white from 03 on
+   (03 white, 04 dark, 05 white, 06 dark, 07 white, 08 dark methods).
    Scoped variable overrides flip var()-based colours to the light theme inside
    these three sections only; hardcoded dark colours are overridden below. */
-#section-b, #section-d, #section-methods {
+#section-b, #section-d, #section-conclusion {
   --bg-paper: #FFFFFF;
   --bg-card: #FFFFFF;
   --bg-subtle: #F3F4F6;
@@ -1666,12 +1692,12 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
    screens the near-black body (#0E0E0E) showed as gutters left and right of
    each white section — the white read as an inset slab, not a plain white
    background. Break the three white sections out to full viewport width
-   (the same calc(50% - 50vw) breakout #section-conclusion already uses),
-   with background-image: none so no pattern can tile. Content width is
-   unchanged: #section-b / #section-d get the matching inner padding, and
-   #section-methods keeps its inner .container, so nothing moves. Dark
-   sections and the hero (1957 map) are untouched. */
-#section-b, #section-d, #section-methods {
+   (the same calc(50% - 50vw) breakout), with background-image: none so
+   no pattern can tile. Content width is unchanged: #section-b / #section-d
+   get the matching inner padding, #section-conclusion keeps its own padding
+   in its rule, and #section-methods keeps its inner .container, so nothing
+   moves. Dark sections and the hero (1957 map) are untouched. */
+#section-b, #section-d, #section-conclusion {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: #FFFFFF;
@@ -1681,9 +1707,9 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
   padding-left: max(1.25rem, calc(50vw - 620px));
   padding-right: max(1.25rem, calc(50vw - 620px));
 }
-#section-d .section-title, #section-methods .section-title { color: #111111; }
-#section-d .sec-ghost, #section-methods .sec-ghost { color: #E5E7EB; }
-#section-d .folder-body, #section-d .csv-layer-shell, #section-d .feat-card, #section-d .glossary-box, #section-d .theme-entry, #section-d .folder-card, #section-methods .folder-card { background: #FFFFFF; }
+#section-d .section-title { color: #111111; }
+#section-d .sec-ghost, #section-conclusion .sec-ghost { color: #E5E7EB; }
+#section-d .folder-body, #section-d .csv-layer-shell, #section-d .feat-card, #section-d .glossary-box, #section-d .theme-entry, #section-d .folder-card { background: #FFFFFF; }
 #section-d .theme-entry:hover { background: #F3F4F6; border-color: #111111; }
 #section-d .folder-stamp-bar { background: #F3F4F6; color: #374151; }
 #section-d .filter-pill { color: #111111; border-color: #111111; background: #FFFFFF; }
@@ -1696,7 +1722,7 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
 #section-d .archive-table tbody tr:hover, #section-d table.archive-table tr.data-row:hover { background: #F3F4F6; }
 #section-d .btn-outline { background: #FFFFFF; color: #111111; border-color: #111111; }
 #section-d .btn-outline:hover { background: #F3F4F6; color: #111111; border-color: #111111; }
-#section-d .stamp-mini, #section-d .stamp-badge, #section-methods .stamp-mini { color: #DC2626; border-color: #DC2626; }
+#section-d .stamp-mini, #section-d .stamp-badge { color: #DC2626; border-color: #DC2626; }
 #section-d p[style*="A8A08E"] { color: #6B7280 !important; }
 
 #section-d .archive-table thead th { color: #374151; }
@@ -1729,16 +1755,15 @@ footer .memo-card p { color: #E5E5E5; }
 table.archive-table th { background: #F4EFE4; color: #111111; }
 .archive-table thead th { color: #111111; }
 #section-d .archive-table thead th { background: #F4EFE4; color: #111111; }
-/* (2) Record modal summary: light text on the near-black modal card.
-       #F5F5F5 on #0E0E0E = 17.71:1 */
+/* (2) Record modal summary: light text on the grey modal card.
+       #F5F5F5 on #2E2E2E = 12.46:1 */
 .archive-modal-card #archive-modal-body { color: #F5F5F5; }
 /* (3) Insight boxes / presenter alert: light text on dark cards (#F5F5F5 on
        #161616 = 16.60:1); Methods insight boxes become white cards with dark
        text (#374151 on #FFFFFF = 10.31:1); glossary def dark on white;
        memo-card body light on its dark card (#E5E7EB on #1A1A1A = 14.06:1). */
 .insight-box { color: #F5F5F5; }
-#section-d .insight-box, #section-methods .insight-box { color: #374151; }
-#section-methods .insight-box { background: #FFFFFF; }
+#section-d .insight-box { color: #374151; }
 .presenter-alert { color: #F5F5F5; }
 #section-d #glossary-def { color: #374151; }
 .memo-card p { color: #E5E7EB; }
@@ -1755,7 +1780,7 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
        visible grey on dark sections; light grey kept on the white sections. */
 .sec-ghost { color: #2E2E2E; }
 #section-c .sec-ghost, #section-timeline .sec-ghost { color: #2E2E2E; }
-#section-d .sec-ghost, #section-methods .sec-ghost { color: #E5E7EB; }
+#section-d .sec-ghost, #section-conclusion .sec-ghost { color: #E5E7EB; }
 /* (7) Filter group labels on the white archive section: dark text.
        #374151 on #FFFFFF = 10.31:1 */
 #section-d .filter-pill-label { color: #374151; }
@@ -1781,6 +1806,15 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
        #111111 on #FFFFFF = 18.9:1. */
 #section-d .gloss-term { background: #FFFFFF; color: #111111; border-color: #D1D5DB; }
 #section-d .gloss-term:hover, #section-d .gloss-term.active { background: #111111; color: #FFFFFF; border-color: #111111; }
+
+/* Fix C (Lo): chapter transition — a solid panel in the incoming section's
+   background colour sweeps across the screen (0.64s) when the reader crosses
+   into a new section. The panel is created by JS only, is pointer-events
+   none, and is removed by transitionend plus a timed fallback, so it can
+   never hide content. Reduced-motion users get no panel at all. */
+#section-wipe { position: fixed; inset: 0; z-index: 5000; pointer-events: none; background: #0E0E0E; transform: translateX(-102%); will-change: transform; }
+#section-wipe.wiping { transition: transform 0.64s cubic-bezier(0.65, 0, 0.35, 1); transform: translateX(102%); }
+@media (prefers-reduced-motion: reduce) { #section-wipe { display: none !important; } }
 
 </style>
 <style>
@@ -1823,11 +1857,15 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 .modal-sibling-btn { display: block; width: 100%; text-align: left; font-family: inherit; font-size: 0.88rem; line-height: 1.55; background: none; border: 1px solid var(--border-strong); border-radius: 2px; color: var(--ink-primary); padding: 0.45rem 0.7rem; margin: 0.3rem 0 0; cursor: pointer; }
 .modal-sibling-btn:hover { border-color: #C2410C; }
 .modal-sibling-btn .sib-id { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: #C2410C; margin-right: 0.5rem; }
-/* Conclusion section (07): dark band after the timeline, before the white methods section (08) */
-#section-conclusion { background: #111111; color: #FFFFFF; border-top: 4px solid var(--accent); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: max(1.25rem, calc(50vw - 620px)); padding-right: max(1.25rem, calc(50vw - 620px)); }
-#section-conclusion .section-kicker { background: #FFFFFF; color: #111111 !important; }
-#section-conclusion .section-title { color: #FFFFFF; }
-#section-conclusion .conclusion-text { font-family: var(--font-serif); font-size: 1.3rem; line-height: 2.05; color: #F5F5F5; max-width: 44em; margin: 1.25rem 0 0; }
+/* Conclusion section (07): white band after the timeline, before the dark methods section (08) */
+#section-conclusion { background: #FFFFFF; color: #111111; border-top: 4px solid var(--accent); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: max(1.25rem, calc(50vw - 620px)); padding-right: max(1.25rem, calc(50vw - 620px)); }
+#section-conclusion .section-kicker { background: #C2410C; color: #FFFFFF !important; }
+#section-conclusion .section-title { color: #111111; }
+#section-conclusion .conclusion-text { font-family: var(--font-serif); font-size: 1.3rem; line-height: 2.05; color: #111111; max-width: 44em; margin: 1.25rem 0 0; }
+/* Fix A (Lo): 08 Methods is now the dark section — near-black band (#111111)
+   with the same full-viewport breakout the conclusion used to have; its inner
+   .container still sets the content width, so nothing moves. */
+#section-methods { background: #111111; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
 @media (max-width: 720px) { #section-conclusion .conclusion-text { font-size: 1.12rem; line-height: 1.95; } }
 .ac-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; }
 .ac-salience { font-size: 0.78rem; font-weight: 700; }
@@ -2086,7 +2124,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    aria-hidden; previously near-invisible on dark, visible on white). */
 .sec-ghost { color: #2B2B2B; }
 #section-c .sec-ghost, #section-timeline .sec-ghost { color: #2B2B2B; }
-#section-b .sec-ghost, #section-d .sec-ghost, #section-methods .sec-ghost { color: #E7E9EC; }
+#section-b .sec-ghost, #section-d .sec-ghost, #section-conclusion .sec-ghost { color: #E7E9EC; }
 
 /* (l) Desktop nav brand truncation fix (1440px audit: title clipped 26px).
    The nav container caps at 1240px, so at desktop widths the brand + 8 links
@@ -2711,7 +2749,11 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
               </select>
             </div>
 
-            <div id="csv-filter-pills" class="filter-pills" aria-label="快速篩選"></div>
+            <!-- Fix D (Lo): filter pills live behind an 「進階搜索」 toggle — collapsed by default -->
+            <div style="display:flex; align-items:center; gap:0.75rem; margin:0 0 1rem;">
+              <button type="button" id="adv-search-btn" class="btn btn-outline" onclick="toggleAdvancedSearch()" aria-expanded="false" aria-controls="csv-filter-pills">進階搜索 <span id="adv-search-chev" aria-hidden="true">▾</span><span id="adv-search-badge" class="adv-badge" style="display:none;"></span></button>
+            </div>
+            <div id="csv-filter-pills" class="filter-pills collapsed" aria-label="快速篩選"></div>
               <!-- Keyword chips: click to search -->
             <div id="csv-keyword-chips" style="display:flex; flex-wrap:wrap; align-items:center; gap:0.4rem; margin-bottom:1rem;">
               <span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.2rem;">常用關鍵字：</span>
@@ -7023,6 +7065,34 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
       lastFilteredRows = filtered;
       renderCsvTable(filtered);
       syncFilterPills();
+      updateAdvancedSearchBadge();
+    }
+
+    /* Fix D (Lo): 「進階搜索」 toggle for the filter pills. The pills are
+       collapsed by default; the button expands/collapses them and shows an
+       orange 「已選 N 項」 badge while any filter group is active, so an
+       applied filter is never lost while the panel is collapsed. Clearing
+       uses the existing 「重設所有篩選」 button, which stays visible. */
+    function toggleAdvancedSearch() {
+      var host = document.getElementById('csv-filter-pills');
+      var btn = document.getElementById('adv-search-btn');
+      if (!host || !btn) return;
+      var collapsed = host.classList.toggle('collapsed');
+      btn.classList.toggle('expanded', !collapsed);
+      btn.setAttribute('aria-expanded', String(!collapsed));
+      var chev = document.getElementById('adv-search-chev');
+      if (chev) chev.textContent = collapsed ? '▾' : '▲';
+    }
+    function updateAdvancedSearchBadge() {
+      var badge = document.getElementById('adv-search-badge');
+      if (!badge) return;
+      var n = 0;
+      ['csv-filter-year', 'csv-filter-district', 'csv-filter-category', 'csv-filter-group', 'csv-filter-sentiment'].forEach(function (id) {
+        var sel = document.getElementById(id);
+        if (sel && sel.value !== 'ALL') n++;
+      });
+      if (n > 0) { badge.style.display = ''; badge.textContent = '已選 ' + n + ' 項'; }
+      else { badge.style.display = 'none'; badge.textContent = ''; }
     }
 
     function renderCsvTable(rows) {
@@ -8005,6 +8075,66 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       }, { passive: true });
       updateLeaving();
+    })();
+    /* Fix C (Lo): chapter transition — a solid panel in the incoming
+       section's background colour sweeps across the screen (0.64s) when the
+       reader crosses into a new section, whether by scrolling, the top nav,
+       the side dots, keyboard jumping or presentation mode. It is a separate
+       fixed overlay (never a mask over content): the panel is created by JS
+       only, is pointer-events none, and is removed by transitionend plus a
+       750ms timed fallback, so content can never stay hidden. It fires once
+       per section (the observer unobserves after the first entry) and never
+       on initial load (armed 1.5s after script run). Reduced-motion users
+       get no panel at all. */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var wipeEl = null, wipeTimer = null, wipeBusy = false, wipeArmed = false;
+      setTimeout(function () { wipeArmed = true; }, 1500);
+      function sectionBgColor(el) {
+        var node = el;
+        while (node && node !== document.body) {
+          var bg = getComputedStyle(node).backgroundColor;
+          if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') return bg;
+          node = node.parentElement;
+        }
+        var bodyBg = getComputedStyle(document.body).backgroundColor;
+        return (bodyBg && bodyBg !== 'rgba(0, 0, 0, 0)' && bodyBg !== 'transparent') ? bodyBg : '#0E0E0E';
+      }
+      function playSectionWipe(sectionEl) {
+        if (!wipeArmed || wipeBusy) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!wipeEl) {
+          wipeEl = document.createElement('div');
+          wipeEl.id = 'section-wipe';
+          wipeEl.setAttribute('aria-hidden', 'true');
+          document.body.appendChild(wipeEl);
+        }
+        wipeEl.style.background = sectionBgColor(sectionEl);
+        void wipeEl.offsetWidth;
+        wipeBusy = true;
+        wipeEl.classList.add('wiping');
+        var done = function () {
+          if (!wipeBusy) return;
+          wipeBusy = false;
+          wipeEl.classList.remove('wiping');
+        };
+        wipeEl.addEventListener('transitionend', function h(e) {
+          if (e.propertyName === 'transform') { wipeEl.removeEventListener('transitionend', h); done(); }
+        });
+        clearTimeout(wipeTimer);
+        wipeTimer = setTimeout(done, 750);
+      }
+      if ('IntersectionObserver' in window) {
+        var wio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              playSectionWipe(e.target);
+              wio.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('header.hero-header, main > section').forEach(function (el) { wio.observe(el); });
+      }
     })();
     /* v49 fix pass: the mask/wipe reveal was removed so the page uses ONE
        reveal language — the fail-open fade/rise (.reveal-soft) above.
