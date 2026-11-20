@@ -1912,7 +1912,7 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
    Card titles and the stacked-chart caveat stay exactly as written. */
 #section-b .embed-card { background: #FFFFFF; border: 1px solid #E5E7EB; }
 #section-b .embed-header { background: #F9FAFB; border-bottom: 1px solid #E5E7EB; color: #111111; }
-#section-b .embed-frame-wrap { background: #FFFFFF; padding: 12px; height: 680px; }
+#section-b .embed-frame-wrap { background: #FFFFFF; padding: 12px; height: 600px; }
 #section-b .embed-frame-wrap iframe {
   background: #FFFFFF;
   border: 1px solid #E5E7EB;
@@ -1923,7 +1923,7 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 /* Stacked-chart caveat note: back on the white card foot (was the dark frame foot). */
 #b-card-stacked > p { background: #FFFFFF; padding: 0 16px 14px; }
 @media (max-width: 720px) {
-  #section-b .embed-frame-wrap { padding: 10px; height: 560px; }
+  #section-b .embed-frame-wrap { padding: 10px; height: 515px; }
   #section-b .flourish-fallback { inset: 10px !important; }
 }
 /* Single-chart enlarge (Lo): the stacked chart (30969585) is a Flourish
@@ -1931,31 +1931,34 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
    Public / Grassroots / Middle Class; bottom row: Youth/Students / Local
    Elites). When the grid goes single-column the iframe gets ~2x wider, each
    facet panel grows taller with it, and the 2-row grid no longer fits the
-   680px frame — the bottom row and the 「Made with Flourish」 credit were
+   600px frame — the bottom row and the 「Made with Flourish」 credit were
    clipped by .embed-card's overflow:hidden. The enlarged frame is therefore
-   1150px tall on desktop, giving both facet rows plus the bottom text room;
-   the chart reflows to fill it when its iframe resizes. Mobile keeps the
-   560px frame: facets are narrow there, so both rows already fit. The Sankey
-   (30956322) is a single unfaceted diagram that scales to its container, so
-   the taller frame only gives it more room — same rule, no chart-specific
-   code. */
+   1100px tall on desktop (content need ~1055px; below ~1080px the bottom
+   row + credit clip again, so 1100px is the floor — it can only come down
+   50px from the 1150px that Lo found too tall). The chart reflows to fill
+   it when its iframe resizes. Mobile keeps the 515px frame: facets are
+   narrow there, so both rows already fit. The Sankey (30956322) is a single
+   unfaceted diagram that scales to its container, so the taller frame only
+   gives it more room — same rule, no chart-specific code. */
 @media (min-width: 721px) {
-  #section-b .flourish-grid.single-col .embed-frame-wrap { height: 1150px; }
+  #section-b .flourish-grid.single-col .embed-frame-wrap { height: 1100px; }
 }
-/* Sankey frame taller (Lo, 「housing睇唔到」, then 「最底嘅字無法顯示曬」):
-   the Sankey (30956322) has 9 issue categories on the right (Politics,
-   Law and Order, Public Health, Transport, Education, Economy, Community
-   Environment, Housing, Labour). At the default 512px frame the bottom
-   category (Housing) was cut off; at 800px Housing showed but the bottom
-   text (the 「Made with Flourish」 credit) was still clipped. The Sankey
-   gets its own 950px frame on desktop so all 9 categories, their labels
-   AND the bottom credit fit. The stacked chart keeps its 680px default /
-   1150px single-col rule. Mobile gets 800px so the bottom text fits
-   there too. The single-col 1150px rule above still wins in enlarged
-   view (higher specificity), giving the Sankey even more room there. */
-#b-card-sankey .embed-frame-wrap { height: 950px; }
+/* Sankey frame (Lo, 「housing睇唔到」, then 「最底嘅字無法顯示曬」, then
+   「呢幾個圖而家好似太高」): the Sankey (30956322) has 9 issue categories
+   on the right (Politics, Law and Order, Public Health, Transport,
+   Education, Economy, Community Environment, Housing, Labour). At the
+   default 512px frame the bottom category (Housing) was cut off; at 800px
+   Housing showed but the bottom text (the 「Made with Flourish」 credit)
+   was still clipped; at 950px everything fit but the frame looked too
+   tall. The middle ground is 875px on desktop (iframe 851px vs content
+   need ~770px) and 750px on mobile (iframe 730px vs need ~700px) — small
+   positive margins, no big empty stretch. The stacked chart keeps its
+   600px default / 1100px single-col rule. The single-col 1100px rule above
+   still wins in enlarged view (higher specificity), giving the Sankey even
+   more room there. */
+#b-card-sankey .embed-frame-wrap { height: 875px; }
 @media (max-width: 720px) {
-  #b-card-sankey .embed-frame-wrap { height: 800px; }
+  #b-card-sankey .embed-frame-wrap { height: 750px; }
 }
 </style>
 <style>
@@ -2248,10 +2251,11 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    all in ONE smooth motion, so the chapter change reads clearly
    (Lo, 「每節之間嘅過場動畫都仲係好唔明顯」) without being dizzying.
    The script adds .sec-fade (never present in the HTML, so with JS off
-   nothing is ever hidden — fail-open) and an IntersectionObserver
-   toggles .sec-fade-in: added as a section reaches the viewport,
-   removed ONLY once it is fully out of view, so incoming and outgoing
-   overlap and the screen is never left blank. Under
+   nothing is ever hidden — fail-open) and a scroll check (plus an
+   IntersectionObserver backup) toggles .sec-fade-in: added once the
+   section's top is inside the viewport's top 90%, removed ONLY once it
+   is fully out of view, so incoming and outgoing overlap and the screen
+   is never left blank. Under
    prefers-reduced-motion the script adds no classes at all, and the
    guard below forces full opacity, no transform and no transition
    anyway. The sections' --mask-bg declarations elsewhere are now inert
@@ -3873,7 +3877,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
         cCard.classList.remove('hidden');
         document.getElementById('tab-b-stacked').classList.add('active');
       }
-      // Enlarged view: the visible card's frame is taller (900px, see the
+      // Enlarged view: the visible card's frame is taller (1100px, see the
       // single-col rule in the Section B CSS), and the iframe resizes with
       // it — the Flourish chart inside reflows on its own window resize, so
       // both facet rows of the stacked chart now fit. No iframe reload here:
@@ -8304,8 +8308,16 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var sections = document.querySelectorAll('header.hero-header, main > section');
-      sections.forEach(function (el) {
-        // v22: flat design - every section gets the gentle fade, no 3D tilt
+      // v54: sections NO LONGER get .reveal-soft. It fought the v53 .sec-fade
+      // transition: revealAll() force-added .is-visible to every section ~1.2s
+      // after load, and .reveal-soft.is-visible (0,2,0) beats .sec-fade (0,1,0),
+      // so every section was computed opacity 1 before the user ever scrolled
+      // to it — the section fade (and the titles fading in with it) could never
+      // play. Section entrances are now owned ONLY by the v53 .sec-fade system.
+      // The hero header KEEPS .reveal-soft: its title/desc/button cascade runs
+      // on .hero-header.is-visible (heroIn keyframes), and the hero is in view
+      // at load anyway, so there is no fight there.
+      document.querySelectorAll('header.hero-header').forEach(function (el) {
         el.classList.add('reveal-soft');
       });
       var cards = document.querySelectorAll('.kpi-card, .insight-box, .mini-card, .embed-card, .social-stat-box');
@@ -8691,11 +8703,16 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
    opacity 1s ease, transform 1s ease) and
    .sec-fade.sec-fade-in (opacity 1, translateY(0) scale(1)), and this
    script only toggles those two classes:
-   - INCOMING: an IntersectionObserver adds .sec-fade-in the moment any
-     part of a section reaches the viewport edge (rootMargin 0%, so the
-     full 1.0s motion plays visibly as the section arrives, not while
-     it is still off-screen), so it fades in over one smooth,
-     continuous 1.0s CSS transition while it scrolls into view.
+   - INCOMING (v54): a section fades in once its TOP (title area) is
+     inside the viewport's top 90%, checked by a rAF-throttled scroll
+     check (plus an IntersectionObserver backup for entry/exit), so the
+     1.0s fade starts when the title is actually arriving and the full
+     motion plays while the user watches it arrive. A ratio/threshold
+     trigger cannot work here: section-d is ~100000px tall on mobile,
+     so its max intersection ratio is ~0.008 and a 5% ratio could never
+     fire — the section would stay invisible. An observer alone cannot
+     work either: its callback only fires on threshold crossings, so it
+     cannot catch the moment a section's top crosses into view mid-scroll.
    - OUTGOING: .sec-fade-in is removed ONLY when the section is fully
      out of view (isIntersecting === false), so the reader never watches
      a section fade away and the viewport is never left blank — the
@@ -8703,7 +8720,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
      was the flash.
    One mechanism covers every way of moving — slow scroll, fast scroll,
    the top nav, the side dots, keyboard jumps and presentation mode all
-   end in a scroll the observer sees.
+   end in a scroll the scroll check sees (the observer backs it up).
    FAIL-OPEN by construction: the .sec-fade class is added by THIS
    script, never present in the HTML, so with JS off every section is
    simply visible. If IntersectionObserver is missing the script
@@ -8729,22 +8746,58 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
     var r = el.getBoundingClientRect();
     return r.bottom > 0 && r.top < window.innerHeight;
   }
+  // v54: a section has "arrived" once its TOP (title area) is inside the
+  // viewport's top 90%. A ratio/threshold trigger cannot work here:
+  // section-d is ~100000px tall on mobile, so its max intersection ratio
+  // is ~0.008 and a 5% ratio could never fire — the section would stay
+  // invisible. The top position works for any section height.
+  function arrived(el) {
+    var r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.9 && r.bottom > 0;
+  }
+  function outOfView(el) {
+    var r = el.getBoundingClientRect();
+    return r.bottom <= 0 || r.top >= window.innerHeight;
+  }
+  function update() {
+    els.forEach(function (el) {
+      if (arrived(el)) el.classList.add('sec-fade-in');
+      else if (outOfView(el)) el.classList.remove('sec-fade-in');
+    });
+  }
   try {
     els.forEach(function (el) {
       el.classList.add('sec-fade');
       if (inView(el)) el.classList.add('sec-fade-in');
     });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) en.target.classList.add('sec-fade-in');
-        else en.target.classList.remove('sec-fade-in');
-      });
-    }, { rootMargin: '0% 0px 0% 0px', threshold: 0 });
-    els.forEach(function (el) { io.observe(el); });
+    // Primary trigger: a rAF-throttled scroll check. An IntersectionObserver
+    // callback only fires on threshold crossings, so it cannot catch the
+    // moment a section's top crosses into view mid-scroll; the scroll check
+    // can. The observer below stays as a backup for entry/exit.
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(function () { ticking = false; update(); });
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    window.addEventListener('load', update);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && arrived(en.target)) en.target.classList.add('sec-fade-in');
+          else if (!en.isIntersecting) en.target.classList.remove('sec-fade-in');
+        });
+      }, { rootMargin: '0px 0px 0px 0px', threshold: 0 });
+      els.forEach(function (el) { io.observe(el); });
+    }
     /* Fail-open guard: anything on screen must end up fully visible,
-       even if an observer callback is ever missed. */
+       even if a trigger is ever missed. */
     setTimeout(function () {
       els.forEach(function (el) { if (inView(el)) el.classList.add('sec-fade-in'); });
+      update();
     }, 1200);
   } catch (e) {
     els.forEach(function (el) {
