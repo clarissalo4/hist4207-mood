@@ -58,8 +58,8 @@
 
 ## 製作
 
-- 網頁搭建、數據整理：Lo Tsz Ching
-- Flourish 圖表、數據整理：Wu Yu Tung
+- 網頁搭建、數據整理、Kepler 地理空間分析：Lo Tsz Ching
+- Gephi、Flourish 圖表、數據整理：Wu Yu Tung
 - 開題、質性研究：Li Yat Hei
 - 質性研究：Lee Wing Fei
 - 數據清理：全組一齊
