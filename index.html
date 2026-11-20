@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HIST4207 | 1975–1980 港英政府 MOOD 報告多維度輿論分析</title>
+  <title>HIST4207 | 1975–1980 港英政府 MOOD 報告多維度輿論分析 (v49 Santal 模擬)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700;900&family=Noto+Serif+TC:wght@600;700;900&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
   <style>
     /* ==========================================================================
        1. DESIGN TOKENS & ARCHIVAL THEME (display serif loads from Google Fonts, v21;
@@ -458,7 +458,7 @@
 
     .insight-box {
       background: #F8FAFC;
-      border: 1px solid #E2E8F0;
+      border: 1px solid #2E2E2E;
       border-radius: 2px;
       padding: 0.85rem;
       font-size: 0.8rem;
@@ -663,8 +663,8 @@
       font-weight: 700;
       font-size: 0.72rem;
       letter-spacing: 0.06em;
-      color: #991B1B;
-      border: 1.5px solid #991B1B;
+      color: #F87171;
+      border: 1.5px solid #F87171;
       padding: 0.15rem 0.5rem;
       border-radius: 2px;
       text-transform: uppercase;
@@ -744,7 +744,7 @@
       border-radius: 2px;
       background: rgba(30, 41, 59, 0.45);
       border: 1px solid #1F2937;
-      color: #E2E8F0;
+      color: #2E2E2E;
       font-family: inherit;
       font-size: 0.8rem;
       cursor: pointer;
@@ -810,7 +810,8 @@
     }
 
     .form-control:focus {
-      outline: none;
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
       border-color: var(--ink-primary);
       background: #FFFFFF;
     }
@@ -868,8 +869,8 @@
     .sent-Angry       { background: #FEE2E2; color: #A8543F; }
     .sent-Anxious     { background: #FEF3C7; color: #A67C37; }
     .sent-Skeptical   { background: #EDE9FE; color: #6E5A7E; }
-    .sent-Supportive  { background: #DBEAFE; color: #3D5A80; }
-    .sent-Indifferent { background: #F1F5F9; color: #475569; }
+    .sent-Supportive  { background: #DBEAFE; color: #5B7BA6; }
+    .sent-Indifferent { background: #F1F5F9; color: #64748B; }
 
     /* ==========================================================================
        9. RESPONSIVE BREAKPOINTS
@@ -1428,7 +1429,7 @@
     }
 
     /* v33: museum-benchmark features */
-    .stamp-mini { font-family: var(--font-mono); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.06em; color: #991B1B; border: 1.5px solid #991B1B; padding: 0.1rem 0.4rem; border-radius: 2px; text-transform: uppercase; display: inline-block; transform: none; margin-left: 0.5rem; vertical-align: middle; white-space: nowrap; }
+    .stamp-mini { font-family: var(--font-mono); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.06em; color: #F87171; border: 1.5px solid #F87171; padding: 0.1rem 0.4rem; border-radius: 2px; text-transform: uppercase; display: inline-block; transform: none; margin-left: 0.5rem; vertical-align: middle; white-space: nowrap; }
     .stamp-light { color: #FCA5A5; border-color: #FCA5A5; }
     .hero-stamp { margin-top: 0.9rem; }
     .theme-entries { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; align-items: stretch; }
@@ -1474,7 +1475,7 @@
     .data-use { font-size: 0.78rem; color: var(--ink-secondary); line-height: 1.6; margin-top: 0.5rem; }
     .tl-cite { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-top: 0.45rem; }
     .tl-rel-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: rgba(255,255,255,0.75); margin-right: 0.35rem; }
-    .tl-mention { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: #991B1B; border: 1px solid #991B1B; border-radius: 999px; padding: 0.05rem 0.45rem; margin-left: 0.4rem; white-space: nowrap; vertical-align: middle; }
+    .tl-mention { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: #F87171; border: 1px solid #F87171; border-radius: 999px; padding: 0.05rem 0.45rem; margin-left: 0.4rem; white-space: nowrap; vertical-align: middle; }
     .tl-mention::before { content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--accent); margin-right: 0.3rem; vertical-align: middle; }
     .save-star { background: none; border: none; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 0.25rem; color: #9CA3AF; vertical-align: middle; }
     .save-star.saved { color: #C2410C; }
@@ -1489,28 +1490,622 @@
     .cat-focus-row-item button { background: none; border: none; padding: 0; font: inherit; text-align: left; cursor: pointer; color: var(--ink-primary); }
     .cat-focus-row-item button:hover { text-decoration: underline; }
     @media (max-width: 720px) { .feat-card { flex-basis: 210px; } .theme-entry { max-width: 100%; flex: 1 1 45%; } }
-  </style>
+  
+    /* ==========================================================================
+       SANTAL v49 — visual restyle only (simulation). Data & JS untouched.
+       Near-black #0E0E0E, white text, serif display type, orange #C2410C accent.
+       ========================================================================== */
+    :root {
+      --bg-paper: #0E0E0E;
+      --bg-card: #161616;
+      --bg-subtle: #1F1F1F;
+      --bg-folder-tab: #1F1F1F;
+      --bg-band: #161616;
+      --border-paper: #2A2A2A;
+      --border-strong: #3A3A3A;
+      --ink-primary: #FFFFFF;
+      --ink-secondary: #D4D4D4;
+      --ink-muted: #9CA3AF;
+      --kepler-bg: #0E0E0E;
+      --kepler-panel: #161616;
+      --kepler-border: #2A2A2A;
+      --shadow-sm: none;
+      --shadow-md: none;
+      --radius-md: 2px;
+      --radius-lg: 2px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "PingFang HK", "Microsoft JhengHei", "Noto Sans TC", "Segoe UI", Roboto, sans-serif;
+      --font-display: "Source Serif 4", "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+    }
+    /* navbar */
+    .navbar { background: rgba(14, 14, 14, 0.96); }
+    .navbar .brand-badge { background: #C2410C; color: #FFFFFF; }
+    .brand-title { font-family: var(--font-display); font-weight: 800; }
+    /* hero */
+    .hero-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(3rem, 8vw, 6.5rem); line-height: 1.04; letter-spacing: -0.02em; color: #FFFFFF; }
+    .hero-desc { color: rgba(255, 255, 255, 0.85); }
+    .santal-manifesto { display: flex; flex-wrap: wrap; gap: 2.5rem; margin: 1.5rem 0 1.75rem; }
+    .santal-manifesto span { display: flex; flex-direction: column; }
+    .santal-manifesto strong { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; color: #FFFFFF; }
+    .santal-manifesto em { font-family: var(--font-mono); font-style: normal; font-size: 0.75rem; letter-spacing: 0.35em; color: #C2410C; margin-top: 0.4rem; }
+    /* section headers: huge bold sans + orange kicker pill */
+    .section-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 6vw, 4.8rem); line-height: 1.05; letter-spacing: -0.02em; color: #FFFFFF; }
+    .section-kicker, main > section .section-kicker { background: #C2410C; color: #FFFFFF !important; }
+    #section-c .section-kicker, #section-timeline .section-kicker { background: #C2410C; color: #FFFFFF !important; }
+    .sec-ghost { font-family: var(--font-display); color: #1E1E1E; }
+    #section-c .sec-ghost, #section-timeline .sec-ghost { color: #232323; }
+    /* buttons */
+    .btn-primary { background: #C2410C; color: #FFFFFF; border-color: #C2410C; }
+    .btn-dark { background: #262626; color: #FFFFFF; border-color: #3A3A3A; }
+    .btn-outline { background: transparent; color: #F5F5F5; border-color: #3A3A3A; }
+    .tab-btn.active { background: #C2410C; border-color: #C2410C; color: #FFFFFF; }
+    .folder-tab.active { background: #161616; color: #FFFFFF; }
+    .folder-tab.active .folder-tab-num { background: #C2410C; color: #FFFFFF; }
+    /* cards / containers */
+    .mini-card { background: #161616; }
+    .insight-box { background: #161616; font-family: var(--font-sans); }
+    .embed-card { background: #161616; }
+    .embed-header { background: #1A1A1A; }
+    .embed-frame-wrap { background: #0E0E0E; }
+    .social-stat-box { background: #161616; }
+    .network-canvas-box { background: #161616; }
+    .folder-body { background: #161616; }
+    .folder-stamp-bar { background: #1A1A1A; }
+    .memo-card { background: #1A1A1A; }
+    .folder-card { background: #161616; }
+    .csv-layer-shell { background: #161616; }
+    .presenter-alert { background: #161616; border-left-color: #C2410C; }
+    .inspector-dark { background: #161616; color: #F5F5F5; }
+    .archive-table th { background: #161616; color: #F5F5F5; }
+    .archive-table tbody tr:hover { background: #1F1F1F; }
+    table.archive-table td { border-bottom-color: #262626; }
+    .filter-bar { border-bottom-color: #262626; }
+    .insight-grid { border-top-color: #262626; }
+    .feat-card { background: #161616; }
+    .glossary-box { background: #161616; }
+    .gloss-term { background: #161616; }
+    .modal-kw-tag { background: #161616; }
+    .theme-banner .tl-report { background: #161616; color: #F5F5F5; border-color: #3A3A3A; }
+    #section-d .theme-entry { background: #161616; }
+    #section-d .theme-entry:hover { background: #1F1F1F; }
+    .form-control { background: #1A1A1A; color: #F5F5F5; }
+    .form-control:focus { background: #1F1F1F; }
+    .meta-pill { background: #1F1F1F; color: #F5F5F5; border-color: #3A3A3A; }
+    .meta-pill span:nth-child(1), .meta-pill span:nth-child(3), .meta-pill span:nth-child(5) { background: transparent; border-color: #3A3A3A; color: #F5F5F5; }
+    #section-a .peak-tag { background: #1F1F1F; color: #F5F5F5; border-color: #3A3A3A; }
+    .peak-tag { background: #1F1F1F; color: #F5F5F5; border-color: #3A3A3A; }
+    .tl-tag-bg { background: #1F1F1F; color: #E5E7EB; border-color: #3A3A3A; }
+    .tl-report { background: transparent; color: #F5F5F5; border-color: rgba(255, 255, 255, 0.5); }
+    #section-dots .dot-label { background: #161616; color: #F5F5F5; }
+
+/* ===== v49 UX PASS (Santal interaction rethink; visual layer only, data/logic untouched) ===== */
+/* B. Bigger scroll reveals — sections slide up further as you scroll.
+   Item 3: entrance sped up — the 3D flip/open now runs 0.8s (was 1.4s) and the
+   soft rise 0.8s (was 0.9s), so sections settle quickly.
+   (prefers-reduced-motion !important rule in the first style block still wins.) */
+.reveal-soft { transform: translateY(72px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal-3d { transform: perspective(1400px) rotateX(26deg) translateY(110px) scale(0.94); transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+/* Item 3: no leave dimming — a revealed section scrolling out the top keeps
+   full opacity and its visible transform (supersedes the earlier is-leaving
+   rules at opacity 0.4–0.7), so scrolling back up to compare data feels
+   instant, with no fade to wait for. The is-leaving toggle itself is unchanged. */
+.reveal-3d.is-visible.is-leaving { opacity: 1; transform: perspective(1400px) rotateX(0deg) translateY(0) scale(1); transition: opacity 0.15s ease, transform 0.15s ease; }
+.reveal-soft.is-visible.is-leaving { opacity: 1; transform: translateY(0); transition: opacity 0.15s ease, transform 0.15s ease; }
+
+/* ===== v49 fix pass: ONE reveal language =====
+   The mask/wipe (Santal curtain) reveal is removed. Every reveal on the page
+   is now the single fail-open fade/rise (.reveal-soft, with the timed
+   reveal-all fail-safe in the reveal script), so headers, images and body
+   copy all enter the same way. */
+/* A. Minimal nav — roomier, mono numbered links. */
+.nav-inner { min-height: 72px; gap: 2rem; }
+.nav-links { gap: 1.75rem; }
+.nav-links a { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.06em; }
+.brand-title { font-size: 0.95rem; letter-spacing: 0.02em; }
+/* G. More whitespace — full-height cover, taller sections, wider container, bigger gaps. */
+.hero-header { min-height: 100vh; min-height: 100svh; padding: 5rem 0 4rem; }
+main > section { padding-top: 4.5rem; padding-bottom: 6rem; }
+.container { padding-left: 2rem; padding-right: 2rem; }
+.kpi-grid, .insight-grid, .small-multiples-grid { gap: 1.5rem; }
+.flourish-grid, .network-layout, .kepler-grid { gap: 2rem; }
+/* C. Big tappable filter pills (replace the dense dropdowns once JS builds them). */
+.filter-pills { display: flex; flex-direction: column; gap: 1.1rem; margin: 0.25rem 0 1.5rem; }
+.filter-pill-group { display: flex; flex-direction: column; gap: 0.6rem; }
+.filter-pill-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9CA3AF; font-weight: 700; }
+.filter-pill-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.filter-pill { display: inline-flex; align-items: center; padding: 0.7rem 1.15rem; border-radius: 999px; border: 1px solid #3A3A3A; background: transparent; color: #F5F5F5; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+.filter-pill:hover { border-color: #F5F5F5; }
+.filter-pill.active { background: #C2410C; border-color: #C2410C; color: #FFFFFF; }
+.filter-pill:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+.csv-controls-grid.pills-on select.form-control { display: none; }
+.csv-controls-grid.pills-on #csv-search-input { grid-column: 1 / -1; padding: 1rem 1.1rem; font-size: 1.05rem; }
+#csv-keyword-chips .cat-pill { padding: 0.55rem 1rem; font-size: 0.9rem; }
+/* D. Spacious archive table (and fix the row-hover that stayed warm cream). */
+table.archive-table th { padding: 1rem 1.1rem; }
+table.archive-table td { padding: 1.3rem 1.1rem; font-size: 0.95rem; line-height: 1.6; }
+table.archive-table td[data-label="民情摘要"] { font-size: 1.02rem; line-height: 1.75; }
+table.archive-table td[data-label="報告編號"] { font-size: 1rem; }
+table.archive-table tr.data-row:hover { background: #1F1F1F; }
+.card:hover, .embed-card:hover { border-color: #3A3A3A; }
+/* E. Fullscreen minimal record overlay. */
+.archive-modal { padding: 0; background: rgba(14, 14, 14, 0.97); }
+.archive-modal-card { max-width: none; width: 100%; min-height: 100vh; min-height: 100svh; max-height: none; border: none; border-radius: 0; box-shadow: none; padding: 5rem 1.25rem 3rem; background: #0E0E0E; }
+.archive-modal-card > * { max-width: 860px; margin-left: auto; margin-right: auto; }
+.archive-modal-close { position: fixed; top: 1rem; right: 1.25rem; font-size: 2.4rem; padding: 0.4rem 0.8rem; color: #F5F5F5; z-index: 10000; }
+#archive-modal-title { font-size: 1.9rem; line-height: 1.35; margin: 1rem 0 1.2rem; }
+#archive-modal-body { font-size: 1.02rem; line-height: 1.8; }
+.archive-modal-nav { margin-top: 2.5rem; gap: 1rem; }
+.archive-modal-nav .btn { padding: 0.8rem 1.4rem; font-size: 0.95rem; }
+
+/* ===== v49 white sections: 03 Section B (#section-b) + 05 Archive (#section-d) + 08 Methods (#section-methods) =====
+   Lo: white background is easier to read for the dense archive + methods text,
+   and Section B white too so the page alternates black/white from 03 on
+   (03 white, 04 dark, 05 white, 06 dark, 07 dark conclusion, 08 white).
+   Scoped variable overrides flip var()-based colours to the light theme inside
+   these three sections only; hardcoded dark colours are overridden below. */
+#section-b, #section-d, #section-methods {
+  --bg-paper: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F3F4F6;
+  --bg-folder-tab: #F3F4F6;
+  --bg-band: #FFFFFF;
+  --border-paper: #E5E7EB;
+  --border-strong: #D1D5DB;
+  --ink-primary: #111111;
+  --ink-secondary: #374151;
+  --ink-muted: #6B7280;
+  --mask-bg: #FFFFFF;
+  background: #FFFFFF;
+  color: #111111;
+}
+#section-d .section-title, #section-methods .section-title { color: #111111; }
+#section-d .sec-ghost, #section-methods .sec-ghost { color: #E5E7EB; }
+#section-d .folder-body, #section-d .csv-layer-shell, #section-d .feat-card, #section-d .glossary-box, #section-d .theme-entry, #section-d .folder-card, #section-methods .folder-card { background: #FFFFFF; }
+#section-d .theme-entry:hover { background: #F3F4F6; border-color: #111111; }
+#section-d .folder-stamp-bar { background: #F3F4F6; color: #374151; }
+#section-d .filter-pill { color: #111111; border-color: #111111; background: #FFFFFF; }
+#section-d .filter-pill:hover { border-color: #111111; background: #F3F4F6; }
+#section-d .filter-pill.active { background: #C2410C; border-color: #C2410C; color: #FFFFFF; }
+#section-d .filter-pill-label { color: #6B7280; }
+#section-d #csv-keyword-chips .cat-pill { color: #111111 !important; border-color: #D1D5DB !important; }
+#section-d .form-control { background: #FFFFFF; color: #111111; border-color: #D1D5DB; }
+#section-d .form-control:focus { background: #FFFFFF; border-color: #111111; }
+#section-d .archive-table tbody tr:hover, #section-d table.archive-table tr.data-row:hover { background: #F3F4F6; }
+#section-d .btn-outline { background: #FFFFFF; color: #111111; border-color: #111111; }
+#section-d .btn-outline:hover { background: #F3F4F6; color: #111111; border-color: #111111; }
+#section-d .stamp-mini, #section-d .stamp-badge, #section-methods .stamp-mini { color: #DC2626; border-color: #DC2626; }
+#section-d p[style*="A8A08E"] { color: #6B7280 !important; }
+
+#section-d .archive-table thead th { color: #374151; }
+
+/* Section B (03) on white: title, ghost numeral, stamp, presenter alert,
+   social stat boxes and outline buttons flip to dark-on-white.
+   Contrast on #FFFFFF: #111111 = 18.9:1, #374151 = 10.31:1, #DC2626 = 4.83:1.
+   (The three dark social stat boxes keep their inline dark fills with white
+   text — readable as-is, and unchanged.) */
+#section-b .section-title { color: #111111; }
+#section-b .sec-ghost { color: #E5E7EB; }
+#section-b .stamp-mini { color: #DC2626; border-color: #DC2626; }
+#section-b .presenter-alert { background: #F9FAFB; color: #374151; }
+#section-b .social-stat-box { background: #FFFFFF; }
+#section-b .btn-outline { background: #FFFFFF; color: #111111; border-color: #111111; }
+#section-b .btn-outline:hover { background: #F3F4F6; color: #111111; border-color: #111111; }
+
+/* ===== footer / credits: light text on the dark footer (Lo: black text was unreadable) ===== */
+footer .footer-title, footer .footer-title strong { color: #FFFFFF; }
+footer .footer-members, footer .footer-credits { color: #D4D4D4; }
+footer .footer-tech, footer .credits-label, footer .credits-cleaning { color: #D4D4D4; }
+footer .memo-card h5 { color: #FFFFFF; }
+footer .memo-card p { color: #E5E5E5; }
+
+/* ===== v49 CONTRAST PASS — WCAG AA fixes (colour only; no data/layout changes) =====
+   Each pair below was computed against the element's ACTUAL background.
+   Placed last so it wins the cascade over every earlier layer. */
+/* (1) Sticky archive table header: light beige bg + near-black text, consistent
+       everywhere. #111111 on #F4EFE4 = 16.47:1 */
+table.archive-table th { background: #F4EFE4; color: #111111; }
+.archive-table thead th { color: #111111; }
+#section-d .archive-table thead th { background: #F4EFE4; color: #111111; }
+/* (2) Record modal summary: light text on the near-black modal card.
+       #F5F5F5 on #0E0E0E = 17.71:1 */
+.archive-modal-card #archive-modal-body { color: #F5F5F5; }
+/* (3) Insight boxes / presenter alert: light text on dark cards (#F5F5F5 on
+       #161616 = 16.60:1); Methods insight boxes become white cards with dark
+       text (#374151 on #FFFFFF = 10.31:1); glossary def dark on white;
+       memo-card body light on its dark card (#E5E7EB on #1A1A1A = 14.06:1). */
+.insight-box { color: #F5F5F5; }
+#section-d .insight-box, #section-methods .insight-box { color: #374151; }
+#section-methods .insight-box { background: #FFFFFF; }
+.presenter-alert { color: #F5F5F5; }
+#section-d #glossary-def { color: #374151; }
+.memo-card p { color: #E5E7EB; }
+/* (4) Muted meta text raised to AA on its actual background:
+       feat-meta #E5E7EB on #161616 = 14.62:1 (dark) / #374151 on #FFFFFF = 10.31:1
+       (white archive section); record-cite #E5E7EB on #0E0E0E = 15.59:1. */
+.feat-card .feat-meta { color: #E5E7EB; }
+#section-d .feat-card .feat-meta { color: #374151; }
+.archive-modal-card .record-cite { color: #E5E7EB; }
+/* (5) Search highlight: orange bg + white text (was #111111 bg, invisible on dark).
+       #FFFFFF on #C2410C = 5.18:1 */
+#csv-table mark, .archive-modal-card mark { background: #C2410C; color: #FFFFFF; }
+/* (6) Ghost section numerals: decorative, aria-hidden — restored to faintly
+       visible grey on dark sections; light grey kept on the white sections. */
+.sec-ghost { color: #2E2E2E; }
+#section-c .sec-ghost, #section-timeline .sec-ghost { color: #2E2E2E; }
+#section-d .sec-ghost, #section-methods .sec-ghost { color: #E5E7EB; }
+/* (7) Filter group labels on the white archive section: dark text.
+       #374151 on #FFFFFF = 10.31:1 */
+#section-d .filter-pill-label { color: #374151; }
+/* (8) Manifesto small captions: orange (3.73:1) -> white.
+       #FFFFFF on #0E0E0E = 19.30:1 */
+.santal-manifesto em { color: #FFFFFF; }
+/* (9) Orange kicker pills: bolder + slightly larger small text.
+       #FFFFFF on #C2410C = 5.18:1 */
+.section-kicker, main > section .section-kicker { font-weight: 700; font-size: 0.78rem; }
+/* (10) Category deep-dive pills in Section A (dark): the pill background is
+       hardcoded #FFFFFF but its text colour was var(--ink-primary), which the
+       Santal dark theme flips to #FFFFFF — white text on a white pill, so the
+       category names vanished (Lo's screenshot: blank white ovals with only
+       the coloured dot showing). Pin the text to near-black on the white
+       pill: #111111 on #FFFFFF = 18.9:1. */
+.cat-focus-btn { color: #111111; }
+.cat-focus-btn:hover { border-color: #111111; background: #F3F4F6; }
+/* (11) Glossary term pills in the white archive section: the Santal layer
+       recoloured their background to #161616 while their text colour resolves
+       through the white section's scoped --ink-primary (#111111) — near-black
+       text on a near-black pill, likewise invisible. Restore the light pill
+       with dark text inside #section-d only (hover/active invert preserved):
+       #111111 on #FFFFFF = 18.9:1. */
+#section-d .gloss-term { background: #FFFFFF; color: #111111; border-color: #D1D5DB; }
+#section-d .gloss-term:hover, #section-d .gloss-term.active { background: #111111; color: #FFFFFF; border-color: #111111; }
+
+</style>
+<style>
+/* ===== v49 Item 4: Section 05 archive results — spacious cards, not a dense table =====
+   Santal minimal: white cards, hairline borders, generous padding and gaps.
+   Filter pills, search, counter, sort and the click-to-detail overlay are unchanged;
+   only the results rendering switched from table rows to a card grid. */
+.archive-sort-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; }
+.archive-sort-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; color: #374151; margin-right: 0.25rem; }
+.archive-sort-btn { font-family: inherit; font-size: 0.82rem; font-weight: 600; color: #374151; background: #FFFFFF; border: 1px solid #D1D5DB; border-radius: 999px; padding: 0.45rem 0.95rem; cursor: pointer; transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease; }
+.archive-sort-btn:hover { border-color: #111111; color: #111111; background: #F9FAFB; }
+.archive-sort-btn:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+.archive-sort-btn .sort-ind { color: #C2410C; font-size: 0.7rem; }
+.archive-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.5rem; }
+.archive-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 2px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.9rem; cursor: pointer; transition: border-color 0.18s ease, box-shadow 0.18s ease; }
+.archive-card:hover { border-color: #111111; box-shadow: 0 10px 30px rgba(17, 17, 17, 0.07); }
+.archive-card:focus-visible { outline: 2px solid #C2410C; outline-offset: 3px; }
+.ac-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.ac-id { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; color: #111111; }
+.ac-date { font-family: var(--font-mono); font-size: 0.8rem; color: #6B7280; white-space: nowrap; }
+.ac-title { font-family: var(--font-serif); font-size: 1.18rem; font-weight: 700; line-height: 1.45; color: #111111; }
+.ac-summary { font-size: 0.93rem; line-height: 1.8; color: #374151; margin: 0; }
+.ac-summary-label { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; color: #C2410C; }
+.ac-summary-note { font-size: 0.72rem; line-height: 1.55; color: #6B7280; margin: -0.45rem 0 0; }
+/* Record overlay: report-level summary label + same-report issue list */
+.modal-summary-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; color: #C2410C; margin-bottom: 0.3rem; }
+.modal-summary-note { font-size: 0.8rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 0.7rem; }
+.modal-sibling-btn { display: block; width: 100%; text-align: left; font-family: inherit; font-size: 0.88rem; line-height: 1.55; background: none; border: 1px solid var(--border-strong); border-radius: 2px; color: var(--ink-primary); padding: 0.45rem 0.7rem; margin: 0.3rem 0 0; cursor: pointer; }
+.modal-sibling-btn:hover { border-color: #C2410C; }
+.modal-sibling-btn .sib-id { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: #C2410C; margin-right: 0.5rem; }
+/* Conclusion section (07): dark band after the timeline, before the white methods section (08) */
+#section-conclusion { background: #111111; color: #FFFFFF; border-top: 4px solid var(--accent); margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: max(1.25rem, calc(50vw - 620px)); padding-right: max(1.25rem, calc(50vw - 620px)); }
+#section-conclusion .section-kicker { background: #FFFFFF; color: #111111 !important; }
+#section-conclusion .section-title { color: #FFFFFF; }
+#section-conclusion .conclusion-text { font-family: var(--font-serif); font-size: 1.3rem; line-height: 2.05; color: #F5F5F5; max-width: 44em; margin: 1.25rem 0 0; }
+@media (max-width: 720px) { #section-conclusion .conclusion-text { font-size: 1.12rem; line-height: 1.95; } }
+.ac-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; }
+.ac-salience { font-size: 0.78rem; font-weight: 700; }
+.ac-meta { margin-top: auto; border-top: 1px solid #E5E7EB; padding-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 1.25rem; }
+.ac-meta-item { min-width: 0; }
+.ac-meta-label { display: block; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; color: #6B7280; margin-bottom: 0.18rem; }
+.ac-meta-value { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.86rem; font-weight: 600; color: #111111; }
+.archive-empty { grid-column: 1 / -1; text-align: center; padding: 3.5rem 1.5rem; color: #6B7280; font-size: 0.95rem; line-height: 1.7; border: 1px dashed #D1D5DB; border-radius: 2px; }
+.archive-card-grid mark { background: #C2410C; color: #FFFFFF; padding: 0 0.1em; border-radius: 2px; }
+@media (max-width: 640px) {
+  .archive-card-grid { grid-template-columns: 1fr; gap: 1.1rem; }
+  .archive-card { padding: 1.4rem; }
+}
+</style>
+<style>
+/* ===== v49 Item 6: Flourish + Kepler embeds in dark frames =====
+   The Flourish charts render on bright white inside their iframes, which
+   broke the near-black Santal system when the iframe filled its card edge
+   to edge. Each embed now sits as a matted print inside a dark frame: a
+   deep #0E0E0E surround with generous padding and a hairline border, so
+   the white chart reads as a framed exhibit on a dark wall instead of a
+   hole punched in the page. No embed URL, data or wording changes. */
+#section-b .embed-card { background: #0E0E0E; border: 1px solid #2A2A2A; }
+#section-b .embed-header { background: #111111; border-bottom: 1px solid #2A2A2A; color: #FFFFFF; }
+#section-b .embed-frame-wrap {
+  background: #0E0E0E;
+  padding: 16px;
+  height: 512px;
+}
+#section-b .embed-frame-wrap iframe {
+  background: #FFFFFF;
+  border: 1px solid #3A3A3A;
+  box-shadow: 0 0 0 4px #161616, 0 18px 40px rgba(0, 0, 0, 0.55);
+  display: block;
+}
+#section-b .flourish-fallback { inset: 16px !important; }
+/* Stacked-chart caveat note sits on the dark card foot, inside the frame. */
+#b-card-stacked > p { background: #0E0E0E; padding: 0 16px 14px; }
+@media (max-width: 720px) {
+  #section-b .embed-frame-wrap { padding: 10px; height: 400px; }
+  #section-b .flourish-fallback { inset: 10px !important; }
+}
+/* Kepler: the map layer lives inside the white archive section, so the
+   whole layer becomes a dark framed panel — header strip, map stage and
+   placeholder all on #0E0E0E/#111111 (overriding the warm #23201B inline
+   backgrounds), with the iframe matted in the same dark surround. */
+#folder-layer-1.kepler-shell { background: #0E0E0E; }
+#folder-layer-1 > div { background: #0E0E0E !important; }
+#folder-layer-1 > div:first-child { background: #111111 !important; border-bottom: 1px solid #2A2A2A; }
+#kepler-wrap {
+  background: #0E0E0E;
+  border: 1px solid #2A2A2A;
+  padding: 14px;
+}
+#kepler-iframe { border: 1px solid #3A3A3A !important; background: #0E0E0E !important; box-shadow: 0 0 0 4px #161616, 0 18px 40px rgba(0, 0, 0, 0.55); }
+#kepler-placeholder { background: #111111 !important; border-color: #2A2A2A !important; inset: 14px !important; width: auto !important; height: auto !important; }
+@media (max-width: 720px) { #kepler-wrap { padding: 10px; } #kepler-placeholder { inset: 10px !important; } }
+</style>
+<style>
+/* ===== v49 Section B white: Flourish frames go light =====
+   Section B (03) is now a white section, so the Item 6 dark matting above
+   would sit on the page as two heavy black boxes. The white Flourish
+   embeds blend into the white section naturally, so the frame becomes a
+   hairline light border with a slim white mat — no dark surround, no heavy
+   shadow. Kepler (inside #section-d) keeps its dark frame, untouched.
+   Card titles and the stacked-chart caveat stay exactly as written. */
+#section-b .embed-card { background: #FFFFFF; border: 1px solid #E5E7EB; }
+#section-b .embed-header { background: #F9FAFB; border-bottom: 1px solid #E5E7EB; color: #111111; }
+#section-b .embed-frame-wrap { background: #FFFFFF; padding: 12px; height: 512px; }
+#section-b .embed-frame-wrap iframe {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  box-shadow: none;
+}
+#section-b .flourish-fallback { inset: 12px !important; background: #F3F4F6 !important; color: #374151 !important; }
+#section-b .flourish-fallback a { color: #C2410C; }
+/* Stacked-chart caveat note: back on the white card foot (was the dark frame foot). */
+#b-card-stacked > p { background: #FFFFFF; padding: 0 16px 14px; }
+@media (max-width: 720px) {
+  #section-b .embed-frame-wrap { padding: 10px; height: 400px; }
+  #section-b .flourish-fallback { inset: 10px !important; }
+}
+</style>
+<style>
+/* ===== v49 Item 7: keyboard / screen-reader support =====
+   Focus outlines only — no layout, colour or content changes beyond making
+   keyboard focus visible. One consistent outline (orange #C2410C, the site
+   accent) with a light halo so it reads on both the dark and white bands. */
+/* Skip link: first focusable element on the page; off-screen until focused. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -200px;
+  z-index: 10001;
+  background: #111111;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 0.7rem 1.2rem;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  text-decoration: none;
+}
+.skip-link:focus, .skip-link:focus-visible {
+  top: 0.75rem;
+  outline: 3px solid #C2410C;
+  outline-offset: 2px;
+}
+#main-content:focus-visible { outline: 2px solid #C2410C; outline-offset: 4px; }
+/* Nav links (top bar, mobile menu, side dots, brand, cover scroll). */
+.nav-links a:focus-visible,
+.brand:focus-visible,
+#mobile-nav-menu a:focus-visible,
+#section-dots a:focus-visible,
+.cover-scroll:focus-visible,
+#sim-banner a:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85); }
+/* Buttons of every kind used on the page. */
+.btn:focus-visible,
+button:focus-visible,
+.tab-btn:focus-visible,
+.folder-tab:focus-visible,
+.district-row-btn:focus-visible,
+.archive-modal-close:focus-visible,
+.cat-focus-btn:focus-visible,
+.cat-pill:focus-visible,
+.tl-report:focus-visible,
+.feat-card:focus-visible,
+.gloss-term:focus-visible,
+.modal-kw-tag:focus-visible,
+.save-star:focus-visible,
+.nav-hide-btn:focus-visible,
+.nav-show-btn:focus-visible,
+#back-to-top:focus-visible,
+.hero-cta-btn:focus-visible,
+.map-lb-bar .btn:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.85); }
+/* Form controls. */
+.form-control:focus-visible,
+input[type="range"]:focus-visible { outline: 2px solid #C2410C; outline-offset: 1px; }
+/* Table rows (legacy table) and the Item 4 archive cards / KPI cards. */
+table.archive-table tr.data-row:focus-visible,
+.archive-card:focus-visible,
+.kpi-card:focus-visible,
+[role="button"]:focus-visible { outline: 2px solid #C2410C; outline-offset: 3px; }
+/* Chart nodes: temporal chart dots and bipartite network nodes (SVG). */
+.chart-dot:focus-visible,
+.net-node:focus-visible,
+g.net-node:focus-visible { outline: 3px solid #C2410C; outline-offset: 2px; }
+.net-node:focus-visible circle,
+g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
+</style>
+<style>
+/* ===== v49 Item 8: mobile touch targets — 44px minimum =====
+   Mobile only; desktop layout, data, text and the featured-reports
+   horizontal scroll are untouched.
+   (a) Section dots: on phones the dot was an 8px visual with an 8px hit
+       area and hidden labels. The link now carries a 44x44px hit area
+       with the dot centred in it (dot itself eased up to 12px so the
+       target reads clearly); labels stay hidden on mobile, as before.
+   (b) Nav links: the mobile menu links were ~32px tall; each now has a
+       44px minimum height. The small nav toggle buttons in the same
+       mobile bar get the same 44px floor so they stay tappable too. */
+@media (max-width: 1024px) {
+  #mobile-nav-menu a { min-height: 44px; display: flex; align-items: center; }
+  #btnNavShow { min-height: 44px; align-items: center; }
+  .nav-hide-btn { min-height: 44px; min-width: 44px; }
+}
+@media (max-width: 720px) {
+  #section-dots { right: 0; gap: 0; }
+  #section-dots a { width: 44px; height: 44px; min-width: 44px; min-height: 44px; justify-content: center; align-items: center; }
+  #section-dots .dot { width: 12px; height: 12px; border-width: 2px; }
+}
+</style>
+<style>
+/* ===== v49 FIX PASS — mobile + interaction + first-screen craft =====
+   Placed last so it wins the cascade over every earlier layer. */
+/* Screen-reader-only live region (record overlay announcements). */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* (c) SIMULATION banner: one line on desktop; on mobile the long middle
+   sentence drops out and the link shortens, so it still fits one line. */
+#sim-banner { background: #C2410C; color: #FFFFFF; text-align: center; padding: 0.55rem 1rem; font-size: 0.8rem; font-weight: 700; line-height: 1.45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#sim-banner a { color: #FFFFFF; text-decoration: underline; }
+#sim-banner .sim-short { display: none; }
+@media (max-width: 720px) {
+  #sim-banner { font-size: 0.78rem; padding: 0.5rem 0.6rem; }
+  #sim-banner .sim-long { display: none; }
+  #sim-banner .sim-short { display: inline; }
+}
+
+/* (b)+(d) Nav: shorter brand (HTML), tighter gaps, nothing wraps — the
+   brand, all 7 links and the 全螢幕簡報 button each stay on one line. */
+.nav-inner { gap: 1.25rem; }
+.nav-links { gap: 1.1rem; flex-shrink: 0; }
+.nav-links a { white-space: nowrap; }
+#btnPresentation { white-space: nowrap; flex-shrink: 0; }
+#btnPresentation span { white-space: nowrap; }
+.nav-hide-btn { flex-shrink: 0; }
+@media (max-width: 720px) {
+  .navbar .container { padding-left: 1rem; padding-right: 1rem; }
+  .nav-inner { gap: 0.45rem; min-height: 60px; }
+  .brand { gap: 0.4rem; }
+  .brand-badge { font-size: 0.64rem; padding: 0.2rem 0.4rem; }
+  .brand-title { font-size: 0.78rem; letter-spacing: -0.01em; }
+  #btnPresentation { padding: 0.42rem 0.55rem; font-size: 0.76rem; }
+}
+
+/* (a) Hero KPI: solid dark backplate behind each stat so the white numerals
+   stay readable over the busy 1957 map (labels shortened in the HTML). */
+.hero-header .kpi-grid { gap: 0.75rem; }
+.hero-header .kpi-card { background: rgba(10, 10, 10, 0.88); border: 1px solid rgba(255, 255, 255, 0.30); border-radius: 2px; padding: 0.9rem 1rem; }
+.hero-header .kpi-card:last-child { border-right: 1px solid rgba(255, 255, 255, 0.30); }
+.hero-header .kpi-card.kpi-click:hover { background: rgba(10, 10, 10, 0.95); }
+.hero-header .kpi-label { color: rgba(255, 255, 255, 0.88); }
+.hero-header .kpi-sub { color: rgba(255, 255, 255, 0.85); }
+
+/* (e) Featured strip: scroll-snap so a card always rests fully in view
+   (on mobile exactly one full card per swipe), plus a visible hint. */
+.feat-hint { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; color: #6B7280; white-space: nowrap; }
+.featured-strip { scroll-snap-type: x proximity; }
+.feat-card { scroll-snap-align: start; }
+@media (max-width: 720px) {
+  .featured-strip { scroll-snap-type: x mandatory; }
+  .feat-card { flex-basis: 100%; }
+}
+
+/* (h) Archive card title is now a real button (card itself is a plain
+   article — no interactive-inside-interactive nesting). */
+.ac-title-btn { font: inherit; color: inherit; background: none; border: none; padding: 0; margin: 0; text-align: left; cursor: pointer; }
+.ac-title-btn:hover { color: #C2410C; }
+.ac-title-btn:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+
+/* (i) Dot-nav: 44px targets at every width; labels always visible where
+   the viewport has room for them (hover/active behaviour kept below that). */
+#section-dots a { min-width: 44px; min-height: 44px; }
+@media (min-width: 1280px) {
+  #section-dots .dot-label { opacity: 1; transform: none; }
+  #section-dots .dot { width: 12px; height: 12px; }
+}
+
+/* (j) Chart areas: minimum heights so the native SVG charts never collapse
+   to a sliver on narrow screens (labels fixed in the renderers). */
+#svg-temporal-combined, #svg-temporal-governance { min-height: 320px; }
+#svg-bipartite { min-height: 360px; }
+@media (max-width: 720px) {
+  #svg-temporal-combined, #svg-temporal-governance { min-height: 250px; }
+  #svg-bipartite { min-height: 300px; }
+}
+
+/* (k) Ghost section numerals: uniformly FAINTLY visible on both themes —
+   ~1.3:1 on the dark sections, ~1.2:1 on the white ones (decorative,
+   aria-hidden; previously near-invisible on dark, visible on white). */
+.sec-ghost { color: #2B2B2B; }
+#section-c .sec-ghost, #section-timeline .sec-ghost { color: #2B2B2B; }
+#section-b .sec-ghost, #section-d .sec-ghost, #section-methods .sec-ghost { color: #E7E9EC; }
+
+/* (l) Desktop nav brand truncation fix (1440px audit: title clipped 26px).
+   The nav container caps at 1240px, so at desktop widths the brand + 8 links
+   + 2 buttons overflowed the 1176px content box by ~26px and the brand —
+   the only shrinkable item — was ellipsised to "1975–80 MOO…". Fix: tighten
+   the flex gaps (~85px freed, ~60px headroom at 1440px) and stop the brand
+   from shrinking, so the full "1975–80 MOOD 報告" always shows. Scoped to
+   >1024px (below that .nav-links is hidden and the mobile menu is used);
+   mobile rules are untouched. */
+@media (min-width: 1025px) {
+  .nav-inner { gap: 0.75rem; }
+  .nav-links { gap: 0.55rem; }
+  .brand { flex-shrink: 0; }
+  .brand-title { overflow: visible; text-overflow: clip; }
+}
+/* Narrow-desktop band (1025–1239px, fluid container): shorten the brand to
+   "MOOD 報告" and icon-only 收起 button so everything still fits on one
+   line; the brand may shrink again here rather than push the bar wider
+   than the viewport. */
+@media (min-width: 1025px) and (max-width: 1239px) {
+  .brand { flex-shrink: 1; }
+  .brand-title { overflow: hidden; text-overflow: ellipsis; }
+  .brand-years { display: none; }
+  .nav-hide-text { display: none; }
+}
+
+/* (m) Back-to-top reachability: the button is scroll-revealed (opacity 0 +
+   pointer-events none until 600px scrolled), so at the top of the page it
+   cannot be tapped or tabbed to at all. Keep the hidden state out of the
+   tab order as well — it only becomes focusable once .show makes it
+   visible and tappable (same behaviour on desktop and phone). */
+#back-to-top { visibility: hidden; }
+#back-to-top.show { visibility: visible; }
+</style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">跳至主要內容</a>
+  <div id="sr-announcer" class="sr-only" role="status" aria-live="polite"></div>
+  <div id="sim-banner"><span class="sim-core">v49 模擬 SIMULATION</span><span class="sim-long"> — Santal 風格視覺＋互動重設版（全部功能同 live v48 一樣） · 正式網站：<a href="https://clarissalo4.github.io/hist4207-mood/">clarissalo4.github.io/hist4207-mood/</a></span><span class="sim-short"> · <a href="https://clarissalo4.github.io/hist4207-mood/">正式網站 ↗</a></span></div>
 
   <!-- =========================================================================
        STICKY TOP NAVIGATION BAR
        ========================================================================= -->
   <nav class="navbar">
     <div class="container nav-inner">
-      <a href="#overview" class="brand">
+      <a href="#overview" class="brand" aria-label="HIST4207 1975–80 MOOD 報告">
         <span class="brand-badge">HIST4207</span>
-        <span class="brand-title">1975–1980 港英政府 MOOD 報告多維度輿論分析</span>
+        <span class="brand-title"><span class="brand-years">1975–80 </span>MOOD 報告</span>
       </a>
 
       <div class="nav-links">
-        <a href="#overview">總覽 Overview</a>
-        <a href="#section-a">A. 政府關注焦點</a>
-        <a href="#section-b">B. 民情與階層</a>
-        <a href="#section-c">C. 階層議題網絡</a>
-        <a href="#section-d">D. 空間地圖與檔案庫</a>
-        <a href="#section-timeline">年表 Timeline</a>
-        <a href="#section-methods">方法 Methods</a>
+        <a href="#overview">01 總覽</a>
+        <a href="#section-a">02 焦點</a>
+        <a href="#section-b">03 民情</a>
+        <a href="#section-c">04 網絡</a>
+        <a href="#section-d">05 地圖</a>
+        <a href="#section-timeline">06 年表</a>
+        <a href="#section-conclusion">07 小結</a>
+        <a href="#section-methods">08 方法</a>
       </div>
 
       <button id="btnPresentation" class="btn btn-primary" onclick="togglePresentationMode()">
@@ -1521,25 +2116,27 @@
   </nav>
   <button id="btnNavShow" class="nav-show-btn" onclick="toggleMobileNav()" aria-label="顯示頂部導航" aria-expanded="false" title="顯示頂部導航">☰ 導航</button>
   <div id="mobile-nav-menu" aria-label="分節選單">
-    <a href="#overview" onclick="closeMobileNav()">總覽</a>
-    <a href="#section-a" onclick="closeMobileNav()">A. 政府關注焦點</a>
-    <a href="#section-b" onclick="closeMobileNav()">B. 民情與階層</a>
-    <a href="#section-c" onclick="closeMobileNav()">C. 階層議題網絡</a>
-    <a href="#section-d" onclick="closeMobileNav()">D. 空間地圖與檔案庫</a>
-    <a href="#section-timeline" onclick="closeMobileNav()">年表</a>
-    <a href="#section-methods" onclick="closeMobileNav()">方法</a>
+    <a href="#overview" onclick="closeMobileNav()">01 總覽</a>
+    <a href="#section-a" onclick="closeMobileNav()">02 焦點</a>
+    <a href="#section-b" onclick="closeMobileNav()">03 民情</a>
+    <a href="#section-c" onclick="closeMobileNav()">04 網絡</a>
+    <a href="#section-d" onclick="closeMobileNav()">05 地圖</a>
+    <a href="#section-timeline" onclick="closeMobileNav()">06 年表</a>
+    <a href="#section-conclusion" onclick="closeMobileNav()">07 小結</a>
+    <a href="#section-methods" onclick="closeMobileNav()">08 方法</a>
   </div>
 
 
   <div id="scroll-progress"></div>
   <nav id="section-dots" aria-label="分節導航">
-    <a href="#overview" data-target="overview"><span class="dot-label">總覽</span><span class="dot"></span></a>
-    <a href="#section-a" data-target="section-a"><span class="dot-label">A. 政府關注焦點</span><span class="dot"></span></a>
-    <a href="#section-b" data-target="section-b"><span class="dot-label">B. 民情與階層</span><span class="dot"></span></a>
-    <a href="#section-c" data-target="section-c"><span class="dot-label">C. 階層議題網絡</span><span class="dot"></span></a>
-    <a href="#section-d" data-target="section-d"><span class="dot-label">D. 空間地圖與檔案庫</span><span class="dot"></span></a>
-    <a href="#section-timeline" data-target="section-timeline"><span class="dot-label">年表</span><span class="dot"></span></a>
-    <a href="#section-methods" data-target="section-methods"><span class="dot-label">方法</span><span class="dot"></span></a>
+    <a href="#overview" data-target="overview" aria-label="總覽"><span class="dot-label">總覽</span><span class="dot"></span></a>
+    <a href="#section-a" data-target="section-a" aria-label="A. 政府關注焦點"><span class="dot-label">A. 政府關注焦點</span><span class="dot"></span></a>
+    <a href="#section-b" data-target="section-b" aria-label="B. 民情與階層"><span class="dot-label">B. 民情與階層</span><span class="dot"></span></a>
+    <a href="#section-c" data-target="section-c" aria-label="C. 階層議題網絡"><span class="dot-label">C. 階層議題網絡</span><span class="dot"></span></a>
+    <a href="#section-d" data-target="section-d" aria-label="D. 空間地圖與檔案庫"><span class="dot-label">D. 空間地圖與檔案庫</span><span class="dot"></span></a>
+    <a href="#section-timeline" data-target="section-timeline" aria-label="年表"><span class="dot-label">年表</span><span class="dot"></span></a>
+    <a href="#section-conclusion" data-target="section-conclusion" aria-label="小結"><span class="dot-label">小結</span><span class="dot"></span></a>
+    <a href="#section-methods" data-target="section-methods" aria-label="方法"><span class="dot-label">方法</span><span class="dot"></span></a>
   </nav>
   <button id="back-to-top" title="回到頂部" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
@@ -1557,6 +2154,11 @@
       </div>
       <div class="hero-stamp"><span class="stamp-badge stamp-light">CONFIDENTIAL // HKMOOD 1975–1980</span></div>
       <h1 class="hero-title">1975–1980 港英政府民情報告 數據視覺化分析<span class="hero-title-en">(MOOD Reports)</span></h1>
+      <div class="santal-manifesto" aria-label="三字宣言">
+        <span><strong>秘密</strong><em>SECRET</em></span>
+        <span><strong>民情</strong><em>SENTIMENT</em></span>
+        <span><strong>管治</strong><em>STATE</em></span>
+      </div>
       <p class="hero-desc">
         用數位人文方法，拆開 1975–1980 年麥理浩時期港英政府嘅《民情報告》（MOOD Reports）：政府最關注咩、唔同階層嘅市民點睇、邊個階層講邊啲議題，同埋啲報告喺邊區最多。
       </p>
@@ -1564,19 +2166,19 @@
 
       <div class="kpi-grid">
         <div class="kpi-card kpi-click" onclick="kpiGo('section-a')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kpiGo('section-a')}" title="撳入去睇時間序列圖">
-          <div class="kpi-label">有日期議題記錄</div>
+          <div class="kpi-label">有日期記錄</div>
           <div class="kpi-value"><span class="kpi-num" data-count="215">215</span> <span class="kpi-sub">筆有日期（共 228 筆）</span></div>
         </div>
         <div class="kpi-card kpi-click" onclick="kpiGo('section-a')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kpiGo('section-a')}" title="撳入去睇時間序列圖">
-          <div class="kpi-label">政策議題分類</div>
+          <div class="kpi-label">政策範疇</div>
           <div class="kpi-value"><span class="kpi-num" data-count="9">9</span> <span class="kpi-sub">大範疇 (v2.2)</span></div>
         </div>
         <div class="kpi-card kpi-click" onclick="kpiGo('section-d', 2)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kpiGo('section-d', 2)}" title="撳入去睇檔案庫">
-          <div class="kpi-label">高顯著度議題記錄</div>
+          <div class="kpi-label">高顯著度記錄</div>
           <div class="kpi-value"><span class="kpi-num" data-count="83">83</span> <span class="kpi-sub">筆 High Salience</span></div>
         </div>
         <div class="kpi-card kpi-click" onclick="kpiGo('section-d', 1)" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kpiGo('section-d', 1)}" title="撳入去睇地圖">
-          <div class="kpi-label">地區標註 vs 全港泛指</div>
+          <div class="kpi-label">有地區標註報告</div>
           <div class="kpi-value"><span class="kpi-num" data-count="31">31</span> <span class="kpi-sub">份報告有地區 (vs 138 全港)</span></div>
         </div>
       </div>
@@ -1585,7 +2187,7 @@
     <a class="cover-scroll" href="#section-a"><span>SCROLL</span><em></em></a>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-content" tabindex="-1">
 
     <!-- =======================================================================
          SECTION A: GOVERNMENT ATTENTION SHIFT (1975–1980)
@@ -1616,7 +2218,7 @@
         <div id="a-filter-bar" class="filter-bar">
           <span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">點擊篩選曲線：</span>
           <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem;" onclick="setAllCategories(true)">全部顯示</button>
-          <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem; border-color:#9CA3AF; color:#111111;" onclick="setPeakCategoriesOnly()">只看核心高峰議題（政治、經濟、法律、房屋、交通）</button>
+          <button class="btn btn-outline" style="padding:0.22rem 0.6rem; font-size:0.74rem; border-color:#9CA3AF; color:#F5F5F5;" onclick="setPeakCategoriesOnly()">只看核心高峰議題（政治、經濟、法律、房屋、交通）</button>
           <div id="a-category-pills" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></div>
           <div class="cat-focus-row"><span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.25rem;">想深入睇邊一類？</span><span id="a-cat-focus-btns" style="display:flex; flex-wrap:wrap; gap:0.35rem;"></span></div>
         </div>
@@ -1699,27 +2301,27 @@
         <!-- Historical Annotation Cards -->
         <div class="insight-grid">
           <div class="insight-box" id="yb-card-1975">
-            <span class="yb-year" style="color:#111111;">1975</span>
+            <span class="yb-year" style="color:#F5F5F5;">1975</span>
             <span class="yb-head">治安與管治主導</span>
             「政治與憲制」(29.2%) 與「法律與治安」(29.2%) 佔近六成篇幅，反映廉政公署成立初期嘅管治張力。
           </div>
           <div class="insight-box" id="yb-card-1976">
-            <span class="yb-year" style="color:#111111;">1976</span>
+            <span class="yb-year" style="color:#F5F5F5;">1976</span>
             <span class="yb-head">房屋議題急升</span>
             「房屋」關注度升至 <b>19.2%</b>，「勞工」亦達 5.8%，對應十年建屋計劃推進與公屋租金調整爭議。
           </div>
           <div class="insight-box" id="yb-card-1977">
-            <span class="yb-year" style="color:#111111;">1977</span>
+            <span class="yb-year" style="color:#F5F5F5;">1977</span>
             <span class="yb-head">政治高峰與環境</span>
             「政治與憲制」達全期最高 <b>45.9%</b>，「社區環境」升至 16.2%，主要係無牌食肆等本地社區議題。
           </div>
           <div class="insight-box" id="yb-card-1978">
-            <span class="yb-year" style="color:#111111;">1978</span>
+            <span class="yb-year" style="color:#F5F5F5;">1978</span>
             <span class="yb-head">經濟升至最高</span>
             「經濟與財政」升至 <b>26.1%</b>（全期單年最高），「法律與治安」同「交通」各佔 21.7%。
           </div>
           <div class="insight-box" id="yb-card-1979-80">
-            <span class="yb-year" style="color:#111111;">1979–80</span>
+            <span class="yb-year" style="color:#F5F5F5;">1979–80</span>
             <span class="yb-head">經濟與交通升溫</span>
             1979 年「政治與憲制」佔 <b>42.9%</b>，「經濟與財政」23.8%（通脹與石油危機）；1980 年「交通」飆升至 <b>50.0%</b>（地鐵通車及加價潮）。
           </div>
@@ -1768,8 +2370,9 @@
           </div>
           <div class="embed-frame-wrap">
             <iframe id="flourish-iframe-sankey" src="https://public.flourish.studio/visualisation/30956322/embed" title="Recorded Sentiment by Social Group and Issue" loading="lazy"></iframe>
-            <div class="flourish-fallback" style="display:none; position:absolute; inset:0; background:#FFFFFF; align-items:center; justify-content:center; text-align:center; padding:1rem; font-size:0.85rem; color:var(--ink-muted);">圖表載入唔到，請檢查網絡，或者<a href="https://public.flourish.studio/visualisation/30956322/" target="_blank" rel="noopener noreferrer">撳呢度去 Flourish 睇原圖</a>。</div>
+            <div class="flourish-fallback" style="display:none; position:absolute; inset:0; background:#0E0E0E; align-items:center; justify-content:center; text-align:center; padding:1rem; font-size:0.85rem; color:var(--ink-muted);">圖表載入唔到，請檢查網絡，或者<a href="https://public.flourish.studio/visualisation/30956322/" target="_blank" rel="noopener noreferrer">撳呢度去 Flourish 睇原圖</a>。</div>
           </div>
+          <p style="font-size:0.78rem; color:var(--ink-muted); margin:0.6rem 0 0;">點睇先啱：喺圖入面嘅篩選欄揀「All years (includes undated) | All sentiments」，先會睇到全部 228 筆紀錄。唔好用預設嘅「All」——嗰個顯示 886 筆，數字係錯嘅。</p>
         </div>
 
         <!-- Flourish 2: 100% Stacked Column -->
@@ -1779,15 +2382,15 @@
               <div style="font-size:0.7rem; font-weight:800; color:var(--accent); text-transform:uppercase;">Flourish 2 • 100% Stacked Column</div>
               <div style="font-weight:700; font-size:0.95rem;">Recorded Sentiment by Social Group and Year</div>
             </div>
-            <a href="https://public.flourish.studio/visualisation/30957642/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.32rem 0.65rem; font-size:0.75rem;">
+            <a href="https://public.flourish.studio/visualisation/30969585/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.32rem 0.65rem; font-size:0.75rem;">
               新視窗開啟 ↗
             </a>
           </div>
           <div class="embed-frame-wrap">
-            <iframe id="flourish-iframe-stacked" src="https://public.flourish.studio/visualisation/30957642/embed" title="Recorded Sentiment by Social Group and Year" loading="lazy"></iframe>
-            <div class="flourish-fallback" style="display:none; position:absolute; inset:0; background:#FFFFFF; align-items:center; justify-content:center; text-align:center; padding:1rem; font-size:0.85rem; color:var(--ink-muted);">圖表載入唔到，請檢查網絡，或者<a href="https://public.flourish.studio/visualisation/30957642/" target="_blank" rel="noopener noreferrer">撳呢度去 Flourish 睇原圖</a>。</div>
+            <iframe id="flourish-iframe-stacked" src="https://public.flourish.studio/visualisation/30969585/embed" title="Recorded Sentiment by Social Group and Year" loading="lazy"></iframe>
+            <div class="flourish-fallback" style="display:none; position:absolute; inset:0; background:#0E0E0E; align-items:center; justify-content:center; text-align:center; padding:1rem; font-size:0.85rem; color:var(--ink-muted);">圖表載入唔到，請檢查網絡，或者<a href="https://public.flourish.studio/visualisation/30969585/" target="_blank" rel="noopener noreferrer">撳呢度去 Flourish 睇原圖</a>。</div>
           </div>
-          <p style="font-size:0.78rem; color:var(--ink-muted); margin:0.6rem 0 0;">注意：呢幅圖暫時只包括一般市民 116 筆，其餘四組將會補上</p>
+          <p style="font-size:0.78rem; color:var(--ink-muted); margin:0.6rem 0 0;">註：呢幅圖只包括 215 筆有日期嘅紀錄；13 筆無日期嘅紀錄唔喺年份圖入面。</p>
         </div>
       </div>
 
@@ -1841,13 +2444,13 @@
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.65rem; font-size:0.78rem; color:rgba(255,255,255,0.75);">
             <div>
               <span style="margin-right:1rem;"><span class="dot" style="background:#FFFFFF;"></span> 左側：社會階層 (Class)</span>
-              <span><span class="dot" style="background:#3D5A80;"></span> 右側：政策議題 (Issue)</span>
+              <span><span class="dot" style="background:#5B7BA6;"></span> 右側：政策議題 (Issue)</span>
             </div>
             <span>撳任何一點，睇下連繫有幾多筆</span>
           </div>
 
           <div id="c-svg-wrap" class="network-canvas-box">
-            <svg id="svg-bipartite" viewBox="0 0 720 430" style="width:100%; height:auto; display:block;"></svg>
+            <svg id="svg-bipartite" viewBox="0 0 780 430" style="width:100%; height:auto; display:block;"></svg>
           </div>
         </div>
 
@@ -1946,20 +2549,20 @@
               <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:0.75rem;">
                 <div style="max-width:760px;">
                   <h3 style="font-family:var(--font-serif); font-size:1.05rem; color:#FFFFFF;">原版 Kepler.gl 地圖（熱點 + 時間線）</h3>
-                  <p style="font-size:0.82rem; color:#CBD5E1; margin-top:0.25rem;">呢幅就係你哋嗰幅 Kepler 地圖：六角格愈高愈深色，即係嗰區報告愈多；下面條時間線可以拖去唔同年份。全港泛指嘅 138 份報告以成個香港淡色顯示，28 份有具體地區嘅報告逐份落點。下面另有 1957 年歷史地圖一幅，供對照當時嘅香港。</p>
+                  <p style="font-size:0.82rem; color:#CBD5E1; margin-top:0.25rem;">呢幅就係你哋嗰幅 Kepler 地圖：六角格愈高愈深色，即係嗰區報告愈多；下面條時間線可以拖去唔同年份。全港泛指嘅 138 份報告以成個香港淡色顯示，28 份有具體地區嘅報告逐份落點。有具體地區標註嘅報告其實有 31 份，淨係 28 份落到點：另外 3 份（60、92、282 號）淨係寫住「九龍」，係成個大區，冇一個確實位置可以落點，所以地圖上面冇顯示。下面另有 1957 年歷史地圖一幅，供對照當時嘅香港。</p>
                 </div>
                 <div style="display:flex; gap:0.4rem; flex-shrink:0; align-items:center;">
                   <div class="tab-group" style="background:#111111; border-color:#333333;">
-                    <button id="kepler-3d" class="tab-btn active" style="color:#FFFFFF;" onclick="setKeplerMode('3d')">3D</button>
-                    <button id="kepler-2d" class="tab-btn" style="color:#CBD5E1;" onclick="setKeplerMode('2d')">2D 平面</button>
+                    <button id="kepler-3d" class="tab-btn" style="color:#CBD5E1;" onclick="setKeplerMode('3d')">3D</button>
+                    <button id="kepler-2d" class="tab-btn active" style="color:#FFFFFF;" onclick="setKeplerMode('2d')">2D 平面</button>
                   </div>
-                  <a id="kepler-open-link" href="mood_kepler_map_v20.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex-shrink:0;">新視窗開大地圖 ↗</a>
+                  <a id="kepler-open-link" href="mood_kepler_map_v21.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex-shrink:0;">新視窗開大地圖 ↗</a>
                 </div>
               </div>
             </div>
             <div style="background:#23201B; padding:0 1.5rem 1.5rem;">
               <div id="kepler-wrap" style="position:relative;">
-                <iframe id="kepler-iframe" data-src="mood_kepler_map_v20.html" src="about:blank" title="MOOD Reports Kepler Map" style="width:100%; height:640px; border:1px solid #3A352C; border-radius:2px; background:#23201B; display:block;"></iframe>
+                <iframe id="kepler-iframe" data-src="mood_kepler_map_v21.html" src="about:blank" title="MOOD Reports Kepler Map" style="width:100%; height:640px; border:1px solid #3A352C; border-radius:2px; background:#23201B; display:block;"></iframe>
                 <div id="kepler-placeholder" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.9rem; background:#23201B; border:1px solid #3A352C; border-radius:2px; color:#E7E5E4; text-align:center; padding:1rem;">
                   <div style="font-weight:700; font-size:1rem;">互動地圖未載入</div>
                   <div style="font-size:0.85rem; color:#A8A08E; max-width:420px;">為咗令第一頁開得快啲，地圖會喺你碌到呢度嗰陣先至自動載入。</div>
@@ -1994,7 +2597,7 @@
               <div>
                 <h3 style="font-family:var(--font-serif); font-size:1.15rem; color:var(--ink-primary);">MOOD Report 原始情報記錄檢索庫</h3>
                 <p style="font-size:0.82rem; color:var(--ink-secondary);">
-                  支援關鍵字搜尋、多維度交叉篩選，撳任何一列會彈出完整情報摘錄。資料已經係最終版（mood_records_clean_FINAL.csv）。
+                  支援關鍵字搜尋、多維度交叉篩選，撳任何一張卡片會彈出完整情報摘錄。資料已經係最終版（mood_records_clean_FINAL.csv）。
                 </p>
               </div>
 
@@ -2069,7 +2672,8 @@
               </select>
             </div>
 
-            <!-- Keyword chips: click to search -->
+            <div id="csv-filter-pills" class="filter-pills" aria-label="快速篩選"></div>
+              <!-- Keyword chips: click to search -->
             <div id="csv-keyword-chips" style="display:flex; flex-wrap:wrap; align-items:center; gap:0.4rem; margin-bottom:1rem;">
               <span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.2rem;">常用關鍵字：</span>
               <button type="button" class="cat-pill" onclick="setSearchKeyword('政治')">政治</button>
@@ -2084,18 +2688,21 @@
               <button type="button" class="cat-pill" onclick="setSearchKeyword('school')">school 學校</button>
               <button type="button" class="cat-pill" onclick="setSearchKeyword('LegCo')">LegCo 立法局</button>
               <button type="button" class="cat-pill" onclick="setSearchKeyword('tax')">tax 稅</button>
-              <button type="button" class="cat-pill" onclick="clearSearchKeyword()" style="border-color:#9CA3AF; color:#111111;">✕ 清除搜尋</button>
+              <button type="button" class="cat-pill" onclick="clearSearchKeyword()" style="border-color:#9CA3AF; color:#F5F5F5;">✕ 清除搜尋</button>
             </div>
 
             <!-- Live Filter Status Bar -->
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem; font-size:0.8rem; color:var(--ink-secondary);">
-              <span id="csv-result-counter">顯示 228 筆最終版檔案記錄（169 份報告）</span>
+              <span id="csv-result-counter" aria-live="polite">顯示 228 筆最終版檔案記錄（169 份報告）</span>
               <span id="csv-source-badge" style="font-weight:700; color:var(--accent);">資料來源：mood_records_clean_FINAL.csv（最終版）</span>
             </div>
 
             <!-- v33: Featured reports strip (Van Gogh) -->
             <div style="margin-bottom:0.5rem;">
-              <h3 style="font-family:var(--font-serif); font-size:1.05rem; margin-bottom:0.4rem;">精選報告</h3>
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:0.75rem; margin-bottom:0.4rem;">
+                <h3 style="font-family:var(--font-serif); font-size:1.05rem; margin:0;">精選報告</h3>
+                <span class="feat-hint">左右滑動睇更多 →</span>
+              </div>
               <div id="featured-strip" class="featured-strip"></div>
             </div>
 
@@ -2116,24 +2723,21 @@
             <div id="theme-banner" class="theme-banner"></div>
             <div id="related-tl-banner" class="related-tl-banner"></div>
 
-            <!-- Archive Data Table -->
-            <div class="archive-table-wrap">
-              <table id="csv-table" class="archive-table">
-                <thead>
-                  <tr>
-                    <th onclick="sortArchiveBy('id')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('id')}" title="撳一下排序">報告編號<span class="sort-ind" data-k="id"></span></th>
-                    <th onclick="sortArchiveBy('date')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('date')}" title="撳一下排序">日期 / 年份<span class="sort-ind" data-k="date"></span></th>
-                    <th onclick="sortArchiveBy('location')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('location')}" title="撳一下排序">地區 Location<span class="sort-ind" data-k="location"></span></th>
-                    <th onclick="sortArchiveBy('category')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('category')}" title="撳一下排序">政策範疇 Category<span class="sort-ind" data-k="category"></span></th>
-                    <th onclick="sortArchiveBy('group')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('group')}" title="撳一下排序">受訪階層 Group<span class="sort-ind" data-k="group"></span></th>
-                    <th onclick="sortArchiveBy('sentiment')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('sentiment')}" title="撳一下排序">情緒 Sentiment<span class="sort-ind" data-k="sentiment"></span></th>
-                    <th onclick="sortArchiveBy('salience')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('salience')}" title="撳一下排序">顯著度<span class="sort-ind" data-k="salience"></span></th>
-                    <th onclick="sortArchiveBy('topic')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();sortArchiveBy('topic')}" title="撳一下排序">民情摘要（撳入去睇摘要）<span class="sort-ind" data-k="topic"></span></th>
-                  </tr>
-                </thead>
-                <tbody id="csv-table-body"></tbody>
-              </table>
+            <!-- Archive sort bar (same sort keys as the former table headers) -->
+            <div class="archive-sort-bar" aria-label="排序">
+              <span class="archive-sort-label">排序：</span>
+              <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('id')" title="撳一下排序">報告編號<span class="sort-ind" data-k="id"></span></button>
+              <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('date')" title="撳一下排序">日期 / 年份<span class="sort-ind" data-k="date"></span></button>
+              <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('location')" title="撳一下排序">地區 Location<span class="sort-ind" data-k="location"></span></button>
+              <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('category')" title="撳一下排序">政策範疇 Category<span class="sort-ind" data-k="category"></span></button>
+              <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('group')" title="撳一下排序">受訪階層 Group<span class="sort-ind" data-k="group"></span></button>
+              <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('sentiment')" title="撳一下排序">情緒 Sentiment<span class="sort-ind" data-k="sentiment"></span></button>
+              <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('salience')" title="撳一下排序">顯著度<span class="sort-ind" data-k="salience"></span></button>
+              <button type="button" class="archive-sort-btn" onclick="sortArchiveBy('topic')" title="撳一下排序">民情摘要<span class="sort-ind" data-k="topic"></span></button>
             </div>
+
+            <!-- Archive record cards (v49: spacious grid, click a card for the full record) -->
+            <div id="csv-card-grid" class="archive-card-grid"></div>
           </div>
         </div>
       </div>
@@ -2303,14 +2907,26 @@
   </section>
 
   <!-- =========================================================================
+       SECTION: CONCLUSION — 小結
+       ========================================================================= -->
+  <section id="section-conclusion">
+      <span class="sec-ghost" aria-hidden="true">07</span>
+    <div class="section-head">
+      <div class="section-kicker">07 · 小結 Conclusion</div>
+      <h2 class="section-title">結論</h2>
+      <p class="conclusion-text">由 1975 到 1980 年，政府最留意嘅議題由治安管治轉向民生基建：1975 年政治同法律各佔 29.2%，到 1978 年經濟升到最高 26.1%，1980 年交通更佔一半。政府問唔同階層唔同嘅問題：問中產多數係經濟同政治，問草根多數係房屋。</p>
+    </div>
+  </section>
+
+  <!-- =========================================================================
        SECTION: METHODS — 資料與方法
        ========================================================================= -->
   <section id="section-methods">
-      <span class="sec-ghost" aria-hidden="true">07</span>
+      <span class="sec-ghost" aria-hidden="true">08</span>
       <span class="sec-vertical">METHODS</span>
     <div class="container">
       <div class="section-head">
-        <div class="section-kicker">07 · 方法 Methods</div><span class="stamp-mini">HKMOOD</span>
+        <div class="section-kicker">08 · 方法 Methods</div><span class="stamp-mini">HKMOOD</span>
         <h2 class="section-title">資料係點嚟嘅，點樣整理</h2>
         <p class="section-subtitle">呢個網站嘅數字全部嚟自同一份整理好嘅數據，唔係隨便估。以下係最重要嘅幾點；完整方法、錯誤率同埋決策紀錄，請睇 methods report。呢個網站集中講政府關注點點樣轉、唔同階層問唔同議題、同埋邊區報告最多；MOOD 本身喺 1975–1980 年間研究方法有冇進步，喺分析文章同 final presentation 入面交代。</p>
       </div>
@@ -2368,6 +2984,8 @@
         <div class="insight-box">
           <h4>限制</h4>
           <p>127 行低置信度分類未逐行覆核；8 份報告來源待定。「政府回應」欄係後加嘅，空白唔等於政府冇回應。檔案標題係編者擬定，唔係印出原標題；原文首行標題先係印出原題。</p>
+          <p>樣本逐年減少：1975 年有 72 筆，到 1979 年得 21 筆，1980 年得 10 筆。呢個下跌部分係因為 MOOD 出版次數本身減少咗——1975 年係週刊，1977 年改做雙週刊，1979 年再改做月刊。所以後期年份嘅百分比要小心睇，唔好過度解讀：例如 1980 年交通佔 50.0%，其實只係 10 筆入面有 5 筆。</p>
+          <p>T003（1977-05-05）唔係一份民意調查報告，而係 MOOD 內部講運作同抽樣方法嘅文件（&ldquo;How MOOD is Produced&rdquo;）。呢類程序性文件都有收錄喺語料庫入面，唔係全部記錄都係民意調查結果。</p>
         </div>
       </div>
       <div style="margin-top:1.5rem;">
@@ -2416,7 +3034,7 @@
 
   </main>
 
-  <footer style="border-top:1px solid var(--border-paper); background:#FFFFFF; padding:1.5rem 0; font-size:0.8rem; color:var(--ink-muted);">
+  <footer style="border-top:1px solid var(--border-paper); background:#0E0E0E; padding:1.5rem 0; font-size:0.8rem; color:var(--ink-muted);">
     <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem;">
       <div class="footer-title"><strong style="color:var(--ink-primary);">HIST4207 Historical Data Visualization Project</strong> — Hong Kong MOOD Reports (1975–1980)</div>
       <div class="footer-members">組員 Group Members： Wu Yu Tung (23232773) · Li Yat Hei (25217984) · Lo Tsz Ching (23235756) · Lee Wing Fei (25225014)</div>
@@ -2449,14 +3067,14 @@
     const YEARS = ['1975', '1976', '1977', '1978', '1979', '1980'];
 
     const CATEGORIES = [
-      { id: 'politics',  name: '政治與憲制',     color: '#3D5A80', group: 'governance', peak: '45.9% (1977)', peakIdx: 2, vals: [29.2, 17.3, 45.9, 13.0, 42.9, 10.0], counts: [21, 9, 17, 3, 9, 1], visible: true },
+      { id: 'politics',  name: '政治與憲制',     color: '#5B7BA6', group: 'governance', peak: '45.9% (1977)', peakIdx: 2, vals: [29.2, 17.3, 45.9, 13.0, 42.9, 10.0], counts: [21, 9, 17, 3, 9, 1], visible: true },
       { id: 'economy',   name: '經濟與財政',     color: '#A67C37', group: 'livelihood', peak: '26.1% (1978)', peakIdx: 3, vals: [18.1, 17.3, 8.1, 26.1, 23.8, 10.0], counts: [13, 9, 3, 6, 5, 1], visible: true },
       { id: 'law',       name: '法律與治安',     color: '#4E7A5A', group: 'governance', peak: '29.2% (1975)', peakIdx: 0, vals: [29.2, 13.5, 2.7, 21.7, 0.0, 20.0], counts: [21, 7, 1, 5, 0, 2], visible: true },
       { id: 'housing',   name: '房屋',           color: '#6E5A7E', group: 'livelihood', peak: '19.2% (1976)', peakIdx: 1, vals: [4.2, 19.2, 2.7, 4.3, 0.0, 0.0], counts: [3, 10, 1, 1, 0, 0], visible: true },
       { id: 'health',    name: '公共衛生與醫療', color: '#A8543F', group: 'livelihood', peak: '10.8% (1977)', peakIdx: 2, vals: [1.4, 9.6, 10.8, 8.7, 0.0, 0.0], counts: [1, 5, 4, 2, 0, 0], visible: true },
       { id: 'education', name: '教育與青年',     color: '#8A6D4B', group: 'livelihood', peak: '10.0% (1980)', peakIdx: 5, vals: [2.8, 5.8, 8.1, 4.3, 4.8, 10.0], counts: [2, 3, 3, 1, 1, 1], visible: true },
       { id: 'transport', name: '交通',           color: '#9C5B6E', group: 'livelihood', peak: '50.0% (1980)', peakIdx: 5, vals: [9.7, 9.6, 5.4, 21.7, 28.6, 50.0], counts: [7, 5, 2, 5, 6, 5], visible: true },
-      { id: 'community', name: '社區環境',       color: '#475569', group: 'livelihood', peak: '16.2% (1977)', peakIdx: 2, vals: [4.2, 1.9, 16.2, 0.0, 0.0, 0.0], counts: [3, 1, 6, 0, 0, 0], visible: true },
+      { id: 'community', name: '社區環境',       color: '#64748B', group: 'livelihood', peak: '16.2% (1977)', peakIdx: 2, vals: [4.2, 1.9, 16.2, 0.0, 0.0, 0.0], counts: [3, 1, 6, 0, 0, 0], visible: true },
       { id: 'labour',    name: '勞工',           color: '#6B7A3F', group: 'livelihood', peak: '5.8% (1976)',  peakIdx: 1, vals: [1.4, 5.8, 0.0, 0.0, 0.0, 0.0], counts: [1, 3, 0, 0, 0, 0], visible: true },
     ];
 
@@ -2468,10 +3086,12 @@
         btn.type = 'button';
         btn.id = 'cat-pill-' + cat.id;
         btn.className = 'cat-pill' + (cat.visible ? '' : ' muted');
+        btn.setAttribute('aria-pressed', cat.visible ? 'true' : 'false');
         btn.innerHTML = `<span class="dot" style="background:${cat.color}"></span><span>${cat.name}</span>`;
         btn.onclick = () => {
           CATEGORIES[idx].visible = !CATEGORIES[idx].visible;
           btn.classList.toggle('muted', !CATEGORIES[idx].visible);
+          btn.setAttribute('aria-pressed', CATEGORIES[idx].visible ? 'true' : 'false');
           renderTemporalCombinedSVG();
         };
         pillsWrap.appendChild(btn);
@@ -2486,7 +3106,7 @@
       CATEGORIES.forEach(c => {
         c.visible = state;
         const el = document.getElementById('cat-pill-' + c.id);
-        if (el) el.classList.toggle('muted', !state);
+        if (el) { el.classList.toggle('muted', !state); el.setAttribute('aria-pressed', state ? 'true' : 'false'); }
       });
       renderTemporalCombinedSVG();
     }
@@ -2496,7 +3116,7 @@
       CATEGORIES.forEach(c => {
         c.visible = core.includes(c.id);
         const el = document.getElementById('cat-pill-' + c.id);
-        if (el) el.classList.toggle('muted', !c.visible);
+        if (el) { el.classList.toggle('muted', !c.visible); el.setAttribute('aria-pressed', c.visible ? 'true' : 'false'); }
       });
       renderTemporalCombinedSVG();
     }
@@ -2525,18 +3145,19 @@
       // Horizontal Gridlines & Y-Axis Labels
       (isCounts ? [0, 5, 10, 15, 20, 25] : [0, 10, 20, 30, 40, 50]).forEach(tick => {
         const y = yPos(tick);
-        html += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#E2E8F0" stroke-dasharray="${tick === 0 ? '' : '4,4'}" />`;
-        html += `<text x="${padL - 10}" y="${y + 4}" text-anchor="end" font-size="11" fill="#64748B" font-weight="600">${tick}${isCounts ? '' : '%'}</text>`;
+        html += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#2E2E2E" stroke-dasharray="${tick === 0 ? '' : '4,4'}" />`;
+        html += `<text x="${padL - 10}" y="${y + 4}" text-anchor="end" font-size="13" fill="#64748B" font-weight="700">${tick}${isCounts ? '' : '%'}</text>`;
       });
 
-      // Y-Axis Title
-      html += `<text x="16" y="${padT + plotH / 2}" transform="rotate(-90 16 ${padT + plotH / 2})" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">${isCounts ? '議題筆數 (n)' : 'Attention Share (%)'}</text>`;
+      // Y-Axis Title — horizontal above the plot: the old rotated label's
+      // bounding box extended past the left edge of the viewBox and was clipped.
+      html += `<text x="${padL}" y="16" text-anchor="start" font-size="13" font-weight="700" fill="#94A3B8">${isCounts ? '議題筆數 (n)' : 'Attention Share (%)'}</text>`;
 
       // Vertical Year Lines & X-Axis Labels
       YEARS.forEach((yr, i) => {
         const x = xPos(i);
-        html += `<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT + plotH}" stroke="#F1F5F9" />`;
-        html += `<text x="${x}" y="${H - 16}" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">${yr}</text>`;
+        html += `<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT + plotH}" stroke="#262626" />`;
+        html += `<text x="${x}" y="${H - 16}" text-anchor="middle" font-size="14" font-weight="700" fill="#E5E7EB">${yr}</text>`;
       });
 
       // Category Lines & Points
@@ -2625,16 +3246,16 @@
             </div>
             <svg viewBox="0 0 ${W} ${H}" style="width:100%; height:auto; display:block;">
               <line x1="${padL}" y1="${yP(0)}" x2="${W - padR}" y2="${yP(0)}" stroke="#CBD5E1" />
-              <line x1="${padL}" y1="${yP(25)}" x2="${W - padR}" y2="${yP(25)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
-              <line x1="${padL}" y1="${yP(50)}" x2="${W - padR}" y2="${yP(50)}" stroke="#E2E8F0" stroke-dasharray="3,3" />
-              <text x="${padL - 4}" y="${yP(0) + 3}" text-anchor="end" font-size="9" fill="#64748B">0</text>
-              <text x="${padL - 4}" y="${yP(25) + 3}" text-anchor="end" font-size="9" fill="#64748B">25</text>
-              <text x="${padL - 4}" y="${yP(50) + 3}" text-anchor="end" font-size="9" fill="#64748B">50</text>
+              <line x1="${padL}" y1="${yP(25)}" x2="${W - padR}" y2="${yP(25)}" stroke="#2E2E2E" stroke-dasharray="3,3" />
+              <line x1="${padL}" y1="${yP(50)}" x2="${W - padR}" y2="${yP(50)}" stroke="#2E2E2E" stroke-dasharray="3,3" />
+              <text x="${padL - 4}" y="${yP(0) + 3}" text-anchor="end" font-size="11" fill="#64748B">0</text>
+              <text x="${padL - 4}" y="${yP(25) + 3}" text-anchor="end" font-size="11" fill="#64748B">25</text>
+              <text x="${padL - 4}" y="${yP(50) + 3}" text-anchor="end" font-size="11" fill="#64748B">50</text>
               <polygon points="${areaPts}" fill="${cat.color}" fill-opacity="0.16" />
               <polyline fill="none" stroke="${cat.color}" stroke-width="2.2" points="${pts}" />
               ${cat.vals.map((v, i) => `<circle cx="${xP(i).toFixed(1)}" cy="${yP(v).toFixed(1)}" r="${i === cat.peakIdx ? 4.2 : 2.5}" fill="${i === cat.peakIdx ? '#A8543F' : cat.color}" stroke="#FFFFFF" stroke-width="1" />`).join('')}
-              <text x="${pkX}" y="${Math.max(11, pkY - 6)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#B91C1C">${cat.vals[cat.peakIdx]}%</text>
-              ${YEARS.map((yr, i) => `<text x="${xP(i).toFixed(1)}" y="${H - 5}" text-anchor="middle" font-size="9" fill="#475569">${yr.slice(2)}</text>`).join('')}
+              <text x="${pkX}" y="${Math.max(11, pkY - 6)}" text-anchor="middle" font-size="11" font-weight="700" fill="#F87171">${cat.vals[cat.peakIdx]}%</text>
+              ${YEARS.map((yr, i) => `<text x="${xP(i).toFixed(1)}" y="${H - 5}" text-anchor="middle" font-size="11" fill="#64748B">${yr.slice(2)}</text>`).join('')}
             </svg>
           </div>
         `;
@@ -2651,17 +3272,17 @@
 
       let html = `
         <g transform="translate(${padL}, 14)">
-          <rect x="0" y="0" width="14" height="14" rx="3" fill="#1E293B" />
-          <text x="20" y="11" font-size="12" font-weight="700" fill="#1E293B">管治與治安類（政治憲制 + 法律治安）</text>
+          <rect x="0" y="0" width="14" height="14" rx="3" fill="#5B7BA6" />
+          <text x="20" y="11" font-size="14" font-weight="700" fill="#F5F5F5">管治與治安類（政治憲制 + 法律治安）</text>
           <rect x="275" y="0" width="14" height="14" rx="3" fill="#C2410C" />
-          <text x="295" y="11" font-size="12" font-weight="700" fill="#1E293B">民生與基建類（經濟、房屋、交通、衛生、教育、環境、勞工）</text>
+          <text x="295" y="11" font-size="14" font-weight="700" fill="#F5F5F5">民生與基建類（經濟、房屋、交通、衛生、教育、環境、勞工）</text>
         </g>
       `;
 
       [0, 25, 50, 75, 100].forEach(t => {
         const y = padT + pH - (t / 100) * pH;
-        html += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#E2E8F0" stroke-dasharray="4,4" />`;
-        html += `<text x="${padL - 10}" y="${y + 4}" text-anchor="end" font-size="11" fill="#64748B">${t}%</text>`;
+        html += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#2E2E2E" stroke-dasharray="4,4" />`;
+        html += `<text x="${padL - 10}" y="${y + 4}" text-anchor="end" font-size="13" fill="#64748B" font-weight="700">${t}%</text>`;
       });
 
       const slotW = pW / YEARS.length;
@@ -2675,18 +3296,18 @@
         const yLiv = yGov - livH;
 
         // Governance bottom bar
-        html += `<rect x="${x}" y="${yGov}" width="${barW}" height="${govH}" fill="#1E293B" rx="4" />`;
+        html += `<rect x="${x}" y="${yGov}" width="${barW}" height="${govH}" fill="#5B7BA6" rx="4" />`;
         if (govH > 22) {
-          html += `<text x="${x + barW / 2}" y="${yGov + govH / 2 + 4}" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">${govTotals[i]}%</text>`;
+          html += `<text x="${x + barW / 2}" y="${yGov + govH / 2 + 4}" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">${govTotals[i]}%</text>`;
         }
 
         // Livelihood top bar
         html += `<rect x="${x}" y="${yLiv}" width="${barW}" height="${livH}" fill="#C2410C" rx="4" />`;
         if (livH > 22) {
-          html += `<text x="${x + barW / 2}" y="${yLiv + livH / 2 + 4}" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">${livTotals[i]}%</text>`;
+          html += `<text x="${x + barW / 2}" y="${yLiv + livH / 2 + 4}" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">${livTotals[i]}%</text>`;
         }
 
-        html += `<text x="${x + barW / 2}" y="${H - 16}" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">${yr}</text>`;
+        html += `<text x="${x + barW / 2}" y="${H - 16}" text-anchor="middle" font-size="14" font-weight="700" fill="#E5E7EB">${yr}</text>`;
       });
 
       svg.innerHTML = html;
@@ -2796,7 +3417,9 @@
 
     function renderBipartiteSVG() {
       const svg = document.getElementById('svg-bipartite');
-      const leftX = 215, rightX = 495;
+      // Wider left margin (viewBox now 780 wide): the longest left label,
+      // "Middle Class/Professionals (n=49)", used to start off-canvas and clip.
+      const leftX = 282, rightX = 508;
       let html = '';
 
       // Render Edges
@@ -2814,7 +3437,7 @@
           const mx = (leftX + rightX) / 2;
           const my = (sN.y + tN.y) / 2;
           html += `<circle cx="${mx}" cy="${my}" r="11" fill="#0F172A" />`;
-          html += `<text x="${mx}" y="${my + 3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">${e.w}</text>`;
+          html += `<text x="${mx}" y="${my + 3.5}" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">${e.w}</text>`;
         }
       });
 
@@ -2830,7 +3453,7 @@
         html += `
           <g class="net-node" data-nid="${n.id}" tabindex="0" role="button" style="cursor:pointer; opacity:${op}; transition:opacity 0.15s;" onclick="selectNetworkNode('${n.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectNetworkNode('${n.id}')}" onmouseenter="hoverNetNode('${n.id}')" onmouseleave="hoverNetNode(null)">
             <circle cx="${cx}" cy="${n.y}" r="${n.r}" fill="${n.color}" stroke="${n.id === activeNetNodeId ? '#F97316' : '#FFFFFF'}" stroke-width="${n.id === activeNetNodeId ? 3.5 : 2}" />
-            <text x="${txtX}" y="${n.y + 4}" text-anchor="${anchor}" font-size="12" font-weight="${n.id === activeNetNodeId ? '800' : '600'}" fill="#FFFFFF">${n.label}</text>
+            <text x="${txtX}" y="${n.y + 4}" text-anchor="${anchor}" font-size="14" font-weight="${n.id === activeNetNodeId ? '800' : '600'}" fill="#FFFFFF">${n.label}</text>
           </g>
         `;
       });
@@ -6136,7 +6759,7 @@
     function sortArchiveBy(key) {
       if (archiveSort.key === key) { archiveSort.dir = -archiveSort.dir; }
       else { archiveSort.key = key; archiveSort.dir = 1; }
-      document.querySelectorAll('#csv-table thead th .sort-ind').forEach(function (el) {
+      document.querySelectorAll('.archive-sort-btn .sort-ind').forEach(function (el) {
         el.textContent = (el.getAttribute('data-k') === key) ? (archiveSort.dir === 1 ? ' ▲' : ' ▼') : '';
       });
       applyCsvFilters();
@@ -6333,39 +6956,87 @@
       }
       lastFilteredRows = filtered;
       renderCsvTable(filtered);
+      syncFilterPills();
     }
 
     function renderCsvTable(rows) {
-      const tbody = document.getElementById('csv-table-body');
+      const grid = document.getElementById('csv-card-grid');
       document.getElementById('csv-result-counter').textContent = `符合條件共 ${rows.length} 筆檔案記錄（總庫存 ${ARCHIVE_RECORDS.length} 筆）`;
 
       if (rows.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:2rem; color:var(--ink-muted);">找不到符合篩選條件的 MOOD 報告記錄，請嘗試放寬關鍵字或點擊「重設所有篩選」。</td></tr>`;
+        grid.innerHTML = `<div class="archive-empty">找不到符合篩選條件的 MOOD 報告記錄，請嘗試放寬關鍵字或點擊「重設所有篩選」。</div>`;
         return;
       }
 
-      tbody.innerHTML = rows.map(r => {
+      grid.innerHTML = rows.map(r => {
         const sentClass = 'sent-' + (['Angry', 'Anxious', 'Skeptical', 'Supportive', 'Indifferent'].includes(r.sentiment) ? r.sentiment : 'Indifferent');
-        let mainRow = `
-          <tr class="data-row" data-rid="${r.id}" onclick="openArchiveModal('${r.id}')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openArchiveModal('${r.id}')}">
-            <td style="font-family:var(--font-mono); font-weight:700; white-space:nowrap; color:var(--ink-primary);" data-label="報告編號"><button type="button" class="save-star" data-rid="${r.id}" onclick="event.stopPropagation(); toggleSaveRecord('${r.id}', this)" title="收藏呢份報告">${isSaved(r.id) ? '★' : '☆'}</button>${escapeHtml(r.id)}</td>
-            <td style="font-family:var(--font-mono); white-space:nowrap;" data-label="日期 / 年份">${escapeHtml(r.date)}</td>
-            <td style="font-weight:600; white-space:nowrap;" data-label="地區">${highlightQuery(escapeHtml(r.location))}</td>
-            <td style="white-space:nowrap;" data-label="政策範疇"><span class="dot" style="background:${catColor(r.category)}"></span> ${highlightQuery(escapeHtml(r.category))}</td>
-            <td style="white-space:nowrap;" data-label="受訪階層">${highlightQuery(escapeHtml(r.group))}</td>
-            <td data-label="情緒"><span class="sentiment-badge ${sentClass}">${escapeHtml(r.sentiment)}</span></td>
-            <td style="font-size:0.75rem; font-weight:700; color:${r.salience === 'High' ? '#B91C1C' : r.salience === 'Moderate' ? '#B45309' : '#64748B'};" data-label="顯著度">${escapeHtml(r.salience)}</td>
-            <td style="max-width:340px;" data-label="民情摘要">${highlightQuery(escapeHtml(r.summary.slice(0, 56)))}${r.summary.length > 56 ? '...' : ''}${isTimelineMentioned(r.id) ? '<span class="tl-mention">年表有提及</span>' : ''}</td>
-          </tr>
+        const salColor = r.salience === 'High' ? '#DC2626' : r.salience === 'Moderate' ? '#B45309' : '#64748B';
+        const summary = r.summary || '';
+        return `
+          <article class="archive-card" data-rid="${r.id}" onclick="openArchiveModal('${r.id}')">
+            <div class="ac-top">
+              <span class="ac-id"><button type="button" class="save-star" data-rid="${r.id}" onclick="event.stopPropagation(); toggleSaveRecord('${r.id}', this)" title="收藏呢份報告">${isSaved(r.id) ? '★' : '☆'}</button>${escapeHtml(r.id)}</span>
+              <span class="ac-date">${escapeHtml(r.date)}</span>
+            </div>
+            <h4 class="ac-title"><button type="button" class="ac-title-btn" onclick="event.stopPropagation(); openArchiveModal('${r.id}')" aria-label="開啟記錄 ${escapeHtml(r.id)}：${escapeHtml(r.topic || '')}">${highlightQuery(escapeHtml(r.topic || ''))}</button></h4>
+            <div class="ac-summary-label">報告摘要（成份報告）</div>
+            <p class="ac-summary">${highlightQuery(escapeHtml(summary.slice(0, 56)))}${summary.length > 56 ? '...' : ''}</p>
+            <p class="ac-summary-note">呢段摘要講嘅係成份報告，唔係淨係呢個議題。</p>
+            <div class="ac-tags">
+              <span class="sentiment-badge ${sentClass}">${escapeHtml(r.sentiment)}</span>
+              <span class="ac-salience" style="color:${salColor};">顯著度：${escapeHtml(r.salience)}</span>
+              ${isTimelineMentioned(r.id) ? '<span class="tl-mention">年表有提及</span>' : ''}
+            </div>
+            <div class="ac-meta">
+              <div class="ac-meta-item"><span class="ac-meta-label">地區 LOCATION</span><span class="ac-meta-value">${highlightQuery(escapeHtml(r.location))}</span></div>
+              <div class="ac-meta-item"><span class="ac-meta-label">政策範疇 CATEGORY</span><span class="ac-meta-value"><span class="dot" style="background:${catColor(r.category)}"></span>${highlightQuery(escapeHtml(r.category))}</span></div>
+              <div class="ac-meta-item"><span class="ac-meta-label">受訪階層 GROUP</span><span class="ac-meta-value">${highlightQuery(escapeHtml(r.group))}</span></div>
+              <div class="ac-meta-item"><span class="ac-meta-label">來源 SERIES</span><span class="ac-meta-value">${escapeHtml(r.series || '')}</span></div>
+            </div>
+          </article>
         `;
-
-        return mainRow;
       }).join('');
     }
 
     let modalList = ARCHIVE_RECORDS;
     let modalIdx = 0;
     let modalSummaryOnly = false;
+    // The summary stored on each issue row is the REPORT-level summary: every
+    // issue split out of the same report (same REPORT_NUM) carries the same
+    // text. Label it as such, and list the sibling issues in the overlay so
+    // the reader can see the summary covers the whole report.
+    function sameReportIssues(r) {
+      var num = (typeof REPORT_NUM !== 'undefined') ? REPORT_NUM[r.id] : null;
+      if (num == null) return [];
+      return ARCHIVE_RECORDS.filter(function (x) { return x.id !== r.id && REPORT_NUM[x.id] === num; });
+    }
+    function modalSummaryHeadHtml(r) {
+      return '<div class="modal-summary-label">報告摘要（成份報告）</div>' +
+        '<p class="modal-summary-note">呢段摘要講嘅係成份報告，唔係淨係上面呢個議題。</p>';
+    }
+    function modalSiblingsHtml(r) {
+      var sibs = sameReportIssues(r);
+      if (!sibs.length) return '';
+      var num = REPORT_NUM[r.id];
+      var h = '<div style="margin-top:0.9rem;"><div style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-bottom:0.3rem;">同一份報告（' + escapeHtml(String(num)) + ' 號）嘅其他議題——上面段摘要同時涵蓋埋呢啲議題：</div>';
+      sibs.forEach(function (s) {
+        h += '<button type="button" class="modal-sibling-btn" onclick="openSiblingRecord(\'' + s.id + '\')"><span class="sib-id">' + escapeHtml(s.id) + '</span>' + escapeHtml(s.topic || '') + '</button>';
+      });
+      h += '</div>';
+      return h;
+    }
+    // Screen-reader announcement for the record overlay (aria-live region in
+    // the page body): spoken whenever a record is opened or stepped to.
+    function announceRecord(r, idx, total) {
+      var el = document.getElementById('sr-announcer');
+      if (el && r) el.textContent = '已開啟記錄 ' + r.id + '：' + (r.topic || '') + '（第 ' + (idx + 1) + ' / ' + total + ' 筆）';
+    }
+    function openSiblingRecord(id) {
+      var idx = ARCHIVE_RECORDS.findIndex(function (x) { return x.id === id; });
+      if (idx < 0) return;
+      modalList = ARCHIVE_RECORDS;
+      showArchiveModalAt(idx);
+    }
     function openTimelineReport(tid) {
       var idx = ARCHIVE_RECORDS.findIndex(function (x) { return x.id === tid; });
       if (idx < 0) return;
@@ -6377,7 +7048,7 @@
       modalIdx = idx;
       document.getElementById('archive-modal-meta').innerHTML = '';
       document.getElementById('archive-modal-title').textContent = r.topic || '';
-      document.getElementById('archive-modal-body').innerHTML = highlightQuery(escapeHtml(r.summary || ''));
+      document.getElementById('archive-modal-body').innerHTML = modalSummaryHeadHtml(r) + highlightQuery(escapeHtml(r.summary || '')) + modalSiblingsHtml(r);
       document.getElementById('archive-modal-pos').textContent = '';
       var nav = document.querySelector('#archive-modal .archive-modal-nav');
       if (nav) nav.style.display = 'none';
@@ -6385,6 +7056,9 @@
       if (fw) fw.style.display = 'block';
       document.getElementById('archive-modal').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
+      var annT = document.getElementById('sr-announcer');
+      if (annT) annT.textContent = '已開啟報告摘要：' + (r.topic || '') + '（' + r.id + '）';
+      _a11yOpenModal(document.getElementById('archive-modal'));
     }
     function showFullRecordFromSummary() { showArchiveModalAt(modalIdx); }
     function openArchiveModal(id) {
@@ -6392,6 +7066,7 @@
       modalList = pool;
       modalIdx = Math.max(0, pool.findIndex(function (x) { return x.id === id; }));
       showArchiveModalAt(modalIdx);
+      _a11yOpenModal(document.getElementById('archive-modal'));
     }
     function showArchiveModalAt(idx) {
       const r = modalList[idx];
@@ -6411,10 +7086,11 @@
         '<span class="meta-pill" style="margin:0;">' + escapeHtml(r.group) + '</span>' +
         '<span class="sentiment-badge ' + sentClass + '">' + escapeHtml(r.sentiment) + '</span>' +
         '<span class="meta-pill" style="margin:0;">顯著度：' + escapeHtml(r.salience) + '</span>' +
-        '<span class="meta-pill" style="margin:0;">來源：' + escapeHtml(r.series || '') + '</span>' + (isTimelineMentioned(r.id) ? '<span class="meta-pill tl-mention" style="margin:0; border-color:#991B1B; color:#991B1B;">年表有提及</span>' : '');
+        '<span class="meta-pill" style="margin:0;">來源：' + escapeHtml(r.series || '') + '</span>' + (isTimelineMentioned(r.id) ? '<span class="meta-pill tl-mention" style="margin:0; border-color:#F87171; color:#F87171;">年表有提及</span>' : '');
       document.getElementById('archive-modal-title').textContent = r.topic || '';
-      document.getElementById('archive-modal-body').innerHTML = highlightQuery(escapeHtml(r.summary || '')) + modalExtrasHtml(r);
+      document.getElementById('archive-modal-body').innerHTML = modalSummaryHeadHtml(r) + highlightQuery(escapeHtml(r.summary || '')) + modalSiblingsHtml(r) + modalExtrasHtml(r);
       document.getElementById('archive-modal-pos').textContent = '第 ' + (idx + 1) + ' / ' + modalList.length + ' 筆';
+      announceRecord(r, idx, modalList.length);
       document.getElementById('archive-modal').classList.remove('hidden');
       if (history.replaceState) { try { history.replaceState(null, '', '#' + r.id); } catch (e) {} }
       document.body.style.overflow = 'hidden';
@@ -6427,6 +7103,7 @@
       if (fw3) fw3.style.display = 'none';
       document.getElementById('archive-modal').classList.add('hidden');
       document.body.style.overflow = '';
+      _a11yCloseModal(document.getElementById('archive-modal'));
       if (history.replaceState) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
     }
     function stepArchiveModal(dir) {
@@ -6445,32 +7122,87 @@
       if (e.key === 'ArrowLeft') stepArchiveModal(-1);
       if (e.key === 'ArrowRight') stepArchiveModal(1);
     });
-    // v31: copy deep link for the current archive record
-    function fallbackCopy(text) {
-      var ta = document.createElement('textarea');
-      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
+    // v49 Item 7: modal focus management — move focus into a modal when it
+    // opens, trap Tab inside it while it is open, and return focus to the
+    // element that triggered it when it closes. A stack (on window, so call
+    // order never matters) supports chained opens such as
+    // closeMyFolder() -> openArchiveModal().
+    function _moodModalStack() {
+      if (!window._moodModalStack) window._moodModalStack = [];
+      return window._moodModalStack;
     }
-    function copyRecordLink() {
-      var r = modalList[modalIdx];
-      if (!r) return;
-      var url = location.origin + location.pathname + '#' + r.id;
-      var btn = document.getElementById('archive-copy-link');
-      function done() { if (btn) { btn.textContent = '已複製！'; setTimeout(function () { btn.textContent = '複製連結'; }, 1500); } }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
-      } else { fallbackCopy(url); done(); }
+    function _modalFocusableEls(modal) {
+      return Array.prototype.slice.call(modal.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )).filter(function (el) { return el.getClientRects().length > 0; });
     }
+    function _a11yOpenModal(modal) {
+      if (!modal) return;
+      var stack = _moodModalStack();
+      for (var i = 0; i < stack.length; i++) {
+        if (stack[i].el === modal) return; // already open (refresh / re-render)
+      }
+      var ret = document.activeElement;
+      if (!ret || ret === document.body || modal.contains(ret)) ret = null;
+      var rid = null;
+      if (ret && ret.closest) {
+        var host = ret.closest('[data-rid]');
+        if (host) rid = host.getAttribute('data-rid');
+      }
+      stack.push({ el: modal, returnEl: ret, rid: rid });
+      var target = modal.querySelector('.archive-modal-close') || _modalFocusableEls(modal)[0];
+      if (target) {
+        target.focus({ preventScroll: true });
+      } else {
+        modal.setAttribute('tabindex', '-1');
+        modal.focus({ preventScroll: true });
+      }
+    }
+    function _a11yCloseModal(modal) {
+      if (!modal) return;
+      var stack = _moodModalStack();
+      var entry = null;
+      for (var i = stack.length - 1; i >= 0; i--) {
+        if (stack[i].el === modal) { entry = stack.splice(i, 1)[0]; break; }
+      }
+      if (!entry) return;
+      var el = entry.returnEl;
+      // The archive grid re-renders on filtering: if the original card was
+      // replaced, return focus to the fresh card for the same record.
+      if (el && !el.isConnected && entry.rid) {
+        el = document.querySelector('.archive-card[data-rid="' + entry.rid + '"] .ac-title-btn') ||
+             document.querySelector('.archive-card[data-rid="' + entry.rid + '"] .save-star');
+      }
+      if (el && el.isConnected) el.focus({ preventScroll: true });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var stack = _moodModalStack();
+      if (!stack.length) return;
+      var modal = stack[stack.length - 1].el;
+      if (!modal || modal.classList.contains('hidden')) return;
+      var f = _modalFocusableEls(modal);
+      if (!f.length) { e.preventDefault(); return; }
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first || !modal.contains(document.activeElement)) {
+          e.preventDefault(); last.focus();
+        }
+      } else if (document.activeElement === last || !modal.contains(document.activeElement)) {
+        e.preventDefault(); first.focus();
+      }
+    }, true);
+    // (The v31 copy-deep-link control was removed: the Muse shell owns
+    // sharing, and a button must not read the page's own address into a
+    // share link inside the sandboxed frame.)
 
     // =========================================================================
     // v33: museum-benchmark features
     // =========================================================================
     const REPORT_NUM = {"T002":2,"T003":3,"T004":5,"T005":6,"T006":6,"T007":6,"T008":7,"T009":7,"T010":7,"T011":7,"T012":8,"T014":10,"T015":11,"T016":12,"T026":18,"T028":20,"T030":22,"T033":24,"T034":25,"T036":27,"T038":29,"T039":30,"T043":33,"T045":35,"T046":35,"T056":41,"T061":47,"T062":48,"T063":49,"T064":50,"T065":51,"T066":51,"T067":51,"T068":52,"T069":53,"T070":54,"T071":55,"T072":56,"T073":57,"T074":57,"T075":58,"T076":59,"T077":60,"T078":61,"T079":62,"T080":63,"T081":64,"T082":65,"T084":68,"T085":69,"T086":70,"T087":71,"T088":72,"T089":73,"T090":74,"T091":76,"T092":77,"T093":78,"T094":79,"T095":80,"T096":81,"T097":81,"T098":82,"T099":83,"T101":85,"T102":86,"T103":86,"T104":86,"T105":88,"T106":89,"T107":89,"T108":89,"T109":90,"T110":90,"T111":90,"T113":92,"T114":92,"T115":93,"T116":94,"T117":95,"T118":95,"T119":95,"T120":96,"T121":96,"T122":96,"T123":97,"T124":98,"T125":99,"T126":100,"T127":101,"T128":101,"T129":102,"T130":103,"T132":105,"T133":106,"T134":107,"T135":108,"T136":109,"T137":110,"T141":115,"T143":117,"T144":118,"T145":119,"T147":121,"T148":122,"T149":122,"T150":123,"T151":123,"T161":131,"T162":131,"T170":136,"T174":140,"T175":141,"T180":145,"T181":145,"T186":150,"T192":155,"T224":182,"T225":183,"T237":195,"T239":198,"T244":202,"T245":202,"T246":203,"T247":204,"T248":204,"T249":204,"T250":205,"T251":205,"T252":206,"T253":207,"T256":210,"T257":211,"T258":211,"T260":213,"T261":214,"T263":216,"T264":217,"T266":219,"T267":220,"T268":220,"T269":221,"T271":223,"T272":224,"T273":224,"T274":225,"T275":225,"T276":226,"T277":226,"T278":226,"T279":226,"T280":227,"T281":228,"T282":229,"T284":231,"T285":232,"T286":233,"T288":235,"T289":236,"T309":254,"T310":255,"T311":255,"T313":257,"T314":259,"T316":261,"T318":263,"T320":266,"T322":269,"T323":271,"T324":271,"T325":271,"T326":271,"T330":273,"T331":274,"T339":281,"T340":282,"T341":282,"T348":286,"T350":288,"T354":292,"T356":294,"T357":294,"T358":294,"T359":295,"T360":296,"T361":297,"T362":298,"T363":299,"T364":300,"T365":301,"T366":301,"T367":302,"T368":303,"T369":303,"T370":304,"T371":305,"T372":306,"T373":306,"T374":307,"T375":307,"T376":308,"T377":308,"T378":309,"T379":310,"T380":310,"T381":310,"T382":312,"T383":313,"T385":314,"T386":316,"T387":319,"T388":319,"T390":320,"T391":320,"T392":320,"T395":321,"T396":322,"T397":322,"T398":322,"T399":323,"T400":323,"T401":323,"T402":323,"T403":324,"T404":325,"T405":326,"T410":332,"T411":333};
     const RECORD_KEYWORDS = {"T002":"Governor, LegCo Address, Water Restriction, Free Education, Home Ownership","T003":"MOOD System, Public Opinion, Methodology, Panel Sampling, HAD Directives","T004":"Petitions, Social Workers, SOCO, Government Concessions, Bureaucracy","T005":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T006":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T007":"Robert Parry, LegCo Appointments, Rayson Huang, Charles Yeung, 50-Cent Coin","T008":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T009":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T010":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T011":"School Leavers, Taxi Drivers, Police Enforcement, USD Licensing, Robert Parry","T012":"Leisure Activities, Television, Overseas Travel, Summer Youth Programme, Cantonese Pop","T014":"Economic Recession, Unemployment, Stockmarket Plunge, Floating HK Dollar, Working Class","T015":"Economic Recovery, Factory Employment, Purchasing Power, Denim Export, Cautious Optimism","T016":"Living Trends, Youth Fashion, Dining Habits, Home Ownership, Consumer Behavior","T026":"Vice Establishments, Prostitution, Massage Parlours, Pornography, Public Decency","T028":"China Relations, Political Sentiment, Cross-Border Trade, Future Status, Public Perception","T030":"Economic Outlook, Inflation Pressure, Wage Levels, Employment, Cautious Optimism","T033":"Property Market, Housing Demand, Real Estate Prices, Home Ownership, Rental Rates","T034":"Traffic Congestion, Bus Safety, MTR Construction, Bus Accidents, Overloaded Buses","T036":"Water Charges, 35% Increase, Desalting Plant, East River Supply, Water Surplus","T038":"Green Paper, Public Consultation, Civic Engagement, Policy Awareness, Government Transparency","T039":"Consumer Council, Consumer Rights, Price Control, Market Supervision, Public Awareness","T043":"Police Advisers, Law Enforcement, Police Reform, Anti-Corruption, Public Reaction","T045":"Building Preservation, Heritage Monuments, Anti Rabies Campaign, Public Health, Heritage","T046":"Building Preservation, Heritage Monuments, Anti Rabies Campaign, Public Health, Heritage","T056":"Crime Rate, Street Robbery, Triad Activities, Neighborhood Safety, Police Presence","T061":"Budget Speeches, Unofficial Members, Legislative Council, Public Apathy, Economic Policies","T062":"Executive Council, Legislative Council, Civic Knowledge, Budget Reaction, Government Structure","T063":"Middle Class, Social Mobility, Home Ownership, Civil Service Image, Tax Burden","T064":"Budget Speech, Tax Freeze, Fiscal Policy, Public Reaction, Economic Stability","T065":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T066":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T067":"Sau Mau Ping Disaster, Slope Safety, Landslide Inquiry, Victim Compensation, Legal Aid","T068":"Government Image, Elsie Elliott, Public Administration, Political Criticism, Community Aspirations","T069":"Property Rates, Rateable Value, Tax Concessions, Legislative Council, Public Objections","T070":"Economic Growth, Consumer Spending, Retail Sales, Living Standards, Festive Expenditure","T071":"Rateable Value, Property Rates, Media Criticism, Tax Assessment, Ratepayers Reaction","T072":"Annual Paid Leave, Employment Ordinance, Labor Costs, Employer Anxiety, Factory Production","T073":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T074":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T075":"MP Visits, British Parliament, Colonial Governance, Civic Knowledge, Public Perception","T076":"School Leavers, White Collar Jobs, Employment Market, Blue Collar Shortage, Civil Service","T077":"Mid Autumn Festival, Economic Growth, Consumer Confidence, Festive Spending, Public Joy","T078":"Staggered Working Hours, Flexi Time, Commuter Congestion, Public Transport, Traffic Relief","T079":"Sau Mau Ping Disaster, Landslide, Housing Department, Media Coverage, Public Alarm","T080":"Rent Policy, Public Housing, Rental Increase, Estate Management, Housing Authority","T081":"Housing Protests, High Rent Policy, Estate Tenants, Housing Authority, Public Agitation","T082":"Electricity Supply, Voltage Change, Domestic Appliances, Power Utility, Public Convenience","T084":"Miss Universe Pageant, Mass Entertainment, Television Broadcasting, Tourism","T085":"Inland Revenue Ordinance, Tax Reform, Dividend Tax, Business Taxation","T086":"Hong Kong Standard Time, Daylight Saving, Working Hours, Public Convenience","T087":"Television Programmes, Broadcast Entertainment, Drama Series, Mass Media","T088":"Television Affairs, Commercial Stations, Civic Awareness, Current Affairs","T089":"Fixed Penalty System, Traffic Offences, Driver Licensing, Traffic Fines","T090":"Group A Estate Shops, Shop Rents, Commercial Tenants, Housing Authority","T091":"Identity Cards, Registration Policy, Security Habits, Public Protection","T092":"MTR Construction, Traffic Disruption, Excavation Noise, Public Mitigation","T093":"Queen Birthday, Public Holiday, Imperial Festivities, Community Events","T094":"Group B Estates, Shop Rent Hike, Commercial Tenancies, Housing Policy","T095":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T096":"Hong Kong Arts Festival, High Society, Cultural Events, Ticket Prices","T097":"Hong Kong Arts Festival, High Society, Cultural Events, Ticket Prices","T098":"Financial Budget, Tax Policy, Allowance Adjustments, Fiscal Management, Public Reaction","T099":"Economic Review, Social Welfare, Educational Provision, Fiscal Policy, Public Finance","T101":"Chinese New Year, Stock Market Boom, Factory Orders, Festive Economy","T102":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T103":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T104":"Mong Kok Shooting, Detective Au Pui-kuen, Ko Chiu Road Betting Shop, Board of Inquiry, Police-Community Relations","T105":"Vice Establishments, Prostitution, Criminal Syndicates, Adolescent Protection, Law Enforcement","T106":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T107":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T108":"Pressure Groups, Grassroots Protest, Public Opinion, Social Work, Civic Demonstration","T109":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T110":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T111":"Economic Retrospect, Public Finance, Budget Communication, Purchasing Power, Media Coverage","T113":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T114":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T115":"Telephone Company, Inquiry Commission, Utility Fares, Telephone Rates, Kwun Tong Ammunition","T116":"Judicial System, Court Procedures, Traditional Reluctance, Legal Misfortunes, Litigation","T117":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T118":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T119":"Billy Graham Crusade, Evangelism, Penal System, Crime Victim, Mass Rally","T120":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T121":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T122":"Legislative Council, Life Imprisonment, Death Penalty, Home Ownership Scheme, Film Censorship","T123":"Defense Costs, Garrison Contribution, UK HK Relations, Military Expenses, Public Finance","T124":"Death Penalty, Legislative Council, Unofficial Members, Capital Punishment, Crime Deterrence","T125":"Governor Address, Legislative Council, Augustine Chung Case, Adulterated Liquor, Media Coverage","T126":"Illegal Immigration, China Immigrants, Public Sentiment, Urban Overcrowding, Quality of Life","T127":"National Day, October First, PRC Celebrations, Cross-Border Sentiment, Civic Neutrality","T128":"National Day, October First, PRC Celebrations, Cross-Border Sentiment, Civic Neutrality","T129":"Public Identity, Civic Belonging, Permanent Settlement, Social Stability, Community Sentiment","T130":"Government Image, Administrative Reform, Public Complaints, Civil Freedom, Open Governance","T132":"District Boards, New Territories, Direct Elections, District Administration, Public Consultation","T133":"Group Weddings, Marriage Registries, Civil Registration, Public Support, Ceremonial Reform","T134":"Group Weddings, Marriage Registry, Public Sentiment, Scheduling, Festive Atmosphere","T135":"Public Utilities, KMB, Bus Services, Telephone Company, Mass Transit Railway","T136":"Kwun Tong, Public Utilities, Bus Fares, Service Quality, Government Oversight","T137":"Consumer Protection, Consumer Council, Public Utilities, Complaint Channels, Service Quality","T141":"ICAC, Corruption Prevention, Public Impressions, Law Enforcement, Community Relations","T143":"Fisheries, Tourism, Hotel Industry, Retail Trade, Commercial Rentals","T144":"Yee Wuis, Money Lenders, Finance Companies, Loan Sharks, Informal Credit","T145":"Cost of Living, Inflation, Food Prices, Housing Rent, Grassroots Livelihood","T147":"Illegal Parking, Goods Vehicles, Traffic Blackspots, Police Enforcement, Public Safety","T148":"Vietnamese Refugees, Geneva Conference, North Point, Bus Terminus Accident, Transport Supervision","T149":"Vietnamese Refugees, Geneva Conference, North Point, Bus Terminus Accident, Transport Supervision","T150":"Vietnamese Refugees, Chinese Immigrants, Kai Tak Riot, Governor Mission, Public Security","T151":"Vietnamese Refugees, Chinese Immigrants, Kai Tak Riot, Governor Mission, Public Security","T161":"Public Light Bus, Maxicabs, MTR Corridor, Goods Vehicles, Transport Policy","T162":"Public Light Bus, Maxicabs, MTR Corridor, Goods Vehicles, Transport Policy","T170":"Anti Smoking Campaign, School Syllabus, Public Education, Health Hazards, Youth Education","T174":"Cinema Trade, Taxi Industry, Business Profitability, Operating Costs, Entertainment","T175":"Economic Outlook, Cautious Optimism, Trade Performance, Inflation, Employment","T180":"Bus Safety, Driver Shortage, Overloading, Public Light Bus, Road Congestion","T181":"Bus Safety, Driver Shortage, Overloading, Public Light Bus, Road Congestion","T186":"Green Papers, Education Policy, Consultation Feedback, District Liaison, Public Outreach","T192":"Police Reform, UK Advisers, Public Confidence, ICAC Complaints, Police Morale","T224":"Annual Paid Leave, Employment Ordinance, Labor Costs, Employer Anxiety, Factory Production","T225":"Public Assistance, Unemployment Allowance, Welfare Scheme, Means Testing, Social Security","T237":"Firecrackers Ban, Fireworks Displays, Festive Atmosphere, Public Safety, Government Control","T239":"Economic Forecast, Inflation, Fuel Prices, Public Transport, Business Profitability","T244":"Taxi Fares, Transport White Paper, MTR Fares, Commuter Discontent","T245":"Taxi Fares, Transport White Paper, MTR Fares, Commuter Discontent","T246":"MTR Fares, Transport Charges, Commuter Expectations, Transit System","T247":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T248":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T249":"Vietnamese Refugees, Humanitarian Aid, Public Resentment, Local Resources","T250":"Huey Fong Incident, US-China Relations, Diplomatic Normalization, Refugees","T251":"Huey Fong Incident, US-China Relations, Diplomatic Normalization, Refugees","T252":"Cigarette Smoking, Public Health, Social Habits, Anti-Smoking","T253":"Vice Establishments, Prostitution, Pornography, Public Morality","T256":"Economic Outlook, Cautious Optimism, Trade Performance, Inflation","T257":"Coin Shortage, Typhoon Agnes, Disaster Relief, Retail Currency","T258":"Coin Shortage, Typhoon Agnes, Disaster Relief, Retail Currency","T260":"Traffic Congestion, Bus Accidents, Road Digging, Transit Disruption","T261":"Narcotics Control, Heroin Addiction, Drug Trafficking, Rehabilitation","T263":"Golden Jubilee School, Student Protest, Education Controversy, Teacher Strike, School Closure","T264":"Green Papers, Public Consultation, Government Policy, Civic Awareness, Official Jargon","T266":"City District Officer, Labour Legislation, Trade Unions, Consultative Committees","T267":"Chinese New Year, Worker Holidays, Annual Budget, Public Reaction","T268":"Chinese New Year, Worker Holidays, Annual Budget, Public Reaction","T269":"Judiciary, Judicial Delays, Court Administration, Public Confidence","T271":"Economic Stability, Business Expectations, Employment, Industrial Growth","T272":"Historic Preservation, Old Buildings, Anti-Rabies Campaign, Public Health","T273":"Historic Preservation, Old Buildings, Anti-Rabies Campaign, Public Health","T274":"Governor Address, LegCo Session, Policy Priorities, Social Expenditure","T275":"Governor Address, LegCo Session, Policy Priorities, Social Expenditure","T276":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T277":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T278":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T279":"Taxi Services, Meter Rates, Transport Regulations, Driver Conduct","T280":"Unlicensed Restaurants, Hygiene Standards, Food Safety, Enforcement","T281":"Leisure Habits, Television Viewing, Mahjong, Yum Char","T282":"MTR Construction, Traffic Diversions, Commercial Disruption, Noise Impact","T284":"Economic Recovery, Advertising Growth, Business Volume, Consumer Confidence","T285":"Child Care Centres, Working Mothers, Subsidized Care, Preschool Welfare","T286":"Silver Jubilee, Royal Celebrations, Community Events, Public Fun","T288":"MOOD Panel, Data Analysis, CDO Coordination, Sounding Methodology","T289":"Unofficials Budget Speeches, LegCo Debates, Public Indifference, Taxation","T309":"Electricity Supply, Voltage Change, Domestic Appliances, Power Utility, Public Convenience","T310":"Taxation System, Earnings Tax, Salaries Tax, Tax Fairness, Revenue Policy","T311":"Taxation System, Earnings Tax, Salaries Tax, Tax Fairness, Revenue Policy","T313":"Inland Revenue Ordinance, Tax Reform, Dividend Tax, Business Taxation","T314":"Hong Kong Standard Time, Daylight Saving, Working Hours, Public Convenience","T316":"Television Affairs, Commercial Stations, Civic Awareness, Current Affairs","T318":"Group A Estate Shops, Shop Rents, Commercial Tenants, Housing Authority","T320":"MTR Construction, Traffic Disruption, Excavation Noise, Public Mitigation","T322":"Group B Estates, Shop Rent Hike, Commercial Tenancies, Housing Policy","T323":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T324":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T325":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T326":"Legal Abortion, Reproductive Health, Social Morality, Public Health","T330":"1976 Budget, Tax Relief, Economic Recovery, Financial Surplus","T331":"Estate Shop Rents, Housing Authority, Joint Communication, Tenant Agitation","T339":"Year-End Economy, Commercial Turnover, Retail Performance, Household Income","T340":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T341":"Public Fee Increases, Transport Fares, Mini Budget, Urban Council Fees, Railway Station","T348":"Defense Costs, Garrison Contribution, UK HK Relations, Military Expenses, Public Finance","T350":"Governor Speech, LegCo Session, Policy Priorities, Welfare Commitments","T354":"Public Identity, Civic Belonging, Permanent Settlement, Social Stability, Community Sentiment","T356":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T357":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T358":"Chinese People's Government; Taiwan; United Kingdom; sterling reserves; death penalty","T359":"Triads; Black Society; Fight Violent Crime Committee; Blundell Report; Fight Triad Publicity Campaign","T360":"crime reporting; victims of crime; police procedures; fear of reprisal; simplified procedures","T361":"Kaifong Welfare Associations; Mutual Aid Committees; E.E.C. textile quota; Secretariat for Chinese Affairs; area committees","T362":"Chinese martial arts; triads; Chinese University report; Fight Violent Crime Committee; registration of instructors","T363":"gambling policy; mahjong; Royal Hong Kong Jockey Club; number lotteries; off-course betting","T364":"clerks' pay dispute; industrial action; civil service; Queen's College; salary adjustments","T365":"Clean Hong Kong Campaign; Lap Sap Chung; hawkers; Hong Kong Electric; China Gas","T366":"Clean Hong Kong Campaign; Lap Sap Chung; hawkers; Hong Kong Electric; China Gas","T367":"Objectionable Publications Ordinance; pornography; bad books; social morals; newspaper hawkers","T368":"Commodities Exchange; speculation; Control of the Pill; oral contraceptives; Family Planning Association","T369":"Commodities Exchange; speculation; Control of the Pill; oral contraceptives; Family Planning Association","T370":"school leavers; Form V graduates; white-collar jobs; unemployment; technical institutes","T371":"unlicensed food caterers; Urban Council; food hygiene; temporary licences; lunch boxes","T372":"police shooting; firearms; violent criminals; Labour Relations Bill; cooling-off period","T373":"police shooting; firearms; violent criminals; Labour Relations Bill; cooling-off period","T374":"Hong Kong Future, Regional Stability, Economic Resilience, Business Outlook","T375":"Hong Kong Future, Regional Stability, Economic Resilience, Business Outlook","T376":"China Light and Power; tariff increase; Vietnamese refugees; resettlement; public utilities","T377":"China Light and Power; tariff increase; Vietnamese refugees; resettlement; public utilities","T378":"Royal Visit, Public Reception, Community Goodwill, Civic Identity","T379":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T380":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T381":"Student Boycott, Undergraduates, Royal Visit, Public Disapproval","T382":"Rates Increase, Group A Estates, Housing Rent, Living Costs","T383":"Public Housing Rent, Group A Estates, Group B Estates, Rate Burdens","T385":"Private Secondary Schools, Tuition Fees, Education Costs, Low-Income Families","T386":"Lai Chi Kok Hospital, Leprosy Patients, Mei Foo San Tsuen, Health Anxiety","T387":"Greyhound Betting, Off-Course Betting, Public Morality, Gambling Expansion","T388":"Greyhound Betting, Off-Course Betting, Public Morality, Gambling Expansion","T390":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T391":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T392":"1% Turnover Tax, Budget Speeches, Business Protest, Revenue Proposals","T395":"MOOD Methodology, Town Talk Successor, Public Opinion Sounding, Intelligence Gathering","T396":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T397":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T398":"Dr. L.K. Ding, Constitutional Reform, Public Apathy, Student Interest","T399":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T400":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T401":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T402":"Kwun Tong Arson, Violent Crime, Death Penalty Calls, TV Crime Impact","T403":"District Administration, Green Paper, Direct Elections, Advisory Boards, Public Opinion","T404":"Public Utilities, Mass Transit Railway, Bus Services, Service Quality, Complaint Mechanisms","T405":"Kwun Tong, Public Utilities, KMB, Electricity Charges, Consumer Protection","T410":"Cost of Living, Inflation, Food Prices, House Rent, Low Income","T411":"Parking Facilities, Multi-Storey Carparks, On-Street Parking, Lorry Parking, Parking Meters"};
-    const CAT_COLOR = {"政治與憲制":"#3D5A80","經濟與財政":"#A67C37","法律與治安":"#4E7A5A","房屋":"#6E5A7E","公共衛生與醫療":"#A8543F","教育與青年":"#8A6D4B","交通":"#9C5B6E","社區環境":"#475569","勞工":"#6B7A3F","其他/未分類":"#94A3B8"};
-    const WC_CAT = {"Budget":"#A67C37","Bus":"#9C5B6E","Business":"#A67C37","Corruption":"#4E7A5A","Crime":"#4E7A5A","Criminal":"#4E7A5A","Duty":"#A67C37","Economic":"#A67C37","Economy":"#A67C37","Education":"#8A6D4B","Estate":"#6E5A7E","ExCo":"#3D5A80","Finance":"#A67C37","Governor":"#3D5A80","Housing":"#6E5A7E","ICAC":"#4E7A5A","Illegal":"#4E7A5A","Inflation":"#A67C37","Law":"#4E7A5A","Legal":"#4E7A5A","Police":"#4E7A5A","Political":"#3D5A80","Price":"#A67C37","Rate":"#A67C37","Safety":"#4E7A5A","School":"#8A6D4B","Security":"#4E7A5A","Tax":"#A67C37","Taxation":"#A67C37","Transport":"#9C5B6E"};
+    const CAT_COLOR = {"政治與憲制":"#5B7BA6","經濟與財政":"#A67C37","法律與治安":"#4E7A5A","房屋":"#6E5A7E","公共衛生與醫療":"#A8543F","教育與青年":"#8A6D4B","交通":"#9C5B6E","社區環境":"#64748B","勞工":"#6B7A3F","其他/未分類":"#94A3B8"};
+    const WC_CAT = {"Budget":"#A67C37","Bus":"#9C5B6E","Business":"#A67C37","Corruption":"#4E7A5A","Crime":"#4E7A5A","Criminal":"#4E7A5A","Duty":"#A67C37","Economic":"#A67C37","Economy":"#A67C37","Education":"#8A6D4B","Estate":"#6E5A7E","ExCo":"#5B7BA6","Finance":"#A67C37","Governor":"#5B7BA6","Housing":"#6E5A7E","ICAC":"#4E7A5A","Illegal":"#4E7A5A","Inflation":"#A67C37","Law":"#4E7A5A","Legal":"#4E7A5A","Police":"#4E7A5A","Political":"#5B7BA6","Price":"#A67C37","Rate":"#A67C37","Safety":"#4E7A5A","School":"#8A6D4B","Security":"#4E7A5A","Tax":"#A67C37","Taxation":"#A67C37","Transport":"#9C5B6E"};
     function catColor(name) { return CAT_COLOR[name] || '#64748B'; }
     function recordCitation(r) {
       var num = REPORT_NUM[r.id];
@@ -6589,10 +7321,12 @@
       document.getElementById('cat-focus-body').innerHTML = html;
       document.getElementById('cat-focus-modal').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
+      _a11yOpenModal(document.getElementById('cat-focus-modal'));
     }
     function closeCategoryFocus() {
       document.getElementById('cat-focus-modal').classList.add('hidden');
       document.body.style.overflow = '';
+      _a11yCloseModal(document.getElementById('cat-focus-modal'));
     }
     function renderCatFocusBtns() {
       var wrap = document.getElementById('a-cat-focus-btns');
@@ -6781,21 +7515,16 @@
       }
       document.getElementById('myfolder-modal').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
+      _a11yOpenModal(document.getElementById('myfolder-modal'));
     }
     function closeMyFolder() {
       document.getElementById('myfolder-modal').classList.add('hidden');
       document.body.style.overflow = '';
+      _a11yCloseModal(document.getElementById('myfolder-modal'));
     }
-    function shareMyFolder() {
-      var ids = getSavedIds();
-      if (!ids.length) { alert('檔案夾係空嘅，收藏咗報告先可以分享。'); return; }
-      var url = location.origin + location.pathname + '#set=' + ids.join(',');
-      var btn = document.getElementById('myfolder-share-btn');
-      function done() { if (btn) { btn.textContent = '已複製連結！'; setTimeout(function () { btn.textContent = '分享檔案夾連結'; }, 1500); } }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
-      } else { fallbackCopy(url); done(); }
-    }
+    // (Share/copy-link controls removed: the Muse shell owns sharing, and
+    // native dialog popups do not work in the sandboxed frame. Saved
+    // records stay in this browser via the folder itself.)
     // v33-6: 1957 map lightbox (zoom + pan) and district hotspots
     let mapLb = { fit: 0.35, zoom: 1, tx: 0, ty: 0, drag: null };
     function mapLbFit() {
@@ -6812,10 +7541,12 @@
       document.body.style.overflow = 'hidden';
       mapLb.fit = mapLbFit();
       resetMapLb();
+      _a11yOpenModal(lb);
     }
     function closeMapLightbox() {
       document.getElementById('map-lightbox').classList.add('hidden');
       document.body.style.overflow = '';
+      _a11yCloseModal(document.getElementById('map-lightbox'));
     }
     function applyMapLb() {
       var img = document.getElementById('map-lb-img');
@@ -6893,7 +7624,7 @@
       if (m && !m.classList.contains('hidden')) return;
       if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
       var down = (e.key === 'ArrowDown' || e.key === 'PageDown');
-      var ids = ['overview', 'section-a', 'section-b', 'section-c', 'section-d', 'section-timeline', 'section-methods'];
+      var ids = ['overview', 'section-a', 'section-b', 'section-c', 'section-d', 'section-timeline', 'section-conclusion', 'section-methods'];
       var els = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
       if (!els.length) return;
       var y = window.scrollY || window.pageYOffset;
@@ -6999,11 +7730,72 @@
         obs.observe(iframe);
       });
     }
-    window.addEventListener('DOMContentLoaded', () => {
+        // v49 UX: big tappable filter pills. The select elements stay the source of
+    // truth for applyCsvFilters(); pills only set the select value and re-run it.
+    var FILTER_PILL_DEFS = [
+      { id: 'csv-filter-year', label: '年份 YEAR' },
+      { id: 'csv-filter-category', label: '政策範疇 CATEGORY' },
+      { id: 'csv-filter-district', label: '地區 DISTRICT' },
+      { id: 'csv-filter-group', label: '受訪階層 CLASS' },
+      { id: 'csv-filter-sentiment', label: '情緒 SENTIMENT' }
+    ];
+    function setCsvFilter(id, value) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.value = value;
+      applyCsvFilters();
+      syncFilterPills();
+    }
+    function buildFilterPills() {
+      var host = document.getElementById('csv-filter-pills');
+      if (!host) return;
+      host.innerHTML = '';
+      FILTER_PILL_DEFS.forEach(function (def) {
+        var sel = document.getElementById(def.id);
+        if (!sel) return;
+        var group = document.createElement('div');
+        group.className = 'filter-pill-group';
+        var lab = document.createElement('span');
+        lab.className = 'filter-pill-label';
+        lab.textContent = def.label;
+        group.appendChild(lab);
+        var row = document.createElement('div');
+        row.className = 'filter-pill-row';
+        Array.prototype.forEach.call(sel.options, function (opt) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'filter-pill';
+          b.setAttribute('data-filter', def.id);
+          b.setAttribute('data-value', opt.value);
+          b.setAttribute('aria-pressed', 'false');
+          b.textContent = opt.value === 'ALL' ? '全部' : opt.value;
+          b.onclick = function () { setCsvFilter(def.id, opt.value); };
+          row.appendChild(b);
+        });
+        group.appendChild(row);
+        host.appendChild(group);
+      });
+      var grid = document.querySelector('.csv-controls-grid');
+      if (grid) grid.classList.add('pills-on');
+      syncFilterPills();
+    }
+    function syncFilterPills() {
+      var host = document.getElementById('csv-filter-pills');
+      if (!host || !host.querySelector('.filter-pill')) return;
+      Array.prototype.forEach.call(host.querySelectorAll('.filter-pill'), function (b) {
+        var sel = document.getElementById(b.getAttribute('data-filter'));
+        if (!sel) return;
+        var isActive = sel.value === b.getAttribute('data-value');
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    }
+window.addEventListener('DOMContentLoaded', () => {
       initSectionA();
       renderBipartiteSVG();
       applyCsvFilters();
       setupFlourishFallback();
+      buildFilterPills();
     });
 
   </script>
@@ -7053,7 +7845,10 @@
       function revealInView() {
         document.querySelectorAll('.reveal-3d:not(.is-visible), .reveal-soft:not(.is-visible)').forEach(function (el) {
           var r = el.getBoundingClientRect();
-          if (r.top < window.innerHeight && r.bottom > 0) {
+          // 1.5x margin: content just below the fold (e.g. the hero KPI row
+          // on a short phone viewport) reveals immediately instead of
+          // waiting for a scroll that may never come.
+          if (r.top < window.innerHeight * 1.5 && r.bottom > 0) {
             el.classList.add('is-visible');
             el.style.transitionDelay = '';
           }
@@ -7073,6 +7868,18 @@
       window.addEventListener('load', revealInView);
       window.addEventListener('resize', revealInView);
       setTimeout(revealInView, 1200);
+      // v49 fail-open: whatever happens above — the observer never fires, no
+      // scroll event ever arrives, a full-page capture never scrolls — every
+      // reveal target is force-shown shortly after load, so content can
+      // never stay hidden waiting for a trigger.
+      function revealAll() {
+        document.querySelectorAll('.reveal-3d:not(.is-visible), .reveal-soft:not(.is-visible)').forEach(function (el) {
+          el.classList.add('is-visible');
+          el.style.transitionDelay = '';
+        });
+      }
+      setTimeout(revealAll, 1200);
+      window.addEventListener('load', function () { setTimeout(revealAll, 600); });
       // v23: flat exit - a revealed section gently fades as it scrolls out
       // the top (opacity only, no rotation), and comes back if you scroll up.
       var leavingTicking = false;
@@ -7094,6 +7901,10 @@
       }, { passive: true });
       updateLeaving();
     })();
+    /* v49 fix pass: the mask/wipe reveal was removed so the page uses ONE
+       reveal language — the fail-open fade/rise (.reveal-soft) above.
+       Section titles, the hero title, the manifesto and the 1957 figure
+       now reveal with their parent section like everything else. */
     // v16: hero parallax - the 1957 map background moves slower than the scroll,
     // so the cover has depth as you leave it. rAF-throttled; off for reduced motion.
     (function () {
@@ -7259,7 +8070,7 @@
     })();
     // v9: scroll progress bar + side dot nav active state
     (function () {
-      var targets = ['overview', 'section-a', 'section-b', 'section-c', 'section-d', 'section-timeline', 'section-methods'];
+      var targets = ['overview', 'section-a', 'section-b', 'section-c', 'section-d', 'section-timeline', 'section-conclusion', 'section-methods'];
       var links = Array.prototype.slice.call(document.querySelectorAll('#section-dots a'));
       var bar = document.getElementById('scroll-progress');
       function onScroll() {
@@ -7292,9 +8103,8 @@
       </div>
       <div class="archive-modal-nav">
         <button class="btn btn-outline" onclick="stepArchiveModal(-1)">← 上一份</button>
-        <span id="archive-modal-pos" style="font-size:0.8rem; color:var(--ink-muted);"></span>
+        <span id="archive-modal-pos" aria-live="polite" style="font-size:0.8rem; color:var(--ink-muted);"></span>
         <button class="btn btn-outline" onclick="stepArchiveModal(1)">下一份 →</button>
-        <button class="btn btn-outline" id="archive-copy-link" onclick="copyRecordLink()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">複製連結</button>
         <button class="btn btn-outline" onclick="openFocusForCurrentRecord()" style="padding:0.32rem 0.65rem; font-size:0.75rem;">呢個分類嘅詳情</button>
       </div>
     </div>
@@ -7316,10 +8126,9 @@
     <div class="archive-modal-card">
       <button class="archive-modal-close" onclick="closeMyFolder()" aria-label="關閉">×</button>
       <h3 id="myfolder-title" style="font-family:var(--font-serif);">我的檔案夾</h3>
-      <p style="font-size:0.85rem; color:var(--ink-secondary);">撳星星收藏報告，唔使登入，存在呢部裝置嘅瀏覽器入面。分享連結可以將成個組合傳俾人。</p>
+      <p style="font-size:0.85rem; color:var(--ink-secondary);">撳星星收藏報告，唔使登入，存在呢部裝置嘅瀏覽器入面。</p>
       <div id="myfolder-body" style="margin-top:0.75rem;"></div>
       <div style="margin-top:1rem; display:flex; gap:0.5rem;">
-        <button class="btn btn-primary" id="myfolder-share-btn" onclick="shareMyFolder()">分享檔案夾連結</button>
         <button class="btn btn-outline" onclick="closeMyFolder()">關閉</button>
       </div>
     </div>
