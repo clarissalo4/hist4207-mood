@@ -1611,17 +1611,6 @@ main > section { padding-top: 4.5rem; padding-bottom: 6rem; }
 .container { padding-left: 2rem; padding-right: 2rem; }
 .kpi-grid, .insight-grid, .small-multiples-grid { gap: 1.5rem; }
 .flourish-grid, .network-layout, .kepler-grid { gap: 2rem; }
-/* C. Big tappable filter pills (replace the dense dropdowns once JS builds them). */
-.filter-pills { display: flex; flex-direction: column; gap: 1.1rem; margin: 0.25rem 0 1.5rem; }
-.filter-pill-group { display: flex; flex-direction: column; gap: 0.6rem; }
-.filter-pill-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9CA3AF; font-weight: 700; }
-.filter-pill-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.filter-pill { display: inline-flex; align-items: center; padding: 0.7rem 1.15rem; border-radius: 999px; border: 1px solid #3A3A3A; background: transparent; color: #F5F5F5; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
-.filter-pill:hover { border-color: #F5F5F5; }
-.filter-pill.active { background: #C2410C; border-color: #C2410C; color: #FFFFFF; }
-.filter-pill:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
-.csv-controls-grid.pills-on select.form-control { display: none; }
-.csv-controls-grid.pills-on #csv-search-input { grid-column: 1 / -1; padding: 1rem 1.1rem; font-size: 1.05rem; }
 #csv-keyword-chips .cat-pill { padding: 0.55rem 1rem; font-size: 0.9rem; }
 /* D. Spacious archive table (and fix the row-hover that stayed warm cream). */
 table.archive-table th { padding: 1rem 1.1rem; }
@@ -1688,10 +1677,6 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
 #section-d .folder-body, #section-d .csv-layer-shell, #section-d .feat-card, #section-d .glossary-box, #section-d .theme-entry, #section-d .folder-card, #section-methods .folder-card { background: #FFFFFF; }
 #section-d .theme-entry:hover { background: #F3F4F6; border-color: #111111; }
 #section-d .folder-stamp-bar { background: #F3F4F6; color: #374151; }
-#section-d .filter-pill { color: #111111; border-color: #111111; background: #FFFFFF; }
-#section-d .filter-pill:hover { border-color: #111111; background: #F3F4F6; }
-#section-d .filter-pill.active { background: #C2410C; border-color: #C2410C; color: #FFFFFF; }
-#section-d .filter-pill-label { color: #6B7280; }
 #section-d #csv-keyword-chips .cat-pill { color: #111111 !important; border-color: #D1D5DB !important; }
 #section-d .form-control { background: #FFFFFF; color: #111111; border-color: #D1D5DB; }
 #section-d .form-control:focus { background: #FFFFFF; border-color: #111111; }
@@ -1758,9 +1743,6 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 .sec-ghost { color: #2E2E2E; }
 #section-c .sec-ghost, #section-timeline .sec-ghost { color: #2E2E2E; }
 #section-d .sec-ghost, #section-methods .sec-ghost { color: #E5E7EB; }
-/* (7) Filter group labels on the white archive section: dark text.
-       #374151 on #FFFFFF = 10.31:1 */
-#section-d .filter-pill-label { color: #374151; }
 /* (8) Manifesto small captions: orange (3.73:1) -> white.
        #FFFFFF on #0E0E0E = 19.30:1 */
 .santal-manifesto em { color: #FFFFFF; }
@@ -1788,7 +1770,7 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 <style>
 /* ===== v49 Item 4: Section 05 archive results — spacious cards, not a dense table =====
    Santal minimal: white cards, hairline borders, generous padding and gaps.
-   Filter pills, search, counter, sort and the click-to-detail overlay are unchanged;
+   Filters, search, counter, sort and the click-to-detail overlay are unchanged;
    only the results rendering switched from table rows to a card grid. */
 .archive-sort-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; }
 .archive-sort-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; color: #374151; margin-right: 0.25rem; }
@@ -2204,14 +2186,25 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
 #cat-focus-modal .btn-outline, #myfolder-modal .btn-outline { background: transparent; color: #FFFFFF; border-color: #9CA3AF; }
 #cat-focus-modal .btn-outline:hover, #myfolder-modal .btn-outline:hover { background: #3D3D3D; color: #FFFFFF; border-color: #FFFFFF; }
 
-/* --- (4) Section transitions (see the v52 script before </body>).
+/* --- (4) Section transitions (see the v53 script before </body>).
    The old solid wipe panel (#section-wipe) is GONE — no panel, no sweep.
-   Section changes are now a gentle opacity cross-fade (the pre-v47 style)
-   driven entirely by that script through the Web Animations API, so this
-   layer needs no CSS for it at all: no element is ever hidden by a
-   stylesheet rule, and with JS off, reduced motion, or no WAAPI support
-   every section simply stays fully visible. The sections' --mask-bg
-   declarations elsewhere are now inert leftovers of the wipe era. --- */
+   The v52 Web Animations API fade FLASHED once per section change, so
+   v53 restores the pre-v47 CSS-transition fade: .sec-fade sets opacity 0
+   with a single continuous `transition: opacity 0.6s ease`, and
+   .sec-fade-in sets opacity 1. The script adds .sec-fade (never present
+   in the HTML, so with JS off nothing is ever hidden — fail-open) and
+   an IntersectionObserver toggles .sec-fade-in: added as a section
+   reaches the viewport, removed ONLY once it is fully out of view, so
+   incoming and outgoing overlap and the screen is never left blank.
+   Under prefers-reduced-motion the script adds no classes at all, and
+   the guard below forces full opacity with no transition anyway. The
+   sections' --mask-bg declarations elsewhere are now inert leftovers
+   of the wipe era. --- */
+.sec-fade { opacity: 0; transition: opacity 0.6s ease; }
+.sec-fade.sec-fade-in { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .sec-fade { opacity: 1; transition: none; }
+}
 #overview, #section-a, #section-c, #section-timeline { --mask-bg: #0E0E0E; }
 
 /* ===== v51: record modal joins the grey + title alignment; advanced-search filter collapse =====
@@ -2232,22 +2225,6 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
 #archive-modal .archive-modal-card { background: #2E2E2E; }
 #archive-modal-title { margin-left: auto; margin-right: auto; }
 
-/* --- (2) Advanced search: the five filter-pill groups collapse behind
-   the 進階搜索 toggle (collapsed by default; instant display toggle, so
-   nothing animates over or covers the results). The keyword box, sort
-   bar and result counter are outside the panel and stay visible in both
-   states. The toggle inverts while open, its chevron flips, and the
-   count badge (accent pill, set by the v51 script) shows whenever any
-   filter group has a selection — open or collapsed — so an active
-   filter is never hidden from the reader. --- */
-.adv-search-row { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.9rem; }
-.adv-search-btn { display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; padding: 0.6rem 1.1rem; font-weight: 700; }
-.adv-search-chev { display: inline-block; font-size: 0.8rem; transition: transform 0.2s ease; }
-#section-d .adv-search-btn[aria-expanded="true"] { background: #111111; color: #FFFFFF; border-color: #111111; }
-.adv-search-btn[aria-expanded="true"] .adv-search-chev { transform: rotate(180deg); }
-.adv-search-count { background: #C2410C; color: #FFFFFF; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; border-radius: 999px; padding: 0.12rem 0.55rem; }
-#csv-filter-pills.adv-collapsed { display: none; }
-@media (prefers-reduced-motion: reduce) { .adv-search-chev { transition: none; } }
 
 /* ===== v52: category popup (#cat-focus-modal) — internal scroll + one uniform grey =====
    Placed after v50/v51 so it wins the cascade at equal specificity.
@@ -2427,6 +2404,63 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
   .site-guide-chev { transition: none; }
 }
 </style>
+<style>
+/* ===== v54: archive restyle — Gemini format, Santal colours (Lo) =====
+   (1) Filters: the 44 pills + 進階搜索 toggle are gone. The five native
+       <select> dropdowns — the source of truth for applyCsvFilters all
+       along — are visible again in ONE row with the keyword search box
+       (search 1.5fr + five 1fr selects). ≤1100px they wrap to 3 columns
+       with the search box full-width; ≤640px they stack in one column.
+       Rounded 10px controls, white on white, orange focus, Santal dark
+       text. No beige/cream anywhere.
+   (2) Table: Gemini look — 12px rounded frame + soft shadow, generous
+       row padding kept, beige sticky header (#F4EFE4) kept as the Santal
+       accent, light-grey row hover kept.
+   (3) Sentiment pills: same five soft fills, text deepened so every pill
+       reads AA on white (and on its fill) in the table and the mobile
+       cards alike.
+   (4) Mobile cards (≤720px): same 12px rounding + soft shadow as the
+       table, so the card view matches the new table. */
+#section-d .csv-controls-grid {
+  grid-template-columns: minmax(220px, 1.5fr) repeat(5, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+#section-d .csv-controls-grid .form-control {
+  min-width: 0;
+  border-radius: 10px;
+  border-color: #D1D5DB;
+  background: #FFFFFF;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.88rem;
+  text-overflow: ellipsis;
+}
+#section-d .csv-controls-grid select.form-control { cursor: pointer; }
+#section-d .csv-controls-grid .form-control:focus { border-color: #C2410C; }
+@media (max-width: 1100px) {
+  #section-d .csv-controls-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #section-d .csv-controls-grid #csv-search-input { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  #section-d .csv-controls-grid { grid-template-columns: minmax(0, 1fr); }
+  #section-d .csv-controls-grid #csv-search-input { grid-column: auto; }
+}
+#section-d .archive-table-wrap {
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.04), 0 8px 24px rgba(17, 17, 17, 0.05);
+}
+#section-d .sentiment-badge { padding: 0.2rem 0.65rem; }
+#section-d .sent-Angry { background: #FEE2E2; color: #991B1B; }
+#section-d .sent-Anxious { background: #FEF3C7; color: #92400E; }
+#section-d .sent-Skeptical { background: #EDE9FE; color: #5B21B6; }
+#section-d .sent-Supportive { background: #DBEAFE; color: #1E40AF; }
+#section-d .sent-Indifferent { background: #F1F5F9; color: #475569; }
+@media (max-width: 720px) {
+  #section-d .archive-card { border-radius: 12px; box-shadow: 0 1px 2px rgba(17, 17, 17, 0.04), 0 8px 24px rgba(17, 17, 17, 0.05); }
+  #section-d .archive-empty { border-radius: 12px; }
+}
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳至主要內容</a>
@@ -2471,7 +2505,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
               <h3>網站教學</h3>
               <ul class="sg-teach">
                 <li><strong>搵記錄（05 地圖 · 檔案庫）</strong>喺搜尋框打關鍵字，例如 MTR、房屋、Kwun Tong；搵到嘅字會喺結果入面標色。</li>
-                <li><strong>五個篩選</strong>撳「進階搜索」開五組掣：年份、政策範疇（9 類）、地區、受訪階層、情緒。撳邊個即刻篩；撳「重設所有篩選」清晒。</li>
+                <li><strong>五個篩選</strong>搜尋框隔籬有五個下拉選單：年份、政策範疇（9 類）、地區、受訪階層、情緒。揀邊個即刻篩；撳「重設所有篩選」清晒。</li>
                 <li><strong>排序</strong>檔案庫上面有一排排序掣，撳日期、範疇、情緒等排次序，再撳多次就掉轉方向。</li>
                 <li><strong>隨機抽一份 · 收藏 <span class="sg-star">★</span></strong>撳「隨機抽一份」會隨機開一份畀你睇；撳記錄旁邊嘅 ☆ 變 ★ 就係收藏，去「☆ 我的檔案夾」隨時睇返。</li>
                 <li><strong>睇全份記錄</strong>撳任何一筆記錄（電腦版一行、手機版一張卡），會開全頁記錄：有成份報告嘅摘要、政府回應同關鍵字，仲列埋同一份報告嘅其他議題，撳落去就跳到嗰筆。留意摘要係成份報告共用，唔係淨係嗰個議題。</li>
@@ -3002,7 +3036,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
               <input id="csv-search-input" type="text" class="form-control" placeholder="搜尋關鍵字（如：Kwun Tong、MTR、inflation、房屋、交通...）" oninput="applyCsvFilters()" />
 
               <select id="csv-filter-year" class="form-control" onchange="applyCsvFilters()">
-                <option value="ALL">所有年份 (1975–1980)</option>
+                <option value="ALL">所有年份</option>
                 <option value="1975">1975</option>
                 <option value="1976">1976</option>
                 <option value="1977">1977</option>
@@ -3012,7 +3046,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
               </select>
 
               <select id="csv-filter-district" class="form-control" onchange="applyCsvFilters()">
-                <option value="ALL">所有地區 (含 General Urban)</option>
+                <option value="ALL">所有地區</option>
                 <option value="General Urban">全港泛指 General Urban</option>
                 <option value="Kwun Tong">觀塘 Kwun Tong</option>
                 <option value="Central & Western">中西區 Central &amp; Western</option>
@@ -3030,7 +3064,7 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
               </select>
 
               <select id="csv-filter-category" class="form-control" onchange="applyCsvFilters()">
-                <option value="ALL">所有政策範疇 (9類)</option>
+                <option value="ALL">所有政策範疇</option>
                 <option value="政治與憲制">政治與憲制</option>
                 <option value="經濟與財政">經濟與財政</option>
                 <option value="法律與治安">法律與治安</option>
@@ -3061,19 +3095,6 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
               </select>
             </div>
 
-            <!-- v51: advanced-search toggle — the five filter-pill groups below
-                 live in a collapsible panel, collapsed by default. Only the
-                 pills hide; the keyword box above, the sort bar and the
-                 result counter stay visible in both states. -->
-            <div class="adv-search-row">
-              <button type="button" id="adv-search-toggle" class="btn btn-outline adv-search-btn" aria-expanded="false" aria-controls="csv-filter-pills" onclick="toggleAdvSearch()">
-                <span>進階搜索</span>
-                <span id="adv-search-count" class="adv-search-count" hidden>已選 0 項</span>
-                <span class="adv-search-chev" aria-hidden="true">▾</span>
-              </button>
-            </div>
-
-            <div id="csv-filter-pills" class="filter-pills adv-collapsed" aria-label="快速篩選"></div>
               <!-- Keyword chips: click to search -->
             <div id="csv-keyword-chips" style="display:flex; flex-wrap:wrap; align-items:center; gap:0.4rem; margin-bottom:1rem;">
               <span style="font-size:0.78rem; font-weight:700; color:var(--ink-muted); margin-right:0.2rem;">常用關鍵字：</span>
@@ -7384,7 +7405,6 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
       }
       lastFilteredRows = filtered;
       renderCsvTable(filtered);
-      syncFilterPills();
     }
 
     function renderCsvTable(rows) {
@@ -8197,72 +8217,11 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
         obs.observe(iframe);
       });
     }
-        // v49 UX: big tappable filter pills. The select elements stay the source of
-    // truth for applyCsvFilters(); pills only set the select value and re-run it.
-    var FILTER_PILL_DEFS = [
-      { id: 'csv-filter-year', label: '年份 YEAR' },
-      { id: 'csv-filter-category', label: '政策範疇 CATEGORY' },
-      { id: 'csv-filter-district', label: '地區 DISTRICT' },
-      { id: 'csv-filter-group', label: '受訪階層 CLASS' },
-      { id: 'csv-filter-sentiment', label: '情緒 SENTIMENT' }
-    ];
-    function setCsvFilter(id, value) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      el.value = value;
-      applyCsvFilters();
-      syncFilterPills();
-    }
-    function buildFilterPills() {
-      var host = document.getElementById('csv-filter-pills');
-      if (!host) return;
-      host.innerHTML = '';
-      FILTER_PILL_DEFS.forEach(function (def) {
-        var sel = document.getElementById(def.id);
-        if (!sel) return;
-        var group = document.createElement('div');
-        group.className = 'filter-pill-group';
-        var lab = document.createElement('span');
-        lab.className = 'filter-pill-label';
-        lab.textContent = def.label;
-        group.appendChild(lab);
-        var row = document.createElement('div');
-        row.className = 'filter-pill-row';
-        Array.prototype.forEach.call(sel.options, function (opt) {
-          var b = document.createElement('button');
-          b.type = 'button';
-          b.className = 'filter-pill';
-          b.setAttribute('data-filter', def.id);
-          b.setAttribute('data-value', opt.value);
-          b.setAttribute('aria-pressed', 'false');
-          b.textContent = opt.value === 'ALL' ? '全部' : opt.value;
-          b.onclick = function () { setCsvFilter(def.id, opt.value); };
-          row.appendChild(b);
-        });
-        group.appendChild(row);
-        host.appendChild(group);
-      });
-      var grid = document.querySelector('.csv-controls-grid');
-      if (grid) grid.classList.add('pills-on');
-      syncFilterPills();
-    }
-    function syncFilterPills() {
-      var host = document.getElementById('csv-filter-pills');
-      if (!host || !host.querySelector('.filter-pill')) return;
-      Array.prototype.forEach.call(host.querySelectorAll('.filter-pill'), function (b) {
-        var sel = document.getElementById(b.getAttribute('data-filter'));
-        if (!sel) return;
-        var isActive = sel.value === b.getAttribute('data-value');
-        b.classList.toggle('active', isActive);
-        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-      });
-    }
-window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', () => {
       initSectionA();
       renderBipartiteSVG();
       applyCsvFilters();
       setupFlourishFallback();
-      buildFilterPills();
     });
 
   </script>
@@ -8653,164 +8612,77 @@ window.addEventListener('DOMContentLoaded', () => {
   </div>
 
 <script>
-/* v52: section transitions (Lo) — the pre-v47 FADE is back. The v50 solid
-   wipe panel is removed entirely: no panel is created, nothing sweeps
-   across the screen. When the current section changes, the incoming
-   section fades in (opacity 0 -> 1) while the outgoing section fades out
-   (opacity 1 -> 0), a gentle cross-fade between chapters at ~0.6s with a
-   smooth ease-out — the same total time the wipe took, without the
-   curtain. One mechanism covers every way of moving between sections —
-   scrolling, the top nav, the side dots, keyboard section jumps and
-   presentation mode all end in a scroll, and the same centre-band
-   IntersectionObserver the wipe used detects the change. The fade plays
-   once per entry: a short settle timer means a fast multi-section jump
-   fades once, between the section left and the section actually landed
-   on.
-   FAIL-OPEN by construction: the fades run only through the Web
-   Animations API on the section elements themselves. No stylesheet rule
-   and no inline style ever sets a section's opacity, so with JS off,
-   reduced motion, no IntersectionObserver, or no WAAPI support, nothing
-   runs and every section stays fully visible. A section left faded out
-   is restored the moment any part of it is on screen again — it fades
-   back in rather than leaving a blank gap — and a timed guard does the
-   same even if an animation callback never fires.
-   prefers-reduced-motion: the script returns immediately, no fades —
-   navigation stays instant. The existing per-element reveal-soft
-   entrances are untouched: they animate the elements INSIDE the
-   sections, this script only ever touches the section elements' own
-   opacity, and only while a fade is playing. */
+/* v53: section transitions (Lo) — smooth CSS-transition fade, the
+   pre-v47 style restored. The v52 WAAPI version FLASHED once on every
+   section change (a brief blank flicker), so the Web Animations API is
+   gone from section transitions entirely: no el.animate(), no inline
+   opacity, no fill modes. Instead the v53 style layer defines
+   .sec-fade (opacity 0, transition: opacity 0.6s ease) and
+   .sec-fade.sec-fade-in (opacity 1), and this script only toggles those
+   two classes:
+   - INCOMING: an IntersectionObserver adds .sec-fade-in the moment any
+     part of a section reaches the viewport (a small rootMargin starts
+     the fade just before it arrives), so it fades in over one smooth,
+     continuous 0.6s CSS transition while it scrolls into view.
+   - OUTGOING: .sec-fade-in is removed ONLY when the section is fully
+     out of view (isIntersecting === false), so the reader never watches
+     a section fade away and the viewport is never left blank — the
+     incoming and outgoing sections always overlap. That blank moment
+     was the flash.
+   One mechanism covers every way of moving — slow scroll, fast scroll,
+   the top nav, the side dots, keyboard jumps and presentation mode all
+   end in a scroll the observer sees.
+   FAIL-OPEN by construction: the .sec-fade class is added by THIS
+   script, never present in the HTML, so with JS off every section is
+   simply visible. If IntersectionObserver is missing the script
+   returns before adding any class. The section(s) on screen at load
+   get .sec-fade-in in the same synchronous pass that adds .sec-fade,
+   so they never paint at opacity 0 (no load flash, no fade-from-black
+   on the hero), and a timed guard re-checks the viewport and restores
+   anything visible that somehow missed the class.
+   prefers-reduced-motion: the script returns immediately and adds no
+   classes — navigation stays instant at full opacity; the style layer
+   also forces .sec-fade to opacity 1 with no transition under reduced
+   motion as a second guard. The per-element reveal-soft entrances
+   inside the sections are untouched and compose with this fade: they
+   animate the elements inside, this only ever toggles two classes on
+   the section elements themselves. */
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!('IntersectionObserver' in window)) return;
   var ids = ['overview', 'section-a', 'section-b', 'section-c', 'section-d', 'section-timeline', 'section-conclusion', 'section-methods'];
   var els = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
   if (!els.length) return;
-  if (!els[0].animate) return;
-  var current = null, started = false, pending = null, timer = null;
-  var fading = {}, faded = {};
-  function key(el) { return el.id; }
-  function modalOpen() {
-    return !!document.querySelector('.archive-modal:not(.hidden), #map-lightbox:not(.hidden)');
+  function inView(el) {
+    var r = el.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight;
   }
-  function cancelFades(el) {
-    try {
-      el.getAnimations().forEach(function (a) { a.cancel(); });
-    } catch (e) {}
-    delete fading[key(el)];
-    delete faded[key(el)];
-  }
-  function fadeIn(el, duration) {
-    cancelFades(el);
-    try {
-      el.animate([
-        { opacity: 0 },
-        { opacity: 1 }
-      ], { duration: duration || 600, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'none' });
-    } catch (e) {}
-  }
-  function fadeOut(el) {
-    cancelFades(el);
-    var k = key(el);
-    fading[k] = true;
-    var anim;
-    try {
-      anim = el.animate([
-        { opacity: 1 },
-        { opacity: 0 }
-      ], { duration: 520, easing: 'ease-in', fill: 'forwards' });
-    } catch (e) { delete fading[k]; return; }
-    var done = function () {
-      if (!fading[k]) return;
-      delete fading[k];
-      var r = el.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < window.innerHeight) {
-        /* Still partly on screen (the reader stopped at the boundary):
-           bring it back gently instead of leaving a blank gap. */
-        fadeIn(el, 350);
-      } else {
-        faded[k] = true;
-      }
-    };
-    if (anim.finished && anim.finished.then) anim.finished.then(done, done);
-    else anim.onfinish = done;
-    setTimeout(done, 700);
-  }
-  function crossFade(from, to) {
-    if (modalOpen() || document.hidden) return;
-    if (from && from !== to) fadeOut(from);
-    fadeIn(to, 600);
-  }
-  /* Restore any faded-out section the moment part of it is on screen
-     again (e.g. scrolling back up): it fades back in, never a blank gap. */
-  var restoreIO = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (en.isIntersecting && faded[key(en.target)]) fadeIn(en.target, 300);
+  try {
+    els.forEach(function (el) {
+      el.classList.add('sec-fade');
+      if (inView(el)) el.classList.add('sec-fade-in');
     });
-  }, { threshold: 0 });
-  els.forEach(function (el) { restoreIO.observe(el); });
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (!en.isIntersecting) return;
-      var el = en.target;
-      if (!started) { current = el; return; }
-      if (el === current) return;
-      if (!pending) pending = { from: current, to: el };
-      else pending.to = el;
-      current = el;
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(function () {
-        if (pending) { crossFade(pending.from, pending.to); pending = null; }
-      }, 110);
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) en.target.classList.add('sec-fade-in');
+        else en.target.classList.remove('sec-fade-in');
+      });
+    }, { rootMargin: '12% 0px 12% 0px', threshold: 0 });
+    els.forEach(function (el) { io.observe(el); });
+    /* Fail-open guard: anything on screen must end up fully visible,
+       even if an observer callback is ever missed. */
+    setTimeout(function () {
+      els.forEach(function (el) { if (inView(el)) el.classList.add('sec-fade-in'); });
+    }, 1200);
+  } catch (e) {
+    els.forEach(function (el) {
+      el.classList.remove('sec-fade');
+      el.classList.add('sec-fade-in');
     });
-    started = true;
-  }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
-  els.forEach(function (el) { io.observe(el); });
+  }
 })();
 </script>
 
-<script>
-/* v51: advanced search — the five archive filter-pill groups live in a
-   collapsible panel (#csv-filter-pills), collapsed by default, controlled
-   by the 進階搜索 toggle. Display toggle only: filter logic, options and
-   the select elements (the source of truth) are untouched, and the
-   keyword box, sort bar and result counter stay visible in both states.
-   The badge counts the filter groups with a non-全部 selection, so a
-   reader who collapses the panel still sees filters are active; the
-   always-visible 重設所有篩選 button remains the clear-all control. The
-   badge refreshes through applyCsvFilters, which every filter path
-   funnels through (pills, selects, keyword input/chips, theme entries,
-   reset), so it cannot drift out of sync. */
-function toggleAdvSearch() {
-  var panel = document.getElementById('csv-filter-pills');
-  var btn = document.getElementById('adv-search-toggle');
-  if (!panel || !btn) return;
-  var collapsed = panel.classList.toggle('adv-collapsed');
-  btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-}
-function updateAdvSearchBtn() {
-  var badge = document.getElementById('adv-search-count');
-  if (!badge) return;
-  var ids = ['csv-filter-year', 'csv-filter-category', 'csv-filter-district', 'csv-filter-group', 'csv-filter-sentiment'];
-  var n = 0;
-  ids.forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el && el.value && el.value !== 'ALL') n++;
-  });
-  badge.textContent = '已選 ' + n + ' 項';
-  badge.hidden = n === 0;
-}
-(function () {
-  if (typeof applyCsvFilters === 'function') {
-    var origApplyCsvFilters = applyCsvFilters;
-    applyCsvFilters = function () {
-      var r = origApplyCsvFilters.apply(null, arguments);
-      updateAdvSearchBtn();
-      return r;
-    };
-  }
-  updateAdvSearchBtn();
-})();
-</script>
 
 <script>
 /* v53: 「網站導航」 dropdown — the guide button in the top nav opens a
