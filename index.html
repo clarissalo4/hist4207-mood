@@ -1651,9 +1651,10 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
 /* E. Fullscreen minimal record overlay.
    Fix B + Fix E (Lo): popups are GREY now, not near-black — the record
    overlay, the category-detail popup and the my-folder popup all share the
-   same grey card (#2E2E2E) over a #262626 backdrop, so they match. White /
-   light text on #2E2E2E stays well above WCAG AA. */
-.archive-modal { padding: 0; background: rgba(38, 38, 38, 0.97); }
+   same grey card (#2E2E2E). Fix F: the backdrop is the same solid #2E2E2E
+   as the card (was #262626), so the whole popup reads as one uniform grey
+   with no visible step. White / light text on #2E2E2E stays well above WCAG AA. */
+.archive-modal { padding: 0; background: #2E2E2E; }
 .archive-modal-card { max-width: none; width: 100%; min-height: 100vh; min-height: 100svh; max-height: none; border: none; border-radius: 0; box-shadow: none; padding: 5rem 1.25rem 3rem; background: #2E2E2E; }
 /* Outline buttons inside the grey modals need a visible border: the dark
    theme's #3A3A3A border is nearly invisible on #2E2E2E, so lighten it. */
@@ -1664,6 +1665,18 @@ table.archive-table tr.data-row:hover { background: #1F1F1F; }
 #archive-modal-body { font-size: 1.02rem; line-height: 1.8; }
 .archive-modal-nav { margin-top: 2.5rem; gap: 1rem; }
 .archive-modal-nav .btn { padding: 0.8rem 1.4rem; font-size: 0.95rem; }
+
+/* Fix F (Lo): category popup must scroll + one uniform grey.
+   Scroll: the v49 fullscreen card (min-height 100vh, max-height none) plus
+   the locked body meant a tall popup could not be scrolled at all. Make the
+   category card a flex column capped at 90vh: the body scrolls inside it,
+   the 關閉 footer stays visible at the bottom, the × stays fixed.
+   Grey: solid #2E2E2E chosen (Lo: translucent also fine) so card and
+   backdrop are one consistent shade; the popup header pills were #1F1F1F
+   (a darker patch) — make them transparent so they read as the card grey. */
+#cat-focus-modal .archive-modal-card { display: flex; flex-direction: column; min-height: 0; max-height: 90vh; max-height: 90svh; overflow-y: hidden; }
+#cat-focus-modal #cat-focus-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+#cat-focus-modal .meta-pill { background: transparent; }
 
 /* ===== v49 white sections: 03 Section B (#section-b) + 05 Archive (#section-d) + 07 Conclusion (#section-conclusion) =====
    Lo: white background is easier to read for the dense archive text and the
@@ -1808,12 +1821,12 @@ table.archive-table th { background: #F4EFE4; color: #111111; }
 #section-d .gloss-term:hover, #section-d .gloss-term.active { background: #111111; color: #FFFFFF; border-color: #111111; }
 
 /* Fix C (Lo): chapter transition — a solid panel in the incoming section's
-   background colour sweeps across the screen (0.64s) when the reader crosses
+   background colour sweeps from top to bottom (0.64s) when the reader crosses
    into a new section. The panel is created by JS only, is pointer-events
    none, and is removed by transitionend plus a timed fallback, so it can
    never hide content. Reduced-motion users get no panel at all. */
-#section-wipe { position: fixed; inset: 0; z-index: 5000; pointer-events: none; background: #0E0E0E; transform: translateX(-102%); will-change: transform; }
-#section-wipe.wiping { transition: transform 0.64s cubic-bezier(0.65, 0, 0.35, 1); transform: translateX(102%); }
+#section-wipe { position: fixed; inset: 0; z-index: 5000; pointer-events: none; background: #0E0E0E; transform: translateY(-102%); will-change: transform; }
+#section-wipe.wiping { transition: transform 0.64s cubic-bezier(0.65, 0, 0.35, 1); transform: translateY(102%); }
 @media (prefers-reduced-motion: reduce) { #section-wipe { display: none !important; } }
 
 </style>
@@ -7425,9 +7438,9 @@ g.net-node:focus-visible circle { stroke: #C2410C; stroke-width: 3.5; }
       var dots = vals.map(function (v, i) {
         var x = (i / 5) * (w - 8) + 4;
         var y = h - 6 - (Math.min(v, max) / max) * (h - 14);
-        return '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="3" fill="#111111"/>';
+        return '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="3" fill="#F5F5F5"/>';
       }).join('');
-      return '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" style="max-width:100%;"><polyline points="' + pts + '" fill="none" stroke="#111111" stroke-width="2"/>' + dots + '</svg>';
+      return '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" style="max-width:100%;"><polyline points="' + pts + '" fill="none" stroke="#F5F5F5" stroke-width="2"/>' + dots + '</svg>';
     }
     function openCategoryFocus(catName) {
       var cat = CATEGORIES.find(function (c) { return c.name === catName; });
@@ -8077,7 +8090,7 @@ window.addEventListener('DOMContentLoaded', () => {
       updateLeaving();
     })();
     /* Fix C (Lo): chapter transition — a solid panel in the incoming
-       section's background colour sweeps across the screen (0.64s) when the
+       section's background colour sweeps from top to bottom (0.64s) when the
        reader crosses into a new section, whether by scrolling, the top nav,
        the side dots, keyboard jumping or presentation mode. It is a separate
        fixed overlay (never a mask over content): the panel is created by JS
